@@ -1,5 +1,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Rajdhani:wght@300;400;500;600;700&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap');
 
+@font-face {
+  font-family: 'StrangerThings';
+  src: url('../fonts/StrangerThings.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'StrangerThingsOutlined';
+  src: url('../fonts/StrangerThingsOutlined.ttf') format('truetype');
+}
+
 :root {
   /* Legacy Variables (Restored) */
   --red: #e23636;
@@ -34,55 +44,34 @@
   --neon-shadow: 0 0 10px rgba(255, 0, 60, 0.7), 0 0 20px rgba(255, 0, 60, 0.5);
 }
 
+/* Cursor style removed to restore default system cursor */
+/* Global Font override */
 * {
-  cursor: none;
-  /* Hide default cursor */
+  font-family: 'StrangerThings', 'Rajdhani', sans-serif;
 }
+
+/* Exclude Sri Ramakrishna Institute of Technology from global font */
+#logo h2,
+#logo h2 a,
+#logo h2 span,
+#header h2,
+#header h2 a,
+#header h2 span,
+#footer .footer-contact p,
+.detail-item p {
+  font-family: 'Rajdhani', sans-serif !important;
+}
+
 
 body {
   background: var(--void-black);
   color: var(--text-main);
-  font-family: 'Rajdhani', sans-serif;
+  font-family: 'StrangerThings', 'Rajdhani', sans-serif;
   font-size: 1.1em;
   overflow-x: hidden;
 }
 
-/* Custom Cursor */
-#cursor {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 20px;
-  height: 20px;
-  border: 2px solid var(--cyber-red);
-  border-radius: 50%;
-  transform: translate(-50%, -50%);
-  pointer-events: none;
-  z-index: 9999;
-  transition: width 0.2s, height 0.2s, background-color 0.2s;
-  mix-blend-mode: difference;
-}
-
-#cursor-blur {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 400px;
-  height: 400px;
-  background: radial-gradient(circle, rgba(255, 0, 60, 0.15) 0%, transparent 70%);
-  transform: translate(-50%, -50%);
-  pointer-events: none;
-  z-index: 9998;
-  filter: blur(50px);
-}
-
-/* Hover State for Cursor */
-body.hovered #cursor {
-  width: 50px;
-  height: 50px;
-  background-color: rgba(255, 0, 60, 0.2);
-  border-color: var(--cyber-gold);
-}
+/* Custom Cursor styles removed */
 
 a {
   color: #f82249;
@@ -615,8 +604,21 @@ body.mobile-nav-active #mobile-nav-toggle {
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.6);
+  background: rgba(0, 0, 0, 0.5);
   z-index: 1.5;
+  pointer-events: none;
+}
+
+/* Bottom Gradient Overlay for Transition */
+#intro::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 180px;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.85) 100%);
+  z-index: 2;
   pointer-events: none;
 }
 
@@ -645,7 +647,7 @@ body.mobile-nav-active #mobile-nav-toggle {
 
 /* Glitch Title */
 .glitch-title {
-  font-family: 'Orbitron', sans-serif;
+  font-family: 'StrangerThings', 'Orbitron', sans-serif;
   font-size: clamp(3rem, 8vw, 7rem);
   font-weight: 900;
   color: var(--text-main);
@@ -826,7 +828,7 @@ body.mobile-nav-active #mobile-nav-toggle {
   padding: 15px 40px;
   background: transparent;
   color: var(--cyber-red);
-  font-family: 'Orbitron', sans-serif;
+  font-family: 'StrangerThings', 'Orbitron', sans-serif;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 2px;
@@ -848,7 +850,7 @@ body.mobile-nav-active #mobile-nav-toggle {
   padding: 15px 40px;
   background: transparent;
   color: var(--text-main);
-  font-family: 'Orbitron', sans-serif;
+  font-family: 'StrangerThings', 'Orbitron', sans-serif;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 2px;
@@ -879,7 +881,7 @@ body.mobile-nav-active #mobile-nav-toggle {
 }
 
 .stat-num {
-  font-family: 'Orbitron', sans-serif;
+  font-family: 'StrangerThings', 'Orbitron', sans-serif;
   font-size: 1.5rem;
   color: var(--text-main);
   text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.9);
@@ -902,7 +904,7 @@ body.mobile-nav-active #mobile-nav-toggle {
 }
 
 .nav-menu a {
-  font-family: 'Orbitron', sans-serif;
+  font-family: 'StrangerThings', 'Orbitron', sans-serif;
   letter-spacing: 1px;
 }
 
@@ -1002,178 +1004,126 @@ body.mobile-nav-active #mobile-nav-toggle {
 
 
 /*--------------------------------------------------------------
-# About Section
+# Hero-style Countdown Section (Announcement Hub)
 --------------------------------------------------------------*/
-
 #about {
-  background: url("../img/stranger.jpg") no-repeat center center;
-  background-size: cover;
-  background-attachment: fixed !important;
-  overflow: hidden;
-  position: relative;
+  background: #000 !important;
   color: #fff;
-  padding: 60px 0 40px 0;
-}
-
-/*--------------------------------------------------------------
-# About Section (Premium Redesign)
---------------------------------------------------------------*/
-#about {
-  background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.8)), url("../img/stranger.jpg");
-  background-repeat: no-repeat;
-  background-position: center center;
-  background-size: cover;
-  background-attachment: fixed !important;
-  /* Parallax feel */
-  position: relative;
-  overflow: hidden;
   padding: 100px 0;
+  min-height: 55vh;
   display: flex;
   align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 5;
 }
 
 #about .about-container {
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 20px;
-  align-items: center;
-}
-
-/* Typography */
-#about h2 {
-  font-family: 'Orbitron', sans-serif;
-  font-size: 3rem;
-  font-weight: 700;
-  color: #d6b36a;
-  /* Muted Gold */
-  margin-bottom: 20px;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-}
-
-#about p {
-  font-family: 'Rajdhani', sans-serif;
-  font-size: 1.15rem;
-  line-height: 1.6;
-  color: #cfcfcf;
-  /* Warm Gray */
-  margin-bottom: 20px;
-}
-
-/* Details Section (Where & When) */
-.about-details {
-  display: flex;
-  gap: 40px;
-  border-top: 1px solid rgba(214, 179, 106, 0.3);
-  /* Subtle gold divider */
-  padding-top: 20px;
-}
-
-.detail-item h3 {
-  font-family: 'Orbitron', sans-serif;
-  font-size: 1.2rem;
-  color: #d6b36a;
-  font-weight: 600;
-  margin-bottom: 5px;
-  display: flex;
-  align-items: center;
-}
-
-.detail-item p {
-  font-size: 1rem;
-  color: #a0a0a0;
-  margin: 0;
-}
-
-/* CTA Button */
-.about-btn-cta {
-  display: inline-block;
-  background: #d6b36a;
-  color: #1a1a1a;
-  font-family: 'Orbitron', sans-serif;
-  font-weight: 700;
-  padding: 12px 35px;
-  border-radius: 50px;
-  /* Pill shape */
-  text-decoration: none;
-  transition: all 0.3s ease;
-  box-shadow: 0 5px 15px rgba(214, 179, 106, 0.3);
-}
-
-.about-btn-cta:hover {
-  background: #eecf8a;
-  transform: scale(1.05);
-  color: #000;
-  box-shadow: 0 0 20px rgba(214, 179, 106, 0.5);
-}
-
-/* Glass Countdown Timer */
-.glass-timer-card {
-  background: rgba(255, 255, 255, 0.05);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 20px;
-  padding: 40px;
+  width: 100%;
   text-align: center;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-  margin-top: 20px;
-  /* Spacing on mobile */
+}
+
+.countdown-hero-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 60px;
 }
 
 .countdown-header {
   font-family: 'Space Mono', monospace;
-  font-size: 1rem;
-  color: #cfcfcf;
-  letter-spacing: 3px;
-  margin-bottom: 20px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  display: inline-block;
-  padding-bottom: 5px;
+  font-size: 1.6rem;
+  color: #ff003c;
+  /* Neon Red */
+  letter-spacing: 5px;
+  font-weight: 700;
+  margin: 0;
+  text-transform: uppercase;
+  text-shadow: 0 0 10px rgba(255, 0, 60, 0.4);
 }
 
 .counter-content ul {
   display: flex;
-  justify-content: center;
-  /* Center items */
   align-items: center;
+  justify-content: center;
   list-style: none;
   padding: 0;
   margin: 0;
-  gap: 15px;
-  /* Spacing between time units */
+  gap: 50px;
 }
 
 .counter-content li {
-  text-align: center;
-  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
 }
 
 .counter-content li span {
-  display: block;
-  font-family: 'Orbitron', sans-serif;
-  font-size: 3rem;
-  /* Large numbers */
-  font-weight: 700;
-  color: #d6b36a;
-  /* Muted Gold */
-  line-height: 1;
-  text-shadow: 0 0 10px rgba(214, 179, 106, 0.3);
+  font-family: 'StrangerThings', 'Orbitron', sans-serif;
+  font-size: clamp(5rem, 15vw, 10rem);
+  /* Hero-sized digits */
+  font-weight: 900;
+  color: #ffffff;
+  line-height: 0.8;
+  text-shadow: 0 0 40px rgba(255, 0, 0, 0.7);
 }
 
 .counter-content li p {
   font-family: 'Space Mono', monospace;
-  font-size: 0.85rem;
-  color: #a0a0a0;
-  margin-top: 5px;
+  font-size: 1.1rem;
+  color: #888;
+  margin: 0;
   text-transform: uppercase;
+  letter-spacing: 4px;
 }
 
 .counter-content li.separator {
-  font-size: 2rem;
-  color: rgba(255, 255, 255, 0.2);
-  margin-top: -30px;
-  /* Align with numbers */
+  font-size: 6rem;
+  color: #ff003c;
+  opacity: 0.2;
+  font-weight: 100;
+  padding-bottom: 40px;
+}
+
+/* Continuity Gradients for Next Section Fade-In */
+.section-continuity-top {
+  position: relative;
+}
+
+.section-continuity-top::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 180px;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.85) 100%);
+  z-index: 10;
+  pointer-events: none;
+}
+
+@media (max-width: 991px) {
+  .counter-content ul {
+    gap: 30px;
+    flex-wrap: wrap;
+  }
+
+  .counter-content li span {
+    font-size: 4rem;
+  }
+
+  .counter-content li.separator {
+    display: none;
+  }
+
+  #about {
+    min-height: auto;
+    padding: 80px 0;
+  }
 }
 
 /* Responsive */
@@ -1406,7 +1356,7 @@ body.mobile-nav-active #mobile-nav-toggle {
 
 /* Typography */
 .hack-title {
-  font-family: 'Orbitron', sans-serif;
+  font-family: 'StrangerThings', 'Orbitron', sans-serif;
   font-size: 2.5rem;
   font-weight: 800;
   color: #ffffff;
@@ -1468,7 +1418,7 @@ body.mobile-nav-active #mobile-nav-toggle {
 }
 
 .prize-amount {
-  font-family: 'Orbitron', sans-serif;
+  font-family: 'StrangerThings', 'Orbitron', sans-serif;
   font-size: 1.5rem;
   font-weight: 700;
   color: #ffffff;
@@ -2633,7 +2583,7 @@ body.mobile-nav-active #mobile-nav-toggle {
 }
 
 .events-main-title {
-  font-family: 'Orbitron', sans-serif;
+  font-family: 'StrangerThings', 'Orbitron', sans-serif;
   font-size: clamp(3rem, 6vw, 5rem);
   font-weight: 900;
   color: var(--gold);
@@ -2727,7 +2677,7 @@ body.mobile-nav-active #mobile-nav-toggle {
 }
 
 .experience-card h3 {
-  font-family: 'Orbitron', sans-serif;
+  font-family: 'StrangerThings', 'Orbitron', sans-serif;
   font-size: 2rem;
   font-weight: 700;
   line-height: 1.1;
@@ -2875,7 +2825,7 @@ body.mobile-nav-active #mobile-nav-toggle {
 .cultural-card h3 {
   font-family: 'Dancing Script', cursive;
   /* Fallback if not loaded, checking main fonts... using generic cursive or Raleway if needed */
-  font-family: 'Raleway', sans-serif;
+  font-family: 'StrangerThings', 'Raleway', sans-serif;
   /* Sticking to existing fonts to be safe, but adding a twist */
   font-weight: 800;
   letter-spacing: 1px;

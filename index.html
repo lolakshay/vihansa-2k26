@@ -98,6 +98,11 @@
       z-index: 2;
     }
 
+
+
+
+
+
     /* Text color switching */
     #hack h2,
     #hack h4,
@@ -310,6 +315,7 @@
 
 <body>
 
+
   <!-- Custom Cursor -->
   <div id="cursor"></div>
   <div id="cursor-blur"></div>
@@ -382,69 +388,46 @@
   <main id="main">
 
     <!--==========================
-      About Section
+    <!--==========================
+      Countdown Ticker Section (Announcement Strip)
     ============================-->
     <section id="about">
-      <div class="row about-container">
-
-        <!-- Left Column: Text Content -->
-        <div class="col-lg-6 content">
-          <h2>About The Event</h2>
-          <p>
-            Vihansa is a dynamic technical symposium showcasing cutting-edge innovations, hands-on workshops, and
-            competitive events in engineering and technology. Organized by Sri Ramakrishna Institute of Technology, it
-            brings together students, experts, and industry leaders for knowledge sharing and networking.
-          </p>
-
-          <div class="about-details mt-4">
-            <div class="detail-item">
-              <h3><i class="fa fa-map-marker-alt mr-2"></i> WHERE</h3>
-              <p>Sri Ramakrishna Institue of Technology,<br>Coimbatore, Pachapalayam - 641010</p>
-            </div>
-            <div class="detail-item">
-              <h3><i class="fa fa-calendar-alt mr-2"></i> WHEN</h3>
-              <p>5<sup>th</sup> & 6<sup>th</sup> March<br>Register soon!</p>
-            </div>
-          </div>
-
-          <a href="registration.html" class="about-btn-cta mt-4">Register Now</a>
-        </div>
-
-        <!-- Right Column: Countdown Timer -->
-        <div class="col-lg-6">
-          <div class="glass-timer-card">
-            <div class="countdown-header">EVENT STARTS IN</div>
-            <div class="counter-content">
-              <ul id="countdown">
-                <li><span class="days">00</span>
-                  <p>Days</p>
-                </li>
-                <!-- Divider -->
-                <li class="separator">:</li>
-                <li><span class="hours">00</span>
-                  <p>Hours</p>
-                </li>
-                <li class="separator">:</li>
-                <li><span class="minutes">00</span>
-                  <p>Minutes</p>
-                </li>
-                <li class="separator">:</li>
-                <li><span class="seconds">00</span>
-                  <p>Seconds</p>
-                </li>
-              </ul>
-            </div>
+      <div class="about-container">
+        <div class="countdown-hero-wrap">
+          <h4 class="countdown-header">Event Starts In</h4>
+          <div class="counter-content">
+            <ul id="countdown">
+              <li><span id="days">00</span>
+                <p>Days</p>
+              </li>
+              <li class="separator">:</li>
+              <li><span id="hours">00</span>
+                <p>Hours</p>
+              </li>
+              <li class="separator">:</li>
+              <li><span id="minutes">00</span>
+                <p>Minutes</p>
+              </li>
+              <li class="separator">:</li>
+              <li><span id="seconds">00</span>
+                <p>Seconds</p>
+              </li>
+            </ul>
           </div>
         </div>
-
       </div>
     </section>
+
     <!--==========================
-      Hackathon Section
+      Hackathon Section (Transition Start)
     ============================-->
-    <section id="hack" class="wow fadeInUp p-0">
+    <section id="hack" class="wow fadeInUp p-0 section-continuity-top">
+
 
       <div class="container-fluid p-0">
+
+
+
         <div class="row no-gutters">
 
           <!-- Left: Full Width Image -->
@@ -460,6 +443,8 @@
 
           <!-- Right: Content -->
           <div class="col-lg-6 cyber-void-bg hack-content-col">
+
+
             <div class="hack-content-inner">
               <div class="section-header text-left mb-4">
                 <h2>Hackathon</h2>
