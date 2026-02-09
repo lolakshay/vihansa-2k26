@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>VIHANSA-2026 | Registration</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="keywords">
+    <meta content="" name="description">
+
+    <!-- Favicons -->
+    <link href="img/REVIVE-COMING_SOON-removebg-preview.png" rel="icon">
+    <link href="img/REVIVE-COMING_SOON-removebg-preview.png" rel="apple-touch-icon">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Rajdhani:wght@300;400;500;600;700&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap"
+        rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Raleway:300,400,500,700,800"
+        rel="stylesheet">
+
+    <!-- Bootstrap CSS File -->
+    <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Libraries CSS Files -->
+    <link href="lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="lib/animate/animate.min.css" rel="stylesheet">
+    <link href="lib/venobox/venobox.css" rel="stylesheet">
+    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+
+    <!-- Main Stylesheet File -->
+    <link href="css/style.css" rel="stylesheet">
+
+    <style>
+        /* ================= STRANGER THINGS HACKATHON EFFECT (Copied from index.html) ================= */
+        #hack {
+            position: relative;
+            overflow: hidden;
+            background: #000;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        /* Cloud + Upside Down Background */
+        #hack::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(circle at 30% 20%, rgba(255, 255, 255, 0.35), transparent 40%),
+                radial-gradient(circle at 70% 45%, rgba(255, 0, 0, 0.25), transparent 45%),
+                radial-gradient(circle at 20% 80%, rgba(30, 0, 0, 0.85), transparent 55%),
+                linear-gradient(180deg, rgba(255, 0, 0, 0.2), rgba(0, 0, 0, 0.95));
+
+            background-size: 100% 300%;
+            background-position: top;
+            animation: upsideBackground 7s ease-in-out infinite;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        /* Lightning Strike */
+        #hack::after {
+            content: "";
+            position: absolute;
+            top: -150%;
+            left: 50%;
+            width: 3px;
+            height: 350%;
+            background: linear-gradient(transparent,
+                    #ffffff,
+                    #ff0000,
+                    #ffffff,
+                    transparent);
+            box-shadow:
+                0 0 15px #ffffff,
+                0 0 35px #ff0000,
+                0 0 60px #ff0000;
+            opacity: 0;
+            transform: translateX(-50%) rotate(14deg);
+            animation: lightningStrike 7s infinite;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        /* Keep content visible */
+        #hack .container,
+        #hack .row,
+        #hack img,
+        #hack .glow-border {
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Text color switching */
+        #hack h2,
+        #hack h4,
+        #hack p {
+            background: linear-gradient(180deg,
+                    #ff3b3b 0%,
+                    #ffffff 35%,
+                    #000000 55%,
+                    #8b0000 75%,
+                    #ff0000 100%);
+            background-size: 100% 300%;
+            background-position: top;
+
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            color: transparent;
+
+            animation: upsideText 7s ease-in-out infinite;
+
+            text-shadow:
+                0 0 6px rgba(255, 0, 0, 0.4),
+                0 0 16px rgba(255, 0, 0, 0.3);
+        }
+
+        /* Animations */
+        @keyframes upsideBackground {
+            0% {
+                background-position: top;
+            }
+
+            50% {
+                background-position: center;
+            }
+
+            100% {
+                background-position: bottom;
+            }
+        }
+
+        @keyframes upsideText {
+            0% {
+                background-position: top;
+            }
+
+            50% {
+                background-position: center;
+            }
+
+            100% {
+                background-position: bottom;
+            }
+        }
+
+        @keyframes lightningStrike {
+
+            0%,
+            88%,
+            100% {
+                opacity: 0;
+            }
+
+            89% {
+                opacity: 1;
+            }
+
+            90% {
+                opacity: 0.2;
+            }
+
+            91% {
+                opacity: 0.9;
+            }
+        }
+
+        /* Registration Card Styling */
+        .reg-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            text-align: center;
+        }
+
+        .reg-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 0 20px rgba(255, 0, 60, 0.4);
+        }
+
+        .reg-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+        }
+
+        /* Form Styling */
+        .form-group {
+            margin-bottom: 1.5rem;
+            text-align: left;
+        }
+
+        .cyber-label {
+            font-family: 'Space Mono', monospace;
+            color: #00f0ff;
+            /* Electric Blue */
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+            display: block;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            text-shadow: 0 0 5px rgba(0, 240, 255, 0.5);
+        }
+
+        .cyber-input {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: #fff !important;
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 1.1rem;
+            padding: 10px 15px;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .cyber-input:focus {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: #ff003c;
+            /* Cyber Red */
+            box-shadow: 0 0 15px rgba(255, 0, 60, 0.3);
+            outline: none;
+        }
+
+        .cyber-input::placeholder {
+            color: rgba(255, 255, 255, 0.3);
+        }
+
+        select.cyber-input option {
+            background: #000;
+            color: #fff;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <!-- Custom Cursor -->
+    <div id="cursor"></div>
+    <div id="cursor-blur"></div>
+
+    <!--==========================
+    Header
+  ============================-->
+
+    <header id="header">
+        <div class="container">
+
+            <div id="logo" class="pull-left">
+                <a href="index.html#intro" class="scrollto"><img src="img/logo.png" alt="" title=""></a>
+            </div>
+
+            <nav id="nav-menu-container">
+                <ul class="nav-menu">
+                    <li><a href="index.html#intro" data-text="Home">Home</a></li>
+                    <li><a href="index.html#about" data-text="About">About</a></li>
+                    <li><a href="index.html#hack" data-text="Hackathon">Hackathon</a></li>
+                    <li><a href="index.html#events" data-text="Events">Events</a></li>
+                    <li><a href="index.html#gallery" data-text="Main Events">Main Events</a></li>
+                    <li><a href="index.html#agenda" data-text="Agenda">Agenda</a></li>
+                    <li class="menu-active buy-tickets"><a href="#" data-text="Register">Register</a></li>
+                </ul>
+            </nav><!-- #nav-menu-container -->
+        </div>
+    </header><!-- #header -->
+
+    <!--==========================
+    Registration Section
+  ============================-->
+    <section id="hack">
+
+        <!-- Glowing Border Elements -->
+        <div class="glow-border glow-top"></div>
+        <div class="glow-border glow-bottom"></div>
+        <div class="glow-border glow-left"></div>
+        <div class="glow-border glow-right"></div>
+
+        <div class="container">
+            <div class="section-header">
+                <h2 class="glitch-title" data-text="REGISTRATION" style="font-size: 3rem; margin-bottom: 1rem;">
+                    REGISTRATION</h2>
+                <p class="cyber-subtitle" style="text-align: center;">Choose your path</p>
+            </div>
+
+
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="glass-panel p-4 p-md-5">
+                        <form id="registrationForm"
+                            onsubmit="event.preventDefault(); alert('Registration Successful! (Demo)');">
+                            <div class="row">
+                                <!-- Name -->
+                                <div class="col-md-6 form-group">
+                                    <label for="name" class="cyber-label">Full Name</label>
+                                    <input type="text" class="form-control cyber-input" id="name" placeholder="John Doe"
+                                        required>
+                                </div>
+                                <!-- Email -->
+                                <div class="col-md-6 form-group">
+                                    <label for="email" class="cyber-label">Email Address</label>
+                                    <input type="email" class="form-control cyber-input" id="email"
+                                        placeholder="john@example.com" required>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <!-- Phone -->
+                                <div class="col-md-6 form-group">
+                                    <label for="phone" class="cyber-label">Phone Number</label>
+                                    <input type="tel" class="form-control cyber-input" id="phone"
+                                        placeholder="+91 98765 43210" required>
+                                </div>
+                                <!-- Year -->
+                                <div class="col-md-6 form-group">
+                                    <label for="year" class="cyber-label">Year of Study</label>
+                                    <select class="form-control cyber-input" id="year" required>
+                                        <option value="" disabled selected>Select Year</option>
+                                        <option value="1">1st Year</option>
+                                        <option value="2">2nd Year</option>
+                                        <option value="3">3rd Year</option>
+                                        <option value="4">4th Year</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <!-- College -->
+                                <div class="col-md-6 form-group">
+                                    <label for="college" class="cyber-label">College / Institution</label>
+                                    <input type="text" class="form-control cyber-input" id="college"
+                                        placeholder="Institute Name" required>
+                                </div>
+                                <!-- Department -->
+                                <div class="col-md-6 form-group">
+                                    <label for="dept" class="cyber-label">Department</label>
+                                    <input type="text" class="form-control cyber-input" id="dept"
+                                        placeholder="CSE, ECE, etc." required>
+                                </div>
+                            </div>
+
+                            <!-- Event Category -->
+                            <div class="form-group">
+                                <label for="category" class="cyber-label">Event Category</label>
+                                <select class="form-control cyber-input" id="category" required>
+                                    <option value="" disabled selected>Select Event Category</option>
+                                    <option value="tech">Tech & Non-Tech Events</option>
+                                    <option value="workshop">Workshops</option>
+                                    <option value="hackathon">Hackathon</option>
+                                    <option value="culturals">Culturals</option>
+                                </select>
+                            </div>
+
+                            <div class="text-center mt-4">
+                                <button type="submit" class="cyber-btn glitch-btn" style="min-width: 200px;">REGISTER
+                                    NOW</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!--==========================
+    Footer
+  ============================-->
+    <footer id="footer">
+        <div class="container">
+            <div class="copyright">
+                &copy; Copyright <strong>Vihansa-2026</strong>. All Rights Reserved
+                <p>Ensure correct details when registering • There will be no refund at any costs</p>
+            </div>
+        </div>
+    </footer><!-- #footer -->
+
+    <a href="#" class="back-to-top"><i class="fa fa-angle-up"></i></a>
+
+    <!-- JavaScript Libraries -->
+    <script src="lib/jquery/jquery.min.js"></script>
+    <script src="lib/jquery/jquery-migrate.min.js"></script>
+    <script src="lib/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="lib/easing/easing.min.js"></script>
+    <script src="lib/superfish/hoverIntent.js"></script>
+    <script src="lib/superfish/superfish.min.js"></script>
+    <script src="lib/wow/wow.min.js"></script>
+    <script src="lib/venobox/venobox.min.js"></script>
+    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+    <!-- Three.js (Required for Hero 3D) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+    <!-- Template Main Javascript File -->
+    <script src="js/main.js"></script>
+    <script src="js/hero-3d.js"></script>
+    <script src="js/cursor.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,945 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>VIHANSA-2026</title>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <meta content="" name="keywords">
+  <meta content="" name="description">
+
+  <!-- Favicons -->
+  <link href="img/REVIVE-COMING_SOON-removebg-preview.png" rel="icon">
+  <link href="img/REVIVE-COMING_SOON-removebg-preview.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Rajdhani:wght@300;400;500;600;700&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap"
+    rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Raleway:300,400,500,700,800"
+    rel="stylesheet">
+
+  <!-- Bootstrap CSS File -->
+  <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Libraries CSS Files -->
+  <link href="lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+  <link href="lib/animate/animate.min.css" rel="stylesheet">
+  <link href="lib/venobox/venobox.css" rel="stylesheet">
+  <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+
+  <!-- Main Stylesheet File -->
+  <link href="css/style.css" rel="stylesheet">
+
+  <style>
+    /* ================= STRANGER THINGS HACKATHON EFFECT ================= */
+    #gallery {
+      background:
+
+        url("img/maineventbg.gif") center / cover no-repeat;
+    }
+
+    #hack {
+      position: relative;
+      overflow: hidden;
+      background: #000;
+    }
+
+    /* Cloud + Upside Down Background */
+    #hack::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 30% 20%, rgba(255, 255, 255, 0.35), transparent 40%),
+        radial-gradient(circle at 70% 45%, rgba(255, 0, 0, 0.25), transparent 45%),
+        radial-gradient(circle at 20% 80%, rgba(30, 0, 0, 0.85), transparent 55%),
+        linear-gradient(180deg, rgba(255, 0, 0, 0.2), rgba(0, 0, 0, 0.95));
+
+      background-size: 100% 300%;
+      background-position: top;
+      animation: upsideBackground 7s ease-in-out infinite;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    /* Lightning Strike */
+    #hack::after {
+      content: "";
+      position: absolute;
+      top: -150%;
+      left: 50%;
+      width: 3px;
+      height: 350%;
+      background: linear-gradient(transparent,
+          #ffffff,
+          #ff0000,
+          #ffffff,
+          transparent);
+      box-shadow:
+        0 0 15px #ffffff,
+        0 0 35px #ff0000,
+        0 0 60px #ff0000;
+      opacity: 0;
+      transform: translateX(-50%) rotate(14deg);
+      animation: lightningStrike 7s infinite;
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    /* Keep content visible */
+    #hack .container,
+    #hack .row,
+    #hack img,
+    #hack .glow-border {
+      position: relative;
+      z-index: 2;
+    }
+
+    /* Text color switching */
+    #hack h2,
+    #hack h4,
+    #hack p {
+      background: linear-gradient(180deg,
+          #ff3b3b 0%,
+          #ffffff 35%,
+          #000000 55%,
+          #8b0000 75%,
+          #ff0000 100%);
+      background-size: 100% 300%;
+      background-position: top;
+
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      color: transparent;
+
+      animation: upsideText 7s ease-in-out infinite;
+
+      text-shadow:
+        0 0 6px rgba(255, 0, 0, 0.4),
+        0 0 16px rgba(255, 0, 0, 0.3);
+    }
+
+    /* Animations */
+    @keyframes upsideBackground {
+      0% {
+        background-position: top;
+      }
+
+      50% {
+        background-position: center;
+      }
+
+      100% {
+        background-position: bottom;
+      }
+    }
+
+    @keyframes upsideText {
+      0% {
+        background-position: top;
+      }
+
+      50% {
+        background-position: center;
+      }
+
+      100% {
+        background-position: bottom;
+      }
+    }
+
+    @keyframes lightningStrike {
+
+      0%,
+      88%,
+      100% {
+        opacity: 0;
+      }
+
+      89% {
+        opacity: 1;
+      }
+
+      90% {
+        opacity: 0.2;
+      }
+
+      91% {
+        opacity: 0.9;
+      }
+    }
+
+    /* <style> */
+
+    /* MAIN TITLE */
+    .stranger-title {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(3.5rem, 10vw, 9rem);
+      font-weight: 900;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      position: relative;
+
+      /* Core text color */
+      color: #ff1c1c;
+
+      /* Internal texture using gradients */
+      background:
+        linear-gradient(180deg,
+          #ff3b3b 0%,
+          #ff0000 35%,
+          #8b0000 60%,
+          #2a0000 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+
+      /* Deep cinematic glow */
+      text-shadow:
+        0 0 5px rgba(255, 0, 0, 0.8),
+        0 0 15px rgba(255, 0, 0, 0.7),
+        0 0 35px rgba(255, 0, 0, 0.6),
+        0 0 60px rgba(120, 0, 0, 0.6);
+
+      animation:
+        introZoom 6s ease-in-out forwards,
+        flickerGlow 4s infinite;
+    }
+
+    /* Inner highlight lines (inside letters) */
+    .stranger-title::before {
+      content: attr(data-text);
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg,
+          rgba(255, 255, 255, 0.9),
+          rgba(255, 0, 0, 0.4),
+          transparent 70%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      opacity: 0.25;
+      mix-blend-mode: screen;
+      pointer-events: none;
+    }
+
+    /* Dark inner depth */
+    .stranger-title::after {
+      content: attr(data-text);
+      position: absolute;
+      inset: 0;
+      color: rgba(80, 0, 0, 0.7);
+      transform: translateY(6px);
+      filter: blur(6px);
+      opacity: 0.6;
+      z-index: -1;
+    }
+
+    /* Zoom like Stranger Things */
+    @keyframes introZoom {
+      0% {
+        transform: scale(0.85);
+        opacity: 0;
+      }
+
+      40% {
+        opacity: 1;
+      }
+
+      100% {
+        transform: scale(1.18);
+      }
+    }
+
+    /* Neon flicker */
+    @keyframes flickerGlow {
+
+      0%,
+      100% {
+        opacity: 1;
+      }
+
+      94% {
+        opacity: 0.85;
+      }
+
+      96% {
+        opacity: 0.6;
+      }
+
+      97% {
+        opacity: 1;
+      }
+    }
+
+    /* Cinematic red horizontal lines */
+    .stranger-intro::before,
+    .stranger-intro::after {
+      content: "";
+      position: absolute;
+      width: 100%;
+      height: 2px;
+      background: rgba(255, 0, 0, 0.35);
+      box-shadow: 0 0 20px red;
+      animation: scanLines 6s linear infinite;
+    }
+
+    .stranger-intro::after {
+      bottom: 28%;
+    }
+
+    @keyframes scanLines {
+      0% {
+        top: 38%;
+      }
+
+      100% {
+        top: 68%;
+      }
+    }
+  </style>
+
+  <!-- </style> -->
+
+
+</head>
+
+<body>
+
+  <!-- Custom Cursor -->
+  <div id="cursor"></div>
+  <div id="cursor-blur"></div>
+
+  <!--==========================
+    Header
+  ============================-->
+
+  <header id="header">
+    <div class="container">
+
+      <div id="logo" class="pull-left">
+        <!-- <a href="#intro" class="scrollto"><img src="img/logo1.png" alt="" title=""></a> -->
+        <a href="#intro" class="scrollto"><img src="img/logo.png" alt="" title=""></a>
+        <!-- <h2><a href="#main">Sri <span>RamaKrishna</span><br />Institute of technology</a></h2> -->
+      </div>
+
+      <nav id="nav-menu-container">
+        <ul class="nav-menu">
+          <li class="menu-active"><a href="#intro" data-text="Home">Home</a></li>
+          <li><a href="#about" data-text="About">About</a></li>
+          <li><a href="#hack" data-text="Hackathon">Hackathon</a></li>
+          <li><a href="#events" data-text="Events">Events</a></li>
+          <li><a href="#gallery" data-text="Main Events">Main Events</a></li>
+          <li><a href="#agenda" data-text="Agenda">Agenda</a></li>
+          <li class="buy-tickets"><a href="registration.html" data-text="Register">Register</a></li>
+        </ul>
+      </nav><!-- #nav-menu-container -->
+    </div>
+  </header><!-- #header -->
+
+  <!--==========================
+    Intro Section
+  ============================-->
+  <section id="intro">
+    <!-- Video Background -->
+    <video autoplay loop muted playsinline id="bg-video">
+      <source src="img/bb2.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+
+    <div id="hero-canvas"></div> <!-- 3D Canvas Container -->
+
+    <div class="intro-container wow fadeIn">
+      <div class="row align-items-center">
+        <div class="col-12 intro-text-content">
+          <h1 class="glitch-title" data-text="VIHANSA 2K26">VIHANSA 2K26</h1>
+          <p class="cyber-subtitle">IGNITE THE FUTURE &bull; INSPIRE THE WORLD</p>
+
+          <div class="hero-actions">
+            <a href="registration.html" class="cyber-btn glitch-btn">REGISTER NOW</a>
+            <a href="#about" class="cyber-btn-outline scrollto">EXPLORE</a>
+          </div>
+
+          <div class="hero-stats">
+            <div class="stat-item">
+              <span class="stat-num">MAR 05-06</span>
+              <span class="stat-label">Coordinates</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-num">₹4L+</span>
+              <span class="stat-label">Prize Pool</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <main id="main">
+
+    <!--==========================
+      About Section
+    ============================-->
+    <section id="about">
+      <div class="row about-container">
+
+        <!-- Left Column: Text Content -->
+        <div class="col-lg-6 content">
+          <h2>About The Event</h2>
+          <p>
+            Vihansa is a dynamic technical symposium showcasing cutting-edge innovations, hands-on workshops, and
+            competitive events in engineering and technology. Organized by Sri Ramakrishna Institute of Technology, it
+            brings together students, experts, and industry leaders for knowledge sharing and networking.
+          </p>
+
+          <div class="about-details mt-4">
+            <div class="detail-item">
+              <h3><i class="fa fa-map-marker-alt mr-2"></i> WHERE</h3>
+              <p>Sri Ramakrishna Institue of Technology,<br>Coimbatore, Pachapalayam - 641010</p>
+            </div>
+            <div class="detail-item">
+              <h3><i class="fa fa-calendar-alt mr-2"></i> WHEN</h3>
+              <p>5<sup>th</sup> & 6<sup>th</sup> March<br>Register soon!</p>
+            </div>
+          </div>
+
+          <a href="registration.html" class="about-btn-cta mt-4">Register Now</a>
+        </div>
+
+        <!-- Right Column: Countdown Timer -->
+        <div class="col-lg-6">
+          <div class="glass-timer-card">
+            <div class="countdown-header">EVENT STARTS IN</div>
+            <div class="counter-content">
+              <ul id="countdown">
+                <li><span class="days">00</span>
+                  <p>Days</p>
+                </li>
+                <!-- Divider -->
+                <li class="separator">:</li>
+                <li><span class="hours">00</span>
+                  <p>Hours</p>
+                </li>
+                <li class="separator">:</li>
+                <li><span class="minutes">00</span>
+                  <p>Minutes</p>
+                </li>
+                <li class="separator">:</li>
+                <li><span class="seconds">00</span>
+                  <p>Seconds</p>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+    <!--==========================
+      Hackathon Section
+    ============================-->
+    <section id="hack" class="wow fadeInUp p-0">
+
+      <div class="container-fluid p-0">
+        <div class="row no-gutters">
+
+          <!-- Left: Full Width Image -->
+          <div class="col-lg-6 hack-image-col">
+            <div class="hack-image-wrapper">
+              <img src="img/events-main/hacathon_new.webp" alt="Hackathon" class="img-fluid hack-hero-img">
+              <div class="hack-overlay-text">
+                <h4 class="sponsor-title">Industry Partner</h4>
+                <img src="img/hackathon/hackspon.png" alt="Sponsor" class="sponsor-logo">
+              </div>
+            </div>
+          </div>
+
+          <!-- Right: Content -->
+          <div class="col-lg-6 cyber-void-bg hack-content-col">
+            <div class="hack-content-inner">
+              <div class="section-header text-left mb-4">
+                <h2>Hackathon</h2>
+                <p class="cyber-subtitle text-left">Separate Registration</p>
+              </div>
+
+              <h2 class="hack-title glitch-text" data-text="INNOVATE. CREATE. CONQUER.">INNOVATE. CREATE. CONQUER.</h2>
+              <p class="hack-desc my-4">
+                A thrilling <strong>24-hour Innovative Marathon</strong> where brilliant minds collaborate to build tech
+                solutions.
+                Win exciting prizes, gain mentorship, and showcase your skills under pressure!
+                <br><span class="highlight-text">Get instant internship opportunities.</span>
+              </p>
+
+              <div class="hack-prizes row mb-4">
+                <div class="col-12 mb-3">
+                  <div class="prize-card glow-card first-prize w-100">
+                    <span class="prize-label">1st Prize</span>
+                    <span class="prize-amount">₹50,000</span>
+                  </div>
+                </div>
+                <div class="col-6">
+                  <div class="prize-card glow-card">
+                    <span class="prize-label">2nd Prize</span>
+                    <span class="prize-amount">₹30,000</span>
+                  </div>
+                </div>
+                <div class="col-6">
+                  <div class="prize-card glow-card">
+                    <span class="prize-label">3rd Prize</span>
+                    <span class="prize-amount">₹10,000</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="hack-actions d-flex flex-wrap gap-3">
+                <a href="registration.html" class="cyber-btn mr-3">REGISTER TEAM</a>
+                <a href="https://drive.google.com/drive/folders/1oVDuiifDbgRy3HoXsh2a4RDUzXVeUBPf" target="_blank"
+                  class="cyber-btn-outline">RULE BOOK</a>
+              </div>
+              <p class="mt-3 text-danger font-weight-bold blink_me">⚠️ LIMITED REGISTRATION!</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!--==========================
+      Events cards
+    ============================-->
+    <section id="events" class="cinematic-events-section">
+      <!-- Animated Background Layers -->
+      <div class="events-bg-layer base-gradient"></div>
+      <div class="events-bg-layer noise-overlay"></div>
+      <div class="events-bg-layer radial-glow"></div>
+
+      <div class="container position-relative z-2">
+        <div class="cinematic-header wow fadeInDown">
+          <h2 class="events-main-title">EVENTS</h2>
+          <div class="header-decoration"></div>
+          <p class="events-sub-title">Common Registration</p>
+        </div>
+
+        <div class="experience-grid">
+
+          <!-- Card 1: Technical & Non-Technical -->
+          <a href="events.html" class="experience-card tech-card wow fadeInUp" data-wow-delay="0.1s">
+            <div class="card-inner">
+              <div class="card-bg"></div>
+              <div class="card-content">
+                <div class="card-icon">
+                  <i class="fa fa-microchip"></i>
+                </div>
+                <h3>Technical &<br>Non-Technical</h3>
+                <div class="card-visual">
+                  <div class="scan-line"></div>
+                  <div class="neural-network"></div>
+                </div>
+                <div class="card-explore">
+                  <span>Explore System</span> <i class="fa fa-arrow-right"></i>
+                </div>
+              </div>
+            </div>
+          </a>
+
+          <!-- Card 2: Workshops -->
+          <a href="events.html" class="experience-card workshop-card wow fadeInUp" data-wow-delay="0.3s">
+            <div class="card-inner">
+              <div class="card-bg"></div>
+              <div class="card-content">
+                <div class="card-icon">
+                  <i class="fa fa-cogs"></i>
+                </div>
+                <h3>Work<br>Shops</h3>
+                <div class="card-visual">
+                  <div class="blueprint-grid"></div>
+                </div>
+                <div class="card-explore">
+                  <span>Start Build</span> <i class="fa fa-arrow-right"></i>
+                </div>
+              </div>
+            </div>
+          </a>
+
+          <!-- Card 3: Culturals -->
+          <a href="events.html" class="experience-card cultural-card wow fadeInUp" data-wow-delay="0.5s">
+            <div class="card-inner">
+              <div class="card-bg"></div>
+              <div class="card-content">
+                <div class="card-icon">
+                  <i class="fa fa-music"></i>
+                </div>
+                <h3>Culturals</h3>
+                <div class="card-visual">
+                  <div class="sound-wave"></div>
+                </div>
+                <div class="card-explore">
+                  <span>View Stage</span> <i class="fa fa-arrow-right"></i>
+                </div>
+              </div>
+            </div>
+          </a>
+
+        </div>
+      </div>
+    </section>
+    <!--==========================
+      Gallery Section
+    ============================-->
+    <section id="gallery" class="wow fadeInUp">
+      <div class="container">
+        <div class="section-header">
+          <br>
+          <br>
+          <br>
+          <h2>Main Events</h2>
+        </div>
+
+        <div class="scrolling-gallery">
+          <div class="gallery-track">
+            <!-- Paper Presentation -->
+            <div class="gallery-item"
+              onclick="openPopup('PAPERPERS.webp', 'Paper Presentation:', 
+              ['SRINITHI/IT', 'NITESH/ECE', 'RIZWAN/EEE', 'RAHUL PRASHATH/CSE', 'NALLASIVAN/MECH'], 
+              ['Dr. J. MALA (IT)', 'Dr. JIM MATHEW PHILIP (CSE)', 'Dr. L. MALATHI (ECE)', 'Ms. D. POORNIMA (EEE)', 'Mr. B. VARUN (MECH)'])">
+              <img src="img/events-main/PAPERPERS.webp" alt="Paper Presentation">
+              <div class="event-title">Paper Presentation</div>
+            </div>
+
+            <!-- Hackathon -->
+            <div class="gallery-item"
+              onclick="openPopup('hacathon_new.webp', 'Hackathon:', 
+              ['KISHANTH/IT', 'DIVAKAR/CSE', 'SUJITH KUMAR/ECE', 'NAVEEN/EEE', 'LOGAKAVIN/MECH','REVATHI/CSE'], 
+              ['Dr. T. C. EZHIL SELVAN (IT)', 'Dr. K. M. KIRTHIKA (CSE)', 'Mr. S. SAMPATH (MECH)', 'Mr. S. THIYAGARAJAN (ECE)', 'Dr. S. UDAIYA KUMAR (EEE)'])">
+              <img src="img/events-main/hacathon_new.webp" alt="Hackathon">
+              <div class="event-title">Hackathon</div>
+            </div>
+
+            <!-- Project Expo -->
+            <div class="gallery-item"
+              onclick="openPopup('PROJECT - EXPO.webp', 'Project Expo:', 
+              ['SUBIKSHA/IT', 'KANTHESHWAR/EEE', 'LAVANYA/ECE', 'RAGAVAN/CSE', 'KISHORE/MECH'], 
+              ['Dr. T. C. EZHIL SELVAN (IT)', 'Dr. R. KUMAR (CSE)', 'Mr. V GANESH (ECE)', 'Dr. G. KANNAYERAM (EEE)', 'Dr. S. BENJAMIN FRANKLIN (MECH)'])">
+              <img src="img/events-main/PROJECT - EXPO.webp" alt="Project Expo">
+              <div class="event-title">Project Expo</div>
+            </div>
+
+            <!-- Report Rendering -->
+            <div class="gallery-item"
+              onclick="openPopup('REPORT RENDERING.webp', 'Report Rendering: ', 
+              ['SWETHA/IT', 'HARIHARAN/CSE', 'PRIYADHARSHINI/EEE', 'MUGILAN/ECE', 'PRAKASH/MECH'], 
+              ['Ms. K. MOHANAPRIYA (IT)', 'Dr. N. S. KAVITHA (CSE)', 'Dr. A. K. KAVITHAA (ECE)', 'Mr. R. SUDHARSHAN (MECH)', 'Mr. C. ANANDA KUMAR (EEE)'])">
+              <img src="img/events-main/REPORT RENDERING.webp" alt="Report Rendering">
+              <div class="event-title">Report Rendering</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Popup Modal -->
+      <div class="popup-overlay" id="eventPopup" style="display: none;">
+        <div class="popup-container">
+          <button class="close-btn" onclick="closePopup()">&times;</button>
+          <div class="popup-content-wrapper">
+            <img id="popupImage" src="" alt="Event Image" class="popup-image">
+            <div class="popup-content">
+              <h2 id="popupTitle"></h2>
+              <div class="details-grid">
+                <div class="popup-section">
+                  <h3>Coordinators</h3>
+                  <ul id="popupCoordinators"></ul>
+                </div>
+                <div class="popup-section">
+                  <h3>Faculty In-charge</h3>
+                  <ul id="popupFaculty"></ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Modal for full-size image view -->
+
+    <!--==========================
+      agenda Section
+    ============================-->
+    <section id="agenda" class="wow fadeInRight">
+      <div class="container">
+        <div class="section-header">
+          <h2>Event Agenda</h2>
+          <p>Experience the perfect mix of technology and culture, with exciting innovations and vibrant performances.
+          </p>
+        </div>
+        <ul class="nav nav-tabs" role="tablist">
+          <li class="nav-item">
+            <a class="day1 nav-link active" href="#day1" role="tab" data-toggle="tab">Day 1</a>
+          </li>
+          <li class="nav-item">
+            <a class="day2 nav-link" href="#day2" role="tab" data-toggle="tab">Day 2</a>
+          </li>
+        </ul>
+        <div class="tab-content">
+          <!-- Day 1 -->
+          <div role="row tabpanel" class="tab-pane fade show active" id="day1">
+            <div class="container timeline">
+              <div class="event">09:30 AM - Registration</div>
+              <div class="event">10:00 AM: <br>
+                <div>
+                  <p>Code It (Full day event) - CC1,2,3</p>
+                  <p>Ideathon (Paper Presentaion) - Classroom</p>
+                  <p>Clone X - CC 5</p>
+                  <p>Speed Craft - Volley Ball Court</p>
+                </div>
+              </div>
+              <div class="event">12:00 Noon:
+                <div>
+                  <p>Arkham Encrypted (Mystery coding) - IT Lab</p>
+                  <p>Reverse Engineering - ECE Labs</p>
+                  <p>Circuit Debugging - EEE Labs</p>
+                </div>
+              </div>
+              <div class="event">01:00 PM: Lunch Break</div>
+              <div class="event">02:30 PM:
+                <div>
+                  <p>Robo Rush - LH242</p>
+                  <p>Best Manager - Classroom</p>
+                  <p>Capture the flag - CC4</p>
+                </div>
+              </div>
+              <div class="event">03:30 PM:
+                <div>
+                  <p>iConfusion (Quiz) - Classroom</p>
+                </div>
+              </div>
+              <div class="event">04:30 PM: Prize distribution and all events will get over.</div>
+            </div>
+          </div>
+          <!-- Day 2 -->
+          <div role="tabpanel" class="tab-pane fade" id="day2">
+            <div class="container timeline">
+              <div class="event">10:00 AM:
+                <div>
+                  <p>Project Expo - ECE Labs</p>
+                  <p>Report Rendering - E-Learning centre</p>
+                  <p>Dashed data with ML - Ai/Ml Lab</p>
+                  <p>Fly forge - Kho Kho Ground</p>
+                  <p>Innovation Pitch (Full day event) - E-Learning centre</p>
+                </div>
+              </div>
+              <div class="event">10:00 AM:
+                <div>
+                  <p>Fine Arts event will begin from morning to evening</p>
+                </div>
+              </div>
+              <div class="event">12:00 Noon:
+                <div>
+                  <p>Codewar:Endgame - IT Lab</p>
+                </div>
+              </div>
+              <div class="event">01:00 PM: Lunch Break</div>
+              <div class="event">02:30 PM:
+                <div>
+                  <p>Bid Smash - Classroom</p>
+                  <p>Prompt engineering - CC4</p>
+                </div>
+              </div>
+
+              <div class="event">04:30 PM: Prize distribution and all events will get over.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!--==========================
+      F.A.Q Section
+    ============================-->
+    <section id="faq" class="wow fadeInUp">
+
+      <div class="container">
+
+        <div class="section-header">
+          <h2>F.A.Q </h2>
+        </div>
+
+        <div class="row justify-content-center">
+          <div class="col-lg-9">
+            <ul id="faq-list">
+
+              <li>
+                <a data-toggle="collapse" class="collapsed" href="#faq1">How to reach the venue? <i
+                    class="fa fa-minus-circle"></i></a>
+                <div id="faq1" class="collapse" data-parent="#faq-list">
+                  <p>
+                    The hackathon will be held at Sri Ramakrishana Institute of Technology, Pachapalayam,Coimbatore,
+                    Tamil Nadu.
+                    For detailed directions see footer map.
+                    <br><br>College bus will be provided from Pachapalayam pirivu bus stop:
+                    <br>
+                    Pachapalayam pirivu - SRIT campus<br>
+                    SRIT campus - Pachapalayam pirivu<br>
+                  </p>
+                </div>
+              </li>
+
+              <li>
+                <a data-toggle="collapse" href="#faq2" class="collapsed">Will food be provided during the event?<i
+                    class="fa fa-minus-circle"></i></a>
+                <div id="faq2" class="collapse" data-parent="#faq-list">
+                  <p>
+                    Yes! Lunch will be provided to all participants.
+                  </p>
+                </div>
+              </li>
+
+              <li>
+                <a data-toggle="collapse" href="#faq3" class="collapsed">Is on-the-spot registration available? <i
+                    class="fa fa-minus-circle"></i></a>
+                <div id="faq3" class="collapse" data-parent="#faq-list">
+                  <p>
+                    All participants must register online for the Hackathon and Workshops on or before 12th April 2025,
+                    and for CodeIT on or before 15th April 2025. On-spot registration will be available only for
+                    technical, non-technical, and cultural events. Kindly ensure you bring your valid college ID card
+                    for verification at the venue.
+                  </p>
+                </div>
+              </li>
+
+              <li>
+                <a data-toggle="collapse" href="#faq4" class="collapsed">Is accommodation available?<i
+                    class="fa fa-minus-circle"></i></a>
+                <div id="faq4" class="collapse" data-parent="#faq-list">
+                  <p>
+                    Accommodation is available at a charge of ₹250 per day, which includes dinner and breakfast.
+                  </p>
+                </div>
+              </li>
+              <!-- 
+                <li>
+                  <a data-toggle="collapse" href="#faq5" class="collapsed">Tempus quam pellentesque nec nam aliquam sem
+                    et tortor consequat? <i class="fa fa-minus-circle"></i></a>
+                  <div id="faq5" class="collapse" data-parent="#faq-list">
+                    <p>
+                      Molestie a iaculis at erat pellentesque adipiscing commodo. Dignissim suspendisse in est ante in.
+                      Nunc vel risus commodo viverra maecenas accumsan. Sit amet nisl suscipit adipiscing bibendum est.
+                      Purus gravida quis blandit turpis cursus in
+                    </p>
+                  </div>
+                </li>
+
+                <li>
+                  <a data-toggle="collapse" href="#faq6" class="collapsed">Tortor vitae purus faucibus ornare. Varius
+                    vel pharetra vel turpis nunc eget lorem dolor? <i class="fa fa-minus-circle"></i></a>
+                  <div id="faq6" class="collapse" data-parent="#faq-list">
+                    <p>
+                      Laoreet sit amet cursus sit amet dictum sit amet justo. Mauris vitae ultricies leo integer
+                      malesuada nunc vel. Tincidunt eget nullam non nisi est sit amet. Turpis nunc eget lorem dolor sed.
+                      Ut venenatis tellus in metus vulputate eu scelerisque. Pellentesque diam volutpat commodo sed
+                      egestas egestas fringilla phasellus faucibus. Nibh tellus molestie nunc non blandit massa enim
+                      nec.
+                    </p>
+                  </div>
+                </li> -->
+
+            </ul>
+          </div>
+        </div>
+
+      </div>
+
+    </section>
+    </div>
+
+    <!--==========================
+    Footer
+  ============================-->
+    <footer id="footer">
+      <div class="footer-top">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-3 col-md-3 footer-info">
+              <img src="img/logo.png" alt="TheEvenet">
+              <p><strong>Vihansa 2026</strong> is a celebration of innovation, talent, and teamwork at Sri
+                Ramakrishna Institute of Technology. With exciting events and inspiring experiences, it's
+                where ideas come to life. Get ready to <em>innovate, ignite, and inspire!</em></p>
+            </div>
+            <div class="col-lg-3 col-md-3 footer-contact">
+              <h4>Contact Us</h4>
+              <p>
+                Sri Ramakrishna Institute Of Technology <br>
+                Pachapalayam,<br>
+                Coimbatore - 641010 <br>
+                <strong>Phone:</strong> <br>
+                <a href="https://www.linkedin.com/in/viswa-jith-2b9696258" target="_blank"
+                  style="color: white;">Viswajith M -</a>
+                <a href="tel:+918148868582">+91-81488-68582</a><br>
+                <a href="https://linkedin.com/in/tharun-i-a13673253" target="_blank " style="color: white;">Tharun I
+                  -</a>
+                <a href="tel:+918148868582">+91-88380-67781</a><br>
+                <strong>Email:</strong> <a href="mailto:vihansa@sritcbe.ac.in">vihansa@sritcbe.ac.in</a><br>
+              </p>
+              <div style="font-weight: bold; font-size: 20px;">
+                <a href="https://www.instagram.com/srit_vihansa_official/" target="_blank"
+                  class="social-links instagram"><i class="fa fa-instagram"></i>
+                  <pre style="color: aliceblue;">Follow For More...</pre>
+                </a>
+              </div>
+            </div>
+
+            <div class="col-lg-6 venue-map">
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3917.2860716674027!2d76.89614697222787!3d10.941749732315019!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba85c6bbf412ce5%3A0x52c5151f21ac8419!2sSri%20Ramakrishna%20Institute%20of%20Technology!5e0!3m2!1sen!2sin!4v1741497889552!5m2!1sen!2sin"
+                style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+                class="venue-g"></iframe>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="container">
+        <div class="copyright">
+          &copy; Copyright <strong>Vihansa-2026</strong>. All Rights Reserved
+          <p>Web Designed by:
+            <a href="https://in.linkedin.com/in/kavinbaarathi" target="_blank">Kavin Baarathi,</a>
+            <a href="https://www.linkedin.com/in/mohammedashiqj" target="_blank">Mohammed Ashiq,</a>
+            <a href="https://www.linkedin.com/in/rahul-prashath-m-63743a2b3" target="_blank">Rahul Prashath</a>
+            <br>
+            Poster Designed by:
+            <a href="https://www.linkedin.com/in/kishanth-s-222811254" target="_blank">Kishanth s,</a>
+            <a href="https://linkedin.com/in/tharun-i-a13673253" target="_blank">Tharun I</a>
+          </p>
+
+        </div>
+      </div>
+    </footer><!-- #footer -->
+
+    <a href="#" class="back-to-top"><i class="fa fa-angle-up"></i></a>
+
+    <!-- JavaScript Libraries -->
+    <script src="lib/jquery/jquery.min.js"></script>
+    <script src="lib/jquery/jquery-migrate.min.js"></script>
+    <script src="lib/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="lib/easing/easing.min.js"></script>
+    <script src="lib/superfish/hoverIntent.js"></script>
+    <script src="lib/superfish/superfish.min.js"></script>
+    <script src="lib/wow/wow.min.js"></script>
+    <script src="lib/venobox/venobox.min.js"></script>
+    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+
+    <!-- Three.js (Required for Hero 3D) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+    <!-- Template Main Javascript File -->
+    <script src="js/main.js"></script>
+    <script src="js/hero-3d.js"></script>
+    <script src="js/cursor.js"></script>
+</body>
+
+</html>

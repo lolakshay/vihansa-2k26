@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>VIHANSA-2025</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="keywords">
+    <meta content="" name="description">
+    <!-- Bootstrap CSS File -->
+    <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <link href="img/REVIVE-COMING_SOON-removebg-preview.png" rel="icon">
+    <link href="img/REVIVE-COMING_SOON-removebg-preview.png" rel="apple-touch-icon">
+
+    <!-- Libraries CSS Files -->
+    <link href="lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="lib/animate/animate.min.css" rel="stylesheet">
+    <link href="lib/venobox/venobox.css" rel="stylesheet">
+    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+
+    <!-- Main Stylesheet File -->
+    <link href="css/style.css" rel="stylesheet">
+    <style>
+        /* Card Styles */
+        .card-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+            padding: 20px;
+        }
+
+        .event-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+
+        .event-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .card-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .card-body {
+            padding: 20px;
+        }
+
+        .card-time {
+            display: inline-block;
+            background: rgba(0, 0, 0, 0.3);
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            margin-bottom: 10px;
+        }
+
+        .card-title {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            color: white;
+        }
+
+        .card-category {
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 15px;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 15px;
+        }
+
+        .tech-category {
+            background: linear-gradient(135deg, #6e8efb, #a777e3);
+        }
+
+        .nontech-category {
+            background: linear-gradient(135deg, #4facfe, #00f2fe);
+        }
+
+        .workshop-category {
+            background: linear-gradient(135deg, #f093fb, #f5576c);
+        }
+
+        .cultural-category {
+            background: linear-gradient(135deg, #43e97b, #38f9d7);
+        }
+
+        .card-description {
+            font-size: 0.9rem;
+            opacity: 0.8;
+            margin-bottom: 15px;
+            min-height: 40px;
+        }
+
+        /* Tab styling */
+        .nav-tabs {
+            border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+            justify-content: center;
+            margin-bottom: 30px;
+        }
+
+        .nav-link {
+            color: rgba(255, 255, 255, 0.7);
+            border: none;
+            padding: 10px 25px;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .nav-tabs .nav-link.active {
+            background-color: black !important;
+            color: white !important;
+            /* To ensure text is visible */
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .card-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .sub-heading {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!--==========================
+    Header
+    ============================-->
+    <header id="header">
+        <div class="container">
+            <div id="logo" class="pull-left">
+                <a href="#intro" class="scrollto"><img src="img/logo1.png" alt="" title=""></a>
+                <a href="#intro" class="scrollto"><img src="img/logo.png" alt="" title=""></a>
+                <h2><a href="#main">Sri <span>RamaKrishna</span><br />Institute of technology</a></h2>
+            </div>
+
+            <nav id="nav-menu-container">
+                <ul class="nav-menu">
+                    <li class="menu-active"><a href="index.html#intro">Home</a></li>
+                    <li><a href="index.html#about">About</a></li>
+                    <li><a href="index.html#hack">Hackathon</a></li>
+                    <li><a href="index.html#event">Events</a></li>
+                    <li><a href="index.html#gallery">Main Events</a></li>
+                    <li><a href="index.html#hotels">Agenda</a></li>
+                    <li class="buy-tickets"><a href="form.html">Register</a></li>
+                </ul>
+            </nav><!-- #nav-menu-container -->
+        </div>
+    </header><!-- #header -->
+
+    <!--==========================
+    Schedule Section
+    ============================-->
+    <main>
+        <section id="schedule">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Event Schedule</h2>
+                    <p>Here is the list of all events happening</p>
+                </div>
+                <ul class="nav nav-tabs" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#tech" role="tab" data-toggle="tab" active>Tech & Non-Tech</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#workshop" role="tab" data-toggle="tab">Workshop</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#culturals" role="tab" data-toggle="tab">Culturals</a>
+                    </li>
+                </ul>
+
+                <h3 class="sub-heading">Dive into electrifying tech challenges, outsmart rivals in mind-bending non-tech
+                    battles, and unleash your creativity through vibrant cultural arts - all in one explosive event!
+                </h3>
+
+                <div class="tab-content">
+                    <!-- Tech And Non Tech -->
+                    <div role="tabpanel" class="tab-pane fade show active" id="tech">
+                        <div class="card-container">
+                            <!-- Technical Events -->
+                            <div class="event-card venobox" href="img/events-tech/codeit.webp">
+                                <img src="img/events-tech/codeit.webp" alt="SPEED CRAFT" class="card-image">
+                                <div class="card-body">
+                                    <span class="card-time">Day 1 • 10:00 AM</span>
+                                    <span class="card-category tech-category">Technical</span>
+                                    <h3 class="card-title">CODE IT</h3>
+                                </div>
+                            </div>
+
+                            <div class="event-card venobox" href="img/events-tech/MECH (2).webp">
+                                <img src="img/events-tech/MECH (2).webp" alt="SPEED CRAFT" class="card-image">
+                                <div class="card-body">
+                                    <span class="card-time">Day 1 • 10:00 AM</span>
+                                    <span class="card-category tech-category">Technical</span>
+                                    <h3 class="card-title">SPEED CRAFT</h3>
+                                </div>
+                            </div>
+
+                            <div class="event-card venobox" href="img/events-tech/CSE.webp">
+                                <img src="img/events-tech/CSE.webp" alt="CLONE X" class="card-image">
+                                <div class="card-body">
+                                    <span class="card-time">Day 1 • 10:00 AM</span>
+                                    <span class="card-category tech-category">Technical</span>
+                                    <h3 class="card-title">CLONE X</h3>
+                                </div>
+                            </div>
+
+                            <div class="event-card venobox" href="img/events-tech/ECE.webp">
+                                <img src="img/events-tech/ECE.webp" alt="REVERSE ENGG" class="card-image">
+                                <div class="card-body">
+                                    <span class="card-time">Day 1 • 12:00 Noon</span>
+                                    <span class="card-category tech-category">Technical</span>
+                                    <h3 class="card-title">REVERSE ENGG</h3>
+                                </div>
+                            </div>
+
+                            <div class="event-card venobox" href="img/events-tech/eee.webp">
+                                <img src="img/events-tech/eee.webp" alt="CIRCUIT SURGE" class="card-image">
+                                <div class="card-body">
+                                    <span class="card-time">Day 1 • 12:00 Noon</span>
+                                    <span class="card-category tech-category">Technical</span>
+                                    <h3 class="card-title">CIRCUIT SURGE</h3>
+                                </div>
+                            </div>
+
+                            <div class="event-card venobox" href="img/events-tech/it.webp">
+                                <img src="img/events-tech/it.webp" alt="KRYPTO BYTE" class="card-image">
+                                <div class="card-body">
+                                    <span class="card-time">Day 1 • 12:00 Noon</span>
+                                    <span class="card-category tech-category">Technical</span>
+                                    <h3 class="card-title">KRYPTO BYTE</h3>
+                                </div>
+                            </div>
+
+                            <div class="event-card venobox" href="img/events-tech/eee (2).webp">
+                                <img src="img/events-tech/eee (2).webp" alt="ROBO RUSH" class="card-image">
+                                <div class="card-body">
+                                    <span class="card-time">Day 1 • 2:30 PM</span>
+                                    <span class="card-category tech-category">Technical</span>
+                                    <h3 class="card-title">ROBO RUSH</h3>
+                                </div>
+                            </div>
+
+                            <div class="event-card venobox" href="img/events-tech/C.webp">
+                                <img src="img/events-tech/C.webp" alt="PRODUCT PITCH" class="card-image">
+                                <div class="card-body">
+                                    <span class="card-time">Day 2 • 10:00 AM</span>
+                                    <span class="card-category tech-category">Technical</span>
+                                    <h3 class="card-title">PRODUCT PITCH</h3>
+                                </div>
+                            </div>
+
+                            <div class="event-card venobox" href="img/events-tech/CSE (2).webp">
+                                <img src="img/events-tech/CSE (2).webp" alt="DASHED DATA WITH ML" class="card-image">
+                                <div class="card-body">
+                                    <span class="card-time">Day 2 • 10:00 AM</span>
+                                    <span class="card-category tech-category">Technical</span>
+                                    <h3 class="card-title">DASHED DATA WITH ML</h3>
+                                </div>
+                            </div>
+
+                            <div class="event-card venobox" href="img/events-tech/MECH.webp">
+                                <img src="img/events-tech/MECH.webp" alt="FLY FORGE" class="card-image">
+                                <div class="card-body">
+                                    <span class="card-time">Day 2 • 10:00 AM</span>
+                                    <span class="card-category tech-category">Technical</span>
+                                    <h3 class="card-title">FLY FORGE</h3>
+                                </div>
+                            </div>
+
+                            <div class="event-card venobox" href="img/events-tech/it (2).webp">
+                                <img src="img/events-tech/it (2).webp" alt="CODEWAR: ENDGAME" class="card-image">
+                                <div class="card-body">
+                                    <span class="card-time">Day 2 • 12:00 Noon</span>
+                                    <span class="card-category tech-category">Technical</span>
+                                    <h3 class="card-title">CODEWAR: ENDGAME</h3>
+                                </div>
+                            </div>
+
+                            <!-- Non-Technical Events -->
+                            <div class="event-card venobox" href="img/events-nontech/CSE (2).webp">
+                                <img src="img/events-nontech/CSE (2).webp" alt="CAPTURE THE FLAG" class="card-image">
+                                <div class="card-body">
+                                    <span class="card-time">Day 1 • 2:30 PM</span>
+                                    <span class="card-category nontech-category">Non-Technical</span>
+                                    <h3 class="card-title">CAPTURE THE FLAG</h3>
+                                </div>
+                            </div>
+
+                            <div class="event-card venobox" href="img/events-nontech/ECE.webp">
+                                <img src="img/events-nontech/ECE.webp" alt="BEST MANAGER" class="card-image">
+                                <div class="card-body">
+                                    <span class="card-time">Day 1 • 2:30 PM</span>
+                                    <span class="card-category nontech-category">Non-Technical</span>
+                                    <h3 class="card-title">BEST MANAGER</h3>
+                                </div>
+                            </div>
+
+                            <div class="event-card venobox" href="img/events-nontech/IT (2).webp">
+                                <img src="img/events-nontech/IT (2).webp" alt="QUIZZY" class="card-image">
+                                <div class="card-body">
+                                    <span class="card-time">Day 1 • 3:30 PM</span>
+                                    <span class="card-category nontech-category">Non-Technical</span>
+                                    <h3 class="card-title">QUIZZY</h3>
+                                </div>
+                            </div>
+
+                            <div class="event-card venobox" href="img/events-nontech/CSE.webp">
+                                <img src="img/events-nontech/CSE.webp" alt="PROMT PALLETTE" class="card-image">
+                                <div class="card-body">
+                                    <span class="card-time">Day 2 • 2:30 PM</span>
+                                    <span class="card-category nontech-category">Non-Technical</span>
+                                    <h3 class="card-title">PROMT PALLETTE</h3>
+                                </div>
+                            </div>
+
+                            <div class="event-card venobox" href="img/events-nontech/IT.webp">
+                                <img src="img/events-nontech/IT.webp" alt="BID BASH" class="card-image">
+                                <div class="card-body">
+                                    <span class="card-time">Day 2 • 2:30 PM</span>
+                                    <span class="card-category nontech-category">Non-Technical</span>
+                                    <h3 class="card-title">BID SMASH</h3>
+                                </div>
+                            </div>
+
+                            <div class="event-card venobox" href="img/events-nontech/MECH.webp">
+                                <img src="img/events-nontech/MECH.webp" alt="MR TOOL MAN" class="card-image">
+                                <div class="card-body">
+                                    <span class="card-time">Day 2 • 3:30 PM</span>
+                                    <span class="card-category nontech-category">Non-Technical</span>
+                                    <h3 class="card-title">MR TOOL MAN</h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Workshop -->
+                    <div role="tabpanel" class="tab-pane fade" id="workshop">
+                        <div class="card-container">
+                            <div class="event-card venobox" href="img/workshop/CSE.webp">
+                                <img src="img/workshop/CSE.webp" alt="GEN AI" class="card-image">
+                                <div class="card-body">
+                                    <span class="card-time">Day 1</span>
+                                    <span class="card-category workshop-category">Workshop</span>
+                                    <h3 class="card-title">GEN AI</h3>
+                                    <p class="card-description">Dive into Gen AI with expert-led workshops, real-world
+                                        projects, and networking with industry leaders to future-proof your skills!</p>
+                                </div>
+                            </div>
+
+                            <div class="event-card venobox" href="img/workshop/EEE.webp">
+                                <img src="img/workshop/EEE.webp" alt="E Vehicle" class="card-image">
+                                <div class="card-body">
+                                    <span class="card-time">Day 1</span>
+                                    <span class="card-category workshop-category">Workshop</span>
+                                    <h3 class="card-title">E VEHICLE</h3>
+                                    <p class="card-description">Explore the future of mobility with hands-on EV tech
+                                        workshops, live demos, and insights from industry pioneers!</p>
+                                </div>
+                            </div>
+
+                            <div class="event-card venobox" href="img/workshop/IT.webp">
+                                <img src="img/workshop/IT.webp" alt="CLOUD CRAFT" class="card-image">
+                                <div class="card-body">
+                                    <span class="card-time">Day 2</span>
+                                    <span class="card-category workshop-category">Workshop</span>
+                                    <h3 class="card-title">CLOUD CRAFT</h3>
+                                    <p class="card-description">Master cloud computing with hands-on labs, live
+                                        deployments, and expert guidance to build scalable, industry-ready solutions!
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="event-card venobox" href="img/workshop/ECE.webp">
+                                <img src="img/workshop/ECE.webp" alt="PCB Build" class="card-image">
+                                <div class="card-body">
+                                    <span class="card-time">Day 2</span>
+                                    <span class="card-category workshop-category">Workshop</span>
+                                    <h3 class="card-title">PCB BUILD</h3>
+                                    <p class="card-description">Learn PCB design fundamentals and assemble their own
+                                        boards using provided tools and components, guided by industry experts!</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Culturals -->
+                    <div role="tabpanel" class="tab-pane fade" id="culturals">
+                        <div class="card-container">
+                            <div class="event-card venobox" href="img/culturls/7.webp">
+                                <img src="img/culturls/7.webp" alt="Visual Vignetic" class="card-image">
+                                <div class="card-body">
+                                    <span class="card-time">Day 2 • 10:00 AM</span>
+                                    <span class="card-category cultural-category">Cultural</span>
+                                    <h3 class="card-title">VISUAL VIGNETIC</h3>
+                                </div>
+                            </div>
+
+                            <div class="event-card venobox" href="img/culturls/8.webp">
+                                <img src="img/culturls/8.webp" alt="Clip Counter" class="card-image">
+                                <div class="card-body">
+                                    <span class="card-time">Day 2 • 10:00 AM</span>
+                                    <span class="card-category cultural-category">Cultural</span>
+                                    <h3 class="card-title">CLIP COUNTER</h3>
+                                </div>
+                            </div>
+
+                            <div class="event-card venobox" href="img/culturls/9.webp">
+                                <img src="img/culturls/9.webp" alt="Pixel Perfect" class="card-image">
+                                <div class="card-body">
+                                    <span class="card-time">Day 2 • 10:00 AM</span>
+                                    <span class="card-category cultural-category">Cultural</span>
+                                    <h3 class="card-title">PIXEL PERFECT</h3>
+                                </div>
+                            </div>
+
+                            <div class="event-card venobox" href="img/culturls/10.webp">
+                                <img src="img/culturls/10.webp" alt="Face Artistry" class="card-image">
+                                <div class="card-body">
+                                    <span class="card-time">Day 2 • 10:00 AM</span>
+                                    <span class="card-category cultural-category">Cultural</span>
+                                    <h3 class="card-title">FACE ARTISTRY</h3>
+                                </div>
+                            </div>
+
+                            <div class="event-card venobox" href="img/culturls/11.webp">
+                                <img src="img/culturls/11.webp" alt="Henna Ink" class="card-image">
+                                <div class="card-body">
+                                    <span class="card-time">Day 2 • 10:00 AM</span>
+                                    <span class="card-category cultural-category">Cultural</span>
+                                    <h3 class="card-title">HENNA INK</h3>
+                                </div>
+                            </div>
+
+                            <div class="event-card venobox" href="img/culturls/12.webp">
+                                <img src="img/culturls/12.webp" alt="Pencil Play" class="card-image">
+                                <div class="card-body">
+                                    <span class="card-time">Day 2 • 10:00 AM</span>
+                                    <span class="card-category cultural-category">Cultural</span>
+                                    <h3 class="card-title">PENCIL PLAY</h3>
+                                </div>
+                            </div>
+
+                            <div class="event-card venobox" href="img/culturls/13.webp">
+                                <img src="img/culturls/13.webp" alt="Logical Rivera" class="card-image">
+                                <div class="card-body">
+                                    <span class="card-time">Day 2 • 11:30 AM</span>
+                                    <span class="card-category cultural-category">Cultural</span>
+                                    <h3 class="card-title">LOGICAL RIVERA</h3>
+                                </div>
+                            </div>
+
+                            <div class="event-card venobox" href="img/culturls/14.webp">
+                                <img src="img/culturls/14.webp" alt="Mystic Chase" class="card-image">
+                                <div class="card-body">
+                                    <span class="card-time">Day 2 • 11:30 AM</span>
+                                    <span class="card-category cultural-category">Cultural</span>
+                                    <h3 class="card-title">MYSTIC CHASE</h3>
+                                </div>
+                            </div>
+
+                            <div class="event-card venobox" href="img/culturls/6.webp">
+                                <img src="img/culturls/6.webp" alt="Solely Melodia" class="card-image">
+                                <div class="card-body">
+                                    <span class="card-time">Day 2 • 2:00 PM</span>
+                                    <span class="card-category cultural-category">Cultural</span>
+                                    <h3 class="card-title">SOLELY MELODIA</h3>
+                                </div>
+                            </div>
+
+                            <div class="event-card venobox" href="img/culturls/4.webp">
+                                <img src="img/culturls/4.webp" alt="Art of One" class="card-image">
+                                <div class="card-body">
+                                    <span class="card-time">Day 2 • 3:00 PM</span>
+                                    <span class="card-category cultural-category">Cultural</span>
+                                    <h3 class="card-title">ART OF ONE</h3>
+                                </div>
+                            </div>
+
+                            <div class="event-card venobox" href="img/culturls/5.webp">
+                                <img src="img/culturls/5.webp" alt="Tune morph" class="card-image">
+                                <div class="card-body">
+                                    <span class="card-time">Day 2 • 3:30 PM</span>
+                                    <span class="card-category cultural-category">Cultural</span>
+                                    <h3 class="card-title">TUNE MORPH</h3>
+                                </div>
+                            </div>
+
+                            <div class="event-card venobox" href="img/culturls/3.webp">
+                                <img src="img/culturls/3.webp" alt="Rythmic Motion" class="card-image">
+                                <div class="card-body">
+                                    <span class="card-time">Day 2 • 4:00 PM</span>
+                                    <span class="card-category cultural-category">Cultural</span>
+                                    <h3 class="card-title">RYTHMIC MOTION</h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!--==========================
+    Footer
+    ============================-->
+    <footer id="footer">
+        <div class="footer-top">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 footer-info">
+                        <img src="img/logo.png" alt="TheEvenet">
+                        <p><strong>Vihansa 2025</strong> is a celebration of innovation, talent, and teamwork at Sri
+                            Ramakrishna Institute of Technology. With exciting events and inspiring experiences, it's
+                            where ideas come to life. Get ready to <em>innovate, ignite, and inspire!</em></p>
+                    </div>
+                    <div class="col-lg-3 col-md-3 footer-contact">
+                        <h4>Contact Us</h4>
+                        <p>
+                            Sri Ramakrishna Institute Of Technology <br>
+                            Pachapalayam,<br>
+                            Coimbatore - 641010 <br>
+                            <strong>Phone:</strong> <br>
+                            <a href="https://www.linkedin.com/in/viswa-jith-2b9696258" target="_blank" style="color: white;">Viswajith M -</a>
+                            <a href="tel:+918148868582">+91-81488-68582</a><br>
+                            <a href="https://linkedin.com/in/tharun-i-a13673253" target="_blank" style="color: white;">Tharun I -</a> 
+                             <a href="tel:+918148868582">+91-88380-67781</a><br>
+                            <strong>Email:</strong> <a href="mailto:vihansa@sritcbe.ac.in">vihansa@sritcbe.ac.in</a><br>
+                        </p>
+                        <div style="font-weight: bold; font-size: 20px;">
+                            <a href="https://www.instagram.com/srit_vihansa_official/" target="_blank"
+                                class="social-links instagram"><i class="fa fa-instagram"></i><pre style="color: aliceblue;">Follow For More...</pre></a>  
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6 venue-map">
+                        <iframe
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3917.2860716674027!2d76.89614697222787!3d10.941749732315019!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba85c6bbf412ce5%3A0x52c5151f21ac8419!2sSri%20Ramakrishna%20Institute%20of%20Technology!5e0!3m2!1sen!2sin!4v1741497889552!5m2!1sen!2sin"
+                            style="border:0;" allowfullscreen="" loading="lazy"
+                            referrerpolicy="no-referrer-when-downgrade" class="venue-g"></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="copyright">
+                &copy; Copyright <strong>Vihansa-2025</strong>. All Rights Reserved
+                <p>Designed by:
+                    <a href="https://www.linkedin.com//in/kavinbaarathi" target="_blank">Kavin Baarathi,</a>
+                    <a href="https://www.linkedin.com/in/mohammedashiqj" target="_blank">Mohammed Ashiq,</a>
+                    <a href="https://www.linkedin.com/in/rahul-prashath-m-63743a2b3" target="_blank">Rahul Prashath</a>
+                    <br>
+                    Poster Designed by:
+                    <a href="https://www.linkedin.com/in/kishanth-s-222811254" target="_blank">Kishanth s,</a>
+                    <a href="https://linkedin.com/in/tharun-i-a13673253" target="_blank">Tharun I</a> 
+                </p>
+                    
+            </div>
+        </div>
+    </footer><!-- #footer -->
+
+    <a href="#" class="back-to-top"><i class="fa fa-angle-up"></i></a>
+
+    <!-- JavaScript Libraries -->
+    <script src="lib/jquery/jquery.min.js"></script>
+    <script src="lib/jquery/jquery-migrate.min.js"></script>
+    <script src="lib/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="lib/easing/easing.min.js"></script>
+    <script src="lib/superfish/hoverIntent.js"></script>
+    <script src="lib/superfish/superfish.min.js"></script>
+    <script src="lib/wow/wow.min.js"></script>
+    <script src="lib/venobox/venobox.min.js"></script>
+    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+
+    <!-- Template Main Javascript File -->
+    <script src="js/main.js"></script>
+</body>
+
+</html>
