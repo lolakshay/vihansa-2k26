@@ -1,0 +1,159 @@
+/* ===== V2 HACK SECTION ===== */
+.hack-v2-section {
+    padding: 80px 2%;
+    background: linear-gradient(to right, #000, #1a0000);
+    color: white;
+    position: relative;
+    overflow: hidden;
+    /* Ensures laser doesn't overflow section */
+}
+
+/* ===== INDEPENDENT LASER LAYER ===== */
+#laser-container {
+    position: absolute;
+    /* Independent Control Variables */
+    top: 50%;
+    left: 80%;
+    width: 100%;
+    height: 100%;
+    transform: translate(-50%, -50%) scale(1);
+
+    /* Layering */
+    z-index: 0;
+    pointer-events: none;
+    /* Let clicks pass through */
+
+    /* Ensure it behaves like a background */
+    display: block;
+}
+
+/* Ensure content stays above laser */
+.hack-v2-wrapper,
+.hack-v2-bottom {
+    position: relative;
+    z-index: 2;
+}
+
+.hack-v2-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 60px;
+}
+
+/* LEFT */
+.hack-v2-left {
+    flex: 1;
+}
+
+.hack-v2-left img {
+    width: 100%;
+    border-radius: 20px;
+}
+
+/* RIGHT */
+.hack-v2-right {
+    flex: 1;
+}
+
+.hack-v2-title {
+    font-size: 42px;
+    color: #ff0000;
+    margin-bottom: 20px;
+}
+
+.hack-v2-subtitle {
+    color: #ff4d4d;
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+.hack-v2-desc {
+    line-height: 1.6;
+    margin-bottom: 30px;
+}
+
+.hack-v2-highlight {
+    color: #ff3333;
+}
+
+/* PRIZES */
+.hack-v2-prizes {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.hack-v2-card {
+    padding: 20px;
+    border-radius: 12px;
+    background: rgba(255, 0, 0, 0.1);
+    border: 1px solid rgba(255, 0, 0, 0.3);
+}
+
+.hack-v2-first {
+    grid-column: span 2;
+}
+
+/* BUTTONS */
+.hack-v2-buttons {
+    display: flex;
+    gap: 20px;
+}
+
+.hack-v2-primary {
+    padding: 12px 30px;
+    background: red;
+    color: white;
+    border-radius: 30px;
+    text-decoration: none;
+}
+
+.hack-v2-outline {
+    padding: 12px 30px;
+    border: 1px solid red;
+    color: red;
+    border-radius: 30px;
+    text-decoration: none;
+}
+
+/* BOTTOM CTA */
+.hack-v2-bottom {
+    margin-top: 70px;
+    text-align: center;
+}
+
+.hack-v2-explore {
+    padding: 16px 70px;
+    background: #ff0000;
+    color: white;
+    border: none;
+    border-radius: 40px;
+    font-size: 18px;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+.hack-v2-explore:hover {
+    transform: scale(1.05);
+    background: #ff3333;
+}
+
+/* RESPONSIVE */
+@media (max-width: 992px) {
+    .hack-v2-wrapper {
+        flex-direction: column;
+    }
+
+    .hack-v2-prizes {
+        grid-template-columns: 1fr;
+    }
+
+    .hack-v2-first {
+        grid-column: span 1;
+    }
+
+    .hack-v2-buttons {
+        flex-direction: column;
+    }
+}

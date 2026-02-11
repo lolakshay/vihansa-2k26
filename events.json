@@ -1,0 +1,85 @@
+{
+  "day1": {
+    "tech": [
+      "Code It (Full Day)",
+      "Ideathon (Paper Presentation)",
+      "Clone X",
+      "Arkham Encrypted (Mystery Coding)",
+      "Reverse Engineering",
+      "Circuit Debugging",
+      "Capture the Flag",
+      "iConfusion (Quiz)"
+    ],
+    "nonTech": [
+      "Speed Craft",
+      "Best Manager",
+      "Robo Rush"
+    ]
+  },
+  "day2": {
+    "tech": [
+      "Project Expo",
+      "Report Rendering",
+      "Dashed Data with ML",
+      "Innovation Pitch",
+      "Codewar: Endgame",
+      "Prompt Engineering"
+    ],
+    "nonTech": [
+      "Fly Forge",
+      "Fine Arts",
+      "Bid Smash"
+    ]
+  },
+  "mainEvents": [
+    {
+      "id": "paper-presentation",
+      "title": "Paper Presentation",
+      "description": "Showcase your technical research and innovative ideas.",
+      "image": "img/events-main/PAPERPERS.webp",
+      "tag": "SYMPOSIUM",
+      "meta": [
+        {
+          "icon": "fa-users",
+          "text": "Max 4"
+        },
+        {
+          "icon": "fa-clock",
+          "text": "10:00 AM"
+        }
+      ],
+      "link": "registration.html",
+      "cta": "EXPLORE EVENT"
+    },
+    {
+      "id": "project-expo",
+      "title": "Project Expo",
+      "description": "Display your working models and prototypes.",
+      "image": "img/events-main/PROJECT - EXPO.webp",
+      "tag": "EXPO",
+      "meta": [
+        {
+          "icon": "fa-users",
+          "text": "Max 4"
+        }
+      ],
+      "link": "registration.html",
+      "cta": "EXPLORE EVENT"
+    },
+    {
+      "id": "report-rendering",
+      "title": "Report Rendering",
+      "description": "Demonstrate your analytical and problem-solving skills.",
+      "image": "img/events-main/REPORT RENDERING.webp",
+      "tag": "ANALYSIS",
+      "meta": [
+        {
+          "icon": "fa-users",
+          "text": "Max 4"
+        }
+      ],
+      "link": "registration.html",
+      "cta": "EXPLORE EVENT"
+    }
+  ]
+}

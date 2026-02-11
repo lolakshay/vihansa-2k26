@@ -32,6 +32,7 @@
 
   <!-- Main Stylesheet File -->
   <link href="css/style.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/hack-v2.css">
 
   <style>
     /* ================= STRANGER THINGS HACKATHON EFFECT ================= */
@@ -45,6 +46,7 @@
       position: relative;
       overflow: hidden;
       background: #000;
+      padding-bottom: 80px;
     }
 
     /* Cloud + Upside Down Background */
@@ -306,6 +308,143 @@
         top: 68%;
       }
     }
+
+    /* Laser Background for Hackathon */
+    /* #laser-container {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      pointer-events: none;
+    } */
+
+    /* Bottom aligned action button container */
+    .hack-bottom-btn {
+      width: 100%;
+      margin-top: 50px;
+      text-align: center;
+      position: relative;
+      z-index: 10;
+    }
+
+    /* Action Button (Redesigned) */
+    .action-button {
+      padding: 16px 60px;
+      background: #ff0000;
+      border: none;
+      color: #fff !important;
+      /* Force white text */
+      font-size: 18px;
+      border-radius: 40px;
+      cursor: pointer;
+      transition: 0.3s ease;
+      display: inline-block;
+      text-decoration: none;
+      font-family: inherit;
+    }
+
+    .action-button:hover {
+      transform: scale(1.05);
+      background: #ff3333;
+      color: #fff !important;
+      text-decoration: none;
+      box-shadow: 0 0 20px rgba(255, 0, 0, 0.6);
+    }
+
+    /* Move REGISTER TEAM & RULE BOOK slightly right */
+    .hack-actions {
+      transform: translateX(100px);
+      /* increase/decrease this value */
+    }
+
+    /* Only REGISTER TEAM button color */
+    .register-team-btn {
+      background: #00e5ff00;
+      /* change to any color */
+      border-color: #ffffff;
+      color: #00000000;
+    }
+
+    .register-team-btn:hover {
+      background: #ffffff;
+      border-color: #ffffff;
+      color: #00000000;
+    }
+
+    /* ================= HACKATHON MOBILE LAYOUT ================= */
+    @media (max-width: 991.98px) {
+
+      /* Stack hackathon columns vertically with correct order */
+      .hack-image-col,
+      .hack-content-col {
+        flex: 0 0 100% !important;
+        max-width: 100% !important;
+        padding-left: 15px !important;
+        padding-right: 15px !important;
+      }
+
+      /* Ensure image scales properly in full-width column */
+      .hack-image-col img {
+        width: 100% !important;
+        height: auto !important;
+        display: block !important;
+      }
+
+      /* Stack prize cards vertically (covers common container classes) */
+      .prize-cards,
+      .prizes,
+      .prize-container,
+      .hack-content-col [class*="prize"] {
+        flex-direction: column !important;
+      }
+
+      .prize-cards>*,
+      .prizes>*,
+      .prize-container>* {
+        width: 100% !important;
+        margin-right: 0 !important;
+        margin-bottom: 15px !important;
+      }
+
+      /* Fix action buttons container */
+      .hack-actions {
+        transform: none !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        width: 100% !important;
+        gap: 12px !important;
+      }
+
+      .hack-actions a,
+      .hack-actions .btn {
+        width: 100% !important;
+        max-width: none !important;
+        margin: 0 !important;
+        text-align: center !important;
+        display: block !important;
+      }
+
+      /* Full-width centered EXPLORE MORE button */
+      .col-12.text-center.pb-5 .action-button {
+        width: 100% !important;
+        max-width: none !important;
+        box-sizing: border-box !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+      }
+
+      /* Hide WebGL laser container completely */
+      #laser-container {
+        display: none !important;
+      }
+
+      /* Optional: Improve content readability on mobile */
+      .hack-content-col {
+        padding: 25px 15px !important;
+      }
+    }
   </style>
 
   <!-- </style> -->
@@ -316,9 +455,10 @@
 <body>
 
 
-  <!-- Custom Cursor -->
-  <div id="cursor"></div>
-  <div id="cursor-blur"></div>
+  <!-- Background Animation -->
+  <div id="bg-animation-container"></div>
+
+
 
   <!--==========================
     Header
@@ -394,43 +534,143 @@
     <section id="about">
       <div class="about-container">
         <div class="countdown-hero-wrap">
-          <h4 class="countdown-header">Event Starts In</h4>
           <div class="counter-content">
             <ul id="countdown">
-              <li><span id="days">00</span>
-                <p>Days</p>
-              </li>
+              <li><span id="days">00</span></li>
               <li class="separator">:</li>
-              <li><span id="hours">00</span>
-                <p>Hours</p>
-              </li>
+              <li><span id="hours">00</span></li>
               <li class="separator">:</li>
-              <li><span id="minutes">00</span>
-                <p>Minutes</p>
-              </li>
+              <li><span id="minutes">00</span></li>
               <li class="separator">:</li>
-              <li><span id="seconds">00</span>
-                <p>Seconds</p>
-              </li>
+              <li><span id="seconds">00</span></li>
             </ul>
           </div>
         </div>
       </div>
     </section>
 
-    <!--==========================
-      Hackathon Section (Transition Start)
-    ============================-->
-    <section id="hack" class="wow fadeInUp p-0 section-continuity-top">
 
+    <!--==========================
+      Gallery Section
+    ============================-->
+    <!-- <section id="gallery" class="wow fadeInUp">
+      <div class="container">
+        <div class="section-header">
+          <br>
+          <br>
+          <br>
+          <h2>Main Events</h2>
+        </div>
+
+        <div class="scrolling-gallery">
+          <div class="gallery-track">
+            Paper Presentation
+            <div class="gallery-item"
+              onclick="openPopup('PAPERPERS.webp', 'Paper Presentation:', 
+              ['SRINITHI/IT', 'NITESH/ECE', 'RIZWAN/EEE', 'RAHUL PRASHATH/CSE', 'NALLASIVAN/MECH'], 
+              ['Dr. J. MALA (IT)', 'Dr. JIM MATHEW PHILIP (CSE)', 'Dr. L. MALATHI (ECE)', 'Ms. D. POORNIMA (EEE)', 'Mr. B. VARUN (MECH)'])">
+              <img src="img/events-main/PAPERPERS.webp" alt="Paper Presentation">
+              <div class="event-title">Paper Presentation</div>
+            </div>
+
+            Hackathon
+            <div class="gallery-item"
+              onclick="openPopup('hacathon_new.webp', 'Hackathon:', 
+              ['KISHANTH/IT', 'DIVAKAR/CSE', 'SUJITH KUMAR/ECE', 'NAVEEN/EEE', 'LOGAKAVIN/MECH','REVATHI/CSE'], 
+              ['Dr. T. C. EZHIL SELVAN (IT)', 'Dr. K. M. KIRTHIKA (CSE)', 'Mr. S. SAMPATH (MECH)', 'Mr. S. THIYAGARAJAN (ECE)', 'Dr. S. UDAIYA KUMAR (EEE)'])">
+              <img src="img/events-main/hacathon_new.webp" alt="Hackathon">
+              <div class="event-title">Hackathon</div>
+            </div>
+
+            Project Expo
+            <div class="gallery-item"
+              onclick="openPopup('PROJECT - EXPO.webp', 'Project Expo:', 
+              ['SUBIKSHA/IT', 'KANTHESHWAR/EEE', 'LAVANYA/ECE', 'RAGAVAN/CSE', 'KISHORE/MECH'], 
+              ['Dr. T. C. EZHIL SELVAN (IT)', 'Dr. R. KUMAR (CSE)', 'Mr. V GANESH (ECE)', 'Dr. G. KANNAYERAM (EEE)', 'Dr. S. BENJAMIN FRANKLIN (MECH)'])">
+              <img src="img/events-main/PROJECT - EXPO.webp" alt="Project Expo">
+              <div class="event-title">Project Expo</div>
+            </div>
+
+            Report Rendering
+            <div class="gallery-item"
+              onclick="openPopup('REPORT RENDERING.webp', 'Report Rendering: ', 
+              ['SWETHA/IT', 'HARIHARAN/CSE', 'PRIYADHARSHINI/EEE', 'MUGILAN/ECE', 'PRAKASH/MECH'], 
+              ['Ms. K. MOHANAPRIYA (IT)', 'Dr. N. S. KAVITHA (CSE)', 'Dr. A. K. KAVITHAA (ECE)', 'Mr. R. SUDHARSHAN (MECH)', 'Mr. C. ANANDA KUMAR (EEE)'])">
+              <img src="img/events-main/REPORT RENDERING.webp" alt="Report Rendering">
+              <div class="event-title">Report Rendering</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      Popup Modal
+      <div class="popup-overlay" id="eventPopup" style="display: none;">
+        <div class="popup-container">
+          <button class="close-btn" onclick="closePopup()">&times;</button>
+          <div class="popup-content-wrapper">
+            <img id="popupImage" src="" alt="Event Image" class="popup-image">
+            <div class="popup-content">
+              <h2 id="popupTitle"></h2>
+              <div class="details-grid">
+                <div class="popup-section">
+                  <h3>Coordinators</h3>
+                  <ul id="popupCoordinators"></ul>
+                </div>
+                <div class="popup-section">
+                  <h3>Faculty In-charge</h3>
+                  <ul id="popupFaculty"></ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section> -->
+    <!-- Modal for full-size image view
+
+
+
+       <!--==========================
+      Main Events Section (Redesigned)
+    ============================-->
+    <!-- <section id="main-events">
+      Ambient Background Layers
+      <div class="me-bg-layer me-base-gradient"></div>
+      <div class="me-bg-layer me-noise"></div>
+      <div class="me-bg-layer me-particles" id="me-particles"></div>
+      <div class="me-bg-layer me-orbs">
+        <div class="me-orb orb-1"></div>
+        <div class="me-orb orb-2"></div>
+        <div class="me-orb orb-3"></div>
+      </div>
+
+      <div class="container me-container">
+        Header
+        <div class="me-header wow fadeInUp">
+          <h2 class="me-title glitch-text" data-text="MAIN EVENTS">MAIN EVENTS</h2>
+          <div class="me-subtitle-container">
+            <span class="me-subtitle">Where Ideas Become Reality</span>
+          </div>
+          <div class="me-divider"></div>
+        </div>
+
+        3D Events Stage
+        <div class="events-stage">
+          Events loaded dynamically from events.json
+        </div>
+      </div>
+    </section> -->
+
+    <!--==========================
+      Hackathon Section
+    ============================-->
+    <!-- <section id="hack" class="wow fadeInUp p-0">
+      <div id="laser-container"></div>
 
       <div class="container-fluid p-0">
-
-
-
         <div class="row no-gutters">
 
-          <!-- Left: Full Width Image -->
+          Left: Full Width Image
           <div class="col-lg-6 hack-image-col">
             <div class="hack-image-wrapper">
               <img src="img/events-main/hacathon_new.webp" alt="Hackathon" class="img-fluid hack-hero-img">
@@ -441,17 +681,15 @@
             </div>
           </div>
 
-          <!-- Right: Content -->
+          Right: Content
           <div class="col-lg-6 cyber-void-bg hack-content-col">
-
-
             <div class="hack-content-inner">
               <div class="section-header text-left mb-4">
                 <h2>Hackathon</h2>
                 <p class="cyber-subtitle text-left">Separate Registration</p>
               </div>
 
-              <h2 class="hack-title glitch-text" data-text="INNOVATE. CREATE. CONQUER.">INNOVATE. CREATE. CONQUER.</h2>
+              <h2 class="hack-title glitch-text" data-text="INNOVATE. CREATE. CONQUER.">Flagship Hackathon</h2>
               <p class="hack-desc my-4">
                 A thrilling <strong>24-hour Innovative Marathon</strong> where brilliant minds collaborate to build tech
                 solutions.
@@ -485,13 +723,108 @@
                 <a href="https://drive.google.com/drive/folders/1oVDuiifDbgRy3HoXsh2a4RDUzXVeUBPf" target="_blank"
                   class="cyber-btn-outline">RULE BOOK</a>
               </div>
-              <p class="mt-3 text-danger font-weight-bold blink_me">⚠️ LIMITED REGISTRATION!</p>
             </div>
+
           </div>
         </div>
       </div>
+
+      Bottom Button
+      <div class="hack-bottom-btn text-center">
+        <a href="#events" class="action-button scrollto" style="text-decoration: none;">Explore More</a>
+      </div>
+    </section> -->
+
+    <section id="hack-v2" class="hack-v2-section">
+
+      <!-- BACKGROUND LASER LAYER -->
+      <div id="laser-container"></div>
+
+      <div class="hack-v2-wrapper">
+
+        <!-- LEFT -->
+        <div class="hack-v2-left">
+          <img src="img/events-main/hacathon_new.webp" alt="Hackathon">
+        </div>
+
+        <!-- RIGHT -->
+        <div class="hack-v2-right">
+
+          <div class="hack-v2-header">
+            <p class="hack-v2-subtitle">Separate Registration</p>
+            <h2 class="hack-v2-title">Flagship Hackathon</h2>
+          </div>
+
+          <p class="hack-v2-desc">
+            A thrilling <strong>24-hour Innovative Marathon</strong> where brilliant minds collaborate to build tech
+            solutions.
+            Win exciting prizes, gain mentorship, and showcase your skills under pressure!
+            <br><span class="hack-v2-highlight">Get instant internship opportunities.</span>
+          </p>
+
+          <div class="hack-v2-prizes">
+            <div class="hack-v2-card hack-v2-first">
+              <span>1st Prize</span>
+              <h3>₹50,000</h3>
+            </div>
+
+            <div class="hack-v2-card">
+              <span>2nd Prize</span>
+              <h3>₹30,000</h3>
+            </div>
+
+            <div class="hack-v2-card">
+              <span>3rd Prize</span>
+              <h3>₹10,000</h3>
+            </div>
+          </div>
+
+          <div class="hack-v2-buttons">
+            <a href="registration.html" class="hack-v2-primary">REGISTER TEAM</a>
+            <a href="#" class="hack-v2-outline">RULE BOOK</a>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Bottom Button -->
+      <div class="hack-v2-bottom">
+        <button class="hack-v2-explore">Explore More</button>
+      </div>
+
     </section>
 
+
+    <!--==========================
+      Main Events Section (Redesigned)
+    ============================-->
+    <section id="main-events">
+      <!-- Ambient Background Layers -->
+      <div class="me-bg-layer me-base-gradient"></div>
+      <div class="me-bg-layer me-noise"></div>
+      <div class="me-bg-layer me-particles" id="me-particles"></div>
+      <div class="me-bg-layer me-orbs">
+        <div class="me-orb orb-1"></div>
+        <div class="me-orb orb-2"></div>
+        <div class="me-orb orb-3"></div>
+      </div>
+
+      <div class="container me-container">
+        <!-- Header -->
+        <div class="me-header wow fadeInUp">
+          <h2 class="me-title glitch-text" data-text="MAIN EVENTS">MAIN EVENTS</h2>
+          <div class="me-subtitle-container">
+            <span class="me-subtitle">Where Ideas Become Reality</span>
+          </div>
+          <div class="me-divider"></div>
+        </div>
+
+        <!-- 3D Events Stage -->
+        <div class="events-stage">
+          Events loaded dynamically from events.json
+        </div>
+      </div>
+    </section>
     <!--==========================
       Events cards
     ============================-->
@@ -571,88 +904,11 @@
         </div>
       </div>
     </section>
-    <!--==========================
-      Gallery Section
-    ============================-->
-    <section id="gallery" class="wow fadeInUp">
-      <div class="container">
-        <div class="section-header">
-          <br>
-          <br>
-          <br>
-          <h2>Main Events</h2>
-        </div>
-
-        <div class="scrolling-gallery">
-          <div class="gallery-track">
-            <!-- Paper Presentation -->
-            <div class="gallery-item"
-              onclick="openPopup('PAPERPERS.webp', 'Paper Presentation:', 
-              ['SRINITHI/IT', 'NITESH/ECE', 'RIZWAN/EEE', 'RAHUL PRASHATH/CSE', 'NALLASIVAN/MECH'], 
-              ['Dr. J. MALA (IT)', 'Dr. JIM MATHEW PHILIP (CSE)', 'Dr. L. MALATHI (ECE)', 'Ms. D. POORNIMA (EEE)', 'Mr. B. VARUN (MECH)'])">
-              <img src="img/events-main/PAPERPERS.webp" alt="Paper Presentation">
-              <div class="event-title">Paper Presentation</div>
-            </div>
-
-            <!-- Hackathon -->
-            <div class="gallery-item"
-              onclick="openPopup('hacathon_new.webp', 'Hackathon:', 
-              ['KISHANTH/IT', 'DIVAKAR/CSE', 'SUJITH KUMAR/ECE', 'NAVEEN/EEE', 'LOGAKAVIN/MECH','REVATHI/CSE'], 
-              ['Dr. T. C. EZHIL SELVAN (IT)', 'Dr. K. M. KIRTHIKA (CSE)', 'Mr. S. SAMPATH (MECH)', 'Mr. S. THIYAGARAJAN (ECE)', 'Dr. S. UDAIYA KUMAR (EEE)'])">
-              <img src="img/events-main/hacathon_new.webp" alt="Hackathon">
-              <div class="event-title">Hackathon</div>
-            </div>
-
-            <!-- Project Expo -->
-            <div class="gallery-item"
-              onclick="openPopup('PROJECT - EXPO.webp', 'Project Expo:', 
-              ['SUBIKSHA/IT', 'KANTHESHWAR/EEE', 'LAVANYA/ECE', 'RAGAVAN/CSE', 'KISHORE/MECH'], 
-              ['Dr. T. C. EZHIL SELVAN (IT)', 'Dr. R. KUMAR (CSE)', 'Mr. V GANESH (ECE)', 'Dr. G. KANNAYERAM (EEE)', 'Dr. S. BENJAMIN FRANKLIN (MECH)'])">
-              <img src="img/events-main/PROJECT - EXPO.webp" alt="Project Expo">
-              <div class="event-title">Project Expo</div>
-            </div>
-
-            <!-- Report Rendering -->
-            <div class="gallery-item"
-              onclick="openPopup('REPORT RENDERING.webp', 'Report Rendering: ', 
-              ['SWETHA/IT', 'HARIHARAN/CSE', 'PRIYADHARSHINI/EEE', 'MUGILAN/ECE', 'PRAKASH/MECH'], 
-              ['Ms. K. MOHANAPRIYA (IT)', 'Dr. N. S. KAVITHA (CSE)', 'Dr. A. K. KAVITHAA (ECE)', 'Mr. R. SUDHARSHAN (MECH)', 'Mr. C. ANANDA KUMAR (EEE)'])">
-              <img src="img/events-main/REPORT RENDERING.webp" alt="Report Rendering">
-              <div class="event-title">Report Rendering</div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Popup Modal -->
-      <div class="popup-overlay" id="eventPopup" style="display: none;">
-        <div class="popup-container">
-          <button class="close-btn" onclick="closePopup()">&times;</button>
-          <div class="popup-content-wrapper">
-            <img id="popupImage" src="" alt="Event Image" class="popup-image">
-            <div class="popup-content">
-              <h2 id="popupTitle"></h2>
-              <div class="details-grid">
-                <div class="popup-section">
-                  <h3>Coordinators</h3>
-                  <ul id="popupCoordinators"></ul>
-                </div>
-                <div class="popup-section">
-                  <h3>Faculty In-charge</h3>
-                  <ul id="popupFaculty"></ul>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-    <!-- Modal for full-size image view -->
 
     <!--==========================
       agenda Section
     ============================-->
-    <section id="agenda" class="wow fadeInRight">
+    <!-- <section id="agenda" class="wow fadeInRight">
       <div class="container">
         <div class="section-header">
           <h2>Event Agenda</h2>
@@ -668,7 +924,6 @@
           </li>
         </ul>
         <div class="tab-content">
-          <!-- Day 1 -->
           <div role="row tabpanel" class="tab-pane fade show active" id="day1">
             <div class="container timeline">
               <div class="event">09:30 AM - Registration</div>
@@ -703,7 +958,6 @@
               <div class="event">04:30 PM: Prize distribution and all events will get over.</div>
             </div>
           </div>
-          <!-- Day 2 -->
           <div role="tabpanel" class="tab-pane fade" id="day2">
             <div class="container timeline">
               <div class="event">10:00 AM:
@@ -738,8 +992,150 @@
           </div>
         </div>
       </div>
-    </section>
+    </section> -->
 
+    <!--==========================
+      agenda Section (Stranger Things Edition)
+    ============================-->
+    <section id="agenda" class="stranger-agenda">
+
+      <!-- Particle Background -->
+      <div class="st-particles" id="st-particles"></div>
+
+      <!-- Realistic Lightning System SVG -->
+      <svg id="st-lightningSVG" viewBox="0 0 400 2400" preserveAspectRatio="none">
+        <defs>
+          <filter id="lightning-glow" x="-50%" y="-50%" width="200%" height="200%">
+            <feGaussianBlur stdDeviation="4" result="coloredBlur" />
+            <feMerge>
+              <feMergeNode in="coloredBlur" />
+              <feMergeNode in="SourceGraphic" />
+            </feMerge>
+          </filter>
+          <linearGradient id="lightning-gradient" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stop-color="#ffffff" stop-opacity="0.8" />
+            <stop offset="50%" stop-color="#00ffff" stop-opacity="0.6" />
+            <stop offset="100%" stop-color="#ffffff" stop-opacity="0" />
+          </linearGradient>
+        </defs>
+
+        <!-- Main Lightning Bolt Path -->
+        <path id="st-mainLightning" class="st-lightning-path"
+          d="M200,0 L180,150 L220,300 L190,450 L230,600 L180,750 L220,900 L190,1050 L230,1200 L180,1350 L220,1500 L190,1650 L230,1800 L180,1950 L220,2100 L200,2400"
+          stroke="url(#lightning-gradient)" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"
+          filter="url(#lightning-glow)" />
+      </svg>
+
+      <div class="container st-container">
+        <header class="st-header">
+          <h2 class="st-title flicker">ㅤEvent ㅤAgenda</h2>
+          <p class="st-subtitle">Event Timeline</p>
+          <div class="st-tabs">
+            <button class="st-tab active st-day1-btn" onclick="switchSTDay(1)">DAY 1</button>
+            <button class="st-tab st-day2-btn" onclick="switchSTDay(2)">DAY 2</button>
+          </div>
+        </header>
+
+        <!-- DAY 1 -->
+        <div id="st-day1" class="st-timeline st-day active">
+          <div class="st-event st-left" data-index="0">
+            <div class="st-card">
+              <div class="st-time">09:30 AM</div>
+              <div class="st-card-title">Registration</div>
+              <div class="st-desc">Enter the Gate</div>
+            </div>
+          </div>
+          <div class="st-event st-right" data-index="1">
+            <div class="st-card">
+              <div class="st-time">10:00 AM</div>
+              <div class="st-card-title">Code It, Ideathon, Clone X</div>
+              <div class="st-desc">The Mind Flayer Awakens</div>
+            </div>
+          </div>
+          <div class="st-event st-left" data-index="2">
+            <div class="st-card">
+              <div class="st-time">12:00 PM</div>
+              <div class="st-card-title">Arkham Encrypted</div>
+              <div class="st-desc">Decode the Upside Down</div>
+            </div>
+          </div>
+          <div class="st-event st-right" data-index="3">
+            <div class="st-card">
+              <div class="st-time">01:00 PM</div>
+              <div class="st-card-title">Lunch Break</div>
+              <div class="st-desc">Eggo Refuel Station</div>
+            </div>
+          </div>
+          <div class="st-event st-left" data-index="4">
+            <div class="st-card">
+              <div class="st-time">02:30 PM</div>
+              <div class="st-card-title">Robo Rush, Best Manager</div>
+              <div class="st-desc">Demogorgon Hunt</div>
+            </div>
+          </div>
+          <div class="st-event st-right" data-index="5">
+            <div class="st-card">
+              <div class="st-time">03:30 PM</div>
+              <div class="st-card-title">iConfusion Quiz</div>
+              <div class="st-desc">Hawkins Lab Experiment</div>
+            </div>
+          </div>
+          <div class="st-event st-left" data-index="6">
+            <div class="st-card">
+              <div class="st-time">04:30 PM</div>
+              <div class="st-card-title">Prize Distribution</div>
+              <div class="st-desc">Heroes Return</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- DAY 2 -->
+        <div id="st-day2" class="st-timeline st-day">
+          <div class="st-event st-left" data-index="0">
+            <div class="st-card">
+              <div class="st-time">09:30 AM</div>
+              <div class="st-card-title">Spawn Point</div>
+              <div class="st-desc">Project Expo, Report Rendering, Dashed Data with ML</div>
+            </div>
+          </div>
+          <div class="st-event st-right" data-index="1">
+            <div class="st-card">
+              <div class="st-time">10:00 AM</div>
+              <div class="st-card-title">Fine Arts</div>
+              <div class="st-desc">Vecna's Curse Begins (All Day)</div>
+            </div>
+          </div>
+          <div class="st-event st-left" data-index="2">
+            <div class="st-card">
+              <div class="st-time">12:00 PM</div>
+              <div class="st-card-title">Codewar: Endgame</div>
+              <div class="st-desc">Creel House Mysteries</div>
+            </div>
+          </div>
+          <div class="st-event st-right" data-index="3">
+            <div class="st-card">
+              <div class="st-time">01:00 PM</div>
+              <div class="st-card-title">Energy Recharge</div>
+              <div class="st-desc">Surfer Boy Pizza (Lunch)</div>
+            </div>
+          </div>
+          <div class="st-event st-left" data-index="4">
+            <div class="st-card">
+              <div class="st-time">02:30 PM</div>
+              <div class="st-card-title">Bid Smash, Prompt Engineering</div>
+              <div class="st-desc">Defeat Vecna</div>
+            </div>
+          </div>
+          <div class="st-event st-right" data-index="5">
+            <div class="st-card">
+              <div class="st-time">04:30 PM</div>
+              <div class="st-card-title">Secret Ending</div>
+              <div class="st-desc">Prize Distribution & Closing</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
     <!--==========================
       F.A.Q Section
@@ -921,10 +1317,527 @@
     <!-- Three.js (Required for Hero 3D) -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 
+    <!-- Laser Effect Logic (from laser.html) -->
+    <script>
+      const VERT = `
+        precision highp float;
+        attribute vec3 position;
+        void main(){
+          gl_Position = vec4(position, 1.0);
+        }
+        `;
+
+      const FRAG = `
+        #ifdef GL_ES
+        #extension GL_OES_standard_derivatives : enable
+        #endif
+        precision highp float;
+        precision mediump int;
+
+        uniform float iTime;
+        uniform vec3 iResolution;
+        uniform vec4 iMouse;
+        uniform float uWispDensity;
+        uniform float uTiltScale;
+        uniform float uFlowTime;
+        uniform float uFogTime;
+        uniform float uBeamXFrac;
+        uniform float uBeamYFrac;
+        uniform float uFlowSpeed;
+        uniform float uVLenFactor;
+        uniform float uHLenFactor;
+        uniform float uFogIntensity;
+        uniform float uFogScale;
+        uniform float uWSpeed;
+        uniform float uWIntensity;
+        uniform float uFlowStrength;
+        uniform float uDecay;
+        uniform float uFalloffStart;
+        uniform float uFogFallSpeed;
+        uniform vec3 uColor;
+        uniform float uFade;
+
+        #define PI 3.14159265359
+        #define TWO_PI 6.28318530718
+        #define EPS 1e-6
+        #define EDGE_SOFT (DT_LOCAL*4.0)
+        #define DT_LOCAL 0.0038
+        #define TAP_RADIUS 6
+        #define R_H 150.0
+        #define R_V 150.0
+        #define FLARE_HEIGHT 16.0
+        #define FLARE_AMOUNT 8.0
+        #define FLARE_EXP 2.0
+        #define TOP_FADE_START 0.1
+        #define TOP_FADE_EXP 1.0
+        #define FLOW_PERIOD 0.5
+        #define FLOW_SHARPNESS 1.5
+
+        #define W_BASE_X 1.5
+        #define W_LAYER_GAP 0.25
+        #define W_LANES 10
+        #define W_SIDE_DECAY 0.5
+        #define W_HALF 0.01
+        #define W_AA 0.15
+        #define W_CELL 20.0
+        #define W_SEG_MIN 0.01
+        #define W_SEG_MAX 0.55
+        #define W_CURVE_AMOUNT 15.0
+        #define W_CURVE_RANGE (FLARE_HEIGHT - 3.0)
+        #define W_BOTTOM_EXP 10.0
+
+        #define FOG_ON 1
+        #define FOG_CONTRAST 1.2
+        #define FOG_SPEED_U 0.1
+        #define FOG_SPEED_V -0.1
+        #define FOG_OCTAVES 5
+        #define FOG_BOTTOM_BIAS 0.8
+        #define FOG_TILT_TO_MOUSE 0.05
+        #define FOG_TILT_DEADZONE 0.01
+        #define FOG_TILT_MAX_X 0.35
+        #define FOG_TILT_SHAPE 1.5
+        #define FOG_BEAM_MIN 0.0
+        #define FOG_BEAM_MAX 0.75
+        #define FOG_MASK_GAMMA 0.5
+        #define FOG_EXPAND_SHAPE 12.2
+        #define FOG_EDGE_MIX 0.5
+
+        #define HFOG_EDGE_START 0.20
+        #define HFOG_EDGE_END 0.98
+        #define HFOG_EDGE_GAMMA 1.4
+        #define HFOG_Y_RADIUS 25.0
+        #define HFOG_Y_SOFT 60.0
+
+        #define EDGE_X0 0.22
+        #define EDGE_X1 0.995
+        #define EDGE_X_GAMMA 1.25
+        #define EDGE_LUMA_T0 0.0
+        #define EDGE_LUMA_T1 2.0
+        #define DITHER_STRENGTH 1.0
+
+            float g(float x){return x<=0.00031308?12.92*x:1.055*pow(x,1.0/2.4)-0.055;}
+            float bs(vec2 p,vec2 q,float powr){
+                float d=distance(p,q),f=powr*uFalloffStart,r=(f*f)/(d*d+EPS);
+                return powr*min(1.0,r);
+            }
+            float bsa(vec2 p,vec2 q,float powr,vec2 s){
+                vec2 d=p-q; float dd=(d.x*d.x)/(s.x*s.x)+(d.y*d.y)/(s.y*s.y),f=powr*uFalloffStart,r=(f*f)/(dd+EPS);
+                return powr*min(1.0,r);
+            }
+            float tri01(float x){float f=fract(x);return 1.0-abs(f*2.0-1.0);}
+            float tauWf(float t,float tmin,float tmax){float a=smoothstep(tmin,tmin+EDGE_SOFT,t),b=1.0-smoothstep(tmax-EDGE_SOFT,tmax,t);return max(0.0,a*b);} 
+            float h21(vec2 p){p=fract(p*vec2(123.34,456.21));p+=dot(p,p+34.123);return fract(p.x*p.y);}
+            float vnoise(vec2 p){
+                vec2 i=floor(p),f=fract(p);
+                float a=h21(i),b=h21(i+vec2(1,0)),c=h21(i+vec2(0,1)),d=h21(i+vec2(1,1));
+                vec2 u=f*f*(3.0-2.0*f);
+                return mix(mix(a,b,u.x),mix(c,d,u.x),u.y);
+            }
+            float fbm2(vec2 p){
+                float v=0.0,amp=0.6; mat2 m=mat2(0.86,0.5,-0.5,0.86);
+                for(int i=0;i<FOG_OCTAVES;++i){v+=amp*vnoise(p); p=m*p*2.03+17.1; amp*=0.52;}
+                return v;
+            }
+            float rGate(float x,float l){float a=smoothstep(0.0,W_AA,x),b=1.0-smoothstep(l,l+W_AA,x);return max(0.0,a*b);}
+            float flareY(float y){float t=clamp(1.0-(clamp(y,0.0,FLARE_HEIGHT)/max(FLARE_HEIGHT,EPS)),0.0,1.0);return pow(t,FLARE_EXP);}
+
+            float vWisps(vec2 uv,float topF){
+            float y=uv.y,yf=(y+uFlowTime*uWSpeed)/W_CELL;
+            float dRaw=clamp(uWispDensity,0.0,2.0),d=dRaw<=0.0?1.0:dRaw;
+            float lanesF=floor(float(W_LANES)*min(d,1.0)+0.5); 
+            int lanes=int(max(1.0,lanesF));
+            float sp=min(d,1.0),ep=max(d-1.0,0.0);
+            float fm=flareY(max(y,0.0)),rm=clamp(1.0-(y/max(W_CURVE_RANGE,EPS)),0.0,1.0),cm=fm*rm;
+            const float G=0.05; float xS=1.0+(FLARE_AMOUNT*W_CURVE_AMOUNT*G)*cm;
+            float sPix=clamp(y/R_V,0.0,1.0),bGain=pow(1.0-sPix,W_BOTTOM_EXP),sum=0.0;
+            for(int s=0;s<2;++s){
+                float sgn=s==0?-1.0:1.0;
+                for(int i=0;i<W_LANES;++i){
+                    if(i>=lanes) break;
+                    float off=W_BASE_X+float(i)*W_LAYER_GAP,xc=sgn*(off*xS);
+                    float dx=abs(uv.x-xc),lat=1.0-smoothstep(W_HALF,W_HALF+W_AA,dx),amp=exp(-off*W_SIDE_DECAY);
+                    float seed=h21(vec2(off,sgn*17.0)),yf2=yf+seed*7.0,ci=floor(yf2),fy=fract(yf2);
+                    float seg=mix(W_SEG_MIN,W_SEG_MAX,h21(vec2(ci,off*2.3)));
+                    float spR=h21(vec2(ci,off+sgn*31.0)),seg1=rGate(fy,seg)*step(spR,sp);
+                    if(ep>0.0){float spR2=h21(vec2(ci*3.1+7.0,off*5.3+sgn*13.0)); float f2=fract(fy+0.5); seg1+=rGate(f2,seg*0.9)*step(spR2,ep);}
+                    sum+=amp*lat*seg1;
+                }
+            }
+            float span=smoothstep(-3.0,0.0,y)*(1.0-smoothstep(R_V-6.0,R_V,y));
+            return uWIntensity*sum*topF*bGain*span;
+        }
+
+        void mainImage(out vec4 fc,in vec2 frag){
+            vec2 C=iResolution.xy*.5; float invW=1.0/max(C.x,1.0);
+            float sc=512.0/iResolution.x*.4;
+            vec2 uv=(frag-C)*sc,off=vec2(uBeamXFrac*iResolution.x*sc,uBeamYFrac*iResolution.y*sc);
+            vec2 uvc = uv - off;
+            float a=0.0,b=0.0;
+            float basePhase=1.5*PI+uDecay*.5; float tauMin=basePhase-uDecay; float tauMax=basePhase;
+            float cx=clamp(uvc.x/(R_H*uHLenFactor),-1.0,1.0),tH=clamp(TWO_PI-acos(cx),tauMin,tauMax);
+            for(int k=-TAP_RADIUS;k<=TAP_RADIUS;++k){
+                float tu=tH+float(k)*DT_LOCAL,wt=tauWf(tu,tauMin,tauMax); if(wt<=0.0) continue;
+                float spd=max(abs(sin(tu)),0.02),u=clamp((basePhase-tu)/max(uDecay,EPS),0.0,1.0),env=pow(1.0-abs(u*2.0-1.0),0.8);
+                vec2 p=vec2((R_H*uHLenFactor)*cos(tu),0.0);
+                a+=wt*bs(uvc,p,env*spd);
+            }
+            float yPix=uvc.y,cy=clamp(-yPix/(R_V*uVLenFactor),-1.0,1.0),tV=clamp(TWO_PI-acos(cy),tauMin,tauMax);
+            for(int k=-TAP_RADIUS;k<=TAP_RADIUS;++k){
+                float tu=tV+float(k)*DT_LOCAL,wt=tauWf(tu,tauMin,tauMax); if(wt<=0.0) continue;
+                float yb=(-R_V)*cos(tu),s=clamp(yb/R_V,0.0,1.0),spd=max(abs(sin(tu)),0.02);
+                float env=pow(1.0-s,0.6)*spd;
+                float cap=1.0-smoothstep(TOP_FADE_START,1.0,s); cap=pow(cap,TOP_FADE_EXP); env*=cap;
+                float ph=s/max(FLOW_PERIOD,EPS)+uFlowTime*uFlowSpeed;
+                float fl=pow(tri01(ph),FLOW_SHARPNESS);
+                env*=mix(1.0-uFlowStrength,1.0,fl);
+                float yp=(-R_V*uVLenFactor)*cos(tu),m=pow(smoothstep(FLARE_HEIGHT,0.0,yp),FLARE_EXP),wx=1.0+FLARE_AMOUNT*m;
+                vec2 sig=vec2(wx,1.0),p=vec2(0.0,yp);
+                float mask=step(0.0,yp);
+                b+=wt*bsa(uvc,p,mask*env,sig);
+            }
+            float sPix=clamp(yPix/R_V,0.0,1.0),topA=pow(1.0-smoothstep(TOP_FADE_START,1.0,sPix),TOP_FADE_EXP);
+            float L=a+b*topA;
+            float w=vWisps(vec2(uvc.x,yPix),topA);
+            float fog=0.0;
+        #if FOG_ON
+            vec2 fuv=uvc*uFogScale;
+            float mAct=step(1.0,length(iMouse.xy)),nx=((iMouse.x-C.x)*invW)*mAct;
+            float ax = abs(nx);
+            float stMag = mix(ax, pow(ax, FOG_TILT_SHAPE), 0.35);
+            float st = sign(nx) * stMag * uTiltScale;
+            st = clamp(st, -FOG_TILT_MAX_X, FOG_TILT_MAX_X);
+            vec2 dir=normalize(vec2(st,1.0));
+            fuv+=uFogTime*uFogFallSpeed*dir;
+            vec2 prp=vec2(-dir.y,dir.x);
+            fuv+=prp*(0.08*sin(dot(uvc,prp)*0.08+uFogTime*0.9));
+            float n=fbm2(fuv+vec2(fbm2(fuv+vec2(7.3,2.1)),fbm2(fuv+vec2(-3.7,5.9)))*0.6);
+            n=pow(clamp(n,0.0,1.0),FOG_CONTRAST);
+            float pixW = 1.0 / max(iResolution.y, 1.0);
+        #ifdef GL_OES_standard_derivatives
+            float wL = max(fwidth(L), pixW);
+        #else
+            float wL = pixW;
+        #endif
+            float m0=pow(smoothstep(FOG_BEAM_MIN - wL, FOG_BEAM_MAX + wL, L),FOG_MASK_GAMMA);
+            float bm=1.0-pow(1.0-m0,FOG_EXPAND_SHAPE); bm=mix(bm*m0,bm,FOG_EDGE_MIX);
+            float yP=1.0-smoothstep(HFOG_Y_RADIUS,HFOG_Y_RADIUS+HFOG_Y_SOFT,abs(yPix));
+            float nxF=abs((frag.x-C.x)*invW),hE=1.0-smoothstep(HFOG_EDGE_START,HFOG_EDGE_END,nxF); hE=pow(clamp(hE,0.0,1.0),HFOG_EDGE_GAMMA);
+            float hW=mix(1.0,hE,clamp(yP,0.0,1.0));
+            float bBias=mix(1.0,1.0-sPix,FOG_BOTTOM_BIAS);
+            float browserFogIntensity = uFogIntensity;
+            browserFogIntensity *= 1.8;
+            float radialFade = 1.0 - smoothstep(0.0, 0.7, length(uvc) / 120.0);
+            float safariFog = n * browserFogIntensity * bBias * bm * hW * radialFade;
+            fog = safariFog;
+        #endif
+            float LF=L+fog;
+            float dith=(h21(frag)-0.5)*(DITHER_STRENGTH/255.0);
+            float tone=g(LF+w);
+            vec3 col=tone*uColor+dith;
+            float alpha=clamp(g(L+w*0.6)+dith*0.6,0.0,1.0);
+            float nxE=abs((frag.x-C.x)*invW),xF=pow(clamp(1.0-smoothstep(EDGE_X0,EDGE_X1,nxE),0.0,1.0),EDGE_X_GAMMA);
+            float scene=LF+max(0.0,w)*0.5,hi=smoothstep(EDGE_LUMA_T0,EDGE_LUMA_T1,scene);
+            float eM=mix(xF,1.0,hi);
+            col*=eM; alpha*=eM;
+            col*=uFade; alpha*=uFade;
+            fc=vec4(col,alpha);
+        }
+
+        void main(){
+          vec4 fc;
+          mainImage(fc, gl_FragCoord.xy);
+          gl_FragColor = fc;
+        }
+        `;
+
+      class LaserFlow {
+        constructor(container, options = {}) {
+          this.container = container;
+          this.options = Object.assign({
+            wispDensity: 1,
+            mouseSmoothTime: 0.0,
+            mouseTiltStrength: 0.01,
+            horizontalBeamOffset: -0.02,
+            verticalBeamOffset: -0.50,
+            flowSpeed: 2.0,
+            verticalSizing: 1.5,
+            horizontalSizing: 1.5,
+            fogIntensity: 0.02,
+            fogScale: 0.3,
+            wispSpeed: 15.0,
+            wispIntensity: 1.0,
+            flowStrength: 0.25,
+            decay: 1.1,
+            falloffStart: 1.2,
+            fogFallSpeed: 0.6,
+            color: '#c21010',
+            dpr: null
+          }, options);
+
+          this.init();
+        }
+
+        hexToRGB(hex) {
+          let c = hex.trim();
+          if (c[0] === '#') c = c.slice(1);
+          if (c.length === 3)
+            c = c
+              .split('')
+              .map(x => x + x)
+              .join('');
+          const n = parseInt(c, 16) || 0xffffff;
+          return {
+            r: ((n >> 16) & 255) / 255,
+            g: ((n >> 8) & 255) / 255,
+            b: (n & 255) / 255
+          };
+        }
+
+        init() {
+          this.renderer = new THREE.WebGLRenderer({
+            antialias: false,
+            alpha: false,
+            depth: false,
+            stencil: false,
+            powerPreference: 'high-performance',
+            premultipliedAlpha: false,
+            preserveDrawingBuffer: false,
+            failIfMajorPerformanceCaveat: false,
+            logarithmicDepthBuffer: false
+          });
+
+          this.baseDpr = Math.min(this.options.dpr ?? (window.devicePixelRatio || 1), 2);
+          this.currentDpr = this.baseDpr;
+          this.renderer.setPixelRatio(this.currentDpr);
+          this.renderer.shadowMap.enabled = false;
+          this.renderer.outputColorSpace = THREE.SRGBColorSpace;
+          this.renderer.setClearColor(0x000000, 1);
+
+          const canvas = this.renderer.domElement;
+          canvas.style.width = '100%';
+          canvas.style.height = '100%';
+          canvas.style.display = 'block';
+          this.container.appendChild(canvas);
+
+          this.scene = new THREE.Scene();
+          this.camera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1);
+
+          const geometry = new THREE.BufferGeometry();
+          geometry.setAttribute('position', new THREE.BufferAttribute(new Float32Array([-1, -1, 0, 3, -1, 0, -1, 3, 0]), 3));
+
+          const { r, g, b } = this.hexToRGB(this.options.color);
+          this.uniforms = {
+            iTime: { value: 0 },
+            iResolution: { value: new THREE.Vector3(1, 1, 1) },
+            iMouse: { value: new THREE.Vector4(0, 0, 0, 0) },
+            uWispDensity: { value: this.options.wispDensity },
+            uTiltScale: { value: this.options.mouseTiltStrength },
+            uFlowTime: { value: 0 },
+            uFogTime: { value: 0 },
+            uBeamXFrac: { value: this.options.horizontalBeamOffset },
+            uBeamYFrac: { value: this.options.verticalBeamOffset },
+            uFlowSpeed: { value: this.options.flowSpeed },
+            uVLenFactor: { value: this.options.verticalSizing },
+            uHLenFactor: { value: this.options.horizontalSizing },
+            uFogIntensity: { value: this.options.fogIntensity },
+            uFogScale: { value: this.options.fogScale },
+            uWSpeed: { value: this.options.wispSpeed },
+            uWIntensity: { value: this.options.wispIntensity },
+            uFlowStrength: { value: this.options.flowStrength },
+            uDecay: { value: this.options.decay },
+            uFalloffStart: { value: this.options.falloffStart },
+            uFogFallSpeed: { value: this.options.fogFallSpeed },
+            uColor: { value: new THREE.Vector3(r, g, b) },
+            uFade: { value: 0 }
+          };
+
+          const material = new THREE.RawShaderMaterial({
+            vertexShader: VERT,
+            fragmentShader: FRAG,
+            uniforms: this.uniforms,
+            transparent: false,
+            depthTest: false,
+            depthWrite: false,
+            blending: THREE.NormalBlending
+          });
+
+          this.mesh = new THREE.Mesh(geometry, material);
+          this.mesh.frustumCulled = false;
+          this.scene.add(this.mesh);
+
+          this.hasFaded = false;
+          this.rect = null;
+          this.lastSize = { width: 0, height: 0, dpr: 0 };
+          this.fpsSamples = [];
+          this.lastFpsCheck = performance.now();
+          this.emaDt = 16.7;
+          this.paused = false;
+          this.inView = true;
+          this.mouseTarget = new THREE.Vector2(0, 0);
+          this.mouseSmooth = new THREE.Vector2(0, 0);
+          this.clock = new THREE.Clock();
+          this.prevTime = 0;
+          this.fade = 0;
+
+          this.setSizeNow();
+          this.resizeObserver = new ResizeObserver(() => this.scheduleResize());
+          this.resizeObserver.observe(this.container);
+
+          this.intersectionObserver = new IntersectionObserver(
+            entries => {
+              this.inView = entries[0]?.isIntersecting ?? true;
+            },
+            { root: null, threshold: 0 }
+          );
+          this.intersectionObserver.observe(this.container);
+
+          document.addEventListener('visibilitychange', () => {
+            this.paused = document.hidden;
+          }, { passive: true });
+
+          canvas.addEventListener('pointermove', (ev) => this.updateMouse(ev.clientX, ev.clientY), { passive: true });
+          canvas.addEventListener('pointerdown', (ev) => this.updateMouse(ev.clientX, ev.clientY), { passive: true });
+          canvas.addEventListener('pointerenter', (ev) => this.updateMouse(ev.clientX, ev.clientY), { passive: true });
+          canvas.addEventListener('pointerleave', () => this.mouseTarget.set(0, 0), { passive: true });
+          canvas.addEventListener('webglcontextlost', (e) => {
+            e.preventDefault();
+            this.paused = true;
+          }, false);
+          canvas.addEventListener('webglcontextrestored', () => {
+            this.paused = false;
+            this.scheduleResize();
+          }, false);
+
+          this.animate();
+        }
+
+        setSizeNow() {
+          const w = this.container.clientWidth || 1;
+          const h = this.container.clientHeight || 1;
+          const pr = this.currentDpr;
+
+          const last = this.lastSize;
+          const sizeChanged = Math.abs(w - last.width) > 0.5 || Math.abs(h - last.height) > 0.5;
+          const dprChanged = Math.abs(pr - last.dpr) > 0.01;
+          if (!sizeChanged && !dprChanged) return;
+
+          this.lastSize = { width: w, height: h, dpr: pr };
+          this.renderer.setPixelRatio(pr);
+          this.renderer.setSize(w, h, false);
+          this.uniforms.iResolution.value.set(w * pr, h * pr, pr);
+          this.rect = this.renderer.domElement.getBoundingClientRect();
+
+          if (!this.paused) {
+            this.renderer.render(this.scene, this.camera);
+          }
+        }
+
+        scheduleResize() {
+          if (this.resizeRaf) cancelAnimationFrame(this.resizeRaf);
+          this.resizeRaf = requestAnimationFrame(() => this.setSizeNow());
+        }
+
+        updateMouse(clientX, clientY) {
+          if (!this.rect) return;
+          const x = clientX - this.rect.left;
+          const y = clientY - this.rect.top;
+          const ratio = this.currentDpr;
+          const hb = this.rect.height * ratio;
+          this.mouseTarget.set(x * ratio, hb - y * ratio);
+        }
+
+        adjustDprIfNeeded(now) {
+          const elapsed = now - this.lastFpsCheck;
+          if (elapsed < 750) return;
+
+          const samples = this.fpsSamples;
+          if (samples.length === 0) {
+            this.lastFpsCheck = now;
+            return;
+          }
+          const avgFps = samples.reduce((a, b) => a + b, 0) / samples.length;
+
+          let next = this.currentDpr;
+          const base = this.baseDpr;
+          const dprFloor = 0.6;
+          const lowerThresh = 50;
+          const upperThresh = 58;
+
+          if (avgFps < lowerThresh) {
+            next = Math.max(dprFloor, Math.min(base, this.currentDpr * 0.85));
+          } else if (avgFps > upperThresh && this.currentDpr < base) {
+            next = Math.max(dprFloor, Math.min(base, this.currentDpr * 1.1));
+          }
+
+          const dprChangeCooldown = 2000;
+          if (Math.abs(next - this.currentDpr) > 0.01 && now - (this.lastDprChange || 0) > dprChangeCooldown) {
+            this.currentDpr = next;
+            this.lastDprChange = now;
+            this.setSizeNow();
+          }
+
+          this.fpsSamples = [];
+          this.lastFpsCheck = now;
+        }
+
+        animate() {
+          this.raf = requestAnimationFrame(() => this.animate());
+          if (this.paused || !this.inView) return;
+
+          const t = this.clock.getElapsedTime();
+          const dt = Math.max(0, t - this.prevTime);
+          this.prevTime = t;
+
+          const dtMs = dt * 1000;
+          this.emaDt = this.emaDt * 0.9 + dtMs * 0.1;
+          const instFps = 1000 / Math.max(1, this.emaDt);
+          this.fpsSamples.push(instFps);
+
+          this.uniforms.iTime.value = t;
+
+          const cdt = Math.min(0.033, Math.max(0.001, dt));
+          this.uniforms.uFlowTime.value += cdt;
+          this.uniforms.uFogTime.value += cdt;
+
+          if (!this.hasFaded) {
+            const fadeDur = 1.0;
+            this.fade = Math.min(1, this.fade + cdt / fadeDur);
+            this.uniforms.uFade.value = this.fade;
+            if (this.fade >= 1) this.hasFaded = true;
+          }
+
+          const tau = Math.max(1e-3, this.options.mouseSmoothTime);
+          const alpha = 1 - Math.exp(-cdt / tau);
+          this.mouseSmooth.lerp(this.mouseTarget, alpha);
+          this.uniforms.iMouse.value.set(this.mouseSmooth.x, this.mouseSmooth.y, 0, 0);
+
+          this.renderer.render(this.scene, this.camera);
+          this.adjustDprIfNeeded(performance.now());
+        }
+
+        destroy() {
+          cancelAnimationFrame(this.raf);
+          this.resizeObserver.disconnect();
+          this.intersectionObserver.disconnect();
+          const canvas = this.renderer.domElement;
+          if (this.container.contains(canvas)) this.container.removeChild(canvas);
+          this.mesh.geometry.dispose();
+          this.mesh.material.dispose();
+          this.renderer.dispose();
+        }
+      }
+
+      document.addEventListener('DOMContentLoaded', () => {
+        const container = document.getElementById('laser-container');
+        if (container) new LaserFlow(container);
+      });
+    </script>
+
     <!-- Template Main Javascript File -->
     <script src="js/main.js"></script>
     <script src="js/hero-3d.js"></script>
-    <script src="js/cursor.js"></script>
+
+    <script src="script.js"></script>
 </body>
 
 </html>

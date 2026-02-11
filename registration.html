@@ -16,7 +16,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Rajdhani:wght@300;400;500;600;700&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Orbitron:wght@400;500;700;900&family=Rajdhani:wght@300;400;500;600;700&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Special+Elite&display=swap"
         rel="stylesheet">
     <link
         href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Raleway:300,400,500,700,800"
@@ -257,7 +257,9 @@
         <div class="container">
 
             <div id="logo" class="pull-left">
+                <!-- <a href="#intro" class="scrollto"><img src="img/logo1.png" alt="" title=""></a> -->
                 <a href="index.html#intro" class="scrollto"><img src="img/logo.png" alt="" title=""></a>
+                <!-- <h2><a href="#main">Sri <span>RamaKrishna</span><br />Institute of technology</a></h2> -->
             </div>
 
             <nav id="nav-menu-container">
@@ -268,7 +270,8 @@
                     <li><a href="index.html#events" data-text="Events">Events</a></li>
                     <li><a href="index.html#gallery" data-text="Main Events">Main Events</a></li>
                     <li><a href="index.html#agenda" data-text="Agenda">Agenda</a></li>
-                    <li class="menu-active buy-tickets"><a href="#" data-text="Register">Register</a></li>
+                    <li class="menu-active buy-tickets"><a href="registration.html" data-text="Register">Register</a>
+                    </li>
                 </ul>
             </nav><!-- #nav-menu-container -->
         </div>
@@ -289,80 +292,121 @@
             <div class="section-header">
                 <h2 class="glitch-title" data-text="REGISTRATION" style="font-size: 3rem; margin-bottom: 1rem;">
                     REGISTRATION</h2>
-                <p class="cyber-subtitle" style="text-align: center;">Choose your path</p>
+                <p class="cyber-subtitle" style="text-align: center; color: #fff;">SECURE YOUR SPOT</p>
             </div>
 
 
             <div class="row justify-content-center">
-                <div class="col-lg-8">
+                <div class="col-lg-10">
                     <div class="glass-panel p-4 p-md-5">
-                        <form id="registrationForm"
-                            onsubmit="event.preventDefault(); alert('Registration Successful! (Demo)');">
+                        <form id="registrationForm" name="submit-to-google-sheet">
+
+                            <!-- Section: Personal Details -->
+                            <h4 class="form-section-title">01 // PERSONAL IDENTITY</h4>
                             <div class="row">
-                                <!-- Name -->
                                 <div class="col-md-6 form-group">
                                     <label for="name" class="cyber-label">Full Name</label>
-                                    <input type="text" class="form-control cyber-input" id="name" placeholder="John Doe"
-                                        required>
+                                    <input type="text" class="form-control cyber-input" name="Name" id="name"
+                                        placeholder="John Doe" required>
                                 </div>
-                                <!-- Email -->
                                 <div class="col-md-6 form-group">
                                     <label for="email" class="cyber-label">Email Address</label>
-                                    <input type="email" class="form-control cyber-input" id="email"
+                                    <input type="email" class="form-control cyber-input" name="Email" id="email"
                                         placeholder="john@example.com" required>
                                 </div>
                             </div>
 
                             <div class="row">
-                                <!-- Phone -->
                                 <div class="col-md-6 form-group">
-                                    <label for="phone" class="cyber-label">Phone Number</label>
-                                    <input type="tel" class="form-control cyber-input" id="phone"
+                                    <label for="mobile" class="cyber-label">Mobile Number</label>
+                                    <input type="tel" class="form-control cyber-input" name="Mobile" id="mobile"
                                         placeholder="+91 98765 43210" required>
                                 </div>
-                                <!-- Year -->
                                 <div class="col-md-6 form-group">
-                                    <label for="year" class="cyber-label">Year of Study</label>
-                                    <select class="form-control cyber-input" id="year" required>
-                                        <option value="" disabled selected>Select Year</option>
-                                        <option value="1">1st Year</option>
-                                        <option value="2">2nd Year</option>
-                                        <option value="3">3rd Year</option>
-                                        <option value="4">4th Year</option>
-                                    </select>
+                                    <label for="whatsapp" class="cyber-label">WhatsApp Number</label>
+                                    <input type="tel" class="form-control cyber-input" name="WhatsApp" id="whatsapp"
+                                        placeholder="+91 98765 43210" required>
                                 </div>
                             </div>
 
+                            <!-- Section: Academic Details -->
+                            <h4 class="form-section-title mt-4">02 // ACADEMIC DATA</h4>
                             <div class="row">
-                                <!-- College -->
                                 <div class="col-md-6 form-group">
-                                    <label for="college" class="cyber-label">College / Institution</label>
-                                    <input type="text" class="form-control cyber-input" id="college"
+                                    <label for="college" class="cyber-label">College Name</label>
+                                    <input type="text" class="form-control cyber-input" name="College" id="college"
                                         placeholder="Institute Name" required>
                                 </div>
-                                <!-- Department -->
-                                <div class="col-md-6 form-group">
+                                <div class="col-md-3 form-group">
+                                    <label for="year" class="cyber-label">Year</label>
+                                    <select class="form-control cyber-input" name="Year" id="year" required>
+                                        <option value="" disabled selected>Select</option>
+                                        <option value="1">I Year</option>
+                                        <option value="2">II Year</option>
+                                        <option value="3">III Year</option>
+                                        <option value="4">IV Year</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-3 form-group">
                                     <label for="dept" class="cyber-label">Department</label>
-                                    <input type="text" class="form-control cyber-input" id="dept"
-                                        placeholder="CSE, ECE, etc." required>
+                                    <input type="text" class="form-control cyber-input" name="Department" id="dept"
+                                        placeholder="CSE" required>
                                 </div>
                             </div>
 
-                            <!-- Event Category -->
-                            <div class="form-group">
-                                <label for="category" class="cyber-label">Event Category</label>
-                                <select class="form-control cyber-input" id="category" required>
-                                    <option value="" disabled selected>Select Event Category</option>
-                                    <option value="tech">Tech & Non-Tech Events</option>
-                                    <option value="workshop">Workshops</option>
-                                    <option value="hackathon">Hackathon</option>
-                                    <option value="culturals">Culturals</option>
-                                </select>
+                            <!-- Section: Event Selection -->
+                            <h4 class="form-section-title mt-4">03 // EVENT MODULES</h4>
+                            <p class="text-white small mb-3">Load default events or fetch from server.</p>
+
+                            <div id="events-container">
+                                <!-- Events will be loaded here dynamically -->
+                                <div class="text-center">
+                                    <i class="fa fa-spinner fa-spin fa-2x text-white"></i>
+                                </div>
                             </div>
 
-                            <div class="text-center mt-4">
-                                <button type="submit" class="cyber-btn glitch-btn" style="min-width: 200px;">REGISTER
-                                    NOW</button>
+                            <!-- Section: Logistics -->
+                            <h4 class="form-section-title mt-4">04 // LOGISTICS</h4>
+                            <div class="row">
+                                <div class="col-md-6 form-group">
+                                    <label class="cyber-label mb-3">Accommodation Needed?</label>
+                                    <div class="cyber-radio-group">
+                                        <label class="cyber-radio">
+                                            <input type="radio" name="Accommodation" value="Yes" required>
+                                            <span class="radio-mark"></span>
+                                            <span class="radio-label">YES</span>
+                                        </label>
+                                        <label class="cyber-radio">
+                                            <input type="radio" name="Accommodation" value="No" required>
+                                            <span class="radio-mark"></span>
+                                            <span class="radio-label">NO</span>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 form-group">
+                                    <label class="cyber-label mb-3">Transportation Needed?</label>
+                                    <div class="cyber-radio-group">
+                                        <label class="cyber-radio">
+                                            <input type="radio" name="Transportation" value="Yes" required>
+                                            <span class="radio-mark"></span>
+                                            <span class="radio-label">YES</span>
+                                        </label>
+                                        <label class="cyber-radio">
+                                            <input type="radio" name="Transportation" value="No" required>
+                                            <span class="radio-mark"></span>
+                                            <span class="radio-label">NO</span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="text-center mt-5">
+                                <button type="submit" class="cyber-btn glitch-btn" id="submit-btn"
+                                    style="min-width: 250px;">
+                                    <span class="btn-text">INITIALIZE REGISTRATION</span>
+                                    <span class="btn-spinner"><i class="fa fa-refresh fa-spin"></i></span>
+                                </button>
+                                <div id="form-message" class="mt-3 font-weight-bold"></div>
                             </div>
                         </form>
                     </div>
@@ -375,10 +419,61 @@
     Footer
   ============================-->
     <footer id="footer">
+        <div class="footer-top">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 footer-info">
+                        <img src="img/logo.png" alt="TheEvenet">
+                        <p><strong>Vihansa 2026</strong> is a celebration of innovation, talent, and teamwork at Sri
+                            Ramakrishna Institute of Technology. With exciting events and inspiring experiences, it's
+                            where ideas come to life. Get ready to <em>innovate, ignite, and inspire!</em></p>
+                    </div>
+                    <div class="col-lg-3 col-md-3 footer-contact">
+                        <h4>Contact Us</h4>
+                        <p>
+                            Sri Ramakrishna Institute Of Technology <br>
+                            Pachapalayam,<br>
+                            Coimbatore - 641010 <br>
+                            <strong>Phone:</strong> <br>
+                            <a href="https://www.linkedin.com/in/viswa-jith-2b9696258" target="_blank"
+                                style="color: white;">Viswajith M -</a>
+                            <a href="tel:+918148868582">+91-81488-68582</a><br>
+                            <a href="https://linkedin.com/in/tharun-i-a13673253" target="_blank "
+                                style="color: white;">Tharun I -</a>
+                            <a href="tel:+918148868582">+91-88380-67781</a><br>
+                            <strong>Email:</strong> <a href="mailto:vihansa@sritcbe.ac.in">vihansa@sritcbe.ac.in</a><br>
+                        </p>
+                        <div style="font-weight: bold; font-size: 20px;">
+                            <a href="https://www.instagram.com/srit_vihansa_official/" target="_blank"
+                                class="social-links instagram"><i class="fa fa-instagram"></i>
+                                <pre style="color: aliceblue;">Follow For More...</pre>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6 venue-map">
+                        <iframe
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3917.2860716674027!2d76.89614697222787!3d10.941749732315019!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba85c6bbf412ce5%3A0x52c5151f21ac8419!2sSri%20Ramakrishna%20Institute%20of%20Technology!5e0!3m2!1sen!2sin!4v1741497889552!5m2!1sen!2sin"
+                            style="border:0;" allowfullscreen="" loading="lazy"
+                            referrerpolicy="no-referrer-when-downgrade" class="venue-g"></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <div class="container">
             <div class="copyright">
                 &copy; Copyright <strong>Vihansa-2026</strong>. All Rights Reserved
-                <p>Ensure correct details when registering • There will be no refund at any costs</p>
+                <p>Web Designed by:
+                    <a href="https://in.linkedin.com/in/kavinbaarathi" target="_blank">Kavin Baarathi,</a>
+                    <a href="https://www.linkedin.com/in/mohammedashiqj" target="_blank">Mohammed Ashiq,</a>
+                    <a href="https://www.linkedin.com/in/rahul-prashath-m-63743a2b3" target="_blank">Rahul Prashath</a>
+                    <br>
+                    Poster Designed by:
+                    <a href="https://www.linkedin.com/in/kishanth-s-222811254" target="_blank">Kishanth s,</a>
+                    <a href="https://linkedin.com/in/tharun-i-a13673253" target="_blank">Tharun I</a>
+                </p>
+
             </div>
         </div>
     </footer><!-- #footer -->
@@ -401,9 +496,281 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 
     <!-- Template Main Javascript File -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script src="js/main.js"></script>
     <script src="js/hero-3d.js"></script>
     <script src="js/cursor.js"></script>
+
+    <script>
+        // --- 1. CONFIGURATION ---
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbwolKeoShlUe059pl0MHadk_rOnbkxAgu08G6sBxg0HHcY-u_2t4pyco4xITRw1D19Z/exec';
+        const form = document.forms['submit-to-google-sheet'];
+        const messageDiv = document.getElementById('form-message');
+        const submitBtn = document.getElementById('submit-btn');
+
+        // --- 2. LOAD EVENTS ---
+        document.addEventListener('DOMContentLoaded', () => {
+            // Try to fetch from JSON, fallback to default if fails (e.g. local file protocol)
+            fetch('events.json')
+                .then(response => response.json())
+                .then(data => renderEvents(data))
+                .catch(error => {
+                    console.error('Error loading events:', error);
+                    // Fallback data if JSON fetch fails (for local testing without server)
+                    const fallbackData = {
+                        "day1": {
+                            "tech": ["Code It", "Ideathon", "Clone X", "Arkham Encrypted"],
+                            "nonTech": ["Speed Craft", "Best Manager", "Robo Rush"]
+                        },
+                        "day2": {
+                            "tech": ["Project Expo", "Report Rendering", "Innovation Pitch"],
+                            "nonTech": ["Fly Forge", "Fine Arts", "Bid Smash"]
+                        }
+                    };
+                    renderEvents(fallbackData);
+                });
+        });
+
+        function renderEvents(data) {
+            const container = document.getElementById('events-container');
+            if (!data) return;
+
+            let html = `
+                <div class="row">
+                    <!-- Day 1 -->
+                    <div class="col-md-6">
+                        <div class="event-day-card">
+                            <h5 class="event-day-title">DAY 1 EVENTS</h5>
+                            
+                            <div class="event-category">
+                                <h6>// TECHNICAL</h6>
+                                ${generateCheckboxes(data.day1.tech, 'Events_Day1_Tech')}
+                            </div>
+                            
+                            <div class="event-category mt-3">
+                                <h6>// NON-TECHNICAL</h6>
+                                ${generateCheckboxes(data.day1.nonTech, 'Events_Day1_NonTech')}
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Day 2 -->
+                    <div class="col-md-6 mt-4 mt-md-0">
+                        <div class="event-day-card">
+                            <h5 class="event-day-title">DAY 2 EVENTS</h5>
+                            
+                            <div class="event-category">
+                                <h6>// TECHNICAL</h6>
+                                ${generateCheckboxes(data.day2.tech, 'Events_Day2_Tech')}
+                            </div>
+                            
+                            <div class="event-category mt-3">
+                                <h6>// NON-TECHNICAL</h6>
+                                ${generateCheckboxes(data.day2.nonTech, 'Events_Day2_NonTech')}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+            container.innerHTML = html;
+        }
+
+        function generateCheckboxes(events, fieldName) {
+            if (!events) return '<p class="small text-muted">No events</p>';
+            return events.map(event => `
+                <label class="cyber-checkbox-label">
+                    <input type="checkbox" name="${fieldName}" value="${event}">
+                    <span class="custom-checkbox"></span>
+                    <span class="event-text">${event}</span>
+                </label>
+            `).join('');
+        }
+
+        // --- 3. FORM SUBMISSION ---
+        form.addEventListener('submit', e => {
+            e.preventDefault();
+
+            // UI Loading State
+            submitBtn.classList.add('loading');
+            submitBtn.disabled = true;
+            messageDiv.innerText = "Transmitting Data...";
+
+            // Collect Checkbox Data manually
+            const formData = new FormData(form);
+
+            // Append multi-select values as comma-separated strings
+            // (Note: FormData automatically handles multiple values with same name, 
+            // but for Google Sheets simplified script, we might want to join them)
+            const dataToPost = new FormData();
+
+            // Copy standard fields
+            ['Name', 'Email', 'Mobile', 'WhatsApp', 'College', 'Year', 'Department', 'Accommodation', 'Transportation'].forEach(key => {
+                dataToPost.append(key, formData.get(key));
+            });
+
+            // Join arrays for events
+            ['Events_Day1_Tech', 'Events_Day1_NonTech', 'Events_Day2_Tech', 'Events_Day2_NonTech'].forEach(key => {
+                const values = formData.getAll(key);
+                dataToPost.append(key, values.join(', '));
+            });
+
+            fetch(scriptURL, {
+                method: 'POST',
+                body: dataToPost,
+                mode: 'no-cors' // Use 'no-cors' to bypass strict CORS checks
+            })
+                .then(response => {
+                    // With 'no-cors', the response is opaque (status 0).
+                    // We assume success if the promise resolves without network error.
+                    messageDiv.innerText = "REGISTRATION SUCCESSFUL // ACCESS GRANTED";
+                    messageDiv.style.color = "#0aff0a";
+                    form.reset();
+                    submitBtn.classList.remove('loading');
+                    submitBtn.disabled = false;
+
+                    // Optional: Fire confetti
+                    if (typeof fireConfetti === 'function') fireConfetti();
+                })
+                .catch(error => {
+                    console.error('Error!', error.message);
+                    messageDiv.innerText = "ERROR // TRANSMISSION FAILED";
+                    messageDiv.style.color = "#ff003c";
+                    submitBtn.classList.remove('loading');
+                    submitBtn.disabled = false;
+                });
+        });
+    </script>
+
+    <style>
+        /* Extra Styles for New Form Elements */
+        .form-section-title {
+            color: var(--cyber-gold);
+            font-family: 'Orbitron', sans-serif;
+            border-bottom: 1px solid var(--glass-border);
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            letter-spacing: 2px;
+            font-size: 1.2rem;
+        }
+
+        .event-day-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 5px;
+            height: 100%;
+        }
+
+        .event-day-title {
+            color: var(--electric-blue);
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 15px;
+            text-shadow: 0 0 5px rgba(0, 240, 255, 0.5);
+        }
+
+        .event-category h6 {
+            color: #ccc;
+            font-size: 0.8rem;
+            margin-bottom: 10px;
+            border-left: 2px solid var(--cyber-red);
+            padding-left: 8px;
+        }
+
+        /* Cyber Checkboxes */
+        .cyber-checkbox-label {
+            display: flex;
+            align-items: center;
+            margin-bottom: 8px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .cyber-checkbox-label:hover .event-text {
+            color: var(--cyber-gold);
+        }
+
+        .cyber-checkbox-label input {
+            display: none;
+        }
+
+        .custom-checkbox {
+            width: 18px;
+            height: 18px;
+            border: 1px solid var(--text-muted);
+            margin-right: 10px;
+            display: inline-block;
+            position: relative;
+            background: rgba(0, 0, 0, 0.5);
+        }
+
+        .cyber-checkbox-label input:checked+.custom-checkbox {
+            background: var(--cyber-red);
+            border-color: var(--cyber-red);
+            box-shadow: 0 0 8px var(--cyber-red);
+        }
+
+        .event-text {
+            font-size: 0.9rem;
+            color: #eee;
+        }
+
+        /* Cyber Radio Buttons */
+        .cyber-radio-group {
+            display: flex;
+            gap: 20px;
+        }
+
+        .cyber-radio {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .cyber-radio input {
+            display: none;
+        }
+
+        .radio-mark {
+            width: 20px;
+            height: 20px;
+            border: 2px solid var(--electric-blue);
+            border-radius: 50%;
+            margin-right: 8px;
+            position: relative;
+        }
+
+        .cyber-radio input:checked+.radio-mark::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 10px;
+            height: 10px;
+            background: var(--electric-blue);
+            border-radius: 50%;
+            box-shadow: 0 0 8px var(--electric-blue);
+        }
+
+        .radio-label {
+            color: #fff;
+            font-weight: 600;
+        }
+
+        /* Button Loading State */
+        .btn-spinner {
+            display: none;
+        }
+
+        button.loading .btn-text {
+            display: none;
+        }
+
+        button.loading .btn-spinner {
+            display: inline-block;
+        }
+    </style>
 </body>
 
 </html>
