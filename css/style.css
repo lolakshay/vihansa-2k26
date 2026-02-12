@@ -3908,56 +3908,7 @@ body.mobile-nav-active #mobile-nav-toggle {
   }
 }
 
-/* ================= SRIT Intro Overlay ================= */
-#srit-intro-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: #000;
-  z-index: 999999;
-  /* Super high z-index to cover navbar (997) */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  transition: opacity 0.5s ease-out;
-  /* Faster fade out */
-}
 
-#srit-intro-overlay img {
-  width: 100vw;
-  height: 100vh;
-  object-fit: cover;
-  animation: sritIntroAnim 3s ease-in-out forwards;
-}
-
-#srit-intro-overlay.fade-out {
-  opacity: 0;
-  pointer-events: none;
-}
-
-@keyframes sritIntroAnim {
-  0% {
-    opacity: 0;
-    transform: scale(0.8);
-  }
-
-  40% {
-    opacity: 1;
-    transform: scale(1.1);
-  }
-
-  80% {
-    opacity: 1;
-    transform: scale(1.0);
-  }
-
-  100% {
-    opacity: 1;
-    transform: scale(1.0);
-  }
-}
 
 /* --- Mobile Cursor Fix --- */
 @media (max-width: 768px) {

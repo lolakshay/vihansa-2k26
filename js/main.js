@@ -1,12 +1,6 @@
 jQuery(document).ready(function ($) {
 
-  // SRIT Intro Overlay Logic
-  setTimeout(function () {
-    $('#srit-intro-overlay').addClass('fade-out');
-    setTimeout(function () {
-      $('#srit-intro-overlay').remove();
-    }, 500); // 0.5s fade out
-  }, 3000); // 3s animation duration
+
   /******************************
    * 1. INITIALIZE LIBRARIES
    ******************************/
