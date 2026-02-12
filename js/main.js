@@ -196,19 +196,7 @@ jQuery(document).ready(function ($) {
     if (distance < 0) clearInterval(x);
   }, second);
 
-  /******************************
-   * 7. CONFETTI EFFECT
-   ******************************/
-  const prizeSection = document.querySelector("#intro");
-  if (prizeSection) {
-    const observer = new IntersectionObserver((entries) => {
-      if (entries[0].isIntersecting) {
-        fireConfetti();
-        observer.unobserve(prizeSection);
-      }
-    }, { threshold: 0.5 });
-    observer.observe(prizeSection);
-  }
+
 });
 
 /******************************
@@ -230,6 +218,7 @@ function openPopup(image, title, coordinators, faculty) {
   document.body.style.overflow = 'hidden'; // Prevent scrolling
 }
 
+
 function closePopup() {
   document.getElementById('eventPopup').style.display = 'none';
   document.body.style.overflow = 'auto'; // Re-enable scrolling
@@ -239,9 +228,14 @@ function closePopup() {
  * 9. CONFETTI FUNCTION
  ******************************/
 function fireConfetti() {
-  confetti({ particleCount: 200, spread: 200, origin: { x: 1, y: 0 } });
-  confetti({ particleCount: 200, spread: 200, origin: { x: 0, y: 0 } });
+  if (typeof confetti === 'function') {
+    confetti({ particleCount: 200, spread: 200, origin: { x: 1, y: 0 } });
+    confetti({ particleCount: 200, spread: 200, origin: { x: 0, y: 0 } });
+  }
 }
+
+
+
 
 /******************************
  * 10. MOBILE VIEWPORT FIX
