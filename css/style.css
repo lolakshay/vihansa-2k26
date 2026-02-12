@@ -1004,7 +1004,7 @@ body.mobile-nav-active #mobile-nav-toggle {
 # Hero-style Countdown Section (Announcement Hub)
 --------------------------------------------------------------*/
 #about {
-  background: #00000000 !important;
+  background: #000 !important;
   color: #fff;
   padding: 40px 0;
   min-height: auto;
@@ -3870,6 +3870,7 @@ body.mobile-nav-active #mobile-nav-toggle {
   }
 }
 
+<<<<<<< HEAD
 /* ================= SRIT Intro Overlay ================= */
 #srit-intro-overlay {
   position: fixed;
@@ -3917,5 +3918,15 @@ body.mobile-nav-active #mobile-nav-toggle {
   100% {
     opacity: 1;
     transform: scale(1.0);
+=======
+/* --- Mobile Cursor Fix --- */
+@media (max-width: 768px) {
+
+  #cursor,
+  #cursor-blur,
+  #ghost-cursor-canvas,
+  #bg-animation-container canvas {
+    display: none !important;
+>>>>>>> ea2ff23a532d789c127d6a320c9522e95b03959c
   }
 }

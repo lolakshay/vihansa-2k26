@@ -2,6 +2,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const cursor = document.getElementById('cursor');
     const cursorBlur = document.getElementById('cursor-blur');
 
+    if (window.innerWidth <= 768) return; // Disable on mobile
+
     if (!cursor || !cursorBlur) return;
 
     let mouseX = 0;
