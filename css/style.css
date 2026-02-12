@@ -1070,12 +1070,13 @@ body.mobile-nav-active #mobile-nav-toggle {
 }
 
 .counter-content li p {
-  font-family: 'Space Mono', monospace;
-  font-size: 1.1rem;
-  color: #888;
-  margin: 0;
-  text-transform: uppercase;
-  letter-spacing: 4px;
+  font-family: 'StrangerThings', 'Space Mono', monospace;
+  font-size: 1.2rem;
+  color: #ff0000;
+  margin: 10px 0 0 0;
+  text-transform: lowercase;
+  letter-spacing: 2px;
+  text-shadow: 0 0 10px rgba(255, 0, 0, 0.8);
 }
 
 .counter-content li.separator {
@@ -3276,11 +3277,44 @@ body.mobile-nav-active #mobile-nav-toggle {
 .st-root-shadow,
 .st-root-highlight,
 .st-branch,
-.st-tendril {
+.st-tendril,
+.st-lightning-core {
   stroke-dasharray: 2000;
   stroke-dashoffset: 2000;
   transition: stroke-dashoffset 0.8s ease-out;
-  /* Smoother grow */
+}
+
+.st-lightning-path {
+  animation: st-lightningFlicker 5s infinite;
+}
+
+.st-lightning-core {
+  animation: st-lightningFlicker 5s infinite 0.1s;
+}
+
+@keyframes st-lightningFlicker {
+
+  0%,
+  15%,
+  25%,
+  35%,
+  100% {
+    opacity: 1;
+    stroke-width: 6;
+  }
+
+  10%,
+  20%,
+  30% {
+    opacity: 0.6;
+    stroke-width: 4;
+  }
+
+  12%,
+  22% {
+    opacity: 0.2;
+    stroke-width: 2;
+  }
 }
 
 /* Glowing nodes (eyes) */
@@ -3304,27 +3338,31 @@ body.mobile-nav-active #mobile-nav-toggle {
 
 .st-title {
   font-family: 'Benguiat Bold', 'Cinzel', serif;
-  font-size: 56px;
+  font-size: 84px;
+  /* Made significantly larger */
   font-weight: 900;
-  letter-spacing: 6px;
-  color: #c90000;
+  letter-spacing: 8px;
+  color: #fff;
+  /* Changed to white */
   text-transform: uppercase;
   text-shadow:
-    0 0 5px #000,
     0 0 10px #ff0000,
     0 0 20px #ff0000,
-    0 0 40px #8b0000;
+    0 0 40px #ff0000,
+    0 0 60px #8b0000;
   margin-bottom: 5px;
   animation: st-titlePulse 4s infinite alternate;
 }
 
 @keyframes st-titlePulse {
   0% {
-    text-shadow: 0 0 10px #ff0000, 0 0 20px #ff0000;
+    text-shadow: 0 0 15px #ff0000, 0 0 30px #ff0000;
+    transform: scale(1);
   }
 
   100% {
-    text-shadow: 0 0 20px #ff0000, 0 0 40px #ff0000, 0 0 60px #ff0000;
+    text-shadow: 0 0 30px #ff0000, 0 0 60px #ff0000, 0 0 90px #ff0000;
+    transform: scale(1.02);
   }
 }
 

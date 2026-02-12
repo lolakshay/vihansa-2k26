@@ -196,6 +196,30 @@ jQuery(document).ready(function ($) {
     if (distance < 0) clearInterval(x);
   }, second);
 
+  /******************************
+   * 7. AUDIO FEEDBACK (MUSIC NOTES)
+   ******************************/
+  // User noted they don't have the file yet, using a placeholder.
+  const clickSound = new Audio('audio/click-note.mp3');
+
+  function playFeedbackSound() {
+    // Reset and play to allow rapid clicks
+    clickSound.currentTime = 0;
+    clickSound.play().catch(error => {
+      // Browsers often block audio until first interaction
+      console.log("Audio playback delayed or blocked:", error);
+    });
+  }
+
+  // 1. Listen for Tab clicks (Technical, Workshops, Culturals)
+  $('.nav-tabs .nav-link').on('click', function () {
+    playFeedbackSound();
+  });
+
+  // 2. Listen for Electric Card clicks (Individual events)
+  $(document).on('click', '.electric-card', function () {
+    playFeedbackSound();
+  });
 
 });
 

@@ -541,13 +541,21 @@
         <div class="countdown-hero-wrap">
           <div class="counter-content">
             <ul id="countdown">
-              <li><span id="days">00</span></li>
+              <li><span id="days">00</span>
+                <p>Days</p>
+              </li>
               <li class="separator">:</li>
-              <li><span id="hours">00</span></li>
+              <li><span id="hours">00</span>
+                <p>Hours</p>
+              </li>
               <li class="separator">:</li>
-              <li><span id="minutes">00</span></li>
+              <li><span id="minutes">00</span>
+                <p>Minutes</p>
+              </li>
               <li class="separator">:</li>
-              <li><span id="seconds">00</span></li>
+              <li><span id="seconds">00</span>
+                <p>Seconds</p>
+              </li>
             </ul>
           </div>
         </div>
@@ -1159,25 +1167,32 @@
       <!-- Realistic Lightning System SVG -->
       <svg id="st-lightningSVG" viewBox="0 0 400 2400" preserveAspectRatio="none">
         <defs>
-          <filter id="lightning-glow" x="-50%" y="-50%" width="200%" height="200%">
-            <feGaussianBlur stdDeviation="4" result="coloredBlur" />
+          <filter id="lightning-glow" x="-100%" y="-100%" width="300%" height="300%">
+            <feGaussianBlur stdDeviation="6" result="coloredBlur" />
             <feMerge>
+              <feMergeNode in="coloredBlur" />
               <feMergeNode in="coloredBlur" />
               <feMergeNode in="SourceGraphic" />
             </feMerge>
           </filter>
           <linearGradient id="lightning-gradient" x1="0%" y1="0%" x2="0%" y2="100%">
-            <stop offset="0%" stop-color="#ffffff" stop-opacity="0.8" />
-            <stop offset="50%" stop-color="#00ffff" stop-opacity="0.6" />
-            <stop offset="100%" stop-color="#ffffff" stop-opacity="0" />
+            <stop offset="0%" stop-color="#ffffff" stop-opacity="0.9" />
+            <stop offset="20%" stop-color="#00ffff" stop-opacity="0.8" />
+            <stop offset="60%" stop-color="#ffffff" stop-opacity="0.7" />
+            <stop offset="100%" stop-color="#00ffff" stop-opacity="0" />
           </linearGradient>
         </defs>
 
-        <!-- Main Lightning Bolt Path -->
+        <!-- Dynamic Flickering Lightning Path -->
         <path id="st-mainLightning" class="st-lightning-path"
           d="M200,0 L180,150 L220,300 L190,450 L230,600 L180,750 L220,900 L190,1050 L230,1200 L180,1350 L220,1500 L190,1650 L230,1800 L180,1950 L220,2100 L200,2400"
-          stroke="url(#lightning-gradient)" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"
+          stroke="url(#lightning-gradient)" stroke-width="6" fill="none" stroke-linecap="round" stroke-linejoin="round"
           filter="url(#lightning-glow)" />
+
+        <!-- Intense Inner Core -->
+        <path class="st-lightning-core"
+          d="M200,0 L180,150 L220,300 L190,450 L230,600 L180,750 L220,900 L190,1050 L230,1200 L180,1350 L220,1500 L190,1650 L230,1800 L180,1950 L220,2100 L200,2400"
+          stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" opacity="0.9" />
       </svg>
 
       <div class="container st-container">
@@ -1300,12 +1315,11 @@
         .cyber-faq-section {
           position: relative;
           padding: 80px 0;
-          background: #000;
+          background: #000 !important;
+          /* Force solid black */
           overflow: hidden;
           font-family: 'Rajdhani', sans-serif;
         }
-
-
 
         .cyber-faq-section .container {
           position: relative;
@@ -1317,15 +1331,20 @@
         .cyber-faq-section .section-header {
           margin-bottom: 50px;
           text-align: center;
+          background: transparent !important;
+          /* Ensure no background here */
         }
 
         .cyber-faq-section .section-header h2 {
-          font-size: 3rem;
+          font-size: 3.5rem;
+          /* Slightly larger */
           color: #fff;
           text-transform: uppercase;
           font-family: 'Orbitron', sans-serif;
-          letter-spacing: 3px;
-          text-shadow: 0 0 10px #ff0000, 0 0 20px #800000;
+          letter-spacing: 5px;
+          text-shadow: 0 0 10px #ff0000, 0 0 20px #ff0000;
+          animation: st-lightningFlicker 5s infinite;
+          /* Connected Glow effect */
         }
 
         /* FAQ Grid */
