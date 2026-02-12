@@ -1145,99 +1145,368 @@
     <!--==========================
       F.A.Q Section
     ============================-->
-    <section id="faq" class="wow fadeInUp">
+    <!--==========================
+      F.A.Q Section (Redesigned)
+    ============================-->
+    <section id="faq" class="cyber-faq-section">
+      <style>
+        /* --- FAQ SECTION STYLES --- */
+        .cyber-faq-section {
+          position: relative;
+          padding: 80px 0;
+          background: linear-gradient(180deg, #000000 0%, #1a0000 50%, #000000 100%);
+          overflow: hidden;
+          font-family: 'Rajdhani', sans-serif;
+          /* Using existing font if available, else fallback */
+        }
+
+        /* Animated Background Shimmer */
+        .cyber-faq-section::before {
+          content: '';
+          position: absolute;
+          top: -50%;
+          left: -50%;
+          width: 200%;
+          height: 200%;
+          background: radial-gradient(circle, rgba(255, 0, 0, 0.05) 0%, transparent 60%);
+          animation: shimmerRed 10s infinite linear;
+          z-index: 0;
+          pointer-events: none;
+        }
+
+        @keyframes shimmerRed {
+          0% {
+            transform: translate(0, 0);
+          }
+
+          50% {
+            transform: translate(-20px, -20px);
+          }
+
+          100% {
+            transform: translate(0, 0);
+          }
+        }
+
+        .cyber-faq-section .container {
+          position: relative;
+          z-index: 2;
+          max-width: 900px;
+        }
+
+        /* Section Header */
+        .cyber-faq-section .section-header {
+          margin-bottom: 50px;
+          text-align: center;
+        }
+
+        .cyber-faq-section .section-header h2 {
+          font-size: 3rem;
+          color: #fff;
+          text-transform: uppercase;
+          font-family: 'Orbitron', sans-serif;
+          letter-spacing: 3px;
+          position: relative;
+          display: inline-block;
+          text-shadow:
+            0 0 5px #ff0000,
+            0 0 10px #ff0000,
+            0 0 20px #800000;
+        }
+
+        /* FAQ Grid */
+        .faq-grid {
+          display: flex;
+          flex-direction: column;
+          gap: 20px;
+        }
+
+        /* FAQ Item Card */
+        .cyber-faq-item {
+          background: rgba(20, 0, 0, 0.6);
+          backdrop-filter: blur(10px);
+          -webkit-backdrop-filter: blur(10px);
+          border: 1px solid rgba(255, 0, 0, 0.2);
+          border-radius: 4px;
+          /* Slightly boxy for cyberpunk feel */
+          overflow: hidden;
+          transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+          position: relative;
+        }
+
+        .cyber-faq-item::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 2px;
+          height: 100%;
+          background: #ff0000;
+          opacity: 0.5;
+          box-shadow: 0 0 10px #ff0000;
+          transition: opacity 0.3s ease;
+        }
+
+        .cyber-faq-item:hover {
+          transform: scale(1.02);
+          border-color: rgba(255, 0, 0, 0.6);
+          box-shadow: 0 0 20px rgba(255, 0, 0, 0.15), inset 0 0 20px rgba(255, 0, 0, 0.05);
+        }
+
+        .cyber-faq-item:hover::before {
+          opacity: 1;
+        }
+
+        .cyber-faq-item.active {
+          border-color: #ff0000;
+          box-shadow: 0 0 30px rgba(255, 0, 0, 0.2), inset 0 0 30px rgba(255, 0, 0, 0.1);
+          background: rgba(30, 0, 0, 0.8);
+        }
+
+        /* Question Header */
+        .faq-question {
+          padding: 25px;
+          cursor: pointer;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          user-select: none;
+        }
+
+        .faq-question h3 {
+          margin: 0;
+          font-size: 1.2rem;
+          font-weight: 500;
+          color: #e0e0e0;
+          font-family: 'Rajdhani', sans-serif;
+          letter-spacing: 1px;
+          transition: color 0.3s ease;
+        }
+
+        .cyber-faq-item:hover .faq-question h3 {
+          color: #fff;
+          text-shadow: 0 0 8px rgba(255, 0, 0, 0.6);
+        }
+
+        .cyber-faq-item.active .faq-question h3 {
+          color: #ff3b3b;
+          text-shadow: 0 0 12px rgba(255, 0, 0, 0.8);
+        }
+
+        /* Neon Icon Switcher */
+        .faq-icon {
+          width: 32px;
+          height: 32px;
+          border-radius: 50%;
+          border: 2px solid rgba(255, 0, 0, 0.5);
+          position: relative;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          transition: all 0.4s ease;
+          box-shadow: 0 0 5px rgba(255, 0, 0, 0.2);
+        }
+
+        .faq-icon::after,
+        .faq-icon::before {
+          content: '';
+          position: absolute;
+          background-color: #fff;
+          border-radius: 2px;
+          transition: all 0.4s ease;
+        }
+
+        /* Vertical line */
+        .faq-icon::before {
+          width: 2px;
+          height: 14px;
+        }
+
+        /* Horizontal line */
+        .faq-icon::after {
+          width: 14px;
+          height: 2px;
+        }
+
+        .cyber-faq-item:hover .faq-icon {
+          border-color: #ff0000;
+          box-shadow: 0 0 10px #ff0000;
+        }
+
+        .cyber-faq-item:hover .faq-icon::before,
+        .cyber-faq-item:hover .faq-icon::after {
+          background-color: #ff0000;
+          box-shadow: 0 0 5px #ff0000;
+        }
+
+        /* Active Icon State */
+        .cyber-faq-item.active .faq-icon {
+          transform: rotate(135deg);
+          border-color: #ff0000;
+          box-shadow: 0 0 15px #ff0000;
+        }
+
+        .cyber-faq-item.active .faq-icon::before,
+        .cyber-faq-item.active .faq-icon::after {
+          background-color: #fff;
+          /* White X center for contrast */
+          box-shadow: 0 0 10px #fff;
+        }
+
+        /* Answer Body */
+        .faq-answer {
+          max-height: 0;
+          overflow: hidden;
+          transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+          opacity: 0;
+        }
+
+        .faq-answer-content {
+          padding: 0 25px 25px 25px;
+          color: #ccc;
+          font-size: 1rem;
+          line-height: 1.6;
+          border-top: 1px solid rgba(255, 0, 0, 0.1);
+          position: relative;
+        }
+
+        /* Glowing Separator Line */
+        .faq-answer-content::before {
+          content: '';
+          position: absolute;
+          top: -1px;
+          left: 0;
+          width: 0%;
+          height: 1px;
+          background: #ff0000;
+          box-shadow: 0 0 10px #ff0000;
+          transition: width 0.6s ease 0.1s;
+        }
+
+        .cyber-faq-item.active .faq-answer {
+          opacity: 1;
+        }
+
+        .cyber-faq-item.active .faq-answer-content::before {
+          width: 100%;
+        }
+
+        /* Mobile Adjustments */
+        @media (max-width: 768px) {
+          .section-header h2 {
+            font-size: 2.2rem;
+          }
+
+          .faq-question h3 {
+            font-size: 1.1rem;
+          }
+        }
+      </style>
 
       <div class="container">
-
         <div class="section-header">
-          <h2>F.A.Q </h2>
+          <h2>F.A.Q</h2>
         </div>
 
-        <div class="row justify-content-center">
-          <div class="col-lg-9">
-            <ul id="faq-list">
+        <div class="faq-grid">
 
-              <li>
-                <a data-toggle="collapse" class="collapsed" href="#faq1">How to reach the venue? <i
-                    class="fa fa-minus-circle"></i></a>
-                <div id="faq1" class="collapse" data-parent="#faq-list">
-                  <p>
-                    The hackathon will be held at Sri Ramakrishana Institute of Technology, Pachapalayam,Coimbatore,
-                    Tamil Nadu.
-                    For detailed directions see footer map.
-                    <br><br>College bus will be provided from Pachapalayam pirivu bus stop:
-                    <br>
-                    Pachapalayam pirivu - SRIT campus<br>
-                    SRIT campus - Pachapalayam pirivu<br>
-                  </p>
+          <!-- FAQ Item 1 -->
+          <div class="cyber-faq-item">
+            <div class="faq-question">
+              <h3>How to reach the venue?</h3>
+              <div class="faq-icon"></div>
+            </div>
+            <div class="faq-answer">
+              <div class="faq-answer-content">
+                <p>The hackathon will be held at <strong>Sri Ramakrishana Institute of Technology</strong>,
+                  Pachapalayam, Coimbatore, Tamil Nadu. For detailed directions, please see the footer map.</p>
+                <div style="margin-top: 10px; padding-left: 10px; border-left: 2px solid #ff0000;">
+                  <span style="color: #ff5e5e;">College Bus Route:</span><br>
+                  Pachapalayam pirivu ➔ SRIT campus<br>
+                  SRIT campus ➔ Pachapalayam pirivu
                 </div>
-              </li>
-
-              <li>
-                <a data-toggle="collapse" href="#faq2" class="collapsed">Will food be provided during the event?<i
-                    class="fa fa-minus-circle"></i></a>
-                <div id="faq2" class="collapse" data-parent="#faq-list">
-                  <p>
-                    Yes! Lunch will be provided to all participants.
-                  </p>
-                </div>
-              </li>
-
-              <li>
-                <a data-toggle="collapse" href="#faq3" class="collapsed">Is on-the-spot registration available? <i
-                    class="fa fa-minus-circle"></i></a>
-                <div id="faq3" class="collapse" data-parent="#faq-list">
-                  <p>
-                    All participants must register online for the Hackathon and Workshops on or before 12th April 2025,
-                    and for CodeIT on or before 15th April 2025. On-spot registration will be available only for
-                    technical, non-technical, and cultural events. Kindly ensure you bring your valid college ID card
-                    for verification at the venue.
-                  </p>
-                </div>
-              </li>
-
-              <li>
-                <a data-toggle="collapse" href="#faq4" class="collapsed">Is accommodation available?<i
-                    class="fa fa-minus-circle"></i></a>
-                <div id="faq4" class="collapse" data-parent="#faq-list">
-                  <p>
-                    Accommodation is available at a charge of ₹250 per day, which includes dinner and breakfast.
-                  </p>
-                </div>
-              </li>
-              <!-- 
-                <li>
-                  <a data-toggle="collapse" href="#faq5" class="collapsed">Tempus quam pellentesque nec nam aliquam sem
-                    et tortor consequat? <i class="fa fa-minus-circle"></i></a>
-                  <div id="faq5" class="collapse" data-parent="#faq-list">
-                    <p>
-                      Molestie a iaculis at erat pellentesque adipiscing commodo. Dignissim suspendisse in est ante in.
-                      Nunc vel risus commodo viverra maecenas accumsan. Sit amet nisl suscipit adipiscing bibendum est.
-                      Purus gravida quis blandit turpis cursus in
-                    </p>
-                  </div>
-                </li>
-
-                <li>
-                  <a data-toggle="collapse" href="#faq6" class="collapsed">Tortor vitae purus faucibus ornare. Varius
-                    vel pharetra vel turpis nunc eget lorem dolor? <i class="fa fa-minus-circle"></i></a>
-                  <div id="faq6" class="collapse" data-parent="#faq-list">
-                    <p>
-                      Laoreet sit amet cursus sit amet dictum sit amet justo. Mauris vitae ultricies leo integer
-                      malesuada nunc vel. Tincidunt eget nullam non nisi est sit amet. Turpis nunc eget lorem dolor sed.
-                      Ut venenatis tellus in metus vulputate eu scelerisque. Pellentesque diam volutpat commodo sed
-                      egestas egestas fringilla phasellus faucibus. Nibh tellus molestie nunc non blandit massa enim
-                      nec.
-                    </p>
-                  </div>
-                </li> -->
-
-            </ul>
+              </div>
+            </div>
           </div>
-        </div>
 
+          <!-- FAQ Item 2 -->
+          <div class="cyber-faq-item">
+            <div class="faq-question">
+              <h3>Will food be provided during the event?</h3>
+              <div class="faq-icon"></div>
+            </div>
+            <div class="faq-answer">
+              <div class="faq-answer-content">
+                <p>Yes! <span style="color: #ff5e5e;">Lunch will be provided</span> to all participants to keep your
+                  energy levels high for the challenges ahead.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- FAQ Item 3 -->
+          <div class="cyber-faq-item">
+            <div class="faq-question">
+              <h3>Is on-the-spot registration available?</h3>
+              <div class="faq-icon"></div>
+            </div>
+            <div class="faq-answer">
+              <div class="faq-answer-content">
+                <p>All participants must register online for the Hackathon and Workshops on or before <strong>12th April
+                    2025</strong>, and for CodeIT on or before <strong>15th April 2025</strong>.</p>
+                <p style="margin-top: 10px;"><em>On-spot registration</em> is available ONLY for technical,
+                  non-technical, and cultural events. Kindly bring your valid college ID card.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- FAQ Item 4 -->
+          <div class="cyber-faq-item">
+            <div class="faq-question">
+              <h3>Is accommodation available?</h3>
+              <div class="faq-icon"></div>
+            </div>
+            <div class="faq-answer">
+              <div class="faq-answer-content">
+                <p>Yes, accommodation is available at a charge of <strong>₹250 per day</strong>. This includes both
+                  dinner and breakfast facilities.</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
       </div>
 
+      <script>
+        document.addEventListener('DOMContentLoaded', () => {
+          const faqItems = document.querySelectorAll('.cyber-faq-item');
+
+          faqItems.forEach(item => {
+            const question = item.querySelector('.faq-question');
+            const answer = item.querySelector('.faq-answer');
+
+            question.addEventListener('click', () => {
+              const isOpen = item.classList.contains('active');
+
+              // Close all other items (accordion behavior)
+              faqItems.forEach(otherItem => {
+                if (otherItem !== item) {
+                  otherItem.classList.remove('active');
+                  otherItem.querySelector('.faq-answer').style.maxHeight = null;
+                }
+              });
+
+              // Toggle current item
+              if (isOpen) {
+                item.classList.remove('active');
+                answer.style.maxHeight = null;
+              } else {
+                item.classList.add('active');
+                answer.style.maxHeight = answer.scrollHeight + "px";
+              }
+            });
+          });
+        });
+      </script>
     </section>
     </div>
 
