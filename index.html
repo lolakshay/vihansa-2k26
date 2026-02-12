@@ -747,9 +747,16 @@
 
       <div class="hack-v2-wrapper">
 
-        <!-- LEFT -->
+        <!-- LEFT: 3D Tilt Image -->
         <div class="hack-v2-left">
-          <img src="img/events-main/hacathon_new.webp" alt="Hackathon">
+          <!-- Perspective Container -->
+          <div class="tilt-container" id="tiltContainer">
+            <div class="tilt-inner" id="tiltInner">
+              <img src="img/events-main/hacathon_new.webp" alt="Hackathon" id="tiltImage">
+              <!-- Light Reflection Effect -->
+              <div class="tilt-shine" id="tiltShine"></div>
+            </div>
+          </div>
         </div>
 
         <!-- RIGHT -->
@@ -796,6 +803,148 @@
       <div class="hack-v2-bottom">
         <button class="hack-v2-explore">Explore More</button>
       </div>
+
+      <!-- 3D TILT EFFECT STYLES -->
+      <style>
+        /* Perspective Container */
+        .tilt-container {
+          perspective: 1200px;
+          width: 100%;
+          height: auto;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+
+        .tilt-inner {
+          position: relative;
+          width: 100%;
+          transition: transform 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+          transform-style: preserve-3d;
+          will-change: transform;
+        }
+
+        .tilt-inner img {
+          width: 100%;
+          height: auto;
+          display: block;
+          border-radius: 8px;
+        }
+
+        /* Light Reflection/Shine Effect */
+        .tilt-shine {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background: radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.15), transparent 60%);
+          opacity: 0;
+          pointer-events: none;
+          transition: opacity 0.3s ease;
+          border-radius: 8px;
+          mix-blend-mode: overlay;
+        }
+
+        /* Hover State */
+        .tilt-container:hover .tilt-inner {
+          transform: scale(1.03);
+        }
+
+        .tilt-container:hover .tilt-shine {
+          opacity: 1;
+        }
+
+        /* Disable on Mobile/Tablets */
+        @media (max-width: 768px) {
+          .tilt-container {
+            perspective: none;
+          }
+
+          .tilt-inner {
+            transition: none;
+            transform: none !important;
+          }
+
+          .tilt-container:hover .tilt-inner {
+            transform: none !important;
+          }
+
+          .tilt-shine {
+            display: none;
+          }
+        }
+      </style>
+
+      <!-- 3D TILT JAVASCRIPT -->
+      <script>
+        (function () {
+          'use strict';
+
+          // Check if device is mobile or touch-enabled
+          const isMobile = window.innerWidth <= 768 || 'ontouchstart' in window;
+
+          // Exit early if mobile
+          if (isMobile) return;
+
+          const container = document.getElementById('tiltContainer');
+          const inner = document.getElementById('tiltInner');
+          const shine = document.getElementById('tiltShine');
+
+          if (!container || !inner || !shine) return;
+
+          // Configuration
+          const MAX_TILT = 12; // degrees
+          const TRANSITION_EASE = 'cubic-bezier(0.23, 1, 0.32, 1)';
+          const TRANSITION_DURATION = '0.3s';
+
+          let isHovering = false;
+
+          // Mouse Enter
+          container.addEventListener('mouseenter', () => {
+            isHovering = true;
+            inner.style.transition = `transform ${TRANSITION_DURATION} ${TRANSITION_EASE}`;
+          });
+
+          // Mouse Move (Tilt Effect)
+          container.addEventListener('mousemove', (e) => {
+            if (!isHovering) return;
+
+            const rect = container.getBoundingClientRect();
+            const x = e.clientX - rect.left; // X position within element
+            const y = e.clientY - rect.top;  // Y position within element
+
+            const centerX = rect.width / 2;
+            const centerY = rect.height / 2;
+
+            // Calculate rotation angles
+            const rotateX = ((y - centerY) / centerY) * -MAX_TILT; // Inverted for natural feel
+            const rotateY = ((x - centerX) / centerX) * MAX_TILT;
+
+            // Apply 3D transform
+            inner.style.transform = `
+              perspective(1200px) 
+              rotateX(${rotateX}deg) 
+              rotateY(${rotateY}deg) 
+              scale(1.03)
+            `;
+
+            // Move shine effect to follow cursor
+            const shineX = (x / rect.width) * 100;
+            const shineY = (y / rect.height) * 100;
+            shine.style.background = `radial-gradient(circle at ${shineX}% ${shineY}%, rgba(255, 255, 255, 0.2), transparent 60%)`;
+          });
+
+          // Mouse Leave (Reset)
+          container.addEventListener('mouseleave', () => {
+            isHovering = false;
+            inner.style.transition = `transform 0.5s ${TRANSITION_EASE}`;
+            inner.style.transform = 'perspective(1200px) rotateX(0deg) rotateY(0deg) scale(1)';
+            shine.style.opacity = '0';
+          });
+
+        })();
+      </script>
 
     </section>
 
