@@ -1356,6 +1356,7 @@
         }
 
         document.addEventListener('DOMContentLoaded', function () {
+            if (window.innerWidth <= 768) return; // Disable on mobile
             const ghostCursorElement = document.getElementById('ghostCursor');
             if (ghostCursorElement) {
                 const ghostCursor = new GhostCursor(ghostCursorElement, document.body, {

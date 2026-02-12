@@ -3869,3 +3869,14 @@ body.mobile-nav-active #mobile-nav-toggle {
     height: auto;
   }
 }
+
+/* --- Mobile Cursor Fix --- */
+@media (max-width: 768px) {
+
+  #cursor,
+  #cursor-blur,
+  #ghost-cursor-canvas,
+  #bg-animation-container canvas {
+    display: none !important;
+  }
+}
