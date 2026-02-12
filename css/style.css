@@ -46,29 +46,20 @@
 
 /* Cursor style removed to restore default system cursor */
 /* Global Font override */
+/* Global Font override */
 * {
-  font-family: 'StrangerThings', 'Rajdhani', sans-serif;
+  font-family: 'StrangerThings', sans-serif;
 }
 
-/* Exclude Sri Ramakrishna Institute of Technology from global font */
-#logo h2,
-#logo h2 a,
-#logo h2 span,
-#header h2,
-#header h2 a,
-#header h2 span,
-#footer .footer-contact p,
-.detail-item p {
-  font-family: 'Rajdhani', sans-serif !important;
-}
-
+/* Exclude specific icon classes if necessary, but FontAwesome sets its own font-family */
 
 body {
   background: var(--void-black);
   color: var(--text-main);
-  font-family: 'StrangerThings', 'Rajdhani', sans-serif;
+  font-family: 'StrangerThings', sans-serif;
   font-size: 1.1em;
   overflow-x: hidden;
+  /* Apply a subtle Stranger Things text shadow globally if requested, or just for headings */
 }
 
 /* Custom Cursor styles removed */
@@ -97,11 +88,17 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: "Raleway", sans-serif;
+  font-family: 'StrangerThings', sans-serif;
   font-weight: 400;
   margin: 0 0 20px 0;
   padding: 0;
-  color: var(--gold);
+  color: #ff0000;
+  /* Red color for headings */
+  text-transform: uppercase;
+  text-shadow:
+    0 0 2px #3f0000,
+    0 0 5px #ff0000;
+  letter-spacing: 2px;
 }
 
 .main-page {
