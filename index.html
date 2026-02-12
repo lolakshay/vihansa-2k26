@@ -1145,46 +1145,52 @@
     <!--==========================
       F.A.Q Section
     ============================-->
-    <!--==========================
-      F.A.Q Section (Redesigned)
-    ============================-->
     <section id="faq" class="cyber-faq-section">
       <style>
         /* --- FAQ SECTION STYLES --- */
         .cyber-faq-section {
           position: relative;
           padding: 80px 0;
-          background: linear-gradient(180deg, #000000 0%, #1a0000 50%, #000000 100%);
+          background: #000;
           overflow: hidden;
           font-family: 'Rajdhani', sans-serif;
-          /* Using existing font if available, else fallback */
         }
 
-        /* Animated Background Shimmer */
+        /* 1. DYNAMIC BACKGROUND: 'The Upside Down' Atmosphere */
         .cyber-faq-section::before {
           content: '';
           position: absolute;
-          top: -50%;
-          left: -50%;
-          width: 200%;
-          height: 200%;
-          background: radial-gradient(circle, rgba(255, 0, 0, 0.05) 0%, transparent 60%);
-          animation: shimmerRed 10s infinite linear;
+          inset: 0;
+          background:
+            radial-gradient(circle at 20% 30%, rgba(139, 0, 0, 0.15) 0%, transparent 40%),
+            radial-gradient(circle at 80% 70%, rgba(255, 0, 0, 0.1) 0%, transparent 40%);
+          animation: pulseAtmosphere 8s ease-in-out infinite alternate;
+          z-index: 0;
+        }
+
+        /* Subtle Grid for Cyber feel */
+        .cyber-faq-section::after {
+          content: '';
+          position: absolute;
+          inset: 0;
+          background-image:
+            linear-gradient(rgba(255, 0, 0, 0.05) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(255, 0, 0, 0.05) 1px, transparent 1px);
+          background-size: 50px 50px;
+          mask-image: radial-gradient(circle, black 40%, transparent 80%);
           z-index: 0;
           pointer-events: none;
         }
 
-        @keyframes shimmerRed {
+        @keyframes pulseAtmosphere {
           0% {
-            transform: translate(0, 0);
-          }
-
-          50% {
-            transform: translate(-20px, -20px);
+            opacity: 0.5;
+            transform: scale(1);
           }
 
           100% {
-            transform: translate(0, 0);
+            opacity: 1;
+            transform: scale(1.1);
           }
         }
 
@@ -1206,12 +1212,7 @@
           text-transform: uppercase;
           font-family: 'Orbitron', sans-serif;
           letter-spacing: 3px;
-          position: relative;
-          display: inline-block;
-          text-shadow:
-            0 0 5px #ff0000,
-            0 0 10px #ff0000,
-            0 0 20px #800000;
+          text-shadow: 0 0 10px #ff0000, 0 0 20px #800000;
         }
 
         /* FAQ Grid */
@@ -1223,49 +1224,90 @@
 
         /* FAQ Item Card */
         .cyber-faq-item {
-          background: rgba(20, 0, 0, 0.6);
-          backdrop-filter: blur(10px);
-          -webkit-backdrop-filter: blur(10px);
-          border: 1px solid rgba(255, 0, 0, 0.2);
-          border-radius: 4px;
-          /* Slightly boxy for cyberpunk feel */
-          overflow: hidden;
-          transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+          background: rgba(10, 0, 0, 0.7);
+          backdrop-filter: blur(5px);
+          border: 1px solid rgba(255, 0, 0, 0.3);
+          border-left: 4px solid rgba(255, 0, 0, 0.5);
+          /* Power strip look */
           position: relative;
+          transition: all 0.3s ease;
+          overflow: hidden;
         }
 
-        .cyber-faq-item::before {
-          content: '';
-          position: absolute;
-          top: 0;
-          left: 0;
-          width: 2px;
-          height: 100%;
-          background: #ff0000;
-          opacity: 0.5;
-          box-shadow: 0 0 10px #ff0000;
-          transition: opacity 0.3s ease;
-        }
-
+        /* Hover: Unstable Energy Flicker */
         .cyber-faq-item:hover {
-          transform: scale(1.02);
-          border-color: rgba(255, 0, 0, 0.6);
-          box-shadow: 0 0 20px rgba(255, 0, 0, 0.15), inset 0 0 20px rgba(255, 0, 0, 0.05);
+          border-color: #ff3b3b;
+          box-shadow: 0 0 15px rgba(255, 0, 0, 0.3);
+          transform: translateX(5px);
+          /* Slight shift like it's magnetic */
         }
 
-        .cyber-faq-item:hover::before {
-          opacity: 1;
+        .cyber-faq-item:hover .faq-icon {
+          animation: iconFlicker 1.5s infinite;
         }
 
+        /* ACTIVE STATE: THE CHARGE UP */
         .cyber-faq-item.active {
-          border-color: #ff0000;
-          box-shadow: 0 0 30px rgba(255, 0, 0, 0.2), inset 0 0 30px rgba(255, 0, 0, 0.1);
-          background: rgba(30, 0, 0, 0.8);
+          animation: energySurge 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+          border-left-color: #fff;
+          /* White hot core */
+          background: rgba(40, 0, 0, 0.85);
+        }
+
+        /* Keyframes for the "Lightning Strike/Charge" Effect */
+        @keyframes energySurge {
+          0% {
+            border-color: #fff;
+            box-shadow: 0 0 0 rgba(255, 255, 255, 0);
+          }
+
+          10% {
+            border-color: #fff;
+            box-shadow: 0 0 30px #fff, inset 0 0 20px #fff;
+            /* Bright flash */
+            transform: scale(1.02);
+          }
+
+          40% {
+            border-color: #ff0000;
+            box-shadow: 0 0 20px #ff0000, inset 0 0 10px #ff0000;
+            transform: scale(1.01);
+          }
+
+          100% {
+            border-color: #ff0000;
+            box-shadow: 0 0 15px rgba(255, 0, 0, 0.4);
+            transform: scale(1);
+          }
+        }
+
+        @keyframes iconFlicker {
+
+          0%,
+          100% {
+            box-shadow: 0 0 5px #ff0000;
+            border-color: rgba(255, 0, 0, 0.7);
+          }
+
+          50% {
+            box-shadow: 0 0 15px #ff0000;
+            border-color: #fff;
+          }
+
+          52% {
+            box-shadow: 0 0 5px #ff0000;
+            border-color: rgba(255, 0, 0, 0.7);
+          }
+
+          54% {
+            box-shadow: 0 0 20px #ff0000;
+            border-color: #fff;
+          }
         }
 
         /* Question Header */
         .faq-question {
-          padding: 25px;
+          padding: 20px 25px;
           cursor: pointer;
           display: flex;
           justify-content: space-between;
@@ -1276,129 +1318,106 @@
         .faq-question h3 {
           margin: 0;
           font-size: 1.2rem;
-          font-weight: 500;
           color: #e0e0e0;
           font-family: 'Rajdhani', sans-serif;
           letter-spacing: 1px;
-          transition: color 0.3s ease;
-        }
-
-        .cyber-faq-item:hover .faq-question h3 {
-          color: #fff;
-          text-shadow: 0 0 8px rgba(255, 0, 0, 0.6);
+          transition: text-shadow 0.3s;
         }
 
         .cyber-faq-item.active .faq-question h3 {
-          color: #ff3b3b;
-          text-shadow: 0 0 12px rgba(255, 0, 0, 0.8);
+          color: #fff;
+          text-shadow: 0 0 10px #ff0000;
         }
 
-        /* Neon Icon Switcher */
+        /* Custom Neon Icon */
         .faq-icon {
-          width: 32px;
-          height: 32px;
-          border-radius: 50%;
-          border: 2px solid rgba(255, 0, 0, 0.5);
+          width: 30px;
+          height: 30px;
           position: relative;
           display: flex;
-          justify-content: center;
           align-items: center;
-          transition: all 0.4s ease;
-          box-shadow: 0 0 5px rgba(255, 0, 0, 0.2);
+          justify-content: center;
+          border: 1px solid rgba(255, 0, 0, 0.5);
+          border-radius: 4px;
+          transition: all 0.3s;
         }
 
-        .faq-icon::after,
-        .faq-icon::before {
+        /* Plus Signs */
+        .faq-icon::before,
+        .faq-icon::after {
           content: '';
           position: absolute;
-          background-color: #fff;
-          border-radius: 2px;
-          transition: all 0.4s ease;
-        }
-
-        /* Vertical line */
-        .faq-icon::before {
-          width: 2px;
-          height: 14px;
-        }
-
-        /* Horizontal line */
-        .faq-icon::after {
-          width: 14px;
-          height: 2px;
-        }
-
-        .cyber-faq-item:hover .faq-icon {
-          border-color: #ff0000;
-          box-shadow: 0 0 10px #ff0000;
-        }
-
-        .cyber-faq-item:hover .faq-icon::before,
-        .cyber-faq-item:hover .faq-icon::after {
-          background-color: #ff0000;
+          background: #fff;
+          transition: all 0.3s;
           box-shadow: 0 0 5px #ff0000;
         }
 
-        /* Active Icon State */
+        .faq-icon::before {
+          width: 2px;
+          height: 16px;
+        }
+
+        .faq-icon::after {
+          width: 16px;
+          height: 2px;
+        }
+
         .cyber-faq-item.active .faq-icon {
-          transform: rotate(135deg);
-          border-color: #ff0000;
-          box-shadow: 0 0 15px #ff0000;
-        }
-
-        .cyber-faq-item.active .faq-icon::before,
-        .cyber-faq-item.active .faq-icon::after {
-          background-color: #fff;
-          /* White X center for contrast */
+          border-color: #fff;
           box-shadow: 0 0 10px #fff;
+          background: #ff0000;
         }
 
-        /* Answer Body */
+        .cyber-faq-item.active .faq-icon::before {
+          height: 0;
+          /* Collapse vertical to make minus/dash, or rotate for X */
+          background: #000;
+          /* Contrast against red fill */
+        }
+
+        .cyber-faq-item.active .faq-icon::after {
+          transform: rotate(180deg);
+          background: #000;
+        }
+
+        /* Answer Body & Electric Line */
         .faq-answer {
           max-height: 0;
           overflow: hidden;
           transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-          opacity: 0;
         }
 
         .faq-answer-content {
           padding: 0 25px 25px 25px;
           color: #ccc;
-          font-size: 1rem;
           line-height: 1.6;
-          border-top: 1px solid rgba(255, 0, 0, 0.1);
+          border-top: 1px solid transparent;
           position: relative;
         }
 
-        /* Glowing Separator Line */
+        /* The Lightning Line Separator */
         .faq-answer-content::before {
           content: '';
           position: absolute;
           top: -1px;
           left: 0;
           width: 0%;
-          height: 1px;
-          background: #ff0000;
-          box-shadow: 0 0 10px #ff0000;
-          transition: width 0.6s ease 0.1s;
-        }
-
-        .cyber-faq-item.active .faq-answer {
-          opacity: 1;
+          height: 2px;
+          background: linear-gradient(90deg, transparent, #fff, #ff0000, transparent);
+          filter: drop-shadow(0 0 5px #fff);
+          transition: width 0.4s ease-out;
+          opacity: 0;
         }
 
         .cyber-faq-item.active .faq-answer-content::before {
           width: 100%;
+          opacity: 1;
         }
 
-        /* Mobile Adjustments */
+        /* Mobile */
         @media (max-width: 768px) {
           .section-header h2 {
             font-size: 2.2rem;
-          }
-
-          .faq-question h3 {
-            font-size: 1.1rem;
           }
         }
       </style>
@@ -1410,7 +1429,7 @@
 
         <div class="faq-grid">
 
-          <!-- FAQ Item 1 -->
+          <!-- Item 1 -->
           <div class="cyber-faq-item">
             <div class="faq-question">
               <h3>How to reach the venue?</h3>
@@ -1429,7 +1448,7 @@
             </div>
           </div>
 
-          <!-- FAQ Item 2 -->
+          <!-- Item 2 -->
           <div class="cyber-faq-item">
             <div class="faq-question">
               <h3>Will food be provided during the event?</h3>
@@ -1443,7 +1462,7 @@
             </div>
           </div>
 
-          <!-- FAQ Item 3 -->
+          <!-- Item 3 -->
           <div class="cyber-faq-item">
             <div class="faq-question">
               <h3>Is on-the-spot registration available?</h3>
@@ -1454,12 +1473,12 @@
                 <p>All participants must register online for the Hackathon and Workshops on or before <strong>12th April
                     2025</strong>, and for CodeIT on or before <strong>15th April 2025</strong>.</p>
                 <p style="margin-top: 10px;"><em>On-spot registration</em> is available ONLY for technical,
-                  non-technical, and cultural events. Kindly bring your valid college ID card.</p>
+                  non-technical, and cultural events. Please bring your college ID.</p>
               </div>
             </div>
           </div>
 
-          <!-- FAQ Item 4 -->
+          <!-- Item 4 -->
           <div class="cyber-faq-item">
             <div class="faq-question">
               <h3>Is accommodation available?</h3>
@@ -1478,30 +1497,29 @@
 
       <script>
         document.addEventListener('DOMContentLoaded', () => {
-          const faqItems = document.querySelectorAll('.cyber-faq-item');
+          const items = document.querySelectorAll('.cyber-faq-item');
 
-          faqItems.forEach(item => {
-            const question = item.querySelector('.faq-question');
-            const answer = item.querySelector('.faq-answer');
+          items.forEach(item => {
+            const btn = item.querySelector('.faq-question');
+            const ans = item.querySelector('.faq-answer');
 
-            question.addEventListener('click', () => {
-              const isOpen = item.classList.contains('active');
+            btn.addEventListener('click', () => {
+              const isActive = item.classList.contains('active');
 
-              // Close all other items (accordion behavior)
-              faqItems.forEach(otherItem => {
-                if (otherItem !== item) {
-                  otherItem.classList.remove('active');
-                  otherItem.querySelector('.faq-answer').style.maxHeight = null;
+              // Accordion: Close others
+              items.forEach(i => {
+                if (i !== item) {
+                  i.classList.remove('active');
+                  i.querySelector('.faq-answer').style.maxHeight = null;
                 }
               });
 
-              // Toggle current item
-              if (isOpen) {
+              if (isActive) {
                 item.classList.remove('active');
-                answer.style.maxHeight = null;
+                ans.style.maxHeight = null;
               } else {
-                item.classList.add('active');
-                answer.style.maxHeight = answer.scrollHeight + "px";
+                item.classList.add('active'); // Triggers 'energySurge' animation
+                ans.style.maxHeight = ans.scrollHeight + "px";
               }
             });
           });
