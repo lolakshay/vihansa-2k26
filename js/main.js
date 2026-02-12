@@ -686,3 +686,241 @@ if (window.innerWidth > 768) {
     }
   });
 }
+
+/* ==========================================================================
+   EVENT DETAILS MODAL LOGIC
+   ========================================================================== */
+
+// Event Data - Extensible for all events
+const eventDetails = {
+  // Technical Events
+  'codeit': {
+    title: 'CODE IT',
+    desc: 'Unleash your coding prowess in this competitive programming challenge! Solve complex algorithmic problems, optimize your code, and race against the clock to top the leaderboard.',
+    date: 'Day 1',
+    time: '10:00 AM',
+    venue: 'Computer Lab 1',
+    image: 'img/events-tech/codeit.webp',
+    formLink: 'form.html'
+  },
+  'speedcraft': {
+    title: 'SPEED CRAFT',
+    desc: 'A CAD modeling contest where speed meets precision. Design complex 3D models within a tight timeframe to prove your engineering design skills.',
+    date: 'Day 1',
+    time: '10:00 AM',
+    venue: 'CAD Lab',
+    image: 'img/events-tech/MECH (2).webp',
+    formLink: 'form.html'
+  },
+  'clonex': {
+    title: 'CLONE X',
+    desc: 'Replicate a given website design pixel-perfectly! Test your frontend development skills and attention to detail in this web cloning challenge.',
+    date: 'Day 1',
+    time: '10:00 AM',
+    venue: 'Web Lab',
+    image: 'img/events-tech/CSE.webp',
+    formLink: 'form.html'
+  },
+  'reverseengg': {
+    title: 'REVERSE ENGG',
+    desc: 'Deconstruct circuits and systems to understand their working. Analyze, deduce, and reconstruct the logic behind the given black box.',
+    date: 'Day 1',
+    time: '12:00 Noon',
+    venue: 'Electronics Lab',
+    image: 'img/events-tech/ECE.webp',
+    formLink: 'form.html'
+  },
+  'circuitsurge': {
+    title: 'CIRCUIT SURGE',
+    desc: 'Electrifying circuit debugging and designing competition. Fix the faults and design efficient circuits to power up your way to victory.',
+    date: 'Day 1',
+    time: '12:00 Noon',
+    venue: 'Circuits Lab',
+    image: 'img/events-tech/eee.webp',
+    formLink: 'form.html'
+  },
+  'kryptobyte': {
+    title: 'KRYPTO BYTE',
+    desc: 'Decode mysteries and solve cryptographic puzzles. A treasure hunt for the digital age requiring logic, ciphers, and sharp wit.',
+    date: 'Day 1',
+    time: '12:00 Noon',
+    venue: 'IT Lab',
+    image: 'img/events-tech/it.webp',
+    formLink: 'form.html'
+  },
+  'roborush': {
+    title: 'ROBO RUSH',
+    desc: 'Navigate your robot through a challenging obstacle course. Speed and control are key in this adrenaline-pumping robotics race.',
+    date: 'Day 1',
+    time: '2:30 PM',
+    venue: 'Robotics Arena',
+    image: 'img/events-tech/eee (2).webp',
+    formLink: 'form.html'
+  },
+  'productpitch': {
+    title: 'PRODUCT PITCH',
+    desc: 'Pitch your innovative product idea to a panel of judges. Convince them of its viability, marketability, and impact in this shark-tank style event.',
+    date: 'Day 2',
+    time: '10:00 AM',
+    venue: 'Seminar Hall',
+    image: 'img/events-tech/C.jpeg',
+    formLink: 'form.html'
+  },
+  'dasheddata': {
+    title: 'DASHED DATA WITH ML',
+    desc: 'Dive into data science and machine learning. Clean datasets, build models, and visualize insights to solve real-world data problems.',
+    date: 'Day 2',
+    time: '10:00 AM',
+    venue: 'AI Lab',
+    image: 'img/events-tech/CSE (2).webp',
+    formLink: 'form.html'
+  },
+  'flyforge': {
+    title: 'FLY FORGE',
+    desc: 'Design and build gliders or drones. Test their aerodynamics and flight stability in this hands-on aero-modeling competition.',
+    date: 'Day 2',
+    time: '10:00 AM',
+    venue: 'Open Ground',
+    image: 'img/events-tech/MECH.webp',
+    formLink: 'form.html'
+  },
+  'codewar': {
+    title: 'CODEWAR: ENDGAME',
+    desc: 'The ultimate coding battle! Face off against the best programmers in continuous rounds of intense problem-solving until one champion remains.',
+    date: 'Day 2',
+    time: '12:00 Noon',
+    venue: 'Main Lab',
+    image: 'img/events-tech/it (2).webp',
+    formLink: 'form.html'
+  },
+
+  // Non-Technical Events
+  'capturetheflag': {
+    title: 'CAPTURE THE FLAG',
+    desc: 'A strategic treasure hunt requiring teamwork and wits. Solve clues, navigate the campus, and capture the flag before the opponents.',
+    date: 'Day 1',
+    time: '2:30 PM',
+    venue: 'Campus Wide',
+    image: 'img/events-nontech/CSE (2).webp',
+    formLink: 'form.html'
+  },
+  'bestmanager': {
+    title: 'BEST MANAGER',
+    desc: 'Test your leadership and management skills. Handle stress, make quick decisions, and prove you have what it takes to lead.',
+    date: 'Day 1',
+    time: '2:30 PM',
+    venue: 'Management Hall',
+    image: 'img/events-nontech/ECE.webp',
+    formLink: 'form.html'
+  },
+  'quizzy': {
+    title: 'QUIZZY',
+    desc: 'A general knowledge quiz covering tech, pop culture, and current affairs. Buzzer rounds and rapid fires await the sharpest minds.',
+    date: 'Day 1',
+    time: '3:30 PM',
+    venue: 'Auditorium',
+    image: 'img/events-nontech/IT (2).webp',
+    formLink: 'form.html'
+  },
+  'promptpallette': {
+    title: 'PROMPT PALLETTE',
+    desc: 'A creative AI art generation contest. Use prompt engineering to generate the most stunning and accurate images based on themes.',
+    date: 'Day 2',
+    time: '2:30 PM',
+    venue: 'Digital Lab',
+    image: 'img/events-nontech/CSE.jpeg',
+    formLink: 'form.html'
+  },
+  'bidsmash': {
+    title: 'BID SMASH',
+    desc: 'A mock IPL auction! Manage your budget, bid strategically for players, and build the strongest team possible.',
+    date: 'Day 2',
+    time: '2:30 PM',
+    venue: 'Seminar Hall 2',
+    image: 'img/events-nontech/IT.webp',
+    formLink: 'form.html'
+  },
+  'mrtoolman': {
+    title: 'MR TOOL MAN',
+    desc: 'Identify tools and mechanical components correctly. A fun challenge for those who know their way around a workshop.',
+    date: 'Day 2',
+    time: '3:30 PM',
+    venue: 'Workshop',
+    image: 'img/events-nontech/MECH.webp',
+    formLink: 'form.html'
+  },
+
+  // Workshops
+  'genai': {
+    title: 'GEN AI WORKSHOP',
+    desc: 'Dive into Gen AI with expert-led workshops, real-world projects, and networking with industry leaders!',
+    date: 'Day 1',
+    time: 'Full Day',
+    venue: 'Main Auditorium',
+    image: 'img/workshop/CSE.jpeg',
+    formLink: 'form.html'
+  },
+  'evehicle': {
+    title: 'E-VEHICLE WORKSHOP',
+    desc: 'Explore the future of mobility with hands-on EV tech workshops, live demos, and insights from industry pioneers!',
+    date: 'Day 1',
+    time: 'Full Day',
+    venue: 'Power Lab',
+    image: 'img/workshop/EEE.webp',
+    formLink: 'form.html'
+  },
+  'cloudcraft': {
+    title: 'CLOUD CRAFT',
+    desc: 'Master cloud computing fundamentals and deployment strategies. Hands-on session on AWS/Azure services.',
+    date: 'Day 2',
+    time: 'Full Day',
+    venue: 'Cloud Lab',
+    image: 'img/workshop/IT.webp',
+    formLink: 'form.html'
+  }
+};
+
+function openEventModal(eventId) {
+  const event = eventDetails[eventId];
+  if (!event) {
+    console.error('Event not found:', eventId);
+    return;
+  }
+
+  // Populate Modal content
+  document.getElementById('modalEventTitle').innerText = event.title;
+  document.getElementById('modalEventDesc').innerText = event.desc;
+  document.getElementById('modalEventDate').innerText = event.date;
+  document.getElementById('modalEventTime').innerText = event.time;
+  document.getElementById('modalEventVenue').innerText = event.venue;
+  document.getElementById('modalEventImage').src = event.image;
+
+  // Update Register Button Link
+  const registerBtn = document.querySelector('.event-modal-left .register-btn');
+  if (registerBtn) registerBtn.href = event.formLink;
+
+  // Show Modal
+  const modal = document.getElementById('eventModal');
+  modal.style.display = 'flex';
+  document.body.style.overflow = 'hidden'; // Disable background scroll
+
+  // Close when clicking outside content (overlay)
+  modal.onclick = function (e) {
+    if (e.target === modal) {
+      closeEventModal();
+    }
+  }
+}
+
+function closeEventModal() {
+  const modal = document.getElementById('eventModal');
+  modal.style.display = 'none';
+  document.body.style.overflow = 'auto'; // Enable background scroll
+}
+
+// Attach closing to Escape key
+document.addEventListener('keydown', function (event) {
+  if (event.key === "Escape") {
+    closeEventModal();
+  }
+});
