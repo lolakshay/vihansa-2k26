@@ -250,6 +250,8 @@ class GhostBackground {
 
 // Initialize on load
 document.addEventListener('DOMContentLoaded', () => {
+  if (window.innerWidth <= 768) return; // Disable on mobile
+
   const bgContainer = document.getElementById('bg-animation-container');
   if (bgContainer) {
     new GhostBackground(bgContainer, {
