@@ -1145,11 +1145,13 @@ body.mobile-nav-active #mobile-nav-toggle {
   }
 
   .counter-content li span {
-    font-size: 2rem;
+    font-size: 3.5rem;
+    /* Increased from 2rem */
   }
 
   .counter-content ul {
-    gap: 5px;
+    gap: 15px;
+    /* Increased slightly from 5px for better spacing */
   }
 }
 

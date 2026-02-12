@@ -101,25 +101,12 @@
         #hack h2,
         #hack h4,
         #hack p {
-            background: linear-gradient(180deg,
-                    #ff3b3b 0%,
-                    #ffffff 35%,
-                    #000000 55%,
-                    #8b0000 75%,
-                    #ff0000 100%);
-            background-size: 100% 300%;
-            background-position: top;
-
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            color: transparent;
-
-            animation: upsideText 7s ease-in-out infinite;
-
+            color: #ffffff;
+            /* Solid white text for visibility */
             text-shadow:
                 0 0 6px rgba(255, 0, 0, 0.4),
-                0 0 16px rgba(255, 0, 0, 0.3);
+                0 0 16px rgba(255, 0, 0, 0.3),
+                0 0 20px rgba(255, 255, 255, 0.2);
         }
 
         /* Animations */
@@ -280,7 +267,7 @@
     <!--==========================
     Registration Section
   ============================-->
-    <section id="hack">
+    <section id="hack" style="padding-top: 150px;">
 
         <!-- Glowing Border Elements -->
         <div class="glow-border glow-top"></div>

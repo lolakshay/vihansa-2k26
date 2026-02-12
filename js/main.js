@@ -701,7 +701,7 @@ const eventDetails = {
     time: '10:00 AM',
     venue: 'Computer Lab 1',
     image: 'img/events-tech/codeit.webp',
-    formLink: 'form.html'
+    formLink: 'registration.html'
   },
   'speedcraft': {
     title: 'SPEED CRAFT',
@@ -710,7 +710,7 @@ const eventDetails = {
     time: '10:00 AM',
     venue: 'CAD Lab',
     image: 'img/events-tech/MECH (2).webp',
-    formLink: 'form.html'
+    formLink: 'registration.html'
   },
   'clonex': {
     title: 'CLONE X',
@@ -719,7 +719,7 @@ const eventDetails = {
     time: '10:00 AM',
     venue: 'Web Lab',
     image: 'img/events-tech/CSE.webp',
-    formLink: 'form.html'
+    formLink: 'registration.html'
   },
   'reverseengg': {
     title: 'REVERSE ENGG',
@@ -728,7 +728,7 @@ const eventDetails = {
     time: '12:00 Noon',
     venue: 'Electronics Lab',
     image: 'img/events-tech/ECE.webp',
-    formLink: 'form.html'
+    formLink: 'registration.html'
   },
   'circuitsurge': {
     title: 'CIRCUIT SURGE',
@@ -737,7 +737,7 @@ const eventDetails = {
     time: '12:00 Noon',
     venue: 'Circuits Lab',
     image: 'img/events-tech/eee.webp',
-    formLink: 'form.html'
+    formLink: 'registration.html'
   },
   'kryptobyte': {
     title: 'KRYPTO BYTE',
@@ -746,7 +746,7 @@ const eventDetails = {
     time: '12:00 Noon',
     venue: 'IT Lab',
     image: 'img/events-tech/it.webp',
-    formLink: 'form.html'
+    formLink: 'registration.html'
   },
   'roborush': {
     title: 'ROBO RUSH',
@@ -755,7 +755,7 @@ const eventDetails = {
     time: '2:30 PM',
     venue: 'Robotics Arena',
     image: 'img/events-tech/eee (2).webp',
-    formLink: 'form.html'
+    formLink: 'registration.html'
   },
   'productpitch': {
     title: 'PRODUCT PITCH',
@@ -764,7 +764,7 @@ const eventDetails = {
     time: '10:00 AM',
     venue: 'Seminar Hall',
     image: 'img/events-tech/C.jpeg',
-    formLink: 'form.html'
+    formLink: 'registration.html'
   },
   'dasheddata': {
     title: 'DASHED DATA WITH ML',
@@ -773,7 +773,7 @@ const eventDetails = {
     time: '10:00 AM',
     venue: 'AI Lab',
     image: 'img/events-tech/CSE (2).webp',
-    formLink: 'form.html'
+    formLink: 'registration.html'
   },
   'flyforge': {
     title: 'FLY FORGE',
@@ -782,7 +782,7 @@ const eventDetails = {
     time: '10:00 AM',
     venue: 'Open Ground',
     image: 'img/events-tech/MECH.webp',
-    formLink: 'form.html'
+    formLink: 'registration.html'
   },
   'codewar': {
     title: 'CODEWAR: ENDGAME',
@@ -791,7 +791,7 @@ const eventDetails = {
     time: '12:00 Noon',
     venue: 'Main Lab',
     image: 'img/events-tech/it (2).webp',
-    formLink: 'form.html'
+    formLink: 'registration.html'
   },
 
   // Non-Technical Events
@@ -802,7 +802,7 @@ const eventDetails = {
     time: '2:30 PM',
     venue: 'Campus Wide',
     image: 'img/events-nontech/CSE (2).webp',
-    formLink: 'form.html'
+    formLink: 'registration.html'
   },
   'bestmanager': {
     title: 'BEST MANAGER',
@@ -811,7 +811,7 @@ const eventDetails = {
     time: '2:30 PM',
     venue: 'Management Hall',
     image: 'img/events-nontech/ECE.webp',
-    formLink: 'form.html'
+    formLink: 'registration.html'
   },
   'quizzy': {
     title: 'QUIZZY',
@@ -820,7 +820,7 @@ const eventDetails = {
     time: '3:30 PM',
     venue: 'Auditorium',
     image: 'img/events-nontech/IT (2).webp',
-    formLink: 'form.html'
+    formLink: 'registration.html'
   },
   'promptpallette': {
     title: 'PROMPT PALLETTE',
@@ -829,7 +829,7 @@ const eventDetails = {
     time: '2:30 PM',
     venue: 'Digital Lab',
     image: 'img/events-nontech/CSE.jpeg',
-    formLink: 'form.html'
+    formLink: 'registration.html'
   },
   'bidsmash': {
     title: 'BID SMASH',
@@ -838,7 +838,7 @@ const eventDetails = {
     time: '2:30 PM',
     venue: 'Seminar Hall 2',
     image: 'img/events-nontech/IT.webp',
-    formLink: 'form.html'
+    formLink: 'registration.html'
   },
   'mrtoolman': {
     title: 'MR TOOL MAN',
@@ -847,7 +847,7 @@ const eventDetails = {
     time: '3:30 PM',
     venue: 'Workshop',
     image: 'img/events-nontech/MECH.webp',
-    formLink: 'form.html'
+    formLink: 'registration.html'
   },
 
   // Workshops
@@ -858,7 +858,7 @@ const eventDetails = {
     time: 'Full Day',
     venue: 'Main Auditorium',
     image: 'img/workshop/CSE.jpeg',
-    formLink: 'form.html'
+    formLink: 'workshop_registration.html'
   },
   'evehicle': {
     title: 'E-VEHICLE WORKSHOP',
@@ -867,7 +867,7 @@ const eventDetails = {
     time: 'Full Day',
     venue: 'Power Lab',
     image: 'img/workshop/EEE.webp',
-    formLink: 'form.html'
+    formLink: 'workshop_registration.html'
   },
   'cloudcraft': {
     title: 'CLOUD CRAFT',
@@ -876,7 +876,7 @@ const eventDetails = {
     time: 'Full Day',
     venue: 'Cloud Lab',
     image: 'img/workshop/IT.webp',
-    formLink: 'form.html'
+    formLink: 'workshop_registration.html'
   },
   'pcbbuild': {
     title: 'PCB BUILD',
@@ -885,7 +885,7 @@ const eventDetails = {
     time: 'Full Day',
     venue: 'Electronics Lab',
     image: 'img/workshop/ECE.webp',
-    formLink: 'form.html'
+    formLink: 'workshop_registration.html'
   },
 
   // Cultural Events
@@ -896,7 +896,7 @@ const eventDetails = {
     time: '10:00 AM',
     venue: 'Auditorium',
     image: 'img/culturls/7.webp',
-    formLink: 'form.html'
+    formLink: 'cultural_registration.html'
   },
   'clipcounter': {
     title: 'CLIP COUNTER',
@@ -905,7 +905,7 @@ const eventDetails = {
     time: '10:00 AM',
     venue: 'Seminar Hall',
     image: 'img/culturls/8.webp',
-    formLink: 'form.html'
+    formLink: 'cultural_registration.html'
   },
   'pixelperfect': {
     title: 'PIXEL PERFECT',
@@ -914,7 +914,7 @@ const eventDetails = {
     time: '10:00 AM',
     venue: 'Digital Lab',
     image: 'img/culturls/9.webp',
-    formLink: 'form.html'
+    formLink: 'cultural_registration.html'
   },
   'faceartistry': {
     title: 'FACE ARTISTRY',
@@ -923,7 +923,7 @@ const eventDetails = {
     time: '10:00 AM',
     venue: 'Open Stage',
     image: 'img/culturls/10.webp',
-    formLink: 'form.html'
+    formLink: 'cultural_registration.html'
   },
   'hennaink': {
     title: 'HENNA INK',
@@ -932,7 +932,7 @@ const eventDetails = {
     time: '10:00 AM',
     venue: 'Courtyard',
     image: 'img/culturls/11.webp',
-    formLink: 'form.html'
+    formLink: 'cultural_registration.html'
   },
   'pencilplay': {
     title: 'PENCIL PLAY',
@@ -941,7 +941,7 @@ const eventDetails = {
     time: '10:00 AM',
     venue: 'Drawing Hall',
     image: 'img/culturls/12.webp',
-    formLink: 'form.html'
+    formLink: 'cultural_registration.html'
   },
   'logicalrivera': {
     title: 'LOGICAL RIVERA',
@@ -950,7 +950,7 @@ const eventDetails = {
     time: '11:30 AM',
     venue: 'Classroom Block',
     image: 'img/culturls/13.webp',
-    formLink: 'form.html'
+    formLink: 'cultural_registration.html'
   },
   'mysticchase': {
     title: 'MYSTIC CHASE',
@@ -959,7 +959,7 @@ const eventDetails = {
     time: '11:30 AM',
     venue: 'Campus Wide',
     image: 'img/culturls/14.webp',
-    formLink: 'form.html'
+    formLink: 'cultural_registration.html'
   },
   'solelymelodia': {
     title: 'SOLELY MELODIA',
@@ -968,7 +968,7 @@ const eventDetails = {
     time: '2:00 PM',
     venue: 'Main Auditorium',
     image: 'img/culturls/6.webp',
-    formLink: 'form.html'
+    formLink: 'cultural_registration.html'
   },
   'artofone': {
     title: 'ART OF ONE',
@@ -977,7 +977,7 @@ const eventDetails = {
     time: '3:00 PM',
     venue: 'Open Auditorium',
     image: 'img/culturls/4.webp',
-    formLink: 'form.html'
+    formLink: 'cultural_registration.html'
   },
   'tunemorph': {
     title: 'TUNE MORPH',
@@ -986,7 +986,7 @@ const eventDetails = {
     time: '3:30 PM',
     venue: 'Music Hall',
     image: 'img/culturls/5.webp',
-    formLink: 'form.html'
+    formLink: 'cultural_registration.html'
   },
   'rythmicmotion': {
     title: 'RYTHMIC MOTION',
@@ -995,7 +995,7 @@ const eventDetails = {
     time: '4:00 PM',
     venue: 'Main Auditorium',
     image: 'img/culturls/3.webp',
-    formLink: 'form.html'
+    formLink: 'cultural_registration.html'
   }
 };
 
