@@ -877,6 +877,125 @@ const eventDetails = {
     venue: 'Cloud Lab',
     image: 'img/workshop/IT.webp',
     formLink: 'form.html'
+  },
+  'pcbbuild': {
+    title: 'PCB BUILD',
+    desc: 'Learn PCB design fundamentals and assemble your own boards with expert guidance!',
+    date: 'Day 2',
+    time: 'Full Day',
+    venue: 'Electronics Lab',
+    image: 'img/workshop/ECE.webp',
+    formLink: 'form.html'
+  },
+
+  // Cultural Events
+  'visualvignetic': {
+    title: 'VISUAL VIGNETIC',
+    desc: 'Express your creativity through visual storytelling. A competition for short films, photography, and visual arts.',
+    date: 'Day 2',
+    time: '10:00 AM',
+    venue: 'Auditorium',
+    image: 'img/culturls/7.webp',
+    formLink: 'form.html'
+  },
+  'clipcounter': {
+    title: 'CLIP COUNTER',
+    desc: 'Test your observation and memory skills. Watch clips and answer questions based on details you spotted.',
+    date: 'Day 2',
+    time: '10:00 AM',
+    venue: 'Seminar Hall',
+    image: 'img/culturls/8.webp',
+    formLink: 'form.html'
+  },
+  'pixelperfect': {
+    title: 'PIXEL PERFECT',
+    desc: 'Digital art competition. Create stunning digital illustrations and designs that are pixel perfect.',
+    date: 'Day 2',
+    time: '10:00 AM',
+    venue: 'Digital Lab',
+    image: 'img/culturls/9.webp',
+    formLink: 'form.html'
+  },
+  'faceartistry': {
+    title: 'FACE ARTISTRY',
+    desc: 'Transform faces into living canvases. Show off your makeup and face painting skills in this artistic event.',
+    date: 'Day 2',
+    time: '10:00 AM',
+    venue: 'Open Stage',
+    image: 'img/culturls/10.webp',
+    formLink: 'form.html'
+  },
+  'hennaink': {
+    title: 'HENNA INK',
+    desc: 'The traditional art of Mehendi. Create intricate and beautiful designs to win the title of Henna Artist.',
+    date: 'Day 2',
+    time: '10:00 AM',
+    venue: 'Courtyard',
+    image: 'img/culturls/11.webp',
+    formLink: 'form.html'
+  },
+  'pencilplay': {
+    title: 'PENCIL PLAY',
+    desc: 'Sketch your imagination. A pencil sketching competition to showcase your shading and drawing techniques.',
+    date: 'Day 2',
+    time: '10:00 AM',
+    venue: 'Drawing Hall',
+    image: 'img/culturls/12.webp',
+    formLink: 'form.html'
+  },
+  'logicalrivera': {
+    title: 'LOGICAL RIVERA',
+    desc: 'Flow with logic in this puzzle-solving event. Navigate through riddles and brain teasers to reach the solution.',
+    date: 'Day 2',
+    time: '11:30 AM',
+    venue: 'Classroom Block',
+    image: 'img/culturls/13.webp',
+    formLink: 'form.html'
+  },
+  'mysticchase': {
+    title: 'MYSTIC CHASE',
+    desc: 'Chase the mystery and uncover the truth. A thrilling scavenger hunt full of suspense and clues.',
+    date: 'Day 2',
+    time: '11:30 AM',
+    venue: 'Campus Wide',
+    image: 'img/culturls/14.webp',
+    formLink: 'form.html'
+  },
+  'solelymelodia': {
+    title: 'SOLELY MELODIA',
+    desc: 'Solo singing competition. Captivate the audience with your voice and musical talent.',
+    date: 'Day 2',
+    time: '2:00 PM',
+    venue: 'Main Auditorium',
+    image: 'img/culturls/6.webp',
+    formLink: 'form.html'
+  },
+  'artofone': {
+    title: 'ART OF ONE',
+    desc: 'A unique solo showcase. Perform any talent - dance, acting, mime - and own the stage.',
+    date: 'Day 2',
+    time: '3:00 PM',
+    venue: 'Open Auditorium',
+    image: 'img/culturls/4.webp',
+    formLink: 'form.html'
+  },
+  'tunemorph': {
+    title: 'TUNE MORPH',
+    desc: 'Remix and exact. showcase your ability to morph tunes and create new musical vibes.',
+    date: 'Day 2',
+    time: '3:30 PM',
+    venue: 'Music Hall',
+    image: 'img/culturls/5.webp',
+    formLink: 'form.html'
+  },
+  'rythmicmotion': {
+    title: 'RYTHMIC MOTION',
+    desc: 'Group or solo dance competition. Set the stage on fire with your moves and rhythm.',
+    date: 'Day 2',
+    time: '4:00 PM',
+    venue: 'Main Auditorium',
+    image: 'img/culturls/3.webp',
+    formLink: 'form.html'
   }
 };
 
@@ -902,6 +1021,11 @@ function openEventModal(eventId) {
   // Show Modal
   const modal = document.getElementById('eventModal');
   modal.style.display = 'flex';
+  // Small timeout to allow display:flex to apply before adding opacity class
+  setTimeout(() => {
+    modal.classList.add('open');
+  }, 10);
+
   document.body.style.overflow = 'hidden'; // Disable background scroll
 
   // Close when clicking outside content (overlay)
@@ -914,8 +1038,13 @@ function openEventModal(eventId) {
 
 function closeEventModal() {
   const modal = document.getElementById('eventModal');
-  modal.style.display = 'none';
-  document.body.style.overflow = 'auto'; // Enable background scroll
+  modal.classList.remove('open');
+
+  // Wait for transition to finish before hiding
+  setTimeout(() => {
+    modal.style.display = 'none';
+    document.body.style.overflow = 'auto'; // Enable background scroll
+  }, 300);
 }
 
 // Attach closing to Escape key
