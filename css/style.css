@@ -1004,7 +1004,7 @@ body.mobile-nav-active #mobile-nav-toggle {
 # Hero-style Countdown Section (Announcement Hub)
 --------------------------------------------------------------*/
 #about {
-  background: #00000000 !important;
+  background: #000 !important;
   color: #fff;
   padding: 40px 0;
   min-height: auto;
