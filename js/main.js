@@ -774,7 +774,7 @@ const eventDetails = {
     date: 'Day 1',
     time: '10:00 AM',
     venue: 'Computer Lab 1',
-    image: 'img/events-tech/1.png',
+    image: 'img/events-tech/1.webp',
     formLink: 'registration.html'
   },
   'speedcraft': {
@@ -783,7 +783,7 @@ const eventDetails = {
     date: 'Day 1',
     time: '10:00 AM',
     venue: 'CAD Lab',
-    image: 'img/events-tech/2.png',
+    image: 'img/events-tech/2.webp',
     formLink: 'registration.html'
   },
   'clonex': {
@@ -792,7 +792,7 @@ const eventDetails = {
     date: 'Day 1',
     time: '10:00 AM',
     venue: 'Computer Lab 2',
-    image: 'img/events-tech/3.png',
+    image: 'img/events-tech/3.webp',
     formLink: 'registration.html'
   },
   'reverseengg': {
@@ -801,7 +801,7 @@ const eventDetails = {
     date: 'Day 1',
     time: '12:00 Noon',
     venue: 'Hardware Lab',
-    image: 'img/events-tech/4.png',
+    image: 'img/events-tech/4.webp',
     formLink: 'registration.html'
   },
   'circuitsurge': {
@@ -810,7 +810,7 @@ const eventDetails = {
     date: 'Day 1',
     time: '12:00 Noon',
     venue: 'Circuits Lab',
-    image: 'img/events-tech/5.png',
+    image: 'img/events-tech/5.webp',
     formLink: 'registration.html'
   },
   'kryptobyte': {
@@ -819,7 +819,7 @@ const eventDetails = {
     date: 'Day 1',
     time: '12:00 Noon',
     venue: 'Cyber Security Lab',
-    image: 'img/events-tech/6.png',
+    image: 'img/events-tech/6.webp',
     formLink: 'registration.html'
   },
   'roborush': {
@@ -828,7 +828,7 @@ const eventDetails = {
     date: 'Day 1',
     time: '2:30 PM',
     venue: 'Robotics Arena',
-    image: 'img/events-tech/7.png',
+    image: 'img/events-tech/7.webp',
     formLink: 'registration.html'
   },
   'productpitch': {
@@ -837,7 +837,7 @@ const eventDetails = {
     date: 'Day 2',
     time: '10:00 AM',
     venue: 'Main Auditorium',
-    image: 'img/events-tech/8.png',
+    image: 'img/events-tech/8.webp',
     formLink: 'registration.html'
   },
   'dasheddata': {
@@ -846,7 +846,7 @@ const eventDetails = {
     date: 'Day 2',
     time: '10:00 AM',
     venue: 'Data Science Lab',
-    image: 'img/events-nontech/9.png',
+    image: 'img/events-nontech/9.webp',
     formLink: 'registration.html'
   },
   'flyforge': {
@@ -855,7 +855,7 @@ const eventDetails = {
     date: 'Day 2',
     time: '10:00 AM',
     venue: 'Aero Lab',
-    image: 'img/events-nontech/10.png',
+    image: 'img/events-nontech/10.webp',
     formLink: 'registration.html'
   },
   'codewar': {
@@ -864,7 +864,7 @@ const eventDetails = {
     date: 'Day 2',
     time: '12:00 Noon',
     venue: 'Computer Lab 3',
-    image: 'img/events-nontech/11.png',
+    image: 'img/events-nontech/11.webp',
     formLink: 'registration.html'
   },
 
@@ -875,7 +875,7 @@ const eventDetails = {
     date: 'Day 1',
     time: '2:30 PM',
     venue: 'Cyber Security Lab',
-    image: 'img/events-nontech/12.png',
+    image: 'img/events-nontech/12.webp',
     formLink: 'registration.html'
   },
   'bestmanager': {
@@ -902,7 +902,7 @@ const eventDetails = {
     date: 'Day 2',
     time: '2:30 PM',
     venue: 'Digital Lab',
-    image: 'img/events-nontech/CSE.jpeg',
+    image: 'img/events-nontech/CSE.webp',
     formLink: 'registration.html'
   },
   'bidsmash': {
@@ -931,7 +931,7 @@ const eventDetails = {
     date: 'Day 1',
     time: 'Full Day',
     venue: 'Main Auditorium',
-    image: 'img/workshop/CSE.jpeg',
+    image: 'img/workshop/CSE.webp',
     formLink: 'workshop_registration.html'
   },
   'evehicle': {
