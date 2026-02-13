@@ -1194,7 +1194,40 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 
     <!-- Template Main Javascript File -->
+
     <script src="js/main.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            // Check if there's a hash in the URL on load
+            var hash = window.location.hash;
+            if (hash) {
+                // Find the tab link corresponding to the hash
+                var tabLink = $('.nav-tabs a[href="' + hash + '"]');
+                if (tabLink.length) {
+                    // Activate the tab
+                    tabLink.tab('show');
+                    // Scroll to the tabs section smoothly
+                    $('html, body').animate({
+                        scrollTop: $("#schedule").offset().top - 100
+                    }, 800);
+                }
+            }
+
+            // Also handle hash changes if the user navigates within the page (e.g. back button)
+            $(window).on('hashchange', function () {
+                var hash = window.location.hash;
+                var tabLink = $('.nav-tabs a[href="' + hash + '"]');
+                if (tabLink.length) {
+                    tabLink.tab('show');
+                    $('html, body').animate({
+                        scrollTop: $("#schedule").offset().top - 100
+                    }, 800);
+                }
+            });
+        });
+    </script>
+
 
 </body>
 
