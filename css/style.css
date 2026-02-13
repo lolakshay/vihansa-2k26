@@ -4163,4 +4163,74 @@ body.mobile-nav-active #mobile-nav-toggle {
     height: 45px;
     font-size: 30px;
   }
+
+}
+
+/* ==========================================================================
+   MOBILE PERFORMANCE OPTIMIZATIONS
+   ========================================================================== */
+@media (max-width: 768px) {
+
+  /* Disable heavy box-shadows and text-shadows */
+  * {
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+
+  /* Simplify heavy gradients */
+  body,
+  section,
+  .me-bg-layer {
+    background-attachment: scroll !important;
+  }
+
+  /* Disable 3D transforms on mobile */
+  .event-card,
+  .tilt-inner,
+  .guest-card {
+    transform: none !important;
+    perspective: none !important;
+    transition: none !important;
+    filter: none !important;
+  }
+
+  .main-card,
+  .electric-card,
+  .glow-layer-1,
+  .glow-layer-2,
+  .border-outer {
+    filter: none !important;
+    backdrop-filter: none !important;
+  }
+
+  /* Reduce font sizes for better fit */
+  h1,
+  h2,
+  .glitch-title,
+  .me-title,
+  #modalEventTitle {
+    font-size: clamp(2rem, 5vw, 3rem) !important;
+    word-break: break-word;
+  }
+
+  /* Disable heavy animations */
+  .wow {
+    animation: none !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+  }
+
+  /* Throttle or hide particle effects */
+  #st-particles,
+  #me-particles,
+  #laser-container {
+    display: none !important;
+  }
+
+  /* Ensure no horizontal scroll */
+  html,
+  body {
+    overflow-x: hidden;
+    width: 100%;
+  }
 }

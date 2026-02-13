@@ -20,7 +20,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // --- PARTICLES ONLY ---
   const particlesGeometry = new THREE.BufferGeometry();
-  const particlesCount = 2500;
+  const isMobile = window.innerWidth < 768;
+  const particlesCount = isMobile ? 800 : 2500;
 
   const posArray = new Float32Array(particlesCount * 3);
 

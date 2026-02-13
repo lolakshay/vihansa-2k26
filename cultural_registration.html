@@ -260,7 +260,8 @@
         <div class="container">
 
             <div id="logo" class="pull-left">
-                <a href="index.html#header" class="scrollto"><img src="img/logo.webp" alt="" title=""></a>
+                <a href="index.html#header" class="scrollto"><img src="img/logo.webp" alt="" title="" loading="lazy"
+                        decoding="async"></a>
             </div>
 
             <nav id="nav-menu-container">
@@ -421,6 +422,7 @@
                                 <div class="col-md-4 text-center">
                                     <p class="cyber-label">Scan to Pay</p>
                                     <img src="img/payment-qr.webp" alt="Payment QR Code" class="payment-qr img-fluid"
+                                        loading="lazy" decoding="async"
                                         onerror="this.src='https://via.placeholder.com/200x200.png?text=QR+Code'">
                                 </div>
                                 <div class="col-md-8">
@@ -550,21 +552,21 @@
     <script src="lib/easing/easing.min.js"></script>
     <script src="lib/superfish/hoverIntent.js"></script>
     <script src="lib/superfish/superfish.min.js"></script>
-    <script src="lib/wow/wow.min.js"></script>
-    <script src="lib/venobox/venobox.min.js"></script>
-    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <script src="lib/wow/wow.min.js" defer></script>
+    <script src="lib/venobox/venobox.min.js" defer></script>
+    <script src="lib/owlcarousel/owl.carousel.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js" defer></script>
 
     <!-- Three.js (Required for Hero 3D) -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" defer></script>
 
     <!-- Template Main Javascript File -->
-    <script src="js/main.js"></script>
-    <script src="js/hero-3d.js"></script>
-    <script src="js/cursor.js"></script>
+    <script src="js/main.js" defer></script>
+    <script src="js/hero-3d.js" defer></script>
+    <script src="js/cursor.js" defer></script>
 
     <!-- Dynamic Form Handler -->
-    <script src="js/form-handler.js"></script>
+    <script src="js/form-handler.js" defer></script>
     <script>
         // REPLACE THIS URL WITH YOUR NEW CULTURAL APPS SCRIPT URL
         const scriptURL = 'https://script.google.com/macros/s/AKfycbwolKeoShlUe059pl0MHadk_rOnbkxAgu08G6sBxg0HHcY-u_2t4pyco4xITRw1D19Z/exec';

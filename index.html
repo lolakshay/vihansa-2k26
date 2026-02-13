@@ -474,8 +474,8 @@
     <div class="container">
 
       <div id="logo" class="pull-left">
-        <a href="#intro" class="scrollto"><img src="img/logo1.webp" alt="" title=""></a>
-        <a href="#intro" class="scrollto"><img src="img/logo.webp" alt="" title=""></a>
+        <a href="#intro" class="scrollto"><img src="img/logo1.webp" alt="" title="" width="50" height="50"></a>
+        <a href="#intro" class="scrollto"><img src="img/logo.webp" alt="" title="" width="50" height="50"></a>
         <h2><a href="#main">Sri <span>RamaKrishna</span><br />Institute of technology</a></h2>
       </div>
 
@@ -498,7 +498,7 @@
   ============================-->
   <section id="intro">
     <!-- Video Background -->
-    <video autoplay loop muted playsinline id="bg-video">
+    <video autoplay loop muted playsinline preload="none" id="bg-video" poster="img/logo.webp">
       <source src="img/bb4.mov" type="video/mp4">
       Your browser does not support the video tag.
     </video>
@@ -1855,7 +1855,7 @@
         <div class="container">
           <div class="row">
             <div class="col-lg-3 col-md-3 footer-info">
-              <img src="img/logo.webp" alt="TheEvenet">
+              <img src="img/logo.webp" alt="TheEvenet" loading="lazy" decoding="async" width="150" height="auto">
               <p><strong>Vihansa 2026</strong> is a celebration of innovation, talent, and teamwork at Sri
                 Ramakrishna Institute of Technology. With exciting events and inspiring experiences, it's
                 where ideas come to life. Get ready to <em>innovate, ignite, and inspire!</em></p>
@@ -2439,16 +2439,19 @@
       }
 
       document.addEventListener('DOMContentLoaded', () => {
+        // Disable on mobile
+        if (window.innerWidth <= 768) return;
+
         const container = document.getElementById('laser-container');
         if (container) new LaserFlow(container);
       });
     </script>
 
     <!-- Template Main Javascript File -->
-    <script src="js/main.js"></script>
-    <script src="js/hero-3d.js"></script>
+    <script src="js/main.js" defer></script>
+    <script src="js/hero-3d.js" defer></script>
 
-    <script src="script.js"></script>
+    <script src="script.js" defer></script>
 </body>
 
 </html>
