@@ -65,6 +65,7 @@
       animation: upsideBackground 7s ease-in-out infinite;
       z-index: 0;
       pointer-events: none;
+      will-change: background-position;
     }
 
     /* Lightning Strike */
@@ -89,6 +90,7 @@
       animation: lightningStrike 7s infinite;
       z-index: 1;
       pointer-events: none;
+      will-change: opacity;
     }
 
     /* Keep content visible */
@@ -124,6 +126,7 @@
       color: transparent;
 
       animation: upsideText 7s ease-in-out infinite;
+      will-change: background-position;
 
       text-shadow:
         0 0 6px rgba(255, 0, 0, 0.4),
@@ -215,6 +218,7 @@
       animation:
         introZoom 6s ease-in-out forwards,
         flickerGlow 4s infinite;
+      will-change: transform, opacity;
     }
 
     /* Inner highlight lines (inside letters) */
@@ -579,7 +583,7 @@
               onclick="openPopup('PAPERPERS.webp', 'Paper Presentation:', 
               ['SRINITHI/IT', 'NITESH/ECE', 'RIZWAN/EEE', 'RAHUL PRASHATH/CSE', 'NALLASIVAN/MECH'], 
               ['Dr. J. MALA (IT)', 'Dr. JIM MATHEW PHILIP (CSE)', 'Dr. L. MALATHI (ECE)', 'Ms. D. POORNIMA (EEE)', 'Mr. B. VARUN (MECH)'])">
-              <img src="img/events-main/PAPERPERS.webp" alt="Paper Presentation">
+              <img src="img/events-main/PAPERPERS.webp" alt="Paper Presentation" loading="lazy">
               <div class="event-title">Paper Presentation</div>
             </div>
 
@@ -588,7 +592,7 @@
               onclick="openPopup('hacathon_new.webp', 'Hackathon:', 
               ['KISHANTH/IT', 'DIVAKAR/CSE', 'SUJITH KUMAR/ECE', 'NAVEEN/EEE', 'LOGAKAVIN/MECH','REVATHI/CSE'], 
               ['Dr. T. C. EZHIL SELVAN (IT)', 'Dr. K. M. KIRTHIKA (CSE)', 'Mr. S. SAMPATH (MECH)', 'Mr. S. THIYAGARAJAN (ECE)', 'Dr. S. UDAIYA KUMAR (EEE)'])">
-              <img src="img/events-main/hacathon_new.webp" alt="Hackathon">
+              <img src="img/events-main/hacathon_new.webp" alt="Hackathon" loading="lazy">
               <div class="event-title">Hackathon</div>
             </div>
 
@@ -597,7 +601,7 @@
               onclick="openPopup('PROJECT - EXPO.webp', 'Project Expo:', 
               ['SUBIKSHA/IT', 'KANTHESHWAR/EEE', 'LAVANYA/ECE', 'RAGAVAN/CSE', 'KISHORE/MECH'], 
               ['Dr. T. C. EZHIL SELVAN (IT)', 'Dr. R. KUMAR (CSE)', 'Mr. V GANESH (ECE)', 'Dr. G. KANNAYERAM (EEE)', 'Dr. S. BENJAMIN FRANKLIN (MECH)'])">
-              <img src="img/events-main/PROJECT - EXPO.webp" alt="Project Expo">
+              <img src="img/events-main/PROJECT - EXPO.webp" alt="Project Expo" loading="lazy">
               <div class="event-title">Project Expo</div>
             </div>
 
@@ -606,7 +610,7 @@
               onclick="openPopup('REPORT RENDERING.webp', 'Report Rendering: ', 
               ['SWETHA/IT', 'HARIHARAN/CSE', 'PRIYADHARSHINI/EEE', 'MUGILAN/ECE', 'PRAKASH/MECH'], 
               ['Ms. K. MOHANAPRIYA (IT)', 'Dr. N. S. KAVITHA (CSE)', 'Dr. A. K. KAVITHAA (ECE)', 'Mr. R. SUDHARSHAN (MECH)', 'Mr. C. ANANDA KUMAR (EEE)'])">
-              <img src="img/events-main/REPORT RENDERING.webp" alt="Report Rendering">
+              <img src="img/events-main/REPORT RENDERING.webp" alt="Report Rendering" loading="lazy">
               <div class="event-title">Report Rendering</div>
             </div>
           </div>
@@ -683,7 +687,7 @@
           Left: Full Width Image
           <div class="col-lg-6 hack-image-col">
             <div class="hack-image-wrapper">
-              <img src="img/events-main/hacathon_new.webp" alt="Hackathon" class="img-fluid hack-hero-img">
+              <img src="img/events-main/hacathon_new.webp" alt="Hackathon" class="img-fluid hack-hero-img" loading="lazy">
               <div class="hack-overlay-text">
                 <h4 class="sponsor-title">Industry Partner</h4>
                 <img src="img/hackathon/hackspon.png" alt="Sponsor" class="sponsor-logo">
@@ -757,7 +761,7 @@
           <!-- Perspective Container -->
           <div class="tilt-container" id="tiltContainer">
             <div class="tilt-inner" id="tiltInner">
-              <img src="img/events-main/hacathon_new.webp" alt="Hackathon" id="tiltImage">
+              <img src="img/events-main/hacathon_new.webp" alt="Hackathon" id="tiltImage" loading="lazy">
               <!-- Light Reflection Effect -->
               <div class="tilt-shine" id="tiltShine"></div>
             </div>
@@ -1186,10 +1190,6 @@
           stroke="url(#lightning-gradient)" stroke-width="6" fill="none" stroke-linecap="round" stroke-linejoin="round"
           filter="url(#lightning-glow)" />
 
-        <!-- Intense Inner Core -->
-        <path class="st-lightning-core"
-          d="M200,0 L180,150 L220,300 L190,450 L230,600 L180,750 L220,900 L190,1050 L230,1200 L180,1350 L220,1500 L190,1650 L230,1800 L180,1950 L220,2100 L200,2400"
-          stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" opacity="0.9" />
       </svg>
 
       <div class="container st-container">
@@ -1297,6 +1297,196 @@
               <div class="st-time">04:30 PM</div>
               <div class="st-card-title">Secret Ending</div>
               <div class="st-desc">Prize Distribution & Closing</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!--==========================
+      Chief Guest Section
+    ============================-->
+    <section id="chief-guests" class="cyber-guests-section">
+      <style>
+        .cyber-guests-section {
+          padding: 80px 0;
+          background: #000;
+          position: relative;
+          overflow: hidden;
+          font-family: 'Rajdhani', sans-serif;
+        }
+
+        .guest-card {
+          position: relative;
+          background: rgba(10, 0, 0, 0.6);
+          border: 1px solid rgba(255, 0, 0, 0.2);
+          border-radius: 4px;
+          overflow: hidden;
+          text-align: center;
+          padding: 50px 20px;
+          transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+          height: 100%;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          backdrop-filter: blur(5px);
+        }
+
+        /* Creative Staggered Layout */
+        .row>div:nth-child(1) .guest-card {
+          transform: translateY(40px) rotate(-2deg);
+          margin-top: 40px;
+        }
+
+        .row>div:nth-child(2) .guest-card {
+          transform: translateY(-20px) scale(1.05);
+          z-index: 2;
+          border-width: 2px;
+        }
+
+        .row>div:nth-child(3) .guest-card {
+          transform: translateY(40px) rotate(2deg);
+          margin-top: 40px;
+        }
+
+        /* Glitch overlay effect */
+        .guest-card::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          background: linear-gradient(45deg, transparent 45%, rgba(255, 0, 0, 0.1) 50%, transparent 55%);
+          background-size: 200% 200%;
+          animation: glitch-shine 3s infinite;
+          pointer-events: none;
+          opacity: 0;
+          transition: opacity 0.3s;
+        }
+
+        .guest-card:hover::before {
+          opacity: 1;
+        }
+
+        .guest-card:hover {
+          border-color: #ff3b3b;
+          box-shadow: 0 0 30px rgba(255, 0, 0, 0.5), 0 0 60px rgba(255, 0, 0, 0.2);
+        }
+
+        .row>div:nth-child(1) .guest-card:hover {
+          transform: translateY(20px) rotate(0deg) scale(1.05);
+        }
+
+        .row>div:nth-child(2) .guest-card:hover {
+          transform: translateY(-30px) scale(1.12);
+        }
+
+        .row>div:nth-child(3) .guest-card:hover {
+          transform: translateY(20px) rotate(0deg) scale(1.05);
+        }
+
+        .guest-placeholder {
+          width: 140px;
+          height: 140px;
+          background: #050505;
+          border-radius: 50%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          margin-bottom: 30px;
+          border: 2px dashed #444;
+          box-shadow: inset 0 0 20px #000;
+          position: relative;
+          transition: all 0.3s;
+        }
+
+        .guest-placeholder::after {
+          content: '?';
+          font-size: 4rem;
+          font-family: 'Orbitron', sans-serif;
+          color: #333;
+          font-weight: bold;
+          transition: all 0.3s;
+        }
+
+        .guest-card:hover .guest-placeholder {
+          border-color: #ff0000;
+          box-shadow: 0 0 15px #ff0000, inset 0 0 10px #ff0000;
+        }
+
+        .guest-card:hover .guest-placeholder::after {
+          color: #ff0000;
+          text-shadow: 0 0 10px #ff0000;
+          content: '!';
+          /* Fun interaction */
+        }
+
+        .reveal-text {
+          font-family: 'Orbitron', sans-serif;
+          font-size: 1.8rem;
+          color: #fff;
+          letter-spacing: 2px;
+          text-transform: uppercase;
+          margin-bottom: 10px;
+          position: relative;
+        }
+
+        .sub-reveal {
+          font-family: 'Rajdhani', sans-serif;
+          color: #888;
+          font-size: 1.2rem;
+          text-transform: uppercase;
+          letter-spacing: 3px;
+        }
+
+        /* Glitch Keyframes */
+        @keyframes glitch-shine {
+          0% {
+            background-position: 200% 0;
+          }
+
+          100% {
+            background-position: -200% 0;
+          }
+        }
+      </style>
+
+      <div class="container">
+        <div class="section-header text-center mb-5">
+          <h2
+            style="font-family: 'Orbitron', sans-serif; color: #fff; letter-spacing: 4px; text-shadow: 0 0 10px #ff0000; font-size: 3rem;">
+            HONORABLE GUESTS</h2>
+          <div style="width: 100px; height: 3px; background: #ff0000; margin: 20px auto; box-shadow: 0 0 10px #ff0000;">
+          </div>
+        </div>
+
+        <div class="row">
+          <!-- Guest 1 -->
+          <div class="col-md-4 mb-4">
+            <div class="guest-card">
+              <div class="guest-placeholder"></div>
+              <h3 class="reveal-text">REVEALING SOON</h3>
+              <p class="sub-reveal">Chief Guest</p>
+            </div>
+          </div>
+
+          <!-- Guest 2 -->
+          <div class="col-md-4 mb-4">
+            <div class="guest-card">
+              <div class="guest-placeholder"></div>
+              <h3 class="reveal-text">REVEALING SOON</h3>
+              <p class="sub-reveal">Guest of Honor</p>
+            </div>
+          </div>
+
+          <!-- Guest 3 -->
+          <div class="col-md-4 mb-4">
+            <div class="guest-card">
+              <div class="guest-placeholder"></div>
+              <h3 class="reveal-text">REVEALING SOON</h3>
+              <p class="sub-reveal">Special Speaker</p>
             </div>
           </div>
         </div>

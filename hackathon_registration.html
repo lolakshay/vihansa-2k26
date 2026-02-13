@@ -454,7 +454,8 @@
                                         <h5 style="color: #ff003c; font-family: 'Orbitron', sans-serif;">IMPORTANT
                                             NOTICE</h5>
                                         <p>Shortlisted teams will have to pay a registration fee of
-                                            <strong>₹2,000/-</strong> per team.</p>
+                                            <strong>₹2,000/-</strong> per team.
+                                        </p>
                                         <p class="mb-2"><strong>FEE INCLUDES:</strong></p>
                                         <ul style="list-style: none; padding-left: 0;">
                                             <li><i class="fa fa-check" style="color: #00f0ff; margin-right: 10px;"></i>
@@ -600,47 +601,18 @@
     <script src="js/hero-3d.js"></script>
     <script src="js/cursor.js"></script>
 
+    <!-- Dynamic Form Handler -->
+    <script src="js/form-handler.js"></script>
     <script>
-        // --- 1. CONFIGURATION ---
-        // REPLACE WITH YOUR HACKATHON SHEET SCRIPT URL
+        // REPLACE THIS URL WITH YOUR NEW HACKATHON APPS SCRIPT URL
         const scriptURL = 'https://script.google.com/macros/s/AKfycbwolKeoShlUe059pl0MHadk_rOnbkxAgu08G6sBxg0HHcY-u_2t4pyco4xITRw1D19Z/exec';
-        const form = document.forms['submit-to-google-sheet'];
-        const messageDiv = document.getElementById('form-message');
-        const submitBtn = document.getElementById('submit-btn');
 
-        // --- 3. FORM SUBMISSION ---
-        form.addEventListener('submit', e => {
-            e.preventDefault();
-
-            // UI Loading State
-            submitBtn.classList.add('loading');
-            submitBtn.disabled = true;
-            messageDiv.innerText = "Transmitting Team Data...";
-
-            const formData = new FormData(form);
-
-            fetch(scriptURL, {
-                method: 'POST',
-                body: formData,
-                mode: 'no-cors'
-            })
-                .then(response => {
-                    messageDiv.innerText = "TEAM REGISTERED // AWAITING SHORTLIST";
-                    messageDiv.style.color = "#0aff0a";
-                    form.reset();
-                    submitBtn.classList.remove('loading');
-                    submitBtn.disabled = false;
-
-                    // Confetti
-                    if (typeof fireConfetti === 'function') fireConfetti();
-                })
-                .catch(error => {
-                    console.error('Error!', error.message);
-                    messageDiv.innerText = "ERROR // TRANSMISSION FAILED";
-                    messageDiv.style.color = "#ff003c";
-                    submitBtn.classList.remove('loading');
-                    submitBtn.disabled = false;
-                });
+        setupForm({
+            formId: 'registrationForm',
+            scriptURL: scriptURL,
+            // Hackathon currently has no file upload for initial reg, so we omit file IDs or pass null
+            fileInputId: null,
+            hiddenFileInputId: null
         });
     </script>
 

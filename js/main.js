@@ -23,19 +23,29 @@ jQuery(document).ready(function ($) {
   /******************************
    * 2. HEADER & SCROLL BEHAVIOR
    ******************************/
-  // Back to top button
-  $(window).scroll(function () {
-    if ($(this).scrollTop() > 100) {
-      $('.back-to-top').fadeIn('slow');
-    } else {
-      $('.back-to-top').fadeOut('slow');
-    }
+  // Back to top button & Header fixed - Throttled
+  let scrollTicking = false;
 
-    // Header fixed on scroll
-    if ($(this).scrollTop() > 40) {
-      $('#header').addClass('header-scrolled');
-    } else {
-      $('#header').removeClass('header-scrolled');
+  $(window).scroll(function () {
+    if (!scrollTicking) {
+      window.requestAnimationFrame(() => {
+        const scrollTop = $(this).scrollTop();
+
+        if (scrollTop > 100) {
+          $('.back-to-top').fadeIn('slow');
+        } else {
+          $('.back-to-top').fadeOut('slow');
+        }
+
+        if (scrollTop > 40) {
+          $('#header').addClass('header-scrolled');
+        } else {
+          $('#header').removeClass('header-scrolled');
+        }
+
+        scrollTicking = false;
+      });
+      scrollTicking = true;
     }
   });
 
@@ -377,28 +387,44 @@ document.addEventListener('DOMContentLoaded', () => {
     document.querySelector(`.st-day${day}-btn`).classList.add('active');
   };
 
-  // Scroll-based lightning draw animation
+  // Scroll-based lightning draw animation - Optimized
+  let lightningTicking = false;
+  let cachedSectionTop = 0;
+  let cachedSectionHeight = 0;
+  let cachedWindowHeight = window.innerHeight;
+
+  // Update cached values on resize
+  window.addEventListener('resize', () => {
+    cachedSectionTop = agendaSection.offsetTop;
+    cachedSectionHeight = agendaSection.offsetHeight;
+    cachedWindowHeight = window.innerHeight;
+  });
+
+  // Initial calculation
+  cachedSectionTop = agendaSection.offsetTop;
+  cachedSectionHeight = agendaSection.offsetHeight;
+
   window.addEventListener("scroll", () => {
     if (!lightningPath) return;
 
-    const sectionTop = agendaSection.offsetTop;
-    const sectionHeight = agendaSection.offsetHeight;
-    const scrollY = window.scrollY;
-    const windowHeight = window.innerHeight;
+    if (!lightningTicking) {
+      window.requestAnimationFrame(() => {
+        const scrollY = window.scrollY;
 
-    // Determine how far we are into the section
-    // Start drawing when section enters viewport
-    const startOffset = sectionTop - windowHeight * 0.9;
-    const endOffset = sectionTop + sectionHeight - windowHeight * 0.9;
+        // Determine how far we are into the section
+        const startOffset = cachedSectionTop - cachedWindowHeight * 0.9;
+        const endOffset = cachedSectionTop + cachedSectionHeight - cachedWindowHeight * 0.9;
 
-    let progress = (scrollY - startOffset) / (endOffset - startOffset);
-    progress = Math.max(0, Math.min(1, progress));
+        let progress = (scrollY - startOffset) / (endOffset - startOffset);
+        progress = Math.max(0, Math.min(1, progress));
 
-    const length = lightningPath.getTotalLength();
+        const length = lightningPath.getTotalLength(); // Accessing this is still expensive but improved by refactoring the rest
+        lightningPath.style.strokeDashoffset = length * (1 - progress);
 
-    // Draw the lightning based on scroll
-    // 1 - progress because we want 0 offset (full draw) at 100% progress
-    lightningPath.style.strokeDashoffset = length * (1 - progress);
+        lightningTicking = false;
+      });
+      lightningTicking = true;
+    }
   });
 
   // Event Card Reveal Animation (Fly-in)
@@ -433,29 +459,32 @@ class GhostCursor {
     this.canvasContainer.style.width = '100%';
     this.canvasContainer.style.height = '100%';
     this.canvasContainer.style.pointerEvents = 'none';
-    this.canvasContainer.style.zIndex = '-1';
+    this.canvasContainer.style.zIndex = '9999';
     this.canvasContainer.style.mixBlendMode = 'screen'; // Blending mode
     document.body.appendChild(this.canvasContainer);
 
     // Configuration
     this.config = {
-      trailLength: 50,
+      trailLength: 20, // Optimized from 50
       inertia: 0.5,
       brightness: 1.5,
       color: '#ff0000', // Cyber Red
       baseColor: new THREE.Color('#ff0000'),
-      maxDevicePixelRatio: 1.0
+      maxDevicePixelRatio: 1.25 // Cap for performance but allow >1 for high-end
     };
 
     // Setup renderer
     this.renderer = new THREE.WebGLRenderer({
-      antialias: true,
+      antialias: false,
       alpha: true,
       premultipliedAlpha: false
     });
     this.renderer.setClearColor(0x000000, 0);
     this.renderer.setSize(window.innerWidth, window.innerHeight);
-    this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, this.config.maxDevicePixelRatio));
+
+    // Initial DPR Setup
+    this.currentDPR = Math.min(window.devicePixelRatio, this.config.maxDevicePixelRatio);
+    this.renderer.setPixelRatio(this.currentDPR);
     this.canvasContainer.appendChild(this.renderer.domElement);
 
     // Setup scene
@@ -596,6 +625,8 @@ class GhostCursor {
   bindEvents() {
     window.addEventListener('resize', () => {
       this.renderer.setSize(window.innerWidth, window.innerHeight);
+      this.currentDPR = Math.min(window.devicePixelRatio, this.config.maxDevicePixelRatio);
+      this.renderer.setPixelRatio(this.currentDPR);
       this.material.uniforms.iResolution.value.set(window.innerWidth, window.innerHeight, 1);
     });
 
@@ -671,7 +702,50 @@ class GhostCursor {
     if (!this.running) {
       this.running = true;
       this.animate();
+      this.startDPRAdjustment();
     }
+  }
+
+  startDPRAdjustment() {
+    if (this.dprInterval) return; // Already running
+
+    let lastTime = performance.now();
+    let frameCount = 0;
+
+    const adjustDPR = () => {
+      // If animation stopped, stop this loop too
+      if (!this.running) {
+        this.dprInterval = null;
+        return;
+      }
+
+      frameCount++;
+      const now = performance.now();
+      const elapsed = now - lastTime;
+
+      if (elapsed >= 1000) {
+        const fps = (frameCount * 1000) / elapsed;
+
+        if (fps < 40 && this.currentDPR > 1) {
+          this.currentDPR = Math.max(1, this.currentDPR - 0.1);
+          this.renderer.setPixelRatio(this.currentDPR);
+          // console.log(`Low FPS (${fps.toFixed(1)}), reducing DPR to ${this.currentDPR.toFixed(2)}`);
+        }
+
+        if (fps > 60 && this.currentDPR < this.config.maxDevicePixelRatio) {
+          this.currentDPR = Math.min(this.config.maxDevicePixelRatio, this.currentDPR + 0.1);
+          this.renderer.setPixelRatio(this.currentDPR);
+          // console.log(`High FPS (${fps.toFixed(1)}), increasing DPR to ${this.currentDPR.toFixed(2)}`);
+        }
+
+        frameCount = 0;
+        lastTime = now;
+      }
+
+      this.dprInterval = requestAnimationFrame(adjustDPR);
+    };
+
+    adjustDPR();
   }
 }
 

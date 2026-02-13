@@ -59,8 +59,17 @@ document.addEventListener('DOMContentLoaded', () => {
   // --- ANIMATION ---
   const clock = new THREE.Clock();
 
+  // --- VISIBILITY OPTIMIZATION ---
+  let isPaused = false;
+  const observer = new IntersectionObserver((entries) => {
+    isPaused = !entries[0].isIntersecting;
+  }, { threshold: 0 });
+  observer.observe(renderer.domElement);
+
   function animate() {
     requestAnimationFrame(animate);
+
+    if (isPaused) return;
 
     const elapsedTime = clock.getElapsedTime();
 

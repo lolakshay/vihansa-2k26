@@ -4,7 +4,7 @@ class GhostBackground {
 
     // Configuration
     this.config = {
-      trailLength: options.trailLength || 50,
+      trailLength: options.trailLength || 20, // Optimized from 50
       inertia: options.inertia || 0.5,
       brightness: options.brightness || 1.5,
       color: options.color || '#ff0000',
@@ -27,7 +27,7 @@ class GhostBackground {
   init() {
     // Setup renderer
     this.renderer = new THREE.WebGLRenderer({
-      antialias: true,
+      antialias: false, // Optimized from true
       alpha: true,
       premultipliedAlpha: false
     });
@@ -220,6 +220,10 @@ class GhostBackground {
   }
 
   animate = () => {
+    this.rafId = requestAnimationFrame(this.animate);
+
+    if (document.hidden) return;
+
     const now = performance.now();
     const t = (now - this.startTime) / 1000;
 
@@ -244,7 +248,6 @@ class GhostBackground {
     this.material.uniforms.iTime.value = t;
 
     this.renderer.render(this.scene, this.camera);
-    this.rafId = requestAnimationFrame(this.animate);
   };
 }
 

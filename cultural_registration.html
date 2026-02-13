@@ -563,71 +563,17 @@
     <script src="js/hero-3d.js"></script>
     <script src="js/cursor.js"></script>
 
+    <!-- Dynamic Form Handler -->
+    <script src="js/form-handler.js"></script>
     <script>
-        // --- 1. CONFIGURATION ---
-        // REPLACE WITH YOUR CULTURAL SHEET SCRIPT URL
+        // REPLACE THIS URL WITH YOUR NEW CULTURAL APPS SCRIPT URL
         const scriptURL = 'https://script.google.com/macros/s/AKfycbwolKeoShlUe059pl0MHadk_rOnbkxAgu08G6sBxg0HHcY-u_2t4pyco4xITRw1D19Z/exec';
-        const form = document.forms['submit-to-google-sheet'];
-        const messageDiv = document.getElementById('form-message');
-        const submitBtn = document.getElementById('submit-btn');
-        const whatsappContainer = document.getElementById('whatsapp-link-container');
 
-        // --- 2. FILE UPLOAD HANDLING ---
-        document.getElementById('upi_proof').addEventListener('change', function () {
-            const file = this.files[0];
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = function (e) {
-                    // Set the Base64 string to the hidden input
-                    document.getElementById('upi_proof_base64').value = e.target.result;
-                };
-                reader.readAsDataURL(file);
-            }
-        });
-
-        // --- 3. FORM SUBMISSION ---
-        form.addEventListener('submit', e => {
-            e.preventDefault();
-
-            // Validate File
-            if (!document.getElementById('upi_proof_base64').value) {
-                alert("Please upload the payment proof image.");
-                return;
-            }
-
-            // UI Loading State
-            submitBtn.classList.add('loading');
-            submitBtn.disabled = true;
-            messageDiv.innerText = "Transmitting Data...";
-
-            const formData = new FormData(form);
-
-            fetch(scriptURL, {
-                method: 'POST',
-                body: formData,
-                mode: 'no-cors'
-            })
-                .then(response => {
-                    messageDiv.innerText = "REGISTRATION SUCCESSFUL // STAGE SET";
-                    messageDiv.style.color = "#0aff0a";
-                    form.reset();
-                    document.getElementById('upi_proof_base64').value = ""; // Clear hidden field
-                    submitBtn.classList.remove('loading');
-                    submitBtn.disabled = false;
-
-                    // Show WhatsApp Link
-                    whatsappContainer.style.display = 'block';
-
-                    // Confetti
-                    if (typeof fireConfetti === 'function') fireConfetti();
-                })
-                .catch(error => {
-                    console.error('Error!', error.message);
-                    messageDiv.innerText = "ERROR // TRANSMISSION FAILED";
-                    messageDiv.style.color = "#ff003c";
-                    submitBtn.classList.remove('loading');
-                    submitBtn.disabled = false;
-                });
+        setupForm({
+            formId: 'registrationForm',
+            scriptURL: scriptURL,
+            fileInputId: 'upi_proof',
+            hiddenFileInputId: 'upi_proof_base64'
         });
     </script>
 

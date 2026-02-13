@@ -673,6 +673,7 @@ body.mobile-nav-active #mobile-nav-toggle {
   text-shadow: -2px 0 var(--cyber-red);
   clip: rect(44px, 450px, 56px, 0);
   animation: glitch-anim 5s infinite linear alternate-reverse;
+  will-change: clip, transform;
 }
 
 .glitch-title::after {
@@ -680,6 +681,7 @@ body.mobile-nav-active #mobile-nav-toggle {
   text-shadow: -2px 0 var(--electric-blue);
   clip: rect(44px, 450px, 56px, 0);
   animation: glitch-anim2 5s infinite linear alternate-reverse;
+  will-change: clip, transform;
 }
 
 @keyframes glitch-anim {
@@ -982,7 +984,10 @@ body.mobile-nav-active #mobile-nav-toggle {
   text-shadow: 0 0 10px #ff0000,
     0 0 20px #ff0000,
     0 0 30px #ff0000;
-  animation: textPulse 3s ease-in-out infinite alternate;
+  color: transparent;
+  will-change: background-position;
+
+  animation: upsideText 7s ease-in-out infinite alternate;
 }
 
 @keyframes textPulse {
@@ -1229,9 +1234,10 @@ body.mobile-nav-active #mobile-nav-toggle {
     linear-gradient(90deg, rgba(255, 0, 60, 0.1) 1px, transparent 1px); */
   background-size: 50px 50px;
   transform: perspective(500px) rotateX(60deg);
-  animation: grid-move 20s linear infinite;
+  animation: upsideBackground 7s ease-in-out infinite;
   z-index: 0;
   pointer-events: none;
+  will-change: background-position;
 }
 
 .cyber-void-bg::after {
