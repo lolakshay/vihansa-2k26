@@ -463,8 +463,8 @@
   </audio>
 
   <audio id="bg-music" preload="auto" loop>
-  <source src="img/ambient.mp3" type="audio/mpeg">
-</audio>
+    <source src="img/ambient.mp3" type="audio/mpeg">
+  </audio>
 
 
 
@@ -506,7 +506,7 @@
   ============================-->
   <section id="intro">
     <!-- Video Background -->
-    <video autoplay loop muted playsinline preload="none" id="bg-video" poster="img/logo.webp">
+    <video autoplay loop muted playsinline preload="auto" id="bg-video" poster="img/logo.webp">
       <source src="img/bb4.mov" type="video/mp4">
       Your browser does not support the video tag.
     </video>
@@ -518,7 +518,7 @@
     <div class="intro-container wow fadeIn">
       <div class="row align-items-center">
         <div class="col-12 intro-text-content">
-          <img src="img/vihansa logo.png" class="main-logo-img" alt="Vihansa Logo">
+          <img src="img/vihansa logo.webp" class="main-logo-img" alt="Vihansa Logo">
           <h1 class="glitch-title" data-text="VIHANSA 2K26">VIHANSA 2K26</h1>
           <p class="cyber-subtitle">IGNITE THE FUTURE &bull; INSPIRE THE WORLD</p>
 
@@ -898,103 +898,103 @@
 
       <!-- 3D TILT JAVASCRIPT -->
       <script>
-document.addEventListener("DOMContentLoaded", () => {
+        document.addEventListener("DOMContentLoaded", () => {
 
-  const video = document.getElementById("bg-video");
-  const intro = document.getElementById("intro");
-  const about = document.getElementById("about");
-  const btn = document.getElementById("sound-toggle");
-  const countdownAudio = document.getElementById("countdown-audio");
-  const bgMusic = document.getElementById("bg-music");
+          const video = document.getElementById("bg-video");
+          const intro = document.getElementById("intro");
+          const about = document.getElementById("about");
+          const btn = document.getElementById("sound-toggle");
+          const countdownAudio = document.getElementById("countdown-audio");
+          const bgMusic = document.getElementById("bg-music");
 
-  let soundEnabled = false;
+          let soundEnabled = false;
 
-  // 🔥 RESTORE SOUND STATE ON PAGE LOAD
-  const savedSoundState = localStorage.getItem("soundEnabled");
+          // 🔥 RESTORE SOUND STATE ON PAGE LOAD
+          const savedSoundState = localStorage.getItem("soundEnabled");
 
-  if (savedSoundState === "true") {
-    soundEnabled = true;
-    btn.textContent = "🔊";
+          if (savedSoundState === "true") {
+            soundEnabled = true;
+            btn.textContent = "🔊";
 
-    // Ambient
-    bgMusic.volume = 0.1;
-    bgMusic.loop = true;
-    bgMusic.muted = false;
-    bgMusic.play().catch(()=>{});
+            // Ambient
+            bgMusic.volume = 0.1;
+            bgMusic.loop = true;
+            bgMusic.muted = false;
+            bgMusic.play().catch(() => { });
 
-    // Hero video
-    video.muted = false;
-    video.volume = 0.3;
-  }
+            // Hero video
+            video.muted = false;
+            video.volume = 0.3;
+          }
 
-  // 🔊 TOGGLE BUTTON
-  btn.addEventListener("click", () => {
+          // 🔊 TOGGLE BUTTON
+          btn.addEventListener("click", () => {
 
-    soundEnabled = !soundEnabled;
+            soundEnabled = !soundEnabled;
 
-    // Save state
-    localStorage.setItem("soundEnabled", soundEnabled);
+            // Save state
+            localStorage.setItem("soundEnabled", soundEnabled);
 
-    if (soundEnabled) {
+            if (soundEnabled) {
 
-      btn.textContent = "🔊";
+              btn.textContent = "🔊";
 
-      // Ambient
-      bgMusic.volume = 0.1;
-      bgMusic.loop = true;
-      bgMusic.muted = false;
-      bgMusic.play().catch(()=>{});
+              // Ambient
+              bgMusic.volume = 0.1;
+              bgMusic.loop = true;
+              bgMusic.muted = false;
+              bgMusic.play().catch(() => { });
 
-      // Hero video
-      video.muted = false;
-      video.volume = 0.3;
+              // Hero video
+              video.muted = false;
+              video.volume = 0.3;
 
-    } else {
+            } else {
 
-      btn.textContent = "🔇";
+              btn.textContent = "🔇";
 
-      bgMusic.pause();
-      video.muted = true;
-      countdownAudio.pause();
-    }
-  });
+              bgMusic.pause();
+              video.muted = true;
+              countdownAudio.pause();
+            }
+          });
 
-  // 👀 SECTION OBSERVER
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
+          // 👀 SECTION OBSERVER
+          const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
 
-      if (!soundEnabled) return;
+              if (!soundEnabled) return;
 
-      // 🎬 HERO SECTION
-      if (entry.target.id === "intro") {
-        if (entry.isIntersecting) {
-          countdownAudio.pause();
-          video.play().catch(()=>{});
-        } else {
-          video.pause();
-        }
-      }
+              // 🎬 HERO SECTION
+              if (entry.target.id === "intro") {
+                if (entry.isIntersecting) {
+                  countdownAudio.pause();
+                  video.play().catch(() => { });
+                } else {
+                  video.pause();
+                }
+              }
 
-      // ⏳ COUNTDOWN SECTION
-      if (entry.target.id === "about") {
-        if (entry.isIntersecting) {
-          video.pause();
-          countdownAudio.currentTime = 0;
-          countdownAudio.volume = 0.4;
-          countdownAudio.play().catch(()=>{});
-        } else {
-          countdownAudio.pause();
-        }
-      }
+              // ⏳ COUNTDOWN SECTION
+              if (entry.target.id === "about") {
+                if (entry.isIntersecting) {
+                  video.pause();
+                  countdownAudio.currentTime = 0;
+                  countdownAudio.volume = 0.4;
+                  countdownAudio.play().catch(() => { });
+                } else {
+                  countdownAudio.pause();
+                }
+              }
 
-    });
-  }, { threshold: 0.6 });
+            });
+          }, { threshold: 0.6 });
 
-  observer.observe(intro);
-  observer.observe(about);
+          observer.observe(intro);
+          observer.observe(about);
 
-});
-</script>
+        });
+      </script>
 
 
     </section>
@@ -1049,8 +1049,8 @@ document.addEventListener("DOMContentLoaded", () => {
         <div class="experience-grid">
 
           <!-- Card 1: Technical & Non-Technical -->
-          <a href="events.html#tech" class="experience-card tech-card wow fadeInUp" data-wow-delay="0.1s" onclick="localStorage.setItem('playAmbientOnLoad','true')"
->
+          <a href="events.html#tech" class="experience-card tech-card wow fadeInUp" data-wow-delay="0.1s"
+            onclick="localStorage.setItem('playAmbientOnLoad','true')">
             <div class="card-inner">
               <div class="card-bg"></div>
               <div class="card-content">
@@ -1070,8 +1070,8 @@ document.addEventListener("DOMContentLoaded", () => {
           </a>
 
           <!-- Card 2: Workshops -->
-          <a href="events.html#workshop" class="experience-card workshop-card wow fadeInUp" data-wow-delay="0.3s" onclick="localStorage.setItem('playAmbientOnLoad','true')"
->
+          <a href="events.html#workshop" class="experience-card workshop-card wow fadeInUp" data-wow-delay="0.3s"
+            onclick="localStorage.setItem('playAmbientOnLoad','true')">
             <div class="card-inner">
               <div class="card-bg"></div>
               <div class="card-content">
@@ -1090,8 +1090,8 @@ document.addEventListener("DOMContentLoaded", () => {
           </a>
 
           <!-- Card 3: Culturals -->
-          <a href="events.html#culturals" class="experience-card cultural-card wow fadeInUp" data-wow-delay="0.5s" onclick="localStorage.setItem('playAmbientOnLoad','true')"
->
+          <a href="events.html#culturals" class="experience-card cultural-card wow fadeInUp" data-wow-delay="0.5s"
+            onclick="localStorage.setItem('playAmbientOnLoad','true')">
             <div class="card-inner">
               <div class="card-bg"></div>
               <div class="card-content">

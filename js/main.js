@@ -1127,3 +1127,89 @@ document.addEventListener('keydown', function (event) {
     closeEventModal();
   }
 });
+
+/* ==========================================================================
+   SOUND CONTROLLER & VIDEO PLAYBACK FIX
+   ========================================================================== */
+class SoundController {
+  constructor() {
+    this.bgMusic = document.getElementById('bg-music');
+    this.toggleBtn = document.getElementById('sound-toggle');
+    this.isMuted = true;
+
+    if (this.bgMusic) {
+      this.bgMusic.volume = 0.5; // Set a reasonable volume
+    }
+
+    if (this.toggleBtn && this.bgMusic) {
+      this.init();
+    }
+
+    // Force video play on load
+    this.forceVideoPlay();
+  }
+
+  init() {
+    // Set initial state
+    this.bgMusic.muted = true;
+    this.updateIcon();
+
+    this.toggleBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      this.toggleSound();
+    });
+  }
+
+  toggleSound() {
+    if (this.isMuted) {
+      // UNMUTE
+      this.isMuted = false;
+      this.bgMusic.muted = false;
+
+      // Try to play
+      const playPromise = this.bgMusic.play();
+      if (playPromise !== undefined) {
+        playPromise.catch(error => {
+          console.error("Audio playback failed:", error);
+          // If blocked, maybe we need another interaction or handle logic.
+          // But clicking the toggle IS an interaction.
+        });
+      }
+    } else {
+      // MUTE
+      this.isMuted = true;
+      this.bgMusic.muted = true;
+      // Optionally pause? or just mute. Mute is safer for background tracks.
+    }
+
+    this.updateIcon();
+  }
+
+  updateIcon() {
+    if (this.isMuted) {
+      this.toggleBtn.textContent = '🔇'; // Muted icon
+    } else {
+      this.toggleBtn.textContent = '🔊'; // Sound on icon
+    }
+  }
+
+  forceVideoPlay() {
+    const video = document.getElementById('bg-video');
+    if (video) {
+      video.muted = true; // Crucial for autoplay
+      video.playsInline = true;
+
+      const promise = video.play();
+      if (promise !== undefined) {
+        promise.catch(error => {
+          console.error("Video autoplay blocked or failed:", error);
+        });
+      }
+    }
+  }
+}
+
+// Initialize on DOM Ready
+$(document).ready(function () {
+  new SoundController();
+});
