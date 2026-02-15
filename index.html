@@ -458,6 +458,13 @@
 
 <body>
 
+  <audio id="countdown-audio" preload="auto" loop>
+    <source src="img/countdown.mp3" type="audio/mpeg">
+  </audio>
+
+  <audio id="bg-music" preload="auto" loop>
+  <source src="img/ambient.mp3" type="audio/mpeg">
+</audio>
 
 
 
@@ -478,6 +485,7 @@
         <a href="#intro" class="scrollto"><img src="img/logo.webp" alt="" title="" width="50" height="50"></a>
         <h2><a href="#main">Sri <span>RamaKrishna</span><br />Institute of technology</a></h2>
       </div>
+      <button id="sound-toggle">🔇</button>
 
       <nav id="nav-menu-container">
         <ul class="nav-menu">
@@ -502,6 +510,8 @@
       <source src="img/bb4.mov" type="video/mp4">
       Your browser does not support the video tag.
     </video>
+
+
 
     <div id="hero-canvas"></div> <!-- 3D Canvas Container -->
 
@@ -773,7 +783,7 @@
         <div class="hack-v2-right">
 
           <div class="hack-v2-header">
-            <p class="hack-v2-subtitle">Separate Registration</p>
+            <!-- <p class="hack-v2-subtitle">Separate Registration</p> -->
             <h2 class="hack-v2-title">Flagship Hackathon</h2>
           </div>
 
@@ -888,73 +898,104 @@
 
       <!-- 3D TILT JAVASCRIPT -->
       <script>
-        (function () {
-          'use strict';
+document.addEventListener("DOMContentLoaded", () => {
 
-          // Check if device is mobile or touch-enabled
-          const isMobile = window.innerWidth <= 768 || 'ontouchstart' in window;
+  const video = document.getElementById("bg-video");
+  const intro = document.getElementById("intro");
+  const about = document.getElementById("about");
+  const btn = document.getElementById("sound-toggle");
+  const countdownAudio = document.getElementById("countdown-audio");
+  const bgMusic = document.getElementById("bg-music");
 
-          // Exit early if mobile
-          if (isMobile) return;
+  let soundEnabled = false;
 
-          const container = document.getElementById('tiltContainer');
-          const inner = document.getElementById('tiltInner');
-          const shine = document.getElementById('tiltShine');
+  // 🔥 RESTORE SOUND STATE ON PAGE LOAD
+  const savedSoundState = localStorage.getItem("soundEnabled");
 
-          if (!container || !inner || !shine) return;
+  if (savedSoundState === "true") {
+    soundEnabled = true;
+    btn.textContent = "🔊";
 
-          // Configuration
-          const MAX_TILT = 12; // degrees
-          const TRANSITION_EASE = 'cubic-bezier(0.23, 1, 0.32, 1)';
-          const TRANSITION_DURATION = '0.3s';
+    // Ambient
+    bgMusic.volume = 0.1;
+    bgMusic.loop = true;
+    bgMusic.muted = false;
+    bgMusic.play().catch(()=>{});
 
-          let isHovering = false;
+    // Hero video
+    video.muted = false;
+    video.volume = 0.3;
+  }
 
-          // Mouse Enter
-          container.addEventListener('mouseenter', () => {
-            isHovering = true;
-            inner.style.transition = `transform ${TRANSITION_DURATION} ${TRANSITION_EASE}`;
-          });
+  // 🔊 TOGGLE BUTTON
+  btn.addEventListener("click", () => {
 
-          // Mouse Move (Tilt Effect)
-          container.addEventListener('mousemove', (e) => {
-            if (!isHovering) return;
+    soundEnabled = !soundEnabled;
 
-            const rect = container.getBoundingClientRect();
-            const x = e.clientX - rect.left; // X position within element
-            const y = e.clientY - rect.top;  // Y position within element
+    // Save state
+    localStorage.setItem("soundEnabled", soundEnabled);
 
-            const centerX = rect.width / 2;
-            const centerY = rect.height / 2;
+    if (soundEnabled) {
 
-            // Calculate rotation angles
-            const rotateX = ((y - centerY) / centerY) * -MAX_TILT; // Inverted for natural feel
-            const rotateY = ((x - centerX) / centerX) * MAX_TILT;
+      btn.textContent = "🔊";
 
-            // Apply 3D transform
-            inner.style.transform = `
-              perspective(1200px) 
-              rotateX(${rotateX}deg) 
-              rotateY(${rotateY}deg) 
-              scale(1.03)
-            `;
+      // Ambient
+      bgMusic.volume = 0.1;
+      bgMusic.loop = true;
+      bgMusic.muted = false;
+      bgMusic.play().catch(()=>{});
 
-            // Move shine effect to follow cursor
-            const shineX = (x / rect.width) * 100;
-            const shineY = (y / rect.height) * 100;
-            shine.style.background = `radial-gradient(circle at ${shineX}% ${shineY}%, rgba(255, 255, 255, 0.2), transparent 60%)`;
-          });
+      // Hero video
+      video.muted = false;
+      video.volume = 0.3;
 
-          // Mouse Leave (Reset)
-          container.addEventListener('mouseleave', () => {
-            isHovering = false;
-            inner.style.transition = `transform 0.5s ${TRANSITION_EASE}`;
-            inner.style.transform = 'perspective(1200px) rotateX(0deg) rotateY(0deg) scale(1)';
-            shine.style.opacity = '0';
-          });
+    } else {
 
-        })();
-      </script>
+      btn.textContent = "🔇";
+
+      bgMusic.pause();
+      video.muted = true;
+      countdownAudio.pause();
+    }
+  });
+
+  // 👀 SECTION OBSERVER
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+
+      if (!soundEnabled) return;
+
+      // 🎬 HERO SECTION
+      if (entry.target.id === "intro") {
+        if (entry.isIntersecting) {
+          countdownAudio.pause();
+          video.play().catch(()=>{});
+        } else {
+          video.pause();
+        }
+      }
+
+      // ⏳ COUNTDOWN SECTION
+      if (entry.target.id === "about") {
+        if (entry.isIntersecting) {
+          video.pause();
+          countdownAudio.currentTime = 0;
+          countdownAudio.volume = 0.4;
+          countdownAudio.play().catch(()=>{});
+        } else {
+          countdownAudio.pause();
+        }
+      }
+
+    });
+  }, { threshold: 0.6 });
+
+  observer.observe(intro);
+  observer.observe(about);
+
+});
+</script>
+
 
     </section>
 
@@ -1008,7 +1049,8 @@
         <div class="experience-grid">
 
           <!-- Card 1: Technical & Non-Technical -->
-          <a href="events.html#tech" class="experience-card tech-card wow fadeInUp" data-wow-delay="0.1s">
+          <a href="events.html#tech" class="experience-card tech-card wow fadeInUp" data-wow-delay="0.1s" onclick="localStorage.setItem('playAmbientOnLoad','true')"
+>
             <div class="card-inner">
               <div class="card-bg"></div>
               <div class="card-content">
@@ -1028,7 +1070,8 @@
           </a>
 
           <!-- Card 2: Workshops -->
-          <a href="events.html#workshop" class="experience-card workshop-card wow fadeInUp" data-wow-delay="0.3s">
+          <a href="events.html#workshop" class="experience-card workshop-card wow fadeInUp" data-wow-delay="0.3s" onclick="localStorage.setItem('playAmbientOnLoad','true')"
+>
             <div class="card-inner">
               <div class="card-bg"></div>
               <div class="card-content">
@@ -1047,7 +1090,8 @@
           </a>
 
           <!-- Card 3: Culturals -->
-          <a href="events.html#culturals" class="experience-card cultural-card wow fadeInUp" data-wow-delay="0.5s">
+          <a href="events.html#culturals" class="experience-card cultural-card wow fadeInUp" data-wow-delay="0.5s" onclick="localStorage.setItem('playAmbientOnLoad','true')"
+>
             <div class="card-inner">
               <div class="card-bg"></div>
               <div class="card-content">

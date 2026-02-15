@@ -274,6 +274,12 @@
     <!-- Ghost Cursor -->
     <!-- Ghost Cursor -->
 
+    <audio id="bg-music" preload="auto" loop>
+        <source src="img/ambient.mp3" type="audio/mpeg">
+    </audio>
+
+
+
     <svg class="svg-container">
         <defs>
             <filter id="turbulent-displace" color-interpolation-filters="sRGB" x="-20%" y="-20%" width="140%"
@@ -312,6 +318,10 @@
     Header
     ============================-->
     <header id="header">
+
+        <button id="events-sound-toggle" class="sound-btn">
+            🔇 Sound
+        </button>
         <div class="container">
             <div id="logo" class="pull-left">
                 <a href="#header" class="scrollto"><img src="img/logo1.webp" alt="" title=""></a>
@@ -1255,6 +1265,60 @@
                 }
             });
         });
+
+        document.addEventListener("DOMContentLoaded", () => {
+
+    const bgMusic = document.getElementById("bg-music");
+    const homeBtn = document.getElementById("sound-toggle");
+    const eventsBtn = document.getElementById("events-sound-toggle");
+
+    let soundEnabled = false;
+
+    // 🔥 RESTORE SOUND STATE
+    const savedSoundState = localStorage.getItem("soundEnabled");
+
+    if (savedSoundState === "true") {
+        bgMusic.volume = 0.2;
+        bgMusic.play().catch(() => {});
+        soundEnabled = true;
+
+        if (eventsBtn) eventsBtn.textContent = "🔊 Sound On";
+    }
+
+    function enableSound() {
+        bgMusic.volume = 0.2;
+        bgMusic.play().catch(() => {});
+        soundEnabled = true;
+
+        localStorage.setItem("soundEnabled", "true");
+
+        if (homeBtn) homeBtn.textContent = "🔊";
+        if (eventsBtn) eventsBtn.textContent = "🔊 Sound On";
+    }
+
+    function disableSound() {
+        bgMusic.pause();
+        soundEnabled = false;
+
+        localStorage.setItem("soundEnabled", "false");
+
+        if (homeBtn) homeBtn.textContent = "🔇";
+        if (eventsBtn) eventsBtn.textContent = "🔇 Sound Off";
+    }
+
+    function toggleSound() {
+        if (soundEnabled) {
+            disableSound();
+        } else {
+            enableSound();
+        }
+    }
+
+    if (homeBtn) homeBtn.addEventListener("click", toggleSound);
+    if (eventsBtn) eventsBtn.addEventListener("click", toggleSound);
+
+});
+
     </script>
 
 
