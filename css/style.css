@@ -59,6 +59,8 @@ body {
   font-family: 'StrangerThings', sans-serif;
   font-size: 1.1em;
   overflow-x: hidden;
+  /* padding-top: 120px; */
+
   /* Apply a subtle Stranger Things text shadow globally if requested, or just for headings */
 }
 
@@ -77,9 +79,13 @@ a:focus {
   text-decoration: none;
 }
 
+/* Global Typography with clamp() for responsiveness */
 p {
   padding: 0;
   margin: 0 0 30px 0;
+  font-size: clamp(1rem, 2.5vw, 1.1rem);
+  /* Responsive paragraph size */
+  line-height: 1.6;
 }
 
 h1,
@@ -99,6 +105,32 @@ h6 {
     0 0 2px #3f0000,
     0 0 5px #ff0000;
   letter-spacing: 2px;
+  overflow-wrap: break-word;
+  /* Prevent overflow */
+}
+
+h1 {
+  font-size: clamp(2.5rem, 8vw, 6rem);
+}
+
+h2 {
+  font-size: clamp(2rem, 6vw, 4rem);
+}
+
+h3 {
+  font-size: clamp(1.5rem, 5vw, 3rem);
+}
+
+h4 {
+  font-size: clamp(1.2rem, 4vw, 2.5rem);
+}
+
+h5 {
+  font-size: clamp(1.1rem, 3vw, 2rem);
+}
+
+h6 {
+  font-size: clamp(1rem, 2vw, 1.5rem);
 }
 
 .main-page {
@@ -342,7 +374,7 @@ h6 {
 
 #nav-menu-container {
   float: right;
-  margin: 0;
+  margin: -50px 0 0 0;
 }
 
 /* Nav Meu Styling */
@@ -642,6 +674,30 @@ body.mobile-nav-active #mobile-nav-toggle {
   justify-content: center;
 }
 
+
+/* Main Logo Image */
+.main-logo-img {
+  width: clamp(100px, 15vw, 500px);
+  margin-bottom: 2px;
+  animation: floatLogo 6s ease-in-out infinite;
+  filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.5));
+  width: 40vw;
+  /* 60% of screen width */
+  max-width: 1000px;
+}
+
+@keyframes floatLogo {
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
 /* Glitch Title */
 .glitch-title {
   font-family: 'StrangerThings', 'Orbitron', sans-serif;
@@ -655,6 +711,11 @@ body.mobile-nav-active #mobile-nav-toggle {
     0 0 20px rgba(0, 0, 0, 0.9),
     0 0 40px rgba(0, 0, 0, 0.8),
     2px 2px 4px rgba(0, 0, 0, 1);
+  margin-top: 0;
+  margin-bottom: 0;
+  line-height: 0.0;
+  /* Tighter vertical height */
+
 }
 
 .glitch-title::before,
@@ -808,7 +869,7 @@ body.mobile-nav-active #mobile-nav-toggle {
   font-family: 'Space Mono', monospace;
   color: var(--electric-blue);
   font-size: 1.2rem;
-  margin-top: 10px;
+  margin-top: 55px;
   letter-spacing: 3px;
   text-shadow:
     0 0 5px var(--electric-blue),
@@ -826,44 +887,49 @@ body.mobile-nav-active #mobile-nav-toggle {
   position: relative;
   padding: 15px 40px;
   background: transparent;
-  color: var(--cyber-red);
+  color: #ffffff;
   font-family: 'StrangerThings', 'Orbitron', sans-serif;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 2px;
-  border: 2px solid var(--cyber-red);
+  border: 2px solid #ffffff;
   text-decoration: none;
   overflow: hidden;
   transition: 0.3s;
-  box-shadow: 0 0 10px rgba(255, 0, 60, 0.4);
+  box-shadow: 0 0 10px rgb(255, 255, 255);
   clip-path: polygon(10% 0, 100% 0, 100% 70%, 90% 100%, 0 100%, 0 30%);
 }
 
 .cyber-btn:hover {
-  background: var(--cyber-red);
+  background: #ffffff;
   color: var(--void-black);
   box-shadow: 0 0 30px var(--cyber-red);
 }
 
 .cyber-btn-outline {
+  position: relative;
   padding: 15px 40px;
   background: transparent;
-  color: var(--text-main);
+  color: #ffffff;
   font-family: 'StrangerThings', 'Orbitron', sans-serif;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 2px;
-  border: 1px solid rgba(255, 255, 255, 0.3);
+  border: 2px solid #ffffff;
   text-decoration: none;
+  overflow: hidden;
   transition: 0.3s;
+  box-shadow: 0 0 10px rgb(255, 255, 255);
   clip-path: polygon(0 0, 90% 0, 100% 30%, 100% 100%, 10% 100%, 0 70%);
 }
 
+
 .cyber-btn-outline:hover {
-  border-color: var(--cyber-gold);
-  color: var(--cyber-gold);
-  box-shadow: 0 0 15px rgba(252, 238, 9, 0.3);
+  background: #ffffff;
+  color: #000000;
+  box-shadow: 0 0 30px #ffffff;
 }
+
 
 /* Stats */
 .hero-stats {
@@ -881,7 +947,7 @@ body.mobile-nav-active #mobile-nav-toggle {
 
 .stat-num {
   font-family: 'StrangerThings', 'Orbitron', sans-serif;
-  font-size: 1.5rem;
+  font-size: 3.0rem;
   color: var(--text-main);
   text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.9);
 }
@@ -1495,6 +1561,7 @@ body.mobile-nav-active #mobile-nav-toggle {
 --------------------------------------------------------------*/
 #schedule {
   padding: 100px 0;
+  padding-top: 160px;
   background: var(--void-black);
 }
 
@@ -4234,3 +4301,366 @@ body.mobile-nav-active #mobile-nav-toggle {
     width: 100%;
   }
 }
+/* ==========================================================================
+   RESPONSIVE OVERRIDES & OPTIMIZATIONS
+   ========================================================================== */
+
+/* 1. Global Resets & Safe Defaults */
+html {
+  box-sizing: border-box;
+  overflow-x: hidden;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+body {
+  overflow-x: hidden;
+  width: 100%;
+  position: relative;
+}
+
+img, video, iframe {
+  max-width: 100%;
+  height: auto;
+}
+
+/* 2. Responsive Navigation (Hamburger) */
+/* Mobile Nav Toggle Button */
+#mobile-nav-toggle {
+  position: fixed;
+  right: 20px;
+  top: 25px;
+  z-index: 999;
+  border: 0;
+  background: none;
+  font-size: 28px;
+  display: none; /* Hidden on desktop */
+  transition: all 0.4s;
+  outline: none;
+  cursor: pointer;
+}
+
+#mobile-nav-toggle i {
+  color: #fff;
+  text-shadow: 0 0 10px rgba(0,0,0,0.5);
+}
+
+/* Mobile Nav Container */
+#mobile-nav {
+  position: fixed;
+  top: 0;
+  padding-top: 18px;
+  bottom: 0;
+  z-index: 998;
+  background: rgba(0, 0, 0, 0.95);
+  left: -260px; /* Start off-screen */
+  width: 260px;
+  overflow-y: auto;
+  transition: 0.4s;
+  backdrop-filter: blur(10px);
+  border-right: 1px solid rgba(255, 0, 0, 0.2);
+}
+
+#mobile-nav ul {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+#mobile-nav ul li {
+  position: relative;
+}
+
+#mobile-nav ul li a {
+  color: #fff;
+  font-size: 16px;
+  overflow: hidden;
+  padding: 10px 22px 10px 15px;
+  position: relative;
+  text-decoration: none;
+  width: 100%;
+  display: block;
+  outline: none;
+  font-family: 'StrangerThings', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+#mobile-nav ul li a:hover {
+  color: #f82249;
+}
+
+#mobile-nav ul li li {
+  padding-left: 30px;
+}
+
+/* Show Mobile Nav when active */
+body.mobile-nav-active #mobile-nav {
+  left: 0;
+}
+
+body.mobile-nav-active #mobile-nav-toggle {
+  color: #fff;
+}
+
+/* Overlay */
+#mobile-body-overly {
+  width: 100%;
+  height: 100%;
+  z-index: 997;
+  top: 0;
+  left: 0;
+  position: fixed;
+  background: rgba(0, 0, 0, 0.7);
+  display: none;
+}
+
+/* 3. Media Queries */
+
+/* Large Desktop (1441px+) */
+@media (min-width: 1441px) {
+  .container {
+    max-width: 1400px;
+  }
+}
+
+/* Laptops (1025px - 1440px) */
+@media (max-width: 1440px) {
+  #intro h1 {
+    font-size: clamp(3rem, 6vw, 5rem);
+  }
+}
+
+/* Tablets & Smaller Laptops (Max 1024px) */
+@media (max-width: 1024px) {
+  #nav-menu-container {
+    display: none; /* Hide Desktop Menu */
+  }
+
+  #mobile-nav-toggle {
+    display: inline; /* Show Hamburger */
+  }
+
+  #intro {
+    background-attachment: scroll; /* Fix parallax issues */
+  }
+}
+
+/* Tablets (768px - 1024px) */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .intro-container h1 {
+    font-size: 4rem;
+  }
+}
+
+/* Mobile & Large Mobile (Max 767px) */
+@media (max-width: 767px) {
+  /* Header */
+  #header {
+    padding: 15px;
+    height: 70px;
+  }
+
+  #header #logo h2 {
+    font-size: 14px; /* Smaller logo text */
+  }
+
+  #header #logo img {
+    max-height: 40px;
+  }
+
+  /* Intro Section */
+  #intro .intro-container {
+    top: 80px; /* Adjust for header */
+  }
+  
+  #intro h1 {
+    font-size: clamp(2rem, 10vw, 3.5rem);
+    line-height: 1.1;
+  }
+
+  #intro p {
+    font-size: 1rem;
+    padding: 0 15px;
+  }
+
+  /* Section Headers */
+  .section-header h2 {
+    font-size: 28px;
+  }
+
+  /* About Section */
+  #about .row {
+    display: flex;
+    flex-direction: column;
+  }
+
+  #about .col-lg-3, #about .col-lg-6 {
+    width: 100%;
+    margin-bottom: 30px;
+  }
+
+  /* Hackathon Section */
+  .hack-v2-wrapper {
+    flex-direction: column;
+    gap: 30px;
+  }
+
+  .hack-v2-buttons {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .hack-v2-primary, .hack-v2-outline {
+    display: block;
+    text-align: center;
+    width: 100%;
+    margin-bottom: 15px;
+  }
+
+  /* Events Grid (Electric Cards) */
+  .card-container {
+    grid-template-columns: 1fr; /* Single column on mobile */
+    padding: 20px 10px;
+    gap: 30px;
+  }
+
+  .electric-card {
+    height: auto;
+    min-height: 450px;
+  }
+
+  /* Venue Map */
+  .venue-g {
+    height: 300px;
+  }
+
+  /* Footer */
+  #footer .footer-top .row {
+    flex-direction: column;
+  }
+
+  #footer .col-lg-3, #footer .col-lg-6 {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 30px;
+  }
+
+  #footer .footer-newsletter input[type='email'] {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+
+  #footer .footer-newsletter input[type='submit'] {
+    width: 100%;
+  }
+}
+
+/* Small Mobile (Max 480px) */
+@media (max-width: 480px) {
+  #intro h1 {
+    font-size: clamp(1.8rem, 8vw, 2.5rem);
+  }
+
+  .nav-menu-container {
+    display: none;
+  }
+
+  /* Adjust Modal padding */
+  .event-modal-body {
+    padding: 10px;
+  }
+
+  .event-modal-left, .event-modal-right {
+    padding: 15px;
+  }
+
+  .register-btn {
+    width: 100%;
+    padding: 15px;
+    font-size: 1rem;
+  }
+}
+
+/* Extra Small (Max 320px) */
+@media (max-width: 320px) {
+  body {
+    font-size: 14px;
+  }
+  
+  #header #logo h2 {
+    font-size: 10px;
+  }
+}
+
+
+/* Fix for Header Alignment and Countdown on Mobile */
+@media (max-width: 768px) {
+  /* Header Fixes */
+  #header #logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  #header #logo h2 {
+    font-size: 12px;
+    line-height: normal;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  
+  #header #logo h2 br {
+    display: none; /* Hide break on mobile to keep inline if space allows, or let flex handle it */
+  }
+
+  #header #logo h2 span {
+     display: block; /* Make Ramakrishna distinct */
+  }
+
+  /* Countdown Fixes */
+  .countdown-hero-wrap, .counter-content {
+    width: 100%;
+    padding: 0;
+  }
+
+  #countdown {
+    display: flex;
+    flex-wrap: nowrap !important; /* Force single line */
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin: 0 auto;
+    padding: 10px 0;
+    gap: 5px; /* Reduce gap */
+  }
+
+  #countdown li {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0 2px !important; /* Tight margins */
+  }
+
+  #countdown li span {
+    font-size: 1.5rem !important; /* Smaller number */
+    line-height: 1;
+  }
+
+  #countdown li p {
+    font-size: 0.6rem !important; /* Smaller label */
+    margin: 0;
+  }
+
+  #countdown li.separator {
+    font-size: 1.5rem !important;
+    line-height: 1;
+    margin: 0 !important;
+    padding-bottom: 15px; /* Align visually with numbers */
+  }
+}
+

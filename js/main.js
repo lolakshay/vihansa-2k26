@@ -561,7 +561,7 @@ class GhostCursor {
         vec2 q = vec2(fbm(p * 2.0 + iTime * 0.1), fbm(p * 2.0 + vec2(5.2,1.3) + iTime * 0.1));
         float smoke = fbm(p * 3.0 + q * 2.5);
         
-        float radius = 0.05; // Base radius
+        float radius = 0.02; // Base radius
         float dist = length(p - mousePos);
         float distFactor = 1.0 - smoothstep(0.0, radius + 0.1 * activity, dist);
         
