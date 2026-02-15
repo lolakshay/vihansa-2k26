@@ -1138,7 +1138,7 @@ document.addEventListener('keydown', function (event) {
  * - Persistent state via localStorage.
  * - Browser autoplay policy handling (Unlock on interaction).
  * - Section-based audio switching (IntersectionObserver).
- * - Intelligent volume management.
+ * - Code-based volume management (No UI).
  */
 class AudioManager {
   constructor() {
@@ -1149,17 +1149,19 @@ class AudioManager {
     this.toggleBtn = document.getElementById('sound-toggle');
 
     // State
-    // Check localStorage for saved preference, default to 'muted' (false = active, true = muted)
-    // actually, let's store 'soundEnabled' (true/false) for clarity.
-    // If unsetItem, default to FALSE (muted) to be safe with autoplay policies.
     this.soundEnabled = localStorage.getItem('vihansa_sound_enabled') === 'true';
-    this.isUnlocked = false; // Tracks if user has interacted with the document
-    this.activeSection = 'intro'; // Default section
+    this.isUnlocked = false;
+    this.activeSection = 'intro'; // Start assuming intro
 
-    // Configuration
-    this.fadingDuration = 1000;
-    this.ambientVolume = 0.1;
-    this.videoVolume = 0.1;
+    // ============================================
+    // VOLUME SETTINGS (CONTROL HERE)
+    // ============================================
+    this.volumes = {
+      music: 0.1,  // Background music volume (0.0 to 1.0)
+      intro: 0.4,  // Intro video volume (0.0 to 1.0)
+      timer: 0.5   // Countdown timer volume (0.0 to 1.0)
+    };
+    // ============================================
 
     if (this.toggleBtn) {
       this.init();
@@ -1172,23 +1174,19 @@ class AudioManager {
     // 1. Set Initial UI State
     this.updateIcon();
 
-    // 2. Setup Toggle Button
+    // 2. Setup Toggle Button (Mute/Unmute Global)
     this.toggleBtn.addEventListener('click', (e) => {
       e.preventDefault();
       this.toggleSound();
     });
 
-    // 3. Setup Global Unlock Listener (One-time)
+    // 3. Setup Global Unlock Listener
     const unlockHandler = () => {
       console.log("AudioManager: User interaction detected. Unlocking audio.");
       this.isUnlocked = true;
-
-      // Refine the audio context if needed, or just try to play if enabled
       if (this.soundEnabled) {
         this.resumeAudioContexts();
       }
-
-      // Remove listeners
       ['click', 'keydown', 'touchstart'].forEach(evt =>
         document.removeEventListener(evt, unlockHandler)
       );
@@ -1198,61 +1196,85 @@ class AudioManager {
       document.addEventListener(evt, unlockHandler)
     );
 
-    // 4. Setup Visibility Handler (Tab switching)
+    // 4. Setup Visibility Handler
     document.addEventListener('visibilitychange', () => {
       if (document.hidden) {
-        this.muteAll(true); // Temporarily mute everything
+        this.muteAll(true);
       } else {
         if (this.soundEnabled) {
-          this.resumeAudioContexts(); // Resume based on current state
+          this.resumeAudioContexts();
         }
       }
     });
 
-    // 5. Setup Intersection Observer for Sections
+    // 5. Setup Intersection Observer
     this.setupObservers();
 
-    // 6. Initial Configuration of Elements
+    // 6. Initial Configuration
     this.configureElements();
 
-    // 7. Attempt Auto-Start if previously enabled (might fail without interaction, but valid to try)
+    // 7. Attempt Auto-Start
     if (this.soundEnabled) {
       this.resumeAudioContexts();
     }
   }
 
+  initVolumeControls() {
+    // Initialize slider values
+    if (this.volSliderMusic) this.volSliderMusic.value = this.volumes.music;
+    if (this.volSliderIntro) this.volSliderIntro.value = this.volumes.intro;
+    if (this.volSliderTimer) this.volSliderTimer.value = this.volumes.timer;
+
+    // Bind events
+    if (this.volSliderMusic) {
+      this.volSliderMusic.addEventListener('input', (e) => {
+        this.volumes.music = parseFloat(e.target.value);
+        if (this.bgMusic) this.bgMusic.volume = this.volumes.music;
+      });
+    }
+
+    if (this.volSliderIntro) {
+      this.volSliderIntro.addEventListener('input', (e) => {
+        this.volumes.intro = parseFloat(e.target.value);
+        if (this.introVideo && !this.introVideo.muted) this.introVideo.volume = this.volumes.intro;
+      });
+    }
+
+    if (this.volSliderTimer) {
+      this.volSliderTimer.addEventListener('input', (e) => {
+        this.volumes.timer = parseFloat(e.target.value);
+        if (this.countdownAudio) this.countdownAudio.volume = this.volumes.timer;
+      });
+    }
+  }
+
   configureElements() {
-    // Ensure loops and initial volumes
     if (this.bgMusic) {
       this.bgMusic.loop = true;
-      this.bgMusic.volume = this.ambientVolume;
+      this.bgMusic.volume = this.volumes.music;
     }
     if (this.countdownAudio) {
       this.countdownAudio.loop = true;
-      this.countdownAudio.volume = 1.0;
+      this.countdownAudio.volume = this.volumes.timer;
     }
     if (this.introVideo) {
-      // Video is special. It's usually muted for autoplay. 
-      // We unmute it via JS only if sound is enabled and we are in intro.
       this.introVideo.loop = true;
-      // Force play loop for video visual
-      this.introVideo.muted = true; // Start muted to ensure autoplay works
-      this.introVideo.volume = this.videoVolume; // Set target volume
-      this.introVideo.play().catch(e => console.warn("Video visual autoplay failed:", e));
+      this.introVideo.muted = true; // Start muted
+      this.introVideo.volume = this.volumes.intro;
+
+      this.introVideo.addEventListener('canplay', () => {
+        this.introVideo.play().catch(e => console.warn("Video visual play failed:", e));
+      }, { once: true });
     }
   }
 
   toggleSound() {
     this.soundEnabled = !this.soundEnabled;
-
-    // Persist state
     localStorage.setItem('vihansa_sound_enabled', this.soundEnabled);
     console.log(`AudioManager: Sound toggled to ${this.soundEnabled}`);
-
     this.updateIcon();
 
     if (this.soundEnabled) {
-      // User explicitly requested sound. This counts as interaction.
       this.isUnlocked = true;
       this.resumeAudioContexts();
     } else {
@@ -1263,70 +1285,63 @@ class AudioManager {
   updateIcon() {
     if (this.soundEnabled) {
       this.toggleBtn.textContent = '🔊';
+      this.toggleBtn.style.opacity = '1';
     } else {
       this.toggleBtn.textContent = '🔇';
+      this.toggleBtn.style.opacity = '0.7';
     }
   }
 
-  /**
-   * Core logic to decide what should be playing based on state and section.
-   */
   updatePlaybackState() {
-    if (!this.soundEnabled) return; // visuals continue, audio stops.
+    if (!this.soundEnabled) return;
 
     console.log(`AudioManager: Updating playback for section '${this.activeSection}'`);
 
-    // 1. Ambient Music (Always plays if enabled, lower vol if specific sound is on?)
-    // Requirement: "Ambient continues underneath (low volume)"
-    this.playAudio(this.bgMusic, this.ambientVolume);
+    // 1. Background Music: Always plays if enabled
+    this.playAudio(this.bgMusic, this.volumes.music);
 
     // 2. Section Specific Audio
     if (this.activeSection === 'intro') {
-      // Intro Section: Video Audio ON, Countdown OFF
-      this.muteVideo(false);
+      // Intro: Video Audio ON, Countdown OFF
+      if (this.introVideo) {
+        this.introVideo.muted = false;
+        this.introVideo.volume = this.volumes.intro;
+      }
       this.pauseAudio(this.countdownAudio);
+
     } else if (this.activeSection === 'about') {
-      // About Section: Video Audio OFF, Countdown ON
-      this.muteVideo(true);
-      this.playAudio(this.countdownAudio, 1.0);
+      // About/Countdown: Video Audio OFF, Countdown ON
+      if (this.introVideo) this.introVideo.muted = true; // Mute video but keep playing visually
+      this.playAudio(this.countdownAudio, this.volumes.timer);
+
     } else {
-      // Other Sections: Only Ambient
-      this.muteVideo(true);
+      // Other: All specific sounds OFF
+      if (this.introVideo) this.introVideo.muted = true;
       this.pauseAudio(this.countdownAudio);
     }
   }
 
   stopAll() {
-    // Mute/Pause everything
     if (this.bgMusic) this.bgMusic.pause();
     if (this.countdownAudio) this.countdownAudio.pause();
-    this.muteVideo(true);
+    if (this.introVideo) this.introVideo.muted = true;
   }
 
-  muteAll(temporary = false) {
-    // Like stopAll but maybe stores previous state if temporary? 
-    // For simplicity, just pause.
-    if (this.bgMusic) this.bgMusic.pause();
-    if (this.countdownAudio) this.countdownAudio.pause();
-    this.muteVideo(true);
+  muteAll() {
+    this.stopAll();
   }
 
   resumeAudioContexts() {
-    // Re-evaluate what should be playing
-    // Note: we don't restart tracks from 0, we just .play() them.
     this.updatePlaybackState();
   }
 
-  // Helpers
-  playAudio(audioEl, volume = 1.0) {
+  playAudio(audioEl, volume) {
     if (!audioEl) return;
     audioEl.volume = volume;
-    // Avoid "The play() request was interrupted" errors
     if (audioEl.paused) {
       const p = audioEl.play();
       if (p) {
         p.catch(e => {
-          // Only log if it's not a standard abort (user clicking fast) or lack of interaction
           if (e.name !== 'AbortError') console.warn("Audio play blocked:", e.message);
         });
       }
@@ -1339,23 +1354,9 @@ class AudioManager {
     }
   }
 
-  muteVideo(shouldMute) {
-    if (this.introVideo) {
-      this.introVideo.muted = shouldMute;
-      if (!shouldMute) {
-        this.introVideo.volume = this.videoVolume;
-      }
-    }
-  }
-
   setupObservers() {
-    // Detect #intro
-    const introSection = document.getElementById('intro');
-    // Detect #about
-    const aboutSection = document.getElementById('about');
-
     const observerOptions = {
-      threshold: 0.6 // 60% visibility required to be "active"
+      threshold: 0.5 // 50% visibility
     };
 
     const observer = new IntersectionObserver((entries) => {
@@ -1366,39 +1367,23 @@ class AudioManager {
           } else if (entry.target.id === 'about') {
             this.activeSection = 'about';
           }
-          // If we scroll to neither (e.g. further down), default to 'other'
-          // However, we only observe intro and about. 
-          // If both are not intersecting, we assume 'other'.
-
-          if (this.soundEnabled) {
-            this.updatePlaybackState();
-          }
         } else {
-          // If leaving a section, we might want to check what is currently visible?
-          // But usually, one enters another section.
-          // Let's rely on the 'entering' event of the other section.
-          // Special case: if we scroll WAY down to events, neither is intersecting.
+          // If leaving the active section, switch to 'other' ONLY if we are not entering another tracked section
+          if (entry.target.id === this.activeSection) {
+            // We can safely assume 'other' for a moment. 
+            // If we entered another section, its callback will fire and overwrite this.
+            this.activeSection = 'other';
+          }
+        }
+
+        if (this.soundEnabled) {
+          this.updatePlaybackState();
         }
       });
-
-      // Fallback for "neither active":
-      // We can check if intro OR about is intersecting. If NOT, activeSection = 'other'
-      const isIntroVisible = introSection &&
-        (introSection.getBoundingClientRect().top < window.innerHeight && introSection.getBoundingClientRect().bottom > 0);
-
-      // This logic inside the callback is tricky because it only fires on change.
-      // Better approach: Observe ALL major sections or just assume 'other' if we leave one.
-      // For robust 'other' detection, we can observe the 'main' container or just live with the last active state.
-      // BUT, the user requirement is "Only one section-specific audio plays".
-      // If I scroll to events, countdown audio MUST stop.
-
-      if (!entry.isIntersecting && entry.target.id === this.activeSection) {
-        // We just left the active section.
-        this.activeSection = 'other';
-        if (this.soundEnabled) this.updatePlaybackState();
-      }
-
     }, observerOptions);
+
+    const introSection = document.getElementById('intro');
+    const aboutSection = document.getElementById('about');
 
     if (introSection) observer.observe(introSection);
     if (aboutSection) observer.observe(aboutSection);
