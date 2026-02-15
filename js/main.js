@@ -1237,6 +1237,7 @@ class AudioManager {
       this.introVideo.loop = true;
       // Force play loop for video visual
       this.introVideo.muted = true; // Start muted to ensure autoplay works
+      this.introVideo.volume = this.videoVolume; // Set target volume
       this.introVideo.play().catch(e => console.warn("Video visual autoplay failed:", e));
     }
   }
@@ -1341,6 +1342,9 @@ class AudioManager {
   muteVideo(shouldMute) {
     if (this.introVideo) {
       this.introVideo.muted = shouldMute;
+      if (!shouldMute) {
+        this.introVideo.volume = this.videoVolume;
+      }
     }
   }
 
