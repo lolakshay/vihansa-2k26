@@ -325,7 +325,7 @@
         <div class="container">
             <div id="logo" class="pull-left">
                 <a href="#header" class="scrollto"><img src="img/logo1.webp" alt="" title=""></a>
-                <a href="#header" class="scrollto"><img src="img/logo.webp" alt="" title=""></a>
+                <a href="#header" class="scrollto"><img src="img/logo.png" alt="" title=""></a>
                 <h2><a href="#main">Sri <span>RamaKrishna</span><br />Institute of technology</a></h2>
             </div>
 
@@ -1139,7 +1139,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-3 col-md-3 footer-info">
-                        <img src="img/logo.webp" alt="TheEvenet">
+                        <img src="img/logo.png" alt="TheEvenet">
                         <p><strong>Vihansa 2025</strong> is a celebration of innovation, talent, and teamwork at Sri
                             Ramakrishna Institute of Technology. With exciting events and inspiring experiences, it's
                             where ideas come to life. Get ready to <em>innovate, ignite, and inspire!</em></p>
@@ -1268,56 +1268,56 @@
 
         document.addEventListener("DOMContentLoaded", () => {
 
-    const bgMusic = document.getElementById("bg-music");
-    const homeBtn = document.getElementById("sound-toggle");
-    const eventsBtn = document.getElementById("events-sound-toggle");
+            const bgMusic = document.getElementById("bg-music");
+            const homeBtn = document.getElementById("sound-toggle");
+            const eventsBtn = document.getElementById("events-sound-toggle");
 
-    let soundEnabled = false;
+            let soundEnabled = false;
 
-    // 🔥 RESTORE SOUND STATE
-    const savedSoundState = localStorage.getItem("soundEnabled");
+            // 🔥 RESTORE SOUND STATE
+            const savedSoundState = localStorage.getItem("soundEnabled");
 
-    if (savedSoundState === "true") {
-        bgMusic.volume = 0.2;
-        bgMusic.play().catch(() => {});
-        soundEnabled = true;
+            if (savedSoundState === "true") {
+                bgMusic.volume = 0.2;
+                bgMusic.play().catch(() => { });
+                soundEnabled = true;
 
-        if (eventsBtn) eventsBtn.textContent = "🔊 Sound On";
-    }
+                if (eventsBtn) eventsBtn.textContent = "🔊 Sound On";
+            }
 
-    function enableSound() {
-        bgMusic.volume = 0.2;
-        bgMusic.play().catch(() => {});
-        soundEnabled = true;
+            function enableSound() {
+                bgMusic.volume = 0.2;
+                bgMusic.play().catch(() => { });
+                soundEnabled = true;
 
-        localStorage.setItem("soundEnabled", "true");
+                localStorage.setItem("soundEnabled", "true");
 
-        if (homeBtn) homeBtn.textContent = "🔊";
-        if (eventsBtn) eventsBtn.textContent = "🔊 Sound On";
-    }
+                if (homeBtn) homeBtn.textContent = "🔊";
+                if (eventsBtn) eventsBtn.textContent = "🔊 Sound On";
+            }
 
-    function disableSound() {
-        bgMusic.pause();
-        soundEnabled = false;
+            function disableSound() {
+                bgMusic.pause();
+                soundEnabled = false;
 
-        localStorage.setItem("soundEnabled", "false");
+                localStorage.setItem("soundEnabled", "false");
 
-        if (homeBtn) homeBtn.textContent = "🔇";
-        if (eventsBtn) eventsBtn.textContent = "🔇 Sound Off";
-    }
+                if (homeBtn) homeBtn.textContent = "🔇";
+                if (eventsBtn) eventsBtn.textContent = "🔇 Sound Off";
+            }
 
-    function toggleSound() {
-        if (soundEnabled) {
-            disableSound();
-        } else {
-            enableSound();
-        }
-    }
+            function toggleSound() {
+                if (soundEnabled) {
+                    disableSound();
+                } else {
+                    enableSound();
+                }
+            }
 
-    if (homeBtn) homeBtn.addEventListener("click", toggleSound);
-    if (eventsBtn) eventsBtn.addEventListener("click", toggleSound);
+            if (homeBtn) homeBtn.addEventListener("click", toggleSound);
+            if (eventsBtn) eventsBtn.addEventListener("click", toggleSound);
 
-});
+        });
 
     </script>
 
