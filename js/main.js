@@ -1128,88 +1128,280 @@ document.addEventListener('keydown', function (event) {
   }
 });
 
+
 /* ==========================================================================
-   SOUND CONTROLLER & VIDEO PLAYBACK FIX
+   AUDIO MANAGER (REFACTORED & STABLE)
    ========================================================================== */
-class SoundController {
+/**
+ * AudioManager handles all site-wide audio logic.
+ * Features:
+ * - Persistent state via localStorage.
+ * - Browser autoplay policy handling (Unlock on interaction).
+ * - Section-based audio switching (IntersectionObserver).
+ * - Intelligent volume management.
+ */
+class AudioManager {
   constructor() {
+    // DOM Elements
     this.bgMusic = document.getElementById('bg-music');
+    this.countdownAudio = document.getElementById('countdown-audio');
+    this.introVideo = document.getElementById('bg-video');
     this.toggleBtn = document.getElementById('sound-toggle');
-    this.isMuted = true;
 
-    if (this.bgMusic) {
-      this.bgMusic.volume = 0.5; // Set a reasonable volume
-    }
+    // State
+    // Check localStorage for saved preference, default to 'muted' (false = active, true = muted)
+    // actually, let's store 'soundEnabled' (true/false) for clarity.
+    // If unsetItem, default to FALSE (muted) to be safe with autoplay policies.
+    this.soundEnabled = localStorage.getItem('vihansa_sound_enabled') === 'true';
+    this.isUnlocked = false; // Tracks if user has interacted with the document
+    this.activeSection = 'intro'; // Default section
 
-    if (this.toggleBtn && this.bgMusic) {
+    // Configuration
+    this.fadingDuration = 1000;
+    this.ambientVolume = 0.1;
+    this.videoVolume = 0.1;
+
+    if (this.toggleBtn) {
       this.init();
     }
-
-    // Force video play on load
-    this.forceVideoPlay();
   }
 
   init() {
-    // Set initial state
-    this.bgMusic.muted = true;
+    console.log("AudioManager: Initializing...");
+
+    // 1. Set Initial UI State
     this.updateIcon();
 
+    // 2. Setup Toggle Button
     this.toggleBtn.addEventListener('click', (e) => {
       e.preventDefault();
       this.toggleSound();
     });
+
+    // 3. Setup Global Unlock Listener (One-time)
+    const unlockHandler = () => {
+      console.log("AudioManager: User interaction detected. Unlocking audio.");
+      this.isUnlocked = true;
+
+      // Refine the audio context if needed, or just try to play if enabled
+      if (this.soundEnabled) {
+        this.resumeAudioContexts();
+      }
+
+      // Remove listeners
+      ['click', 'keydown', 'touchstart'].forEach(evt =>
+        document.removeEventListener(evt, unlockHandler)
+      );
+    };
+
+    ['click', 'keydown', 'touchstart'].forEach(evt =>
+      document.addEventListener(evt, unlockHandler)
+    );
+
+    // 4. Setup Visibility Handler (Tab switching)
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden) {
+        this.muteAll(true); // Temporarily mute everything
+      } else {
+        if (this.soundEnabled) {
+          this.resumeAudioContexts(); // Resume based on current state
+        }
+      }
+    });
+
+    // 5. Setup Intersection Observer for Sections
+    this.setupObservers();
+
+    // 6. Initial Configuration of Elements
+    this.configureElements();
+
+    // 7. Attempt Auto-Start if previously enabled (might fail without interaction, but valid to try)
+    if (this.soundEnabled) {
+      this.resumeAudioContexts();
+    }
+  }
+
+  configureElements() {
+    // Ensure loops and initial volumes
+    if (this.bgMusic) {
+      this.bgMusic.loop = true;
+      this.bgMusic.volume = this.ambientVolume;
+    }
+    if (this.countdownAudio) {
+      this.countdownAudio.loop = true;
+      this.countdownAudio.volume = 1.0;
+    }
+    if (this.introVideo) {
+      // Video is special. It's usually muted for autoplay. 
+      // We unmute it via JS only if sound is enabled and we are in intro.
+      this.introVideo.loop = true;
+      // Force play loop for video visual
+      this.introVideo.muted = true; // Start muted to ensure autoplay works
+      this.introVideo.play().catch(e => console.warn("Video visual autoplay failed:", e));
+    }
   }
 
   toggleSound() {
-    if (this.isMuted) {
-      // UNMUTE
-      this.isMuted = false;
-      this.bgMusic.muted = false;
+    this.soundEnabled = !this.soundEnabled;
 
-      // Try to play
-      const playPromise = this.bgMusic.play();
-      if (playPromise !== undefined) {
-        playPromise.catch(error => {
-          console.error("Audio playback failed:", error);
-          // If blocked, maybe we need another interaction or handle logic.
-          // But clicking the toggle IS an interaction.
-        });
-      }
-    } else {
-      // MUTE
-      this.isMuted = true;
-      this.bgMusic.muted = true;
-      // Optionally pause? or just mute. Mute is safer for background tracks.
-    }
+    // Persist state
+    localStorage.setItem('vihansa_sound_enabled', this.soundEnabled);
+    console.log(`AudioManager: Sound toggled to ${this.soundEnabled}`);
 
     this.updateIcon();
+
+    if (this.soundEnabled) {
+      // User explicitly requested sound. This counts as interaction.
+      this.isUnlocked = true;
+      this.resumeAudioContexts();
+    } else {
+      this.stopAll();
+    }
   }
 
   updateIcon() {
-    if (this.isMuted) {
-      this.toggleBtn.textContent = '🔇'; // Muted icon
+    if (this.soundEnabled) {
+      this.toggleBtn.textContent = '🔊';
     } else {
-      this.toggleBtn.textContent = '🔊'; // Sound on icon
+      this.toggleBtn.textContent = '🔇';
     }
   }
 
-  forceVideoPlay() {
-    const video = document.getElementById('bg-video');
-    if (video) {
-      video.muted = true; // Crucial for autoplay
-      video.playsInline = true;
+  /**
+   * Core logic to decide what should be playing based on state and section.
+   */
+  updatePlaybackState() {
+    if (!this.soundEnabled) return; // visuals continue, audio stops.
 
-      const promise = video.play();
-      if (promise !== undefined) {
-        promise.catch(error => {
-          console.error("Video autoplay blocked or failed:", error);
+    console.log(`AudioManager: Updating playback for section '${this.activeSection}'`);
+
+    // 1. Ambient Music (Always plays if enabled, lower vol if specific sound is on?)
+    // Requirement: "Ambient continues underneath (low volume)"
+    this.playAudio(this.bgMusic, this.ambientVolume);
+
+    // 2. Section Specific Audio
+    if (this.activeSection === 'intro') {
+      // Intro Section: Video Audio ON, Countdown OFF
+      this.muteVideo(false);
+      this.pauseAudio(this.countdownAudio);
+    } else if (this.activeSection === 'about') {
+      // About Section: Video Audio OFF, Countdown ON
+      this.muteVideo(true);
+      this.playAudio(this.countdownAudio, 1.0);
+    } else {
+      // Other Sections: Only Ambient
+      this.muteVideo(true);
+      this.pauseAudio(this.countdownAudio);
+    }
+  }
+
+  stopAll() {
+    // Mute/Pause everything
+    if (this.bgMusic) this.bgMusic.pause();
+    if (this.countdownAudio) this.countdownAudio.pause();
+    this.muteVideo(true);
+  }
+
+  muteAll(temporary = false) {
+    // Like stopAll but maybe stores previous state if temporary? 
+    // For simplicity, just pause.
+    if (this.bgMusic) this.bgMusic.pause();
+    if (this.countdownAudio) this.countdownAudio.pause();
+    this.muteVideo(true);
+  }
+
+  resumeAudioContexts() {
+    // Re-evaluate what should be playing
+    // Note: we don't restart tracks from 0, we just .play() them.
+    this.updatePlaybackState();
+  }
+
+  // Helpers
+  playAudio(audioEl, volume = 1.0) {
+    if (!audioEl) return;
+    audioEl.volume = volume;
+    // Avoid "The play() request was interrupted" errors
+    if (audioEl.paused) {
+      const p = audioEl.play();
+      if (p) {
+        p.catch(e => {
+          // Only log if it's not a standard abort (user clicking fast) or lack of interaction
+          if (e.name !== 'AbortError') console.warn("Audio play blocked:", e.message);
         });
       }
     }
+  }
+
+  pauseAudio(audioEl) {
+    if (audioEl && !audioEl.paused) {
+      audioEl.pause();
+    }
+  }
+
+  muteVideo(shouldMute) {
+    if (this.introVideo) {
+      this.introVideo.muted = shouldMute;
+    }
+  }
+
+  setupObservers() {
+    // Detect #intro
+    const introSection = document.getElementById('intro');
+    // Detect #about
+    const aboutSection = document.getElementById('about');
+
+    const observerOptions = {
+      threshold: 0.6 // 60% visibility required to be "active"
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          if (entry.target.id === 'intro') {
+            this.activeSection = 'intro';
+          } else if (entry.target.id === 'about') {
+            this.activeSection = 'about';
+          }
+          // If we scroll to neither (e.g. further down), default to 'other'
+          // However, we only observe intro and about. 
+          // If both are not intersecting, we assume 'other'.
+
+          if (this.soundEnabled) {
+            this.updatePlaybackState();
+          }
+        } else {
+          // If leaving a section, we might want to check what is currently visible?
+          // But usually, one enters another section.
+          // Let's rely on the 'entering' event of the other section.
+          // Special case: if we scroll WAY down to events, neither is intersecting.
+        }
+      });
+
+      // Fallback for "neither active":
+      // We can check if intro OR about is intersecting. If NOT, activeSection = 'other'
+      const isIntroVisible = introSection &&
+        (introSection.getBoundingClientRect().top < window.innerHeight && introSection.getBoundingClientRect().bottom > 0);
+
+      // This logic inside the callback is tricky because it only fires on change.
+      // Better approach: Observe ALL major sections or just assume 'other' if we leave one.
+      // For robust 'other' detection, we can observe the 'main' container or just live with the last active state.
+      // BUT, the user requirement is "Only one section-specific audio plays".
+      // If I scroll to events, countdown audio MUST stop.
+
+      if (!entry.isIntersecting && entry.target.id === this.activeSection) {
+        // We just left the active section.
+        this.activeSection = 'other';
+        if (this.soundEnabled) this.updatePlaybackState();
+      }
+
+    }, observerOptions);
+
+    if (introSection) observer.observe(introSection);
+    if (aboutSection) observer.observe(aboutSection);
   }
 }
 
 // Initialize on DOM Ready
 $(document).ready(function () {
-  new SoundController();
+  window.audioManager = new AudioManager();
 });
