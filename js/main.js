@@ -1626,10 +1626,83 @@ const eventDetails = {
   },
   'codewar': {
     title: 'Tech Quiz',
-    desc: 'The ultimate coding battle. Solve the toughest problems to prove you are the code warrior champion.',
+    desc: `<div class="event-full-desc">
+      <p><strong>Tech Quiz</strong> is a competitive technical event designed to evaluate participants' knowledge, logical thinking, problem-solving ability, and speed in engineering and technology-related subjects. Unlike written exams, a tech quiz is interactive, engaging, and application-oriented.</p>
+      
+      <h3>👥 Team Structure & Rules</h3>
+      <ul>
+        <li><strong>Team Size:</strong> Maximum 2 members</li>
+        <li><strong>Duration:</strong> 2 hours</li>
+        <li>Open to undergraduate and postgraduate students</li>
+        <li>Teams must complete registration before the scheduled start time</li>
+        <li>Late entries will not be allowed under any circumstances</li>
+      </ul>
+
+      <h3>📋 Quiz Format - 3 Rounds</h3>
+      
+      <p><strong>ROUND 1: Preliminary / MCQ Round</strong></p>
+      <ul>
+        <li><strong>Format:</strong> All teams participate simultaneously</li>
+        <li><strong>Questions:</strong> 30 MCQ questions (distributed through printed sheets)</li>
+        <li><strong>Scoring:</strong> +1 for correct answer, 0 for wrong answer</li>
+        <li><strong>Qualification:</strong> Selected teams advance based on scores</li>
+      </ul>
+
+      <p><strong>ROUND 2: Technical / Logical Round</strong></p>
+      <ul>
+        <li><strong>Format:</strong> Logical problems, code debugging, or output prediction</li>
+        <li><strong>Questions:</strong> 20 questions</li>
+        <li><strong>Scoring:</strong> +5 for correct answer, -2.5 for wrong answer</li>
+        <li><strong>Focus:</strong> Accuracy and speed are considered for scoring</li>
+      </ul>
+
+      <p><strong>ROUND 3: Circuit / Image Based Round</strong></p>
+      <ul>
+        <li><strong>Format:</strong> Questions based on circuit diagrams, waveforms, or block diagrams</li>
+        <li><strong>Questions:</strong> 20 questions</li>
+        <li><strong>Scoring:</strong> +10 for correct answer, -5 for wrong answer</li>
+        <li><strong>Objective:</strong> Teams analyze and answer within the allotted time</li>
+      </ul>
+
+      <h3>🏆 Winner Selection</h3>
+      <p>The team with the <strong>most points</strong> at the end of all three rounds will be declared the winner.</p>
+      
+      <p><strong>Tie-Breaker:</strong> In case of equal scores, a tie-breaker round with rapid-fire questions is conducted. The team answering first correctly is declared the winner.</p>
+
+      <h3>💰 Prize Distribution</h3>
+      <table style="width:100%; border-collapse: collapse; margin: 10px 0;">
+        <tr style="background: rgba(0, 240, 255, 0.1);">
+          <td style="font-weight: 700; color: #00f0ff;">Position</td>
+          <td style="font-weight: 700; color: #00f0ff;">Prize Amount</td>
+          <td style="font-weight: 700; color: #00f0ff;">Recognition</td>
+        </tr>
+        <tr><td>🥇 Winner</td><td><strong>₹1,000</strong></td><td>Certificate + Cash Prize</td></tr>
+        <tr><td>🥈 Runner-up</td><td><strong>₹500</strong></td><td>Certificate + Cash Prize</td></tr>
+        <tr><td>🎖️ All Participants</td><td>—</td><td>Participation Certificate</td></tr>
+      </table>
+
+      <h3>📜 Rules & Regulations</h3>
+      <ul>
+        <li>The quiz will be conducted in multiple rounds</li>
+        <li>The number of rounds and format may vary based on time availability</li>
+        <li>Elimination rounds may be conducted if the number of teams is high</li>
+        <li>Teams must answer within the given time; <strong>no extra time</strong> will be provided</li>
+        <li>Use of mobile phones, smart watches, internet, or any external resources is <strong>strictly prohibited</strong></li>
+        <li>Any form of malpractice or misconduct will lead to <strong>immediate disqualification</strong></li>
+        <li>Judges' decision will be <strong>final and binding</strong></li>
+      </ul>
+
+      <h3>📍 Venue & Timeline</h3>
+      <p><strong>Venue:</strong> TBD</p>
+      <p><strong>Timeline:</strong> 12:00 Noon (Day 2)</p>
+
+      <h3>📞 Contact Information</h3>
+      <p><strong>Event Coordinator:</strong> Aswin Rio.R<br>
+      Phone: <a href="tel:+918270893039" style="color: #00f0ff;">+91 8270893039</a></p>
+    </div>`,
     date: 'Day 2',
     time: '12:00 Noon',
-    venue: 'Computer Lab 3',
+    venue: 'TBD',
     image: 'img/events-nontech/11.webp',
     formLink: 'registration.html'
   },
