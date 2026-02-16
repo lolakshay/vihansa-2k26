@@ -212,6 +212,12 @@
             --gradient-color: rgba(255, 0, 85, 0.3);
         }
 
+        .sports-card {
+            --electric-border-color: #ff0055;
+            --electric-light-color: #ff5588;
+            --gradient-color: rgba(255, 0, 85, 0.3);
+        }
+
         /* Tab styling */
         .nav-tabs {
             border-bottom: 2px solid rgba(255, 255, 255, 0.1);
@@ -318,15 +324,11 @@
     Header
     ============================-->
     <header id="header">
-
-        <button id="events-sound-toggle" class="sound-btn">
-            🔇 Sound
-        </button>
         <div class="container">
             <div id="logo" class="pull-left">
-                <a href="#header" class="scrollto"><img src="img/logo1.webp" alt="" title=""></a>
-                <a href="#header" class="scrollto"><img src="img/logo.png" alt="" title=""></a>
-                <h2><a href="#main">Sri <span>RamaKrishna</span><br />Institute of technology</a></h2>
+                <a href="index.html#header" class="scrollto"><img src="img/logo1.webp" alt="" title=""></a>
+                <a href="index.html#header" class="scrollto"><img src="img/logo.png" alt="" title=""></a>
+                <h2><a href="index.html#main">Sri <span>RamaKrishna</span><br />Institute of technology</a></h2>
             </div>
 
             <nav id="nav-menu-container">
@@ -342,6 +344,11 @@
             </nav><!-- #nav-menu-container -->
         </div>
     </header><!-- #header -->
+
+    <!-- Music Toggle Button -->
+    <button id="music-toggle" class="music-toggle-btn" aria-label="Toggle Music">
+        <i class="fa fa-music"></i>
+    </button>
 
     <!--==========================
     Schedule Section
@@ -363,6 +370,9 @@
                     <li class="nav-item">
                         <a class="nav-link" href="#culturals" role="tab" data-toggle="tab">Culturals</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#sports" role="tab" data-toggle="tab">Sports</a>
+                    </li>
                 </ul>
 
                 <!-- <h3 class="sub-heading">Dive into electrifying tech challenges, outsmart rivals in mind-bending non-tech
@@ -374,7 +384,7 @@
                     <div role="tabpanel" class="tab-pane fade show active" id="tech">
                         <div class="card-container">
                             <!-- Technical Events -->
-                            <div class="electric-card tech-card" onclick="openEventModal('codeit')">
+                            <div class="electric-card tech-card" onclick="openEventModal('promptly')">
                                 <div class="inner-container">
                                     <div class="border-outer">
                                         <img src="img/events-tech/1.webp" alt="CODE IT" class="card-image-bg"
@@ -874,7 +884,7 @@
                                 <div class="content-container">
                                     <div class="content-top">
                                         <div class="scrollbar-glass">Day 2 • 10:00 AM</div>
-                                        <h3 class="electric-title">VISUAL VIGNETIC</h3>
+                                        <h3 class="electric-title">SOLO singing</h3>
                                     </div>
                                     <hr class="divider" />
                                     <div class="content-bottom">
@@ -896,7 +906,7 @@
                                 <div class="content-container">
                                     <div class="content-top">
                                         <div class="scrollbar-glass">Day 2 • 10:00 AM</div>
-                                        <h3 class="electric-title">CLIP COUNTER</h3>
+                                        <h3 class="electric-title">Short film</h3>
                                     </div>
                                     <hr class="divider" />
                                     <div class="content-bottom">
@@ -918,7 +928,7 @@
                                 <div class="content-container">
                                     <div class="content-top">
                                         <div class="scrollbar-glass">Day 2 • 10:00 AM</div>
-                                        <h3 class="electric-title">PIXEL PERFECT</h3>
+                                        <h3 class="electric-title">reels making</h3>
                                     </div>
                                     <hr class="divider" />
                                     <div class="content-bottom">
@@ -1050,7 +1060,7 @@
                                 <div class="content-container">
                                     <div class="content-top">
                                         <div class="scrollbar-glass">Day 2 • 2:00 PM</div>
-                                        <h3 class="electric-title">SOLELY MELODIA</h3>
+                                        <h3 class="electric-title">Adaptune</h3>
                                     </div>
                                     <hr class="divider" />
                                     <div class="content-bottom">
@@ -1072,7 +1082,7 @@
                                 <div class="content-container">
                                     <div class="content-top">
                                         <div class="scrollbar-glass">Day 2 • 3:00 PM</div>
-                                        <h3 class="electric-title">ART OF ONE</h3>
+                                        <h3 class="electric-title">Solo dance</h3>
                                     </div>
                                     <hr class="divider" />
                                     <div class="content-bottom">
@@ -1116,7 +1126,7 @@
                                 <div class="content-container">
                                     <div class="content-top">
                                         <div class="scrollbar-glass">Day 2 • 4:00 PM</div>
-                                        <h3 class="electric-title">RYTHMIC MOTION</h3>
+                                        <h3 class="electric-title">Group dance</h3>
                                     </div>
                                     <hr class="divider" />
                                     <div class="content-bottom">
@@ -1126,6 +1136,41 @@
                             </div>
                         </div>
                     </div>
+                    <!-- Sports -->
+                    <div role="tabpanel" class="tab-pane fade" id="sports">
+                        <div class="card-container">
+                            <div class="electric-card sports-card" onclick="openEventModal('cricket')">
+                                <div class="inner-container">
+                                    <div class="border-outer">
+                                        <img src="img/sports/cricket.jpg" alt="CRICKET" class="card-image-bg"
+                                            loading="lazy" decoding="async">
+                                        <div class="main-card"></div>
+                                    </div>
+                                    <div class="glow-layer-1"></div>
+                                    <div class="glow-layer-2"></div>
+                                </div>
+                                <div class="content-container">
+                                    <div class="content-top">
+                                        <div class="scrollbar-glass">Day 1</div>
+                                        <h3 class="electric-title">CRICKET</h3>
+                                    </div>
+                                    <hr class="divider" />
+                                    <div class="content-bottom">
+                                        <span class="electric-category">Sports</span>
+                                        <p class="card-description" style="font-size: 0.85rem; opacity: 0.8;">
+                                            Battle it out on the field!
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- sports card 2 -->
+
+                            <!-- Add more sports cards here if needed -->
+
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </section>
@@ -1266,58 +1311,7 @@
             });
         });
 
-        document.addEventListener("DOMContentLoaded", () => {
 
-            const bgMusic = document.getElementById("bg-music");
-            const homeBtn = document.getElementById("sound-toggle");
-            const eventsBtn = document.getElementById("events-sound-toggle");
-
-            let soundEnabled = false;
-
-            // 🔥 RESTORE SOUND STATE
-            const savedSoundState = localStorage.getItem("soundEnabled");
-
-            if (savedSoundState === "true") {
-                bgMusic.volume = 0.2;
-                bgMusic.play().catch(() => { });
-                soundEnabled = true;
-
-                if (eventsBtn) eventsBtn.textContent = "🔊 Sound On";
-            }
-
-            function enableSound() {
-                bgMusic.volume = 0.2;
-                bgMusic.play().catch(() => { });
-                soundEnabled = true;
-
-                localStorage.setItem("soundEnabled", "true");
-
-                if (homeBtn) homeBtn.textContent = "🔊";
-                if (eventsBtn) eventsBtn.textContent = "🔊 Sound On";
-            }
-
-            function disableSound() {
-                bgMusic.pause();
-                soundEnabled = false;
-
-                localStorage.setItem("soundEnabled", "false");
-
-                if (homeBtn) homeBtn.textContent = "🔇";
-                if (eventsBtn) eventsBtn.textContent = "🔇 Sound Off";
-            }
-
-            function toggleSound() {
-                if (soundEnabled) {
-                    disableSound();
-                } else {
-                    enableSound();
-                }
-            }
-
-            if (homeBtn) homeBtn.addEventListener("click", toggleSound);
-            if (eventsBtn) eventsBtn.addEventListener("click", toggleSound);
-
-        });
 
     </script>
 

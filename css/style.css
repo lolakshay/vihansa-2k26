@@ -2909,7 +2909,7 @@ body.mobile-nav-active #mobile-nav-toggle {
 
 .card-container {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-template-columns: repeat(3, 1fr);
   gap: 25px;
   padding: 20px;
 }
@@ -4400,7 +4400,7 @@ body.mobile-nav-active #mobile-nav-toggle {
   top: 0;
   width: 100vw;
   height: 100vh;
-  overflow: hidden;
+  overflow: auto;
   background-color: #000000;
   /* Pure black background */
   align-items: center;
@@ -4421,7 +4421,7 @@ body.mobile-nav-active #mobile-nav-toggle {
   box-shadow: none;
   /* No shadow */
   border-radius: 0;
-  overflow: hidden;
+  overflow: visible;
   display: flex;
   /* Ensure flex layout */
 }
@@ -4481,7 +4481,7 @@ body.mobile-nav-active #mobile-nav-toggle {
   padding: 60px 80px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   color: #fff;
   background: linear-gradient(to right, #000 0%, #111 100%);
   /* Subtle gradient */
@@ -4489,6 +4489,26 @@ body.mobile-nav-active #mobile-nav-toggle {
   /* Move Text to Right */
   overflow-y: auto;
   /* Allow scrolling if text is long */
+  max-height: 100vh;
+  scroll-behavior: smooth;
+}
+
+/* Custom scrollbar for modal */
+.event-modal-left::-webkit-scrollbar {
+  width: 8px;
+}
+
+.event-modal-left::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.event-modal-left::-webkit-scrollbar-thumb {
+  background: rgba(0, 240, 255, 0.5);
+  border-radius: 4px;
+}
+
+.event-modal-left::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 240, 255, 0.8);
 }
 
 .event-modal-right {
@@ -4586,6 +4606,86 @@ body.mobile-nav-active #mobile-nav-toggle {
   box-shadow: 0 15px 40px rgba(255, 255, 255, 0.2);
   color: #000;
   background: var(--electric-blue, #00f0ff);
+}
+
+/* Event Full Description Styling */
+.event-full-desc {
+  max-width: 100%;
+  color: #fff;
+  line-height: 1.6;
+}
+
+.event-full-desc h3 {
+  color: #00f0ff;
+  font-size: 1.4rem;
+  margin-top: 25px;
+  margin-bottom: 15px;
+  font-weight: 700;
+  border-left: 4px solid #00f0ff;
+  padding-left: 15px;
+}
+
+.event-full-desc p {
+  margin-bottom: 15px;
+  color: #ddd;
+  font-size: 0.95rem;
+}
+
+.event-full-desc strong {
+  color: #fff;
+  font-weight: 600;
+}
+
+.event-full-desc ul {
+  margin: 10px 0 20px 20px;
+  list-style-type: disc;
+  color: #ddd;
+}
+
+.event-full-desc ul li {
+  margin-bottom: 8px;
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.event-full-desc table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 15px 0;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.event-full-desc table tr {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.event-full-desc table tr:last-child {
+  border-bottom: none;
+}
+
+.event-full-desc table td {
+  padding: 12px 15px;
+  color: #ddd;
+  font-size: 0.9rem;
+}
+
+.event-full-desc table td:first-child {
+  font-weight: 600;
+  color: #fff;
+}
+
+.event-full-desc table td:last-child {
+  text-align: right;
+  color: #00f0ff;
+  font-weight: 700;
+}
+
+.event-full-desc em {
+  color: #ffb700;
+  font-style: italic;
+  font-size: 0.9rem;
 }
 
 /* Mobile Responsive */
@@ -5083,4 +5183,68 @@ body.mobile-nav-active #mobile-nav-toggle {
     padding-bottom: 15px;
     /* Align visually with numbers */
   }
+
+}
+
+/* ================= SPORTS CARD STYLES ================= */
+.sports-card .card-inner {
+  border-color: #ff9d00;
+  box-shadow: 0 0 20px rgba(255, 157, 0, 0.2);
+}
+
+.sports-card:hover .card-inner {
+  border-color: #ff9d00;
+  box-shadow: 0 0 40px rgba(255, 157, 0, 0.6), inset 0 0 20px rgba(255, 157, 0, 0.4);
+}
+
+.sports-card .card-icon {
+  color: #ff9d00;
+  text-shadow: 0 0 10px #ff9d00;
+}
+
+.sports-card h3 {
+  color: #fff;
+  text-shadow: 0 0 5px #ff9d00;
+}
+
+.sports-card .card-visual .pulse-ring {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100px;
+  height: 100px;
+  border: 2px solid #ff9d00;
+  border-radius: 50%;
+  animation: pulseRing 2s infinite;
+  opacity: 0;
+}
+
+@keyframes pulseRing {
+  0% {
+    transform: translate(-50%, -50%) scale(0.5);
+    opacity: 0;
+  }
+
+  50% {
+    opacity: 0.5;
+  }
+
+  100% {
+    transform: translate(-50%, -50%) scale(1.5);
+    opacity: 0;
+  }
+}
+
+.sports-card .card-explore {
+  color: #ff9d00;
+}
+
+.sports-card .card-explore i {
+  color: #ff9d00;
+}
+
+.sports-card:hover .card-explore {
+  color: #fff;
+  text-shadow: 0 0 5px #ff9d00;
 }

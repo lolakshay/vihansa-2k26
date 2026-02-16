@@ -5,6 +5,11 @@ jQuery(document).ready(function ($) {
    * 1. INITIALIZE LIBRARIES
    ******************************/
 
+  // VOLUME CONTROLS (0.0 to 1.0)
+  const VOL_BG_MUSIC = 0.3;      // Background Music
+  const VOL_INTRO_VIDEO = 0.5;   // Intro Video
+  const VOL_COUNTDOWN = 0.4;     // Countdown Ticker
+
   // Multi-Stage Preloader Logic
   $(window).on('load', function () {
     if ($('#preloader').length) {
@@ -41,7 +46,7 @@ jQuery(document).ready(function ($) {
           // 1. Start countdown audio
           const countdownAudio = document.getElementById('countdown-audio');
           if (countdownAudio) {
-            countdownAudio.volume = 0.4;
+            countdownAudio.volume = VOL_COUNTDOWN;
             countdownAudio.play().catch(error => {
               console.log("Countdown audio blocked:", error);
             });
@@ -50,7 +55,7 @@ jQuery(document).ready(function ($) {
           // 2. Start background music
           const bgMusic = document.getElementById('bg-music');
           if (bgMusic) {
-            bgMusic.volume = 0.3;
+            bgMusic.volume = VOL_BG_MUSIC;
             bgMusic.play().catch(error => {
               console.log("Background music blocked:", error);
             });
@@ -60,7 +65,7 @@ jQuery(document).ready(function ($) {
           const bgVideo = document.getElementById('bg-video');
           if (bgVideo) {
             bgVideo.muted = false;
-            bgVideo.volume = 0.5;
+            bgVideo.volume = VOL_INTRO_VIDEO;
             bgVideo.play().catch(error => {
               console.log("Video audio blocked:", error);
             });
@@ -362,7 +367,7 @@ jQuery(document).ready(function ($) {
     if (musicEnabled) {
       // 1. Ambient Music - Always plays if enabled
       if (bgMusic && bgMusic.paused) {
-        bgMusic.volume = 0.3;
+        bgMusic.volume = VOL_BG_MUSIC;
         bgMusic.play().catch(e => console.log("BG Music play failed", e));
       }
 
@@ -370,7 +375,7 @@ jQuery(document).ready(function ($) {
       if (bgVideo) {
         if (isIntroVisible) {
           bgVideo.muted = false;
-          bgVideo.volume = 0.5;
+          bgVideo.volume = VOL_INTRO_VIDEO;
         } else {
           bgVideo.muted = true;
         }
@@ -379,7 +384,7 @@ jQuery(document).ready(function ($) {
       // 3. Countdown Audio - Only in Countdown Section
       if (countdownAudio) {
         if (isAboutVisible) {
-          countdownAudio.volume = 0.4;
+          countdownAudio.volume = VOL_COUNTDOWN;
           if (countdownAudio.paused) countdownAudio.play().catch(e => console.log("Countdown play failed", e));
         } else {
           countdownAudio.pause();
@@ -1028,9 +1033,105 @@ if (window.innerWidth > 768) {
 // Event Data - Extensible for all events
 const eventDetails = {
   // Technical Events
-  'codeit': {
-    title: 'Promptly',
-    desc: 'A coding challenge to test your problem-solving and algorithm skills. Implement efficient solutions for given problems.',
+  'promptly': {
+    title: 'PROMPTLY',
+    desc: `<div class="event-full-desc">
+      <p><strong>PROMPTLY – The Prompt Engineering Challenge</strong> is an innovative technical competition that tests participants' creativity, logical thinking, and ability to communicate effectively with AI systems. The event consists of two competitive rounds conducted in a timed environment.</p>
+      
+      <h3>📋 Rules</h3>
+      <ul>
+        <li>Copying prompts, code, or outputs from other participants or external sources without permission will result in disqualification.</li>
+        <li>Using paid AI tools, unapproved platforms, or external assistance beyond the allowed resources is strictly prohibited.</li>
+        <li>If the rules specify prompt-only generation, excessive manual editing or bypassing AI generation rules will lead to disqualification.</li>
+        <li>Late submission, sharing answers, disruptive behavior, or any form of misconduct during the event will result in disqualification.</li>
+        <li>The decision of the Jury Panel and the Event Coordinator will be final and binding in all matters related to the competition.</li>
+      </ul>
+
+      <h3>🎯 Round 1: Image Generation</h3>
+      <p><strong>Objective:</strong> Evaluate participants' ability to effectively communicate with AI image generation systems using well-structured prompts.</p>
+      <ul>
+        <li><strong>Team Type:</strong> 2 Members per team</li>
+        <li><strong>Duration:</strong> 30 Minutes</li>
+        <li><strong>Platform:</strong> Free Image Generation Tool (Craiyon)</li>
+        <li><strong>Type:</strong> Elimination Round</li>
+      </ul>
+      
+      <p><strong>Task Description:</strong> Transform a given base image according to specified requirements using only prompt-based instructions.</p>
+      
+      <p><strong>Challenge Requirements:</strong></p>
+      <ul>
+        <li>Changing the artistic style (e.g., cinematic, cyberpunk, watercolor, realistic)</li>
+        <li>Modifying lighting conditions (e.g., sunset, neon lighting, dramatic shadows)</li>
+        <li>Adding or removing specific elements</li>
+        <li>Preserving key features (e.g., facial expression, subject identity, camera angle)</li>
+        <li>Maintaining required aspect ratio (e.g., 16:9 or 1:1)</li>
+      </ul>
+
+      <p><strong>Prompt Rules:</strong></p>
+      <ul>
+        <li>Maximum word limit: 120 words</li>
+        <li>Participants must submit the exact prompt used</li>
+        <li>No external editing tools are allowed</li>
+        <li>No use of paid AI tools</li>
+        <li>Only approved free platforms may be used</li>
+      </ul>
+
+      <p><strong>Evaluation Criteria:</strong></p>
+      <table style="width:100%; border-collapse: collapse; margin: 10px 0;">
+        <tr><td>Accuracy to Given Constraints</td><td>30%</td></tr>
+        <tr><td>Creativity & Innovation</td><td>20%</td></tr>
+        <tr><td>Prompt Structure & Clarity</td><td>20%</td></tr>
+        <tr><td>Technical Control</td><td>20%</td></tr>
+        <tr><td>Output Cleanliness</td><td>10%</td></tr>
+      </table>
+
+      <h3>🌐 Round 2: Site Cloning</h3>
+      <p><strong>Objective:</strong> Use prompt engineering techniques to recreate a given website layout using AI-assisted code generation tools. This is the final and most challenging round.</p>
+      <ul>
+        <li><strong>Team Type:</strong> 2 Members per team</li>
+        <li><strong>Duration:</strong> 45–60 minutes</li>
+        <li><strong>Platform:</strong> AI-assisted code generation tools (approved free tools only)</li>
+        <li><strong>Type:</strong> Final Round</li>
+      </ul>
+      <p><em>*Only participants shortlisted from Round 1 are eligible to compete in this round.</em></p>
+      
+      <p><strong>Task Description:</strong> Participants will be provided with a live website URL and must recreate the website layout as accurately as possible using AI-generated prompts.</p>
+      
+      <p><strong>Challenge Requirements:</strong></p>
+      <ul>
+        <li>Recreate the visual layout of the website</li>
+        <li>Ensure responsiveness (Desktop & Mobile view)</li>
+        <li>Maintain proper section alignment</li>
+        <li>Use clean and structured code</li>
+        <li>Include functional elements such as buttons, navbar, and links (static functionality is sufficient)</li>
+        <li>Technology stack: HTML + CSS Only (or HTML + CSS + minimal JS)</li>
+      </ul>
+
+      <p><strong>Prompt Rules:</strong></p>
+      <ul>
+        <li>Maximum word limit: 120 words</li>
+        <li>Participants must submit the exact prompt used</li>
+        <li>No external editing tools are allowed</li>
+        <li>No use of paid AI tools</li>
+        <li>Only approved free platforms may be used</li>
+      </ul>
+
+      <p><strong>Evaluation Criteria:</strong></p>
+      <table style="width:100%; border-collapse: collapse; margin: 10px 0;">
+        <tr><td>Visual Similarity to Original Website</td><td>30%</td></tr>
+        <tr><td>Responsiveness</td><td>20%</td></tr>
+        <tr><td>Code Structure & Cleanliness</td><td>20%</td></tr>
+        <tr><td>Prompt Strategy & Clarity</td><td>20%</td></tr>
+        <tr><td>Functional Accuracy</td><td>10%</td></tr>
+      </table>
+
+      <h3>👥 Student Coordinators</h3>
+      <ul>
+        <li><strong>Dinesh Kumar R</strong> (Head)</li>
+        <li><strong>Archana</strong></li>
+        <li><strong>Krishnakanth</strong></li>
+      </ul>
+    </div>`,
     date: 'Day 1',
     time: '10:00 AM',
     venue: 'Computer Lab 1',
@@ -1342,7 +1443,7 @@ function openEventModal(eventId) {
 
   // Populate Modal content
   document.getElementById('modalEventTitle').innerText = event.title;
-  document.getElementById('modalEventDesc').innerText = event.desc;
+  document.getElementById('modalEventDesc').innerHTML = event.desc; // Changed to innerHTML to support HTML content
   document.getElementById('modalEventDate').innerText = event.date;
   document.getElementById('modalEventTime').innerText = event.time;
   document.getElementById('modalEventVenue').innerText = event.venue;
