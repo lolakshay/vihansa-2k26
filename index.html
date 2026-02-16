@@ -439,10 +439,8 @@
         margin-right: 0 !important;
       }
 
-      /* Hide WebGL laser container completely */
-      #laser-container {
-        display: none !important;
-      }
+      /* Laser container visible on all devices */
+      /* Removed display: none to show laser effect */
 
       /* Optional: Improve content readability on mobile */
       .hack-content-col {
@@ -457,6 +455,32 @@
 </head>
 
 <body>
+
+  <!-- Preloader -->
+  <div id="preloader">
+    <div class="preloader-content">
+      <div class="loading-text" id="loading-stage-1">
+        <h2>Searching the Upside Down</h2>
+        <div class="loading-spinner"></div>
+      </div>
+      <div class="loading-text" id="loading-stage-2" style="display: none;">
+        <h2>Portals are Open</h2>
+        <div class="portal-glow"></div>
+      </div>
+      <div class="loading-text" id="loading-stage-3" style="display: none;">
+        <button id="dive-button" class="dive-btn">Dive into the Upside Down</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Portal Transition Effect -->
+  <div id="portal-transition" style="display: none;">
+    <div class="portal-ring portal-ring-1"></div>
+    <div class="portal-ring portal-ring-2"></div>
+    <div class="portal-ring portal-ring-3"></div>
+    <div class="portal-center"></div>
+    <div class="portal-particles"></div>
+  </div>
 
   <audio id="countdown-audio" preload="auto" loop>
     <source src="img/countdown.mp3" type="audio/mpeg">
@@ -485,7 +509,6 @@
         <a href="#intro" class="scrollto"><img src="img/logo.png" alt="" title="" width="50" height="50"></a>
         <h2><a href="#main">Sri <span>RamaKrishna</span><br />Institute of technology</a></h2>
       </div>
-      <button id="sound-toggle">🔇</button>
 
       <nav id="nav-menu-container">
         <ul class="nav-menu">
@@ -500,6 +523,11 @@
       </nav><!-- #nav-menu-container -->
     </div>
   </header><!-- #header -->
+
+  <!-- Music Toggle Button -->
+  <button id="music-toggle" class="music-toggle-btn" aria-label="Toggle Music">
+    <i class="fa fa-music"></i>
+  </button>
 
   <!--==========================
     Intro Section
@@ -2388,9 +2416,7 @@
       }
 
       document.addEventListener('DOMContentLoaded', () => {
-        // Disable on mobile
-        if (window.innerWidth <= 768) return;
-
+        // Laser effect enabled on all devices
         const container = document.getElementById('laser-container');
         if (container) new LaserFlow(container);
       });

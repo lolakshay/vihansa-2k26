@@ -141,8 +141,7 @@ h6 {
   visibility: hidden;
 }
 
-/* Prelaoder */
-
+/* Preloader */
 #preloader {
   position: fixed;
   left: 0;
@@ -151,7 +150,301 @@ h6 {
   width: 100%;
   height: 100%;
   overflow: visible;
-  background: #fff url("../img/preloader.svg") no-repeat center center;
+  background: #000 url("../img/maineventbg.gif") no-repeat center center;
+  background-size: cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.preloader-content {
+  position: relative;
+  z-index: 1000;
+  text-align: center;
+}
+
+.loading-text h2 {
+  font-family: 'StrangerThings', sans-serif;
+  font-size: clamp(2rem, 5vw, 4rem);
+  color: #ff0000;
+  text-shadow:
+    0 0 10px #ff0000,
+    0 0 20px #ff0000,
+    0 0 30px #ff0000,
+    0 0 40px #8b0000;
+  margin-bottom: 30px;
+  animation: flicker 2s infinite;
+}
+
+@keyframes flicker {
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.8;
+  }
+
+  75% {
+    opacity: 0.9;
+  }
+}
+
+/* Loading Spinner */
+.loading-spinner {
+  width: 60px;
+  height: 60px;
+  border: 4px solid rgba(255, 0, 0, 0.2);
+  border-top: 4px solid #ff0000;
+  border-radius: 50%;
+  margin: 0 auto;
+  animation: spin 1s linear infinite;
+  box-shadow: 0 0 20px rgba(255, 0, 0, 0.5);
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Portal Glow Effect */
+.portal-glow {
+  width: 150px;
+  height: 150px;
+  margin: 0 auto;
+  border-radius: 50%;
+  background: radial-gradient(circle, #ff0000 0%, #8b0000 50%, transparent 70%);
+  animation: portalPulse 1.5s ease-in-out infinite;
+  box-shadow:
+    0 0 30px #ff0000,
+    0 0 60px #ff0000,
+    0 0 90px #8b0000;
+}
+
+@keyframes portalPulse {
+
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 0.8;
+  }
+
+  50% {
+    transform: scale(1.2);
+    opacity: 1;
+  }
+}
+
+/* Dive Button */
+.dive-btn {
+  font-family: 'StrangerThings', sans-serif;
+  font-size: clamp(1.2rem, 3vw, 2rem);
+  padding: 20px 50px;
+  background: linear-gradient(90deg, #8b0000 0%, #ff0000 50%, #8b0000 100%);
+  background-size: 200% 100%;
+  color: #ffffff;
+  border: 3px solid #ff0000;
+  border-radius: 50px;
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  transition: all 0.3s ease;
+  box-shadow:
+    0 0 20px rgba(255, 0, 0, 0.5),
+    inset 0 0 20px rgba(255, 0, 0, 0.2);
+  animation: buttonGlow 2s ease-in-out infinite;
+  position: relative;
+  overflow: hidden;
+}
+
+.dive-btn:hover {
+  background-position: 100% 0;
+  transform: scale(1.05);
+  box-shadow:
+    0 0 30px rgba(255, 0, 0, 0.8),
+    0 0 60px rgba(255, 0, 0, 0.6),
+    inset 0 0 30px rgba(255, 0, 0, 0.3);
+}
+
+.dive-btn:active {
+  transform: scale(0.98);
+}
+
+@keyframes buttonGlow {
+
+  0%,
+  100% {
+    box-shadow:
+      0 0 20px rgba(255, 0, 0, 0.5),
+      inset 0 0 20px rgba(255, 0, 0, 0.2);
+  }
+
+  50% {
+    box-shadow:
+      0 0 40px rgba(255, 0, 0, 0.8),
+      0 0 60px rgba(255, 0, 0, 0.6),
+      inset 0 0 30px rgba(255, 0, 0, 0.3);
+  }
+}
+
+/* Portal Transition Effect */
+#portal-transition {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 9999;
+  background: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+#portal-transition.active {
+  animation: portalFadeIn 0.3s ease-out forwards;
+}
+
+@keyframes portalFadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+/* Portal Rings */
+.portal-ring {
+  position: absolute;
+  border: 3px solid #ff0000;
+  border-radius: 50%;
+  box-shadow:
+    0 0 20px #ff0000,
+    0 0 40px #ff0000,
+    inset 0 0 20px #ff0000;
+  animation: portalExpand 1.5s ease-out forwards;
+}
+
+.portal-ring-1 {
+  width: 100px;
+  height: 100px;
+  animation-delay: 0s;
+}
+
+.portal-ring-2 {
+  width: 100px;
+  height: 100px;
+  animation-delay: 0.2s;
+  border-color: #8b0000;
+  box-shadow:
+    0 0 20px #8b0000,
+    0 0 40px #8b0000,
+    inset 0 0 20px #8b0000;
+}
+
+.portal-ring-3 {
+  width: 100px;
+  height: 100px;
+  animation-delay: 0.4s;
+  border-color: #ff3333;
+  box-shadow:
+    0 0 20px #ff3333,
+    0 0 40px #ff3333,
+    inset 0 0 20px #ff3333;
+}
+
+@keyframes portalExpand {
+  0% {
+    width: 100px;
+    height: 100px;
+    opacity: 1;
+  }
+
+  100% {
+    width: 200vw;
+    height: 200vw;
+    opacity: 0;
+  }
+}
+
+/* Portal Center Vortex */
+.portal-center {
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  background: radial-gradient(circle,
+      #ff0000 0%,
+      #8b0000 30%,
+      #000 70%);
+  border-radius: 50%;
+  animation: portalSpin 2s linear infinite, portalPull 1.5s ease-in forwards;
+  box-shadow:
+    0 0 40px #ff0000,
+    0 0 80px #ff0000,
+    0 0 120px #8b0000;
+}
+
+@keyframes portalSpin {
+  from {
+    transform: rotate(0deg) scale(1);
+  }
+
+  to {
+    transform: rotate(360deg) scale(1);
+  }
+}
+
+@keyframes portalPull {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+
+  100% {
+    transform: scale(50);
+    opacity: 0;
+  }
+}
+
+/* Portal Particles */
+.portal-particles {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-image:
+    radial-gradient(2px 2px at 20% 30%, white, transparent),
+    radial-gradient(2px 2px at 60% 70%, white, transparent),
+    radial-gradient(1px 1px at 50% 50%, white, transparent),
+    radial-gradient(1px 1px at 80% 10%, white, transparent),
+    radial-gradient(2px 2px at 90% 60%, white, transparent),
+    radial-gradient(1px 1px at 33% 80%, white, transparent),
+    radial-gradient(1px 1px at 15% 90%, white, transparent);
+  background-size: 200% 200%;
+  background-position: 0% 0%;
+  animation: particleFloat 1.5s ease-out forwards;
+  opacity: 0.6;
+}
+
+@keyframes particleFloat {
+  0% {
+    background-position: 0% 0%;
+    opacity: 0.6;
+  }
+
+  100% {
+    background-position: 100% 100%;
+    opacity: 0;
+  }
 }
 
 /* Back to top button */
@@ -370,11 +663,13 @@ h6 {
   content: "\f105";
 }
 
-/* Nav Meu Container */
+/* Nav Menu Container */
 
 #nav-menu-container {
   float: right;
-  margin: -50px 0 0 0;
+  margin: 0;
+  display: flex;
+  align-items: center;
 }
 
 /* Nav Meu Styling */
@@ -594,6 +889,86 @@ body.mobile-nav-active #mobile-nav {
 
 body.mobile-nav-active #mobile-nav-toggle {
   color: #fff;
+}
+
+/*--------------------------------------------------------------
+# Music Toggle Button
+--------------------------------------------------------------*/
+
+.music-toggle-btn {
+  position: fixed;
+  top: 110px;
+  left: 20px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 0, 0, 0.4);
+  background: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  color: #ff0000;
+  font-size: 20px;
+  cursor: pointer;
+  z-index: 996;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow:
+    0 0 20px rgba(255, 0, 0, 0.2),
+    inset 0 0 20px rgba(255, 0, 0, 0.1);
+  outline: none;
+}
+
+.music-toggle-btn:hover {
+  background: rgba(255, 0, 0, 0.2);
+  border-color: rgba(255, 0, 0, 0.6);
+  transform: scale(1.1);
+  box-shadow:
+    0 0 30px rgba(255, 0, 0, 0.4),
+    inset 0 0 30px rgba(255, 0, 0, 0.15);
+}
+
+.music-toggle-btn:active {
+  transform: scale(0.95);
+}
+
+.music-toggle-btn i {
+  transition: all 0.3s ease;
+}
+
+.music-toggle-btn.playing {
+  color: #fff;
+  background: rgba(255, 0, 0, 0.25);
+  border-color: rgba(255, 0, 0, 0.6);
+  animation: musicPulse 2s ease-in-out infinite;
+}
+
+@keyframes musicPulse {
+
+  0%,
+  100% {
+    box-shadow:
+      0 0 20px rgba(255, 0, 0, 0.3),
+      inset 0 0 20px rgba(255, 0, 0, 0.15);
+  }
+
+  50% {
+    box-shadow:
+      0 0 40px rgba(255, 0, 0, 0.6),
+      inset 0 0 30px rgba(255, 0, 0, 0.25);
+  }
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .music-toggle-btn {
+    width: 45px;
+    height: 45px;
+    font-size: 18px;
+    top: 90px;
+    left: 15px;
+  }
 }
 
 /*--------------------------------------------------------------
@@ -2253,6 +2628,24 @@ body.mobile-nav-active #mobile-nav-toggle {
     height: 70px;
     padding: 15px 0;
     transition: all 0.5s;
+  }
+
+  #header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  #header #logo {
+    gap: 15px;
+  }
+
+  #header #logo h2 {
+    font-size: 12px;
+  }
+
+  #header #logo img {
+    max-height: 40px;
   }
 
   #nav-menu-container {
@@ -4301,6 +4694,7 @@ body.mobile-nav-active #mobile-nav-toggle {
     width: 100%;
   }
 }
+
 /* ==========================================================================
    RESPONSIVE OVERRIDES & OPTIMIZATIONS
    ========================================================================== */
@@ -4311,7 +4705,9 @@ html {
   overflow-x: hidden;
 }
 
-*, *:before, *:after {
+*,
+*:before,
+*:after {
   box-sizing: inherit;
 }
 
@@ -4321,7 +4717,9 @@ body {
   position: relative;
 }
 
-img, video, iframe {
+img,
+video,
+iframe {
   max-width: 100%;
   height: auto;
 }
@@ -4336,7 +4734,8 @@ img, video, iframe {
   border: 0;
   background: none;
   font-size: 28px;
-  display: none; /* Hidden on desktop */
+  display: none;
+  /* Hidden on desktop */
   transition: all 0.4s;
   outline: none;
   cursor: pointer;
@@ -4344,7 +4743,7 @@ img, video, iframe {
 
 #mobile-nav-toggle i {
   color: #fff;
-  text-shadow: 0 0 10px rgba(0,0,0,0.5);
+  text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
 
 /* Mobile Nav Container */
@@ -4355,7 +4754,8 @@ img, video, iframe {
   bottom: 0;
   z-index: 998;
   background: rgba(0, 0, 0, 0.95);
-  left: -260px; /* Start off-screen */
+  left: -260px;
+  /* Start off-screen */
   width: 260px;
   overflow-y: auto;
   transition: 0.4s;
@@ -4436,15 +4836,18 @@ body.mobile-nav-active #mobile-nav-toggle {
 /* Tablets & Smaller Laptops (Max 1024px) */
 @media (max-width: 1024px) {
   #nav-menu-container {
-    display: none; /* Hide Desktop Menu */
+    display: none;
+    /* Hide Desktop Menu */
   }
 
   #mobile-nav-toggle {
-    display: inline; /* Show Hamburger */
+    display: inline;
+    /* Show Hamburger */
   }
 
   #intro {
-    background-attachment: scroll; /* Fix parallax issues */
+    background-attachment: scroll;
+    /* Fix parallax issues */
   }
 }
 
@@ -4457,6 +4860,7 @@ body.mobile-nav-active #mobile-nav-toggle {
 
 /* Mobile & Large Mobile (Max 767px) */
 @media (max-width: 767px) {
+
   /* Header */
   #header {
     padding: 15px;
@@ -4464,7 +4868,8 @@ body.mobile-nav-active #mobile-nav-toggle {
   }
 
   #header #logo h2 {
-    font-size: 14px; /* Smaller logo text */
+    font-size: 14px;
+    /* Smaller logo text */
   }
 
   #header #logo img {
@@ -4473,9 +4878,10 @@ body.mobile-nav-active #mobile-nav-toggle {
 
   /* Intro Section */
   #intro .intro-container {
-    top: 80px; /* Adjust for header */
+    top: 80px;
+    /* Adjust for header */
   }
-  
+
   #intro h1 {
     font-size: clamp(2rem, 10vw, 3.5rem);
     line-height: 1.1;
@@ -4497,7 +4903,8 @@ body.mobile-nav-active #mobile-nav-toggle {
     flex-direction: column;
   }
 
-  #about .col-lg-3, #about .col-lg-6 {
+  #about .col-lg-3,
+  #about .col-lg-6 {
     width: 100%;
     margin-bottom: 30px;
   }
@@ -4513,7 +4920,8 @@ body.mobile-nav-active #mobile-nav-toggle {
     width: 100%;
   }
 
-  .hack-v2-primary, .hack-v2-outline {
+  .hack-v2-primary,
+  .hack-v2-outline {
     display: block;
     text-align: center;
     width: 100%;
@@ -4522,7 +4930,8 @@ body.mobile-nav-active #mobile-nav-toggle {
 
   /* Events Grid (Electric Cards) */
   .card-container {
-    grid-template-columns: 1fr; /* Single column on mobile */
+    grid-template-columns: 1fr;
+    /* Single column on mobile */
     padding: 20px 10px;
     gap: 30px;
   }
@@ -4542,7 +4951,8 @@ body.mobile-nav-active #mobile-nav-toggle {
     flex-direction: column;
   }
 
-  #footer .col-lg-3, #footer .col-lg-6 {
+  #footer .col-lg-3,
+  #footer .col-lg-6 {
     width: 100%;
     text-align: center;
     margin-bottom: 30px;
@@ -4573,7 +4983,8 @@ body.mobile-nav-active #mobile-nav-toggle {
     padding: 10px;
   }
 
-  .event-modal-left, .event-modal-right {
+  .event-modal-left,
+  .event-modal-right {
     padding: 15px;
   }
 
@@ -4589,7 +5000,7 @@ body.mobile-nav-active #mobile-nav-toggle {
   body {
     font-size: 14px;
   }
-  
+
   #header #logo h2 {
     font-size: 10px;
   }
@@ -4598,6 +5009,7 @@ body.mobile-nav-active #mobile-nav-toggle {
 
 /* Fix for Header Alignment and Countdown on Mobile */
 @media (max-width: 768px) {
+
   /* Header Fixes */
   #header #logo {
     display: flex;
@@ -4612,30 +5024,35 @@ body.mobile-nav-active #mobile-nav-toggle {
     flex-direction: column;
     justify-content: center;
   }
-  
+
   #header #logo h2 br {
-    display: none; /* Hide break on mobile to keep inline if space allows, or let flex handle it */
+    display: none;
+    /* Hide break on mobile to keep inline if space allows, or let flex handle it */
   }
 
   #header #logo h2 span {
-     display: block; /* Make Ramakrishna distinct */
+    display: block;
+    /* Make Ramakrishna distinct */
   }
 
   /* Countdown Fixes */
-  .countdown-hero-wrap, .counter-content {
+  .countdown-hero-wrap,
+  .counter-content {
     width: 100%;
     padding: 0;
   }
 
   #countdown {
     display: flex;
-    flex-wrap: nowrap !important; /* Force single line */
+    flex-wrap: nowrap !important;
+    /* Force single line */
     justify-content: center;
     align-items: center;
     width: 100%;
     margin: 0 auto;
     padding: 10px 0;
-    gap: 5px; /* Reduce gap */
+    gap: 5px;
+    /* Reduce gap */
   }
 
   #countdown li {
@@ -4643,16 +5060,19 @@ body.mobile-nav-active #mobile-nav-toggle {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    margin: 0 2px !important; /* Tight margins */
+    margin: 0 2px !important;
+    /* Tight margins */
   }
 
   #countdown li span {
-    font-size: 1.5rem !important; /* Smaller number */
+    font-size: 1.5rem !important;
+    /* Smaller number */
     line-height: 1;
   }
 
   #countdown li p {
-    font-size: 0.6rem !important; /* Smaller label */
+    font-size: 0.6rem !important;
+    /* Smaller label */
     margin: 0;
   }
 
@@ -4660,7 +5080,7 @@ body.mobile-nav-active #mobile-nav-toggle {
     font-size: 1.5rem !important;
     line-height: 1;
     margin: 0 !important;
-    padding-bottom: 15px; /* Align visually with numbers */
+    padding-bottom: 15px;
+    /* Align visually with numbers */
   }
 }
-

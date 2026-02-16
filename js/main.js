@@ -4,6 +4,95 @@ jQuery(document).ready(function ($) {
   /******************************
    * 1. INITIALIZE LIBRARIES
    ******************************/
+
+  // Multi-Stage Preloader Logic
+  $(window).on('load', function () {
+    if ($('#preloader').length) {
+      // Stage 1: "Searching the Upside Down" - show for 2 seconds
+      setTimeout(function () {
+        $('#loading-stage-1').fadeOut(500, function () {
+          // Stage 2: "Portals are Open" - show for 1.5 seconds
+          $('#loading-stage-2').fadeIn(500);
+
+          setTimeout(function () {
+            $('#loading-stage-2').fadeOut(500, function () {
+              // Stage 3: "Dive into the Upside Down" button
+              $('#loading-stage-3').fadeIn(500);
+            });
+          }, 1500);
+        });
+      }, 2000);
+
+      // Handle dive button click - TRIGGER ALL AUDIO SOURCES + PORTAL TRANSITION
+      $(document).on('click', '#dive-button', function () {
+        // Show portal transition
+        const portalTransition = document.getElementById('portal-transition');
+        if (portalTransition) {
+          portalTransition.style.display = 'flex';
+          setTimeout(() => {
+            portalTransition.classList.add('active');
+          }, 10);
+        }
+
+        // Check if music is enabled in localStorage
+        const musicEnabled = localStorage.getItem('musicEnabled') === 'true';
+
+        if (musicEnabled) {
+          // 1. Start countdown audio
+          const countdownAudio = document.getElementById('countdown-audio');
+          if (countdownAudio) {
+            countdownAudio.volume = 0.4;
+            countdownAudio.play().catch(error => {
+              console.log("Countdown audio blocked:", error);
+            });
+          }
+
+          // 2. Start background music
+          const bgMusic = document.getElementById('bg-music');
+          if (bgMusic) {
+            bgMusic.volume = 0.3;
+            bgMusic.play().catch(error => {
+              console.log("Background music blocked:", error);
+            });
+          }
+
+          // 3. Start intro video audio (unmute and play)
+          const bgVideo = document.getElementById('bg-video');
+          if (bgVideo) {
+            bgVideo.muted = false;
+            bgVideo.volume = 0.5;
+            bgVideo.play().catch(error => {
+              console.log("Video audio blocked:", error);
+            });
+          }
+        } else {
+          // Keep video muted if music is disabled
+          const bgVideo = document.getElementById('bg-video');
+          if (bgVideo) {
+            bgVideo.muted = true;
+          }
+        }
+
+        // Remove preloader after portal animation starts
+        setTimeout(function () {
+          $('#preloader').fadeOut(300, function () {
+            $(this).remove();
+          });
+        }, 500);
+
+        // Remove portal transition after animation completes
+        setTimeout(function () {
+          if (portalTransition) {
+            portalTransition.style.opacity = '0';
+            setTimeout(() => {
+              portalTransition.remove();
+            }, 500);
+          }
+        }, 1800);
+      });
+    }
+  });
+
   new WOW().init(); // Initialize WOW.js animations
 
   // Venobox Lightbox
@@ -225,6 +314,104 @@ jQuery(document).ready(function ($) {
     playFeedbackSound();
   });
 
+  /******************************
+   * 8. MUSIC TOGGLE BUTTON - CONTROLS ALL AUDIO
+   ******************************/
+  const musicToggle = document.getElementById('music-toggle');
+  const bgMusic = document.getElementById('bg-music');
+  const countdownAudio = document.getElementById('countdown-audio');
+  const bgVideo = document.getElementById('bg-video');
+  const introSection = document.getElementById('intro');
+  const aboutSection = document.getElementById('about');
+
+  let musicEnabled = localStorage.getItem('musicEnabled') === 'true';
+  let isIntroVisible = true; // Default start
+  let isAboutVisible = false;
+
+  // Initialize UI
+  updateMusicButtonUI(musicEnabled);
+
+  // Intersection Observer for Section Visibility
+  const audioObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.target.id === 'intro') {
+        isIntroVisible = entry.isIntersecting;
+      } else if (entry.target.id === 'about') {
+        isAboutVisible = entry.isIntersecting;
+      }
+    });
+    // Update audio state whenever visibility changes
+    updateAudioState();
+  }, { threshold: 0.3 }); // Trigger when 30% visible
+
+  if (introSection) audioObserver.observe(introSection);
+  if (aboutSection) audioObserver.observe(aboutSection);
+
+  // Toggle Button Click Handler
+  if (musicToggle) {
+    musicToggle.addEventListener('click', function () {
+      musicEnabled = !musicEnabled;
+      localStorage.setItem('musicEnabled', musicEnabled);
+      updateMusicButtonUI(musicEnabled);
+      updateAudioState();
+    });
+  }
+
+  // Central Audio State Manager
+  function updateAudioState() {
+    if (musicEnabled) {
+      // 1. Ambient Music - Always plays if enabled
+      if (bgMusic && bgMusic.paused) {
+        bgMusic.volume = 0.3;
+        bgMusic.play().catch(e => console.log("BG Music play failed", e));
+      }
+
+      // 2. Intro Video Audio - Only in Intro Section
+      if (bgVideo) {
+        if (isIntroVisible) {
+          bgVideo.muted = false;
+          bgVideo.volume = 0.5;
+        } else {
+          bgVideo.muted = true;
+        }
+      }
+
+      // 3. Countdown Audio - Only in Countdown Section
+      if (countdownAudio) {
+        if (isAboutVisible) {
+          countdownAudio.volume = 0.4;
+          if (countdownAudio.paused) countdownAudio.play().catch(e => console.log("Countdown play failed", e));
+        } else {
+          countdownAudio.pause();
+          countdownAudio.currentTime = 0; // Reset for next time
+        }
+      }
+
+    } else {
+      // GLOBAL MUTE - Stop everything
+      if (bgMusic) bgMusic.pause();
+
+      if (bgVideo) bgVideo.muted = true;
+
+      if (countdownAudio) {
+        countdownAudio.pause();
+        countdownAudio.currentTime = 0;
+      }
+    }
+  }
+
+  // UI Helper
+  function updateMusicButtonUI(isEnabled) {
+    if (!musicToggle) return;
+    if (isEnabled) {
+      musicToggle.classList.add('playing');
+      musicToggle.innerHTML = '<i class="fa fa-volume-up"></i>';
+    } else {
+      musicToggle.classList.remove('playing');
+      musicToggle.innerHTML = '<i class="fa fa-volume-off"></i>';
+    }
+  }
+
 });
 
 /******************************
@@ -251,6 +438,79 @@ function closePopup() {
   document.getElementById('eventPopup').style.display = 'none';
   document.body.style.overflow = 'auto'; // Re-enable scrolling
 }
+
+/******************************
+ * 9. 3D TILT EFFECT LOGIC
+ ******************************/
+const tiltContainer = document.getElementById('tiltContainer');
+const tiltInner = document.getElementById('tiltInner');
+const tiltShine = document.getElementById('tiltShine');
+
+if (tiltContainer && tiltInner) {
+  // Config
+  const maxTilt = 15; // Max rotation in degrees
+
+  // Mouse Move Event
+  tiltContainer.addEventListener('mousemove', (e) => {
+    const rect = tiltContainer.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+
+    // Calculate percentages (0 to 1)
+    const xPct = x / rect.width;
+    const yPct = y / rect.height;
+
+    // Calculate rotation (center is 0,0)
+    // Y-axis rotation comes from X-position (left/right)
+    // X-axis rotation comes from Y-position (up/down) - inverted
+    const rotateY = (xPct - 0.5) * maxTilt * 2;
+    const rotateX = (0.5 - yPct) * maxTilt * 2;
+
+    // Apply Transform
+    tiltInner.style.transform = `
+      perspective(1000px)
+      rotateX(${rotateX}deg)
+      rotateY(${rotateY}deg)
+      scale3d(1.05, 1.05, 1.05)
+    `;
+
+    // Shine Effect
+    if (tiltShine) {
+      tiltShine.style.opacity = '1';
+      tiltShine.style.background = `
+        radial-gradient(circle at ${x}px ${y}px, 
+        rgba(255,255,255,0.2) 0%, 
+        rgba(255,255,255,0) 80%)
+      `;
+    }
+  });
+
+  // Mouse Leave - Reset
+  tiltContainer.addEventListener('mouseleave', () => {
+    tiltInner.style.transform = `
+      perspective(1000px)
+      rotateX(0deg)
+      rotateY(0deg)
+      scale3d(1, 1, 1)
+    `;
+
+    // Smooth transition for reset
+    tiltInner.style.transition = 'transform 0.5s ease-out';
+    setTimeout(() => {
+      tiltInner.style.transition = 'transform 0.1s ease-out'; // Reset to fast for next move
+    }, 500);
+
+    if (tiltShine) {
+      tiltShine.style.opacity = '0';
+    }
+  });
+
+  // Mouse Enter - Clear Reset Transition
+  tiltContainer.addEventListener('mouseenter', () => {
+    tiltInner.style.transition = 'transform 0.1s ease-out';
+  });
+}
+
 
 /******************************
  * 9. CONFETTI FUNCTION

@@ -13,7 +13,7 @@
     position: absolute;
     /* Independent Control Variables */
     top: 50%;
-    left: 80%;
+    left: 77%;
     width: 100%;
     height: 100%;
     transform: translate(-50%, -50%) scale(1);
@@ -43,11 +43,55 @@
 /* LEFT */
 .hack-v2-left {
     flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.hack-v2-left img {
+/* 3D TILT EFFECT CSS */
+.tilt-container {
+    perspective: 1000px;
     width: 100%;
+    max-width: 600px;
+    position: relative;
+    cursor: pointer;
+}
+
+.tilt-inner {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform-style: preserve-3d;
+    transform: rotateX(0) rotateY(0);
+    transition: transform 0.1s ease-out;
+    /* Smooth follow */
+}
+
+/* Image Styling */
+.tilt-inner img {
+    width: 100%;
+    height: auto;
     border-radius: 20px;
+    box-shadow:
+        0 20px 50px rgba(0, 0, 0, 0.5),
+        0 0 30px rgba(255, 0, 0, 0.2);
+    display: block;
+}
+
+/* Shine Effect */
+.tilt-shine {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.25) 0%, rgba(255, 255, 255, 0) 60%);
+    border-radius: 20px;
+    opacity: 0;
+    pointer-events: none;
+    mix-blend-mode: overlay;
+    transition: opacity 0.3s;
+    z-index: 10;
 }
 
 /* RIGHT */
@@ -95,7 +139,7 @@
     grid-column: span 2;
 }
 
-/* BUTTONS */
+/* BUTTONS - Glassy Design */
 .hack-v2-buttons {
     display: flex;
     gap: 20px;
@@ -103,21 +147,54 @@
 
 .hack-v2-primary {
     padding: 12px 30px;
-    background: red;
+    background: rgba(255, 0, 0, 0.15);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 2px solid rgba(255, 0, 0, 0.4);
     color: white;
     border-radius: 30px;
     text-decoration: none;
+    transition: all 0.3s ease;
+    box-shadow:
+        0 0 20px rgba(255, 0, 0, 0.2),
+        inset 0 0 20px rgba(255, 0, 0, 0.1);
+}
+
+.hack-v2-primary:hover {
+    background: rgba(255, 0, 0, 0.25);
+    border-color: rgba(255, 0, 0, 0.6);
+    box-shadow:
+        0 0 30px rgba(255, 0, 0, 0.4),
+        inset 0 0 30px rgba(255, 0, 0, 0.15);
+    transform: translateY(-2px);
 }
 
 .hack-v2-outline {
     padding: 12px 30px;
-    border: 1px solid red;
-    color: red;
+    background: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 2px solid rgba(255, 0, 0, 0.4);
+    color: #ff0000;
     border-radius: 30px;
     text-decoration: none;
+    transition: all 0.3s ease;
+    box-shadow:
+        0 0 15px rgba(255, 0, 0, 0.15),
+        inset 0 0 15px rgba(255, 0, 0, 0.05);
 }
 
-/* BOTTOM CTA */
+.hack-v2-outline:hover {
+    background: rgba(255, 0, 0, 0.15);
+    border-color: rgba(255, 0, 0, 0.6);
+    color: white;
+    box-shadow:
+        0 0 25px rgba(255, 0, 0, 0.3),
+        inset 0 0 25px rgba(255, 0, 0, 0.1);
+    transform: translateY(-2px);
+}
+
+/* BOTTOM CTA - Glassy Design */
 .hack-v2-bottom {
     margin-top: 70px;
     text-align: center;
@@ -125,18 +202,29 @@
 
 .hack-v2-explore {
     padding: 16px 70px;
-    background: #ff0000;
+    background: rgba(255, 0, 0, 0.15);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 2px solid rgba(255, 0, 0, 0.5);
     color: white;
-    border: none;
     border-radius: 40px;
     font-size: 18px;
     cursor: pointer;
-    transition: 0.3s ease;
+    text-decoration: none;
+    display: inline-block;
+    transition: all 0.3s ease;
+    box-shadow:
+        0 0 25px rgba(255, 0, 0, 0.25),
+        inset 0 0 25px rgba(255, 0, 0, 0.1);
 }
 
 .hack-v2-explore:hover {
+    background: rgba(255, 0, 0, 0.3);
+    border-color: rgba(255, 0, 0, 0.7);
+    box-shadow:
+        0 0 40px rgba(255, 0, 0, 0.5),
+        inset 0 0 40px rgba(255, 0, 0, 0.2);
     transform: scale(1.05);
-    background: #ff3333;
 }
 
 /* RESPONSIVE */
@@ -156,4 +244,37 @@
     .hack-v2-buttons {
         flex-direction: column;
     }
+}
+
+/* Glassy Override for Cyber Buttons in Hack-v2 Section */
+.hack-v2-section .cyber-btn,
+.hack-v2-section .cyber-btn-outline {
+    background: rgba(255, 0, 0, 0.15) !important;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 2px solid rgba(255, 0, 0, 0.4) !important;
+    box-shadow:
+        0 0 20px rgba(255, 0, 0, 0.2),
+        inset 0 0 20px rgba(255, 0, 0, 0.1) !important;
+    transition: all 0.3s ease !important;
+}
+
+.hack-v2-section .cyber-btn {
+    color: white !important;
+}
+
+.hack-v2-section .cyber-btn-outline {
+    color: #ff0000 !important;
+    background: rgba(0, 0, 0, 0.3) !important;
+}
+
+.hack-v2-section .cyber-btn:hover,
+.hack-v2-section .cyber-btn-outline:hover {
+    background: rgba(255, 0, 0, 0.25) !important;
+    border-color: rgba(255, 0, 0, 0.6) !important;
+    box-shadow:
+        0 0 30px rgba(255, 0, 0, 0.4),
+        inset 0 0 30px rgba(255, 0, 0, 0.15) !important;
+    transform: translateY(-2px) !important;
+    color: white !important;
 }
