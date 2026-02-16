@@ -1331,20 +1331,122 @@ const eventDetails = {
     formLink: 'registration.html'
   },
   'roborush': {
-    title: 'circuit surge 2.0',
-    desc: 'Navigate your robot through a challenging obstacle course. Test your robotics design and control skills.',
+    title: 'Circuit Surge 2.0',
+    desc: `<div class="event-full-desc">
+      <p><strong>CIRCUIT SURGE 2.0</strong> allows electrical enthusiasts to solve problems and showcase their knowledge, creativity, and innovation as they step ahead. Compete, learn, and electrify your future.</p>
+      
+      <h3>👥 Team Structure & Rules</h3>
+      <ul>
+        <li><strong>Team Size:</strong> 3 members per team</li>
+        <li><strong>Total Duration:</strong> 3 hours</li>
+        <li>No external help allowed</li>
+        <li>Points awarded based on correctness</li>
+      </ul>
+
+      <h3>📋 Circuit Surge Rounds</h3>
+
+      <p><strong>ROUND 1: Electrical Basics Quiz</strong></p>
+      <ul>
+        <li><strong>Duration:</strong> 20-25 minutes</li>
+        <li><strong>Round Type:</strong> Quiz on basic electrical concepts</li>
+        <li><strong>Objective:</strong> Evaluate basic problem-solving skills related to simple electrical circuits</li>
+        <li><strong>Qualification:</strong> Teams scoring the required cutoff advance to Round 2</li>
+      </ul>
+
+      <p><strong>ROUND 2: Circuit Puzzle</strong></p>
+      <ul>
+        <li><strong>Objective:</strong> Assess the ability to identify correct circuit connections and components</li>
+        <li><strong>Challenge:</strong> Solve circuit puzzles and identify proper component arrangements</li>
+      </ul>
+
+      <p><strong>ROUND 3: Circuit Building & Presentation</strong></p>
+      <ul>
+        <li><strong>Round Type:</strong> Circuit building and presentation</li>
+        <li><strong>Objective:</strong> Assess both practical debugging skills and the ability to clearly explain circuit design, operation, and fault analysis</li>
+        <li><strong>Focus:</strong> Hands-on circuit construction and technical communication</li>
+      </ul>
+
+      <h3>🏆 Winner Selection</h3>
+      <p>Winners will be decided based on the <strong>combined score of all three rounds</strong>.</p>
+      <p><strong>Tie-Breaker:</strong> In case of a tie, the team that completes the task in the <strong>least time</strong> will be ranked higher.</p>
+
+      <h3>📜 Rules & Regulations</h3>
+      <ul>
+        <li>Use of mobile phones or internet is <strong>strictly prohibited</strong></li>
+        <li>External help is not allowed</li>
+        <li>Components should be handled <strong>carefully</strong></li>
+        <li>Judges' decision will be <strong>final</strong></li>
+      </ul>
+
+      <h3>📍 Venue & Timeline</h3>
+      <p><strong>Venue:</strong> PSS Lab</p>
+      <p><strong>Timeline:</strong> 10:00 AM to 1:00 PM</p>
+    </div>`,
     date: 'Day 1',
-    time: '2:30 PM',
-    venue: 'Robotics Arena',
+    time: '10:00 AM',
+    venue: 'PSS Lab',
     image: 'img/events-tech/7.webp',
     formLink: 'registration.html'
   },
   'productpitch': {
-    title: 'Watt hours',
-    desc: 'Pitch your innovative product idea to a panel of judges. convince them of its market potential and feasibility.',
+    title: 'WATT HOURS – Energy Auditing',
+    desc: `<div class="event-full-desc">
+      <p><strong>WATT HOURS</strong> allows energy enthusiasts to solve problems and showcase their knowledge, creativity, and innovation as they step ahead. Compete, learn, and electrify your future by saving the nature.</p>
+      
+      <h3>👥 Team Structure & Rules</h3>
+      <ul>
+        <li><strong>Team Size:</strong> 2 to 4 members per team</li>
+        <li><strong>Total Duration:</strong> 3 hours</li>
+        <li>No external help allowed</li>
+        <li>Points awarded based on correctness</li>
+      </ul>
+
+      <h3>📋 Energy Auditing Rounds</h3>
+
+      <p><strong>ROUND 1: Preliminary Quiz Assessment</strong></p>
+      <ul>
+        <li><strong>Duration:</strong> 20 minutes</li>
+        <li><strong>Focus:</strong> Energy auditing and management</li>
+        <li><strong>Objective:</strong> Evaluate basic problem-solving skills related to simple energy savings</li>
+        <li><strong>Qualification:</strong> Teams scoring the required cutoff advance to Round 2</li>
+      </ul>
+
+      <p><strong>ROUND 2: Field Work</strong></p>
+      <p><strong>Objective:</strong></p>
+      <ul>
+        <li>Observe various energy usage in a particular area</li>
+        <li>Calculate <strong>total demand per day</strong></li>
+        <li>Calculate <strong>cost of unit consumption</strong></li>
+        <li>Provide <strong>recommendations</strong> for implementing energy-efficient equipment to reduce energy consumption</li>
+        <li><em>Location can be used as your willing</em></li>
+      </ul>
+
+      <p><strong>ROUND 3: Carbon Footprint Calculation & SDG Goals Mapping</strong></p>
+      <ul>
+        <li><strong>Round Type:</strong> Carbon footprint calculation and SDG goals mapping</li>
+        <li><strong>Objective:</strong> Support strategies for reducing carbon emissions</li>
+        <li>Map findings to relevant <strong>Sustainable Development Goals (SDGs)</strong></li>
+      </ul>
+
+      <h3>🏆 Winner Selection</h3>
+      <p>Top teams will be shortlisted based on the <strong>combined score of all three rounds</strong>.</p>
+      <p><strong>Tie-Breaker:</strong> In case of a tie, the team that completes the task in the <strong>least time</strong> will be ranked higher.</p>
+
+      <h3>📜 Rules & Regulations</h3>
+      <ul>
+        <li>Use of mobile phones or internet is <strong>strictly prohibited</strong></li>
+        <li>External help is not allowed</li>
+        <li>Components should be handled <strong>carefully</strong></li>
+        <li>Judges' decision will be <strong>final</strong></li>
+      </ul>
+
+      <h3>📍 Venue & Timeline</h3>
+      <p><strong>Venue:</strong> PSS Lab</p>
+      <p><strong>Timeline:</strong> 2:00 PM to 5:00 PM</p>
+    </div>`,
     date: 'Day 2',
-    time: '10:00 AM',
-    venue: 'Main Auditorium',
+    time: '2:00 PM',
+    venue: 'PSS Lab',
     image: 'img/events-tech/8.webp',
     formLink: 'registration.html'
   },
