@@ -1140,28 +1140,175 @@ const eventDetails = {
   },
   'speedcraft': {
     title: 'Debug Detective',
-    desc: 'A CAD modeling contest where speed meets precision. Design complex 3D models within a tight timeframe to prove your engineering design skills.',
+    desc: `<div class="event-full-desc">
+      <p><strong>Debug-Detective</strong> is a technical puzzle hunt that challenges participants' logical thinking, coding skills, and problem-solving abilities. Teams act as digital detectives, solving clues, cracking puzzles, and debugging code to progress through each stage. The event combines logic puzzles, encrypted files, and programming challenges in a timed and competitive environment where speed, accuracy, and teamwork are essential.</p>
+      
+      <h3>👥 Team Structure & Rules</h3>
+      <ul>
+        <li><strong>Team Size:</strong> 2 members per team</li>
+        <li><strong>Duration:</strong> 2 hours</li>
+        <li><strong>No external help</strong> (Google, AI, books unless specified)</li>
+        <li>Points awarded based on <strong>correctness & speed</strong></li>
+        <li>Hints available with <strong>negative marking</strong></li>
+      </ul>
+
+      <h3>🎯 Challenge Types</h3>
+      <p>All clues are based on technology and programming concepts and guide teams to the next challenge.</p>
+      
+      <table style="width:100%; border-collapse: collapse; margin: 10px 0;">
+        <tr style="background: rgba(0, 240, 255, 0.1);">
+          <td style="font-weight: 700; color: #00f0ff;">Challenge Type</td>
+          <td style="font-weight: 700; color: #00f0ff;">Example</td>
+          <td style="font-weight: 700; color: #00f0ff;">Outcome</td>
+        </tr>
+        <tr><td>ZIP File</td><td>Solve a riddle/puzzle to get the password</td><td>Unlocks zip file for Round 2; contains next set of puzzles</td></tr>
+        <tr><td>Solve Puzzles</td><td>Mini-technical puzzles (logic, patterns, SQL queries)</td><td>Leads teams to the next clue</td></tr>
+        <tr><td>Programming Puzzle</td><td>Debug a code snippet to reveal a message</td><td>Corrected code prints next clue or password part</td></tr>
+      </table>
+
+      <h3>📊 Scoring System</h3>
+      
+      <p><strong>Base Points & Speed Bonus:</strong></p>
+      <table style="width:100%; border-collapse: collapse; margin: 10px 0;">
+        <tr style="background: rgba(0, 240, 255, 0.1);">
+          <td style="font-weight: 700; color: #00f0ff;">Challenge Type</td>
+          <td style="font-weight: 700; color: #00f0ff;">Points</td>
+          <td style="font-weight: 700; color: #00f0ff;">Speed Bonus</td>
+          <td style="font-weight: 700; color: #00f0ff;">Hint Penalty</td>
+        </tr>
+        <tr><td>ZIP File</td><td>10 points</td><td>+5 points</td><td>-3 points/hint</td></tr>
+        <tr><td>Solve Puzzles</td><td>10 points</td><td>+5 points</td><td>-3 points/hint</td></tr>
+        <tr><td>Programming Puzzle</td><td>15 points</td><td>+7 points</td><td>-5 points/hint</td></tr>
+      </table>
+      <p><em>First team to finish the entire hunt gets an extra <strong>+20 bonus points</strong></em></p>
+
+      <p><strong>Penalties & Deductions:</strong></p>
+      <ul>
+        <li>Requesting hints: -3 to -5 points per hint (varies by challenge)</li>
+        <li>Skipping a checkpoint: -10 points per checkpoint</li>
+        <li>Using unauthorized external help: <strong>Disqualification</strong></li>
+        <li>Tampering with clues/checkpoints: <strong>Disqualification</strong></li>
+      </ul>
+
+      <h3>🏆 Prizes</h3>
+      <ul>
+        <li><strong>Winner:</strong> Highest total points - <strong>Rs. 2,000/-</strong></li>
+        <li><strong>Runner-up:</strong> Second-highest scoring team - <strong>Rs. 1,000/-</strong></li>
+      </ul>
+
+      <p><strong>Tie-Breaker Rules:</strong></p>
+      <ol>
+        <li>Team that completes the debug in the shortest time</li>
+        <li>If still tied, a sudden-death debugging question decides the winner</li>
+      </ol>
+
+      <h3>📍 Venue & Coordinators</h3>
+      <p><strong>Venue:</strong> CC4 Lab</p>
+      <p><strong>Staff Coordinator:</strong><br>
+      Mr. B. Rajagopal - <a href="tel:+919159211743" style="color: #00f0ff;">9159211743</a></p>
+      <p><strong>Student Coordinator:</strong><br>
+      Ashwini CS - <a href="tel:+919659189110" style="color: #00f0ff;">9659189110</a></p>
+    </div>`,
     date: 'Day 1',
     time: '10:00 AM',
-    venue: 'CAD Lab',
+    venue: 'CC4 Lab',
     image: 'img/events-tech/2.webp',
     formLink: 'registration.html'
   },
   'clonex': {
     title: 'Code Debugging',
-    desc: 'Replicate a given website design or application interface with pixel-perfect accuracy. Test your frontend development skills.',
+    desc: `<div class="event-full-desc">
+      <p><strong>Code Debugging</strong> is a competitive coding event where participants solve defects in given code to make it run correctly. This solo challenge tests your debugging skills, logical thinking, and ability to identify and fix code errors under time pressure.</p>
+      
+      <h3>👤 Team Structure & Rules</h3>
+      <ul>
+        <li><strong>Team Size:</strong> 1 member (Solo event)</li>
+        <li><strong>Total Duration:</strong> 1 hour 30 minutes</li>
+        <li><strong>No external help allowed</strong></li>
+        <li>Solving each bug scores you a point</li>
+      </ul>
+
+      <h3>🎯 Round 1: Bug Fixing</h3>
+      <ul>
+        <li><strong>Duration:</strong> 20 minutes</li>
+        <li><strong>Objective:</strong> Find all existing bugs and rectify the faults to make the code work</li>
+        <li><strong>Round Type:</strong> Bug solving in the given code</li>
+        <li><strong>Qualification:</strong> Participants scoring the required cutoff will advance to Round 2</li>
+      </ul>
+
+      <h3>🔄 Round 2: Code Rearrangement</h3>
+      <ul>
+        <li><strong>Round Type:</strong> Rearrange the jumbled code</li>
+        <li><strong>Objective:</strong> Assemble all the scrambled lines and functions in the correct order to pass test cases</li>
+        <li><strong>Challenge:</strong> Code structure and logic flow understanding</li>
+      </ul>
+
+      <h3>🏆 Winner Selection</h3>
+      <p>Winners will be decided based on the <strong>combined score of both rounds</strong>.</p>
+      <p><strong>Tie-Breaker:</strong> In case of a tie, the participant who completes the task in the <strong>least time</strong> will be ranked higher.</p>
+
+      <h3>📜 Rules & Regulations</h3>
+      <ul>
+        <li>Use of mobile phones or internet is <strong>strictly prohibited</strong></li>
+        <li>External help is not allowed</li>
+        <li>Work must be individual and original</li>
+        <li>Follow all time limits strictly</li>
+        <li>Judges' decision will be final</li>
+      </ul>
+
+      <h3>📍 Venue & Timeline</h3>
+      <p><strong>Venue:</strong> IT Lab</p>
+      <p><strong>Timeline:</strong> 2:30 PM to 4:00 PM</p>
+    </div>`,
     date: 'Day 1',
-    time: '10:00 AM',
-    venue: 'Computer Lab 2',
+    time: '2:30 PM',
+    venue: 'IT Lab',
     image: 'img/events-tech/3.webp',
     formLink: 'registration.html'
   },
   'reverseengg': {
-    title: 'Leak the logic',
-    desc: 'Deconstruct a product or system to understand how it works. A challenge for those who love to take things apart and analyze them.',
+    title: 'Leak the Logic',
+    desc: `<div class="event-full-desc">
+      <p><strong>Leak the Logic</strong> allows coders to work in different fields of coding, where they have to decrypt the problem statement and find the algorithmic logic behind it. All the rounds are inter-connected for the climax compilation.</p>
+      
+      <h3>👥 Team Structure & Rules</h3>
+      <ul>
+        <li><strong>Team Size:</strong> 2 members per team</li>
+        <li><strong>Total Duration:</strong> 1 hour 30 minutes</li>
+      </ul>
+
+      <p><strong>Strict Rules:</strong></p>
+      <ul>
+        <li>Peeping into other's systems are <strong>strictly prohibited</strong></li>
+        <li><strong>No tab switch allowed</strong></li>
+      </ul>
+
+      <h3>🎯 Round 1: Story-Based Word Problem</h3>
+      <ul>
+        <li><strong>Duration:</strong> 1 hour 10 minutes</li>
+        <li><strong>Round Type:</strong> Story-based word problem</li>
+      </ul>
+
+      <p><strong>Objective:</strong></p>
+      <ul>
+        <li>Find the <strong>abstract</strong> behind each problem statement</li>
+        <li>The resultant code must <strong>satisfy all given test cases</strong></li>
+        <li>Each question contains a <strong>special codex</strong>, which can be used for the final question to end this game</li>
+      </ul>
+
+      <p><em>💡 All rounds are inter-connected, and each problem provides a special codex needed for the final climax question!</em></p>
+
+      <h3>🏆 Winner Selection</h3>
+      <p>Winners will be decided based on the <strong>combined score of all rounds</strong>.</p>
+      <p><strong>Tie-Breaker:</strong> In case of a tie, the team that completes the task in the <strong>least time</strong> will be ranked higher.</p>
+
+      <h3>📍 Venue & Timeline</h3>
+      <p><strong>Venue:</strong> IT Lab</p>
+      <p><strong>Timeline:</strong> 10:00 AM to 11:30 AM</p>
+    </div>`,
     date: 'Day 1',
-    time: '12:00 Noon',
-    venue: 'Hardware Lab',
+    time: '10:00 AM',
+    venue: 'IT Lab',
     image: 'img/events-tech/4.webp',
     formLink: 'registration.html'
   },
@@ -1202,8 +1349,120 @@ const eventDetails = {
     formLink: 'registration.html'
   },
   'dasheddata': {
-    title: 'Think Tank throwdown',
-    desc: 'Analyze, visualize, and interpret data to uncover hidden trends. A competition for data science enthusiasts.',
+    title: 'THINKTANK – Scenario Showdown',
+    desc: `<div class="event-full-desc">
+      <p><strong>THINKTANK (ScenarioShowdown)</strong> is an engaging team-based competition designed to test your ability to analyze complex real-world situations and develop practical solutions. Through story-based scenarios, teams will tackle challenges involving business decisions, ethical dilemmas, crisis management, and strategic problem-solving. This is a <strong>non-technical event</strong> - it's about how you think, analyze, and make decisions as a team.</p>
+      
+      <p><em>💡 Key Highlight: Round 1 is an ELIMINATION round! Only top-performing teams advance to Round 2.</em></p>
+
+      <h3>📋 Competition Structure</h3>
+      
+      <p><strong>ROUND 1: LOGICAL THINKING (ELIMINATION ROUND)</strong></p>
+      <ul>
+        <li><strong>Duration:</strong> 45 minutes</li>
+        <li><strong>Number of Scenarios:</strong> 2 (teams must answer both)</li>
+        <li><strong>Team Format:</strong> Collaborate and submit one response per team</li>
+        <li><strong>Outcome:</strong> Top teams advance to Round 2</li>
+        <li><strong>Focus Areas:</strong> Business decision-making, work-life scenarios, multi-stakeholder analysis</li>
+      </ul>
+
+      <p><strong>ROUND 2: CRITICAL THINKING (FINALS)</strong></p>
+      <ul>
+        <li><strong>Duration:</strong> 45 minutes</li>
+        <li><strong>Number of Scenarios:</strong> 2 (teams must answer both)</li>
+        <li><strong>Participants:</strong> Only qualified teams from Round 1</li>
+        <li><strong>Focus Areas:</strong> Crisis management, ethical dilemmas, strategic problem-solving under constraints</li>
+      </ul>
+
+      <h3>⏰ Event Schedule</h3>
+      <table style="width:100%; border-collapse: collapse; margin: 10px 0;">
+        <tr style="background: rgba(0, 240, 255, 0.1);">
+          <td style="font-weight: 700; color: #00f0ff;">Time</td>
+          <td style="font-weight: 700; color: #00f0ff;">Activity</td>
+          <td style="font-weight: 700; color: #00f0ff;">Duration</td>
+        </tr>
+        <tr><td>10:00 AM - 10:45 AM</td><td>🎯 ROUND 1: Logical Thinking (Elimination)</td><td>45 min</td></tr>
+        <tr><td>10:45 AM - 11:00 AM</td><td>⏸️ Break + Evaluation + Results</td><td>15 min</td></tr>
+        <tr><td>11:00 AM - 11:05 AM</td><td>📢 Announcement: Teams Advancing to Round 2</td><td>5 min</td></tr>
+        <tr><td>11:05 AM - 11:50 AM</td><td>🎯 ROUND 2: Critical Thinking (Finals)</td><td>45 min</td></tr>
+        <tr><td>11:50 AM - 12:45 PM</td><td>🍽️ Lunch Break (Final Evaluation)</td><td>55 min</td></tr>
+        <tr><td>12:45 PM - 1:15 PM</td><td>🏆 Results Announcement & Prize Distribution</td><td>30 min</td></tr>
+      </table>
+
+      <h3>🏆 Prize Distribution</h3>
+      <table style="width:100%; border-collapse: collapse; margin: 10px 0;">
+        <tr style="background: rgba(0, 240, 255, 0.1);">
+          <td style="font-weight: 700; color: #00f0ff;">Position</td>
+          <td style="font-weight: 700; color: #00f0ff;">Prize Amount</td>
+          <td style="font-weight: 700; color: #00f0ff;">Recognition</td>
+        </tr>
+        <tr><td>🥇 First Place</td><td><strong>₹3,000</strong></td><td>Certificate + Trophy</td></tr>
+        <tr><td>🥈 Second Place</td><td><strong>₹2,000</strong></td><td>Certificate + Medal</td></tr>
+        <tr><td>🥉 Third Place</td><td><strong>₹1,000</strong></td><td>Certificate + Medal</td></tr>
+      </table>
+      <p><em>Total Prize Pool: <strong>₹6,000</strong></em></p>
+
+      <h3>📊 Judging Criteria</h3>
+      <p>Each scenario is evaluated out of 100 points. Teams answer 2 scenarios per round.</p>
+      <ul>
+        <li>Round 1 (Elimination): 200 points maximum (2 scenarios × 100 points)</li>
+        <li>Round 2 (Finals): 200 points maximum (2 scenarios × 100 points)</li>
+        <li><strong>Maximum Total Score: 400 points</strong></li>
+      </ul>
+
+      <p><strong>Evaluation Criteria (Both Rounds):</strong></p>
+      <table style="width:100%; border-collapse: collapse; margin: 10px 0;">
+        <tr style="background: rgba(0, 240, 255, 0.1);">
+          <td style="font-weight: 700; color: #00f0ff;">Criteria</td>
+          <td style="font-weight: 700; color: #00f0ff;">Points</td>
+        </tr>
+        <tr><td>Problem Understanding</td><td>25</td></tr>
+        <tr><td>Analytical Reasoning</td><td>30</td></tr>
+        <tr><td>Multi-perspective Analysis</td><td>25</td></tr>
+        <tr><td>Solution Quality & Justification</td><td>20</td></tr>
+      </table>
+
+      <h3>👥 Team Guidelines</h3>
+      <p><strong>Team Composition:</strong></p>
+      <ul>
+        <li>Each team works together on all scenarios</li>
+        <li>Submit ONE response document per team</li>
+        <li>All team members contribute to discussion and writing</li>
+      </ul>
+
+      <p><strong>Response Format:</strong></p>
+      <ul>
+        <li>Submit as Word document (.docx)</li>
+        <li>Recommended length: 200-300 words per scenario</li>
+        <li>Write in clear, organized paragraphs</li>
+        <li>Label each response clearly (Scenario 1, Scenario 2)</li>
+      </ul>
+
+      <p><strong>Time Management:</strong></p>
+      <ul>
+        <li>45 minutes for 2 scenarios = ~22 minutes per scenario</li>
+        <li>Spend 3-5 minutes reading and discussing as a team</li>
+        <li>Allocate 15-17 minutes for writing each response</li>
+        <li>Reserve 3 minutes at the end for review</li>
+      </ul>
+
+      <h3>📜 Rules and Regulations</h3>
+      <ul>
+        <li>Teams must answer BOTH scenarios in each round</li>
+        <li>No internet, books, or external resources during competition</li>
+        <li>All work must be original - plagiarism leads to disqualification</li>
+        <li>Submit documents immediately when time is called</li>
+        <li>Late submissions will not be accepted</li>
+        <li>Only qualified teams from Round 1 can participate in Round 2</li>
+        <li>Judges' decisions are final and binding</li>
+        <li>Teams must be present at prize distribution to claim prizes</li>
+      </ul>
+
+      <h3>📞 Contact Information</h3>
+      <p><strong>Event Coordinator:</strong> Senthoor Balan<br>
+      Email: <a href="mailto:Senthoor.2302144@sritcbe.ac.in" style="color: #00f0ff;">Senthoor.2302144@sritcbe.ac.in</a><br>
+      Phone: <a href="tel:+917373077820" style="color: #00f0ff;">+91 7373077820</a></p>
+    </div>`,
     date: 'Day 2',
     time: '10:00 AM',
     venue: 'Data Science Lab',
@@ -1211,11 +1470,55 @@ const eventDetails = {
     formLink: 'registration.html'
   },
   'flyforge': {
-    title: 'IPL auction',
-    desc: 'Design and simulate aircraft components. A challenge for aerospace and mechanical engineering enthusiasts.',
+    title: 'IPL Auction',
+    desc: `<div class="event-full-desc">
+      <p><strong>IPL Auction</strong> is an exciting and interactive non-technical event designed to simulate the real player auction system used in professional cricket leagues. Participants act as franchise owners and strategically bid for players within a fixed budget.</p>
+      
+      <h3>👥 Team Structure & Rules</h3>
+      <ul>
+        <li><strong>Team Size:</strong> 4 members per team</li>
+        <li><strong>Duration:</strong> 1 hour</li>
+      </ul>
+
+      <h3>🎮 Gameplay Format</h3>
+      <ol>
+        <li>Decide the team with 4 members</li>
+        <li>Each team will have a <strong>fixed purse amount</strong></li>
+        <li>Cricket players will be auctioned with a <strong>fixed base price</strong></li>
+        <li>Each player has a <strong>hidden play rate</strong> based on performance</li>
+        <li><strong>Maximum bid</strong> will hold the player</li>
+        <li>Finally, the team with the <strong>greater play rate</strong> and a <strong>balanced team</strong> wins the prize</li>
+      </ol>
+      <p><em>The final judgment will be given by the judges and there will be no arguments with judges.</em></p>
+
+      <h3>🏆 Winner Selection</h3>
+      <p>The winning team will be determined based on:</p>
+      <ul>
+        <li><strong>Total team rating</strong> (sum of player points), OR</li>
+        <li><strong>Best balanced squad</strong> (based on predefined player scores), OR</li>
+        <li><strong>Maximum total points</strong> calculated after squad completion</li>
+      </ul>
+
+      <h3>📜 Rules & Regulations</h3>
+      <ul>
+        <li>Each team will be given a <strong>fixed virtual purse amount</strong></li>
+        <li>Each player will have a <strong>base price</strong></li>
+        <li>Bidding must increase in <strong>fixed increments</strong> (e.g., ₹500 coins)</li>
+        <li>The timer (<strong>15–30 seconds</strong>) will run for each player</li>
+        <li>The <strong>highest bidder</strong> at the end of the timer wins the player</li>
+        <li>A team <strong>cannot bid beyond</strong> their remaining purse amount</li>
+        <li>If no bids are placed, the player will be declared <strong>"Unsold"</strong></li>
+        <li>Once sold, the amount will be <strong>deducted</strong> from the winning team's purse</li>
+        <li>The decision of the event coordinator/judges will be <strong>final</strong></li>
+      </ul>
+
+      <h3>📍 Venue & Timeline</h3>
+      <p><strong>Venue:</strong> 2nd Year Classroom</p>
+      <p><strong>Timeline:</strong> 12:00 PM to 1:00 PM</p>
+    </div>`,
     date: 'Day 2',
-    time: '10:00 AM',
-    venue: 'Aero Lab',
+    time: '12:00 PM',
+    venue: '2nd Year Classroom',
     image: 'img/events-nontech/10.webp',
     formLink: 'registration.html'
   },
