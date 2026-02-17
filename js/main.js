@@ -1762,15 +1762,199 @@ const eventDetails = {
     image: 'img/events-nontech/MECH.webp',
     formLink: 'registration.html'
   },
+  'circuitsurge': {
+    title: 'Circuit Hunt',
+    desc: `<div class="event-full-desc">
+      <h3>🔍 Circuit Debugging Challenge</h3>
+      <p><strong>Circuit Hunt</strong> is designed to test participants' basic electronics knowledge, logical thinking, and practical circuit debugging skills through two progressive rounds: paper-based circuit analysis and hands-on breadboard debugging.</p>
+      
+      <h3>👥 Team Structure & Rules</h3>
+      <ul>
+        <li><strong>Team Size:</strong> 3 members per team</li>
+        <li><strong>Total Duration:</strong> 2 hours</li>
+        <li>No external help allowed</li>
+        <li>Points awarded based on correctness and speed</li>
+        <li>Hints will be provided if needed, but with negative marks</li>
+      </ul>
+
+      <h3>📋 Event Rounds</h3>
+      
+      <p><strong>ROUND 1: Think Before You Build - Paper Circuit Debugging</strong></p>
+      <ul>
+        <li><strong>Round Type:</strong> Paper-based circuit analysis & debugging</li>
+        <li><strong>Duration:</strong> 20-25 minutes</li>
+        <li><strong>Objective:</strong> Participants will be provided with a faulty circuit diagram on paper consisting of basic electronic components (resistors, LEDs, diodes, transistors, ICs, logic gates)</li>
+      </ul>
+
+      <p><strong>Tasks:</strong></p>
+      <ul>
+        <li>Identify the errors in the given circuit</li>
+        <li>Mention the reason for each error</li>
+        <li>Redraw the correct circuit diagram</li>
+      </ul>
+
+      <p><strong>Common Errors to Look For:</strong></p>
+      <ul>
+        <li>Wrong polarity of LED or diode</li>
+        <li>Missing ground or power supply</li>
+        <li>Incorrect resistor value</li>
+        <li>Short circuit or open circuit</li>
+        <li>Wrong IC pin connection</li>
+      </ul>
+
+      <p><strong>Evaluation Criteria:</strong></p>
+      <ul>
+        <li>Accuracy in identifying errors</li>
+        <li>Correct explanation of faults</li>
+        <li>Proper redrawn circuit diagram</li>
+      </ul>
+
+      <p><em>Teams scoring the required cutoff will qualify for Round 2.</em></p>
+
+      <p><strong>ROUND 2: Build – Break – Fix - Breadboard Circuit Debugging</strong></p>
+      <ul>
+        <li><strong>Objective:</strong> Qualified teams will be given a pre-connected faulty circuit on a breadboard that will not function initially due to intentional faults</li>
+      </ul>
+
+      <p><strong>Components Provided:</strong></p>
+      <ul>
+        <li>Breadboard</li>
+        <li>Power supply / Battery</li>
+        <li>Resistors, LEDs</li>
+        <li>ICs / Transistors</li>
+        <li>Connecting wires</li>
+      </ul>
+
+      <p><strong>Tasks:</strong></p>
+      <ul>
+        <li>Analyze the circuit behavior</li>
+        <li>Identify the fault in the circuit</li>
+        <li>Correct the breadboard connections</li>
+        <li>Demonstrate the correct output to the judge</li>
+      </ul>
+
+      <p><strong>Possible Faults:</strong></p>
+      <ul>
+        <li>Loose or incorrect wire connections</li>
+        <li>Wrong IC orientation</li>
+        <li>Missing ground or power</li>
+        <li>Wrong component placement</li>
+      </ul>
+
+      <p><strong>Evaluation Criteria:</strong></p>
+      <ul>
+        <li>Fault identification accuracy</li>
+        <li>Correct debugging approach</li>
+        <li>Successful output demonstration</li>
+        <li>Time efficiency</li>
+      </ul>
+
+      <h3>🏆 Winner Selection</h3>
+      <p>Winners will be decided based on the <strong>combined score of both rounds</strong>.</p>
+      <p><strong>Tie-Breaker:</strong> In case of a tie, the team that completes the task in the <strong>least time</strong> will be ranked higher.</p>
+
+      <h3>📜 Rules & Regulations</h3>
+      <ul>
+        <li>Use of mobile phones or internet is <strong>strictly prohibited</strong></li>
+        <li>External help is not allowed</li>
+        <li>Components should be handled <strong>carefully</strong></li>
+        <li>Hints available with negative marks</li>
+        <li>Judges' decision will be <strong>final</strong></li>
+      </ul>
+
+      <h3>📍 Venue & Timeline</h3>
+      <p><strong>Venue:</strong> Circuits Lab</p>
+      <p><strong>Time:</strong> 12:00 Noon (Day 1)</p>
+      <p><strong>Duration:</strong> 2 hours</p>
+
+      <p><em>This event provides an excellent opportunity to test and enhance your practical circuit debugging and analytical skills in both theoretical and hands-on environments.</em></p>
+    </div>`,
+    date: 'Day 1',
+    time: '12:00 Noon',
+    venue: 'Circuits Lab',
+    image: 'img/events-tech/5.webp',
+    formLink: 'registration.html'
+  },
 
   // Workshops
   'genai': {
-    title: 'GEN AI WORKSHOP',
-    desc: 'Dive into Gen AI with expert-led workshops, real-world projects, and networking with industry leaders!',
+    title: 'IoT Design Workshop',
+    desc: `<div class="event-full-desc">
+      <h3>🔧 Hands-on Workshop on Internet of Things (IoT) Design</h3>
+      <p><strong>IoT Design Workshop</strong> introduces students to the fundamentals of IoT design. It provides hands-on experience with real-time IoT hardware tools and bridges the gap between theoretical knowledge and practical implementation.</p>
+      
+      <h3>📍 Venue</h3>
+      <p><strong>Centre Of Excellence Of IOT [COE]</strong></p>
+
+      <h3>📋 Workshop Agenda</h3>
+      
+      <p><strong>Session 1: Inauguration & Introduction (10:00 – 10:30 AM)</strong></p>
+      <ul>
+        <li>Welcome address</li>
+        <li>Overview of the workshop</li>
+        <li>Importance of IoT in modern technology</li>
+        <li>Safety instructions and lab guidelines</li>
+      </ul>
+
+      <p><strong>Session 2: Introduction to IoT (10:30 – 11:15 AM)</strong></p>
+      <ul>
+        <li>What is Internet of Things (IoT)?</li>
+        <li>IoT architecture and components</li>
+        <li>Overview of sensors, actuators, and controllers</li>
+        <li>Overview of IoT boards (Arduino, NodeMCU / ESP32)</li>
+        <li>Real-time IoT applications</li>
+      </ul>
+
+      <p><strong>☕ Tea Break (11:15 AM – 11:30 AM)</strong></p>
+
+      <p><strong>Session 3: IoT Hands-on Training (11:30 AM – 12:30 PM)</strong></p>
+      <ul>
+        <li>Introduction to Arduino IDE</li>
+        <li>Pin configuration and board setup</li>
+        <li>Interfacing components (LED, Temperature / IR / Gas sensor)</li>
+        <li>Writing and uploading basic IoT programs</li>
+        <li>Monitoring output using Serial Monitor</li>
+      </ul>
+
+      <p><strong>Session 4: PCB Design Fundamentals (12:30 – 1:00 PM)</strong></p>
+      <ul>
+        <li>Building a simple IoT project</li>
+        <li>Data visualization basics</li>
+        <li>Troubleshooting and best practices</li>
+        <li>Career opportunities in IoT</li>
+      </ul>
+
+      <h3>💡 What You'll Learn</h3>
+      <ul>
+        <li>Fundamentals of IoT design and architecture</li>
+        <li>Hands-on experience with real-time IoT hardware tools</li>
+        <li>Programming IoT boards (Arduino, NodeMCU/ESP32)</li>
+        <li>Sensor interfacing and component integration</li>
+        <li>PCB design basics for IoT projects</li>
+        <li>Practical implementation skills</li>
+      </ul>
+
+      <h3>🎯 Key Highlights</h3>
+      <ul>
+        <li>Expert-led hands-on training sessions</li>
+        <li>Real-time IoT hardware tools experience</li>
+        <li>Practical project building</li>
+        <li>Bridge between theory and implementation</li>
+        <li>Industry-relevant skills development</li>
+      </ul>
+
+      <h3>⏰ Workshop Details</h3>
+      <p><strong>Date:</strong> Day 1</p>
+      <p><strong>Time:</strong> 10:00 AM – 1:00 PM</p>
+      <p><strong>Duration:</strong> 3 hours (with tea break)</p>
+      <p><strong>Venue:</strong> Centre Of Excellence Of IOT [COE]</p>
+
+      <p><em>This workshop provides an excellent opportunity to gain practical IoT skills that are highly valued in today's technology-driven industry.</em></p>
+    </div>`,
     date: 'Day 1',
-    time: 'Full Day',
-    venue: 'Main Auditorium',
-    image: 'img/workshop/CSE.webp',
+    time: '10:00 AM - 1:00 PM',
+    venue: 'Centre Of Excellence Of IOT [COE]',
+    image: 'img/workshop/14.webp',
     formLink: 'workshop_registration.html'
   },
   'evehicle': {
@@ -1783,12 +1967,68 @@ const eventDetails = {
     formLink: 'workshop_registration.html'
   },
   'cloudcraft': {
-    title: 'CLOUD CRAFT',
-    desc: 'Master cloud computing fundamentals and deployment strategies. Hands-on session on AWS/Azure services.',
+    title: 'PLC Automation with IOT',
+    desc: `<div class="event-full-desc">
+      <p><strong>PLC Automation with IOT</strong> workshop is designed to provide participants with a comprehensive understanding of Programmable Logic Controllers (PLC) and their critical role in modern industrial automation systems.</p>
+      
+      <h3>🎯 Workshop Objectives</h3>
+      <p>The objective of this workshop is to understand the fundamentals of PLC and its role in industrial automation. It aims to provide hands-on experience in PLC programming, wiring, and troubleshooting for real-time industrial applications.</p>
+
+      <h3>📚 Topics Covered</h3>
+      
+      <p><strong>LADDER LOGIC</strong></p>
+      <ul>
+        <li>Develop skills in creating logic for industrial applications</li>
+        <li>Motor control programming</li>
+        <li>Timers and counters implementation</li>
+        <li>Sequencing operations</li>
+        <li>Real-time industrial application development</li>
+      </ul>
+
+      <p><strong>HMI (Human Machine Interface)</strong></p>
+      <ul>
+        <li>Study how HMI communicates with PLC</li>
+        <li>Monitor industrial processes</li>
+        <li>Control industrial processes through HMI</li>
+        <li>Interface design and implementation</li>
+      </ul>
+
+      <p><strong>DRIVE CONTROL</strong></p>
+      <ul>
+        <li>Learn how to start and stop motors using PLC programming</li>
+        <li>Vary motor speed through PLC control</li>
+        <li>Reverse motor direction</li>
+        <li>Advanced motor control techniques</li>
+      </ul>
+
+      <h3>💡 Key Learning Outcomes</h3>
+      <ul>
+        <li>Hands-on PLC programming experience</li>
+        <li>PLC wiring and troubleshooting skills</li>
+        <li>Understanding of industrial automation systems</li>
+        <li>Real-time application development</li>
+        <li>Integration of PLC with IOT systems</li>
+      </ul>
+
+      <h3>📍 Venue & Timeline</h3>
+      <p><strong>Venue:</strong> COE(EV)</p>
+      <p><strong>Time:</strong> 10:00 AM to 1:00 PM</p>
+      <p><strong>Date:</strong> Day 2</p>
+
+      <h3>👥 Who Should Attend</h3>
+      <ul>
+        <li>Engineering students interested in industrial automation</li>
+        <li>Those interested in PLC programming and control systems</li>
+        <li>Students looking to gain practical experience in industrial applications</li>
+        <li>Anyone interested in IOT integration with industrial systems</li>
+      </ul>
+
+      <p><em>This workshop provides valuable hands-on experience that bridges theoretical knowledge with real-world industrial automation applications.</em></p>
+    </div>`,
     date: 'Day 2',
-    time: 'Full Day',
-    venue: 'Cloud Lab',
-    image: 'img/workshop/IT.webp',
+    time: '10:00 AM - 1:00 PM',
+    venue: 'COE(EV)',
+    image: 'img/workshop/15.webp',
     formLink: 'workshop_registration.html'
   },
   'pcbbuild': {
