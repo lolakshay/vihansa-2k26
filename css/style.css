@@ -4494,7 +4494,7 @@ body.mobile-nav-active #mobile-nav-toggle {
 
   /* Firefox scrollbar */
   scrollbar-width: thin;
-  scrollbar-color: rgba(0, 240, 255, 0.7) rgba(255, 255, 255, 0.05);
+  scrollbar-color: rgba(255, 0, 0, 0.7) rgba(255, 255, 255, 0.05);
 }
 
 /* Custom scrollbar for modal - Chrome/Edge/Safari */
@@ -4508,14 +4508,14 @@ body.mobile-nav-active #mobile-nav-toggle {
 }
 
 .event-modal-left::-webkit-scrollbar-thumb {
-  background: rgba(0, 240, 255, 0.7);
+  background: rgba(255, 0, 0, 0.7);
   border-radius: 10px;
   border: 2px solid rgba(0, 0, 0, 0.2);
 }
 
 .event-modal-left::-webkit-scrollbar-thumb:hover {
-  background: rgba(0, 240, 255, 1);
-  box-shadow: 0 0 10px rgba(0, 240, 255, 0.5);
+  background: rgba(255, 0, 0, 1);
+  box-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
 }
 
 .event-modal-right {
@@ -4536,7 +4536,7 @@ body.mobile-nav-active #mobile-nav-toggle {
   object-fit: contain;
   /* Show full poster */
   padding: 40px;
-  filter: drop-shadow(0 0 30px rgba(0, 240, 255, 0.2));
+  filter: drop-shadow(0 0 30px rgba(255, 0, 0, 0.2));
   /* Glow effect */
 }
 
@@ -4611,8 +4611,8 @@ body.mobile-nav-active #mobile-nav-toggle {
 .register-btn:hover {
   transform: translateY(-5px) scale(1.05);
   box-shadow: 0 15px 40px rgba(255, 255, 255, 0.2);
-  color: #000;
-  background: var(--electric-blue, #00f0ff);
+  color: #fff;
+  background: #ff0000;
 }
 
 /* Event Full Description Styling */
@@ -4623,12 +4623,12 @@ body.mobile-nav-active #mobile-nav-toggle {
 }
 
 .event-full-desc h3 {
-  color: #00f0ff;
+  color: #ff0000;
   font-size: 1.4rem;
   margin-top: 25px;
   margin-bottom: 15px;
   font-weight: 700;
-  border-left: 4px solid #00f0ff;
+  border-left: 4px solid #ff0000;
   padding-left: 15px;
 }
 
@@ -4685,7 +4685,7 @@ body.mobile-nav-active #mobile-nav-toggle {
 
 .event-full-desc table td:last-child {
   text-align: right;
-  color: #00f0ff;
+  color: #ff0000;
   font-weight: 700;
 }
 
