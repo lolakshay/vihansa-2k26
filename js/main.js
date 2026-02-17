@@ -2197,84 +2197,7 @@ const eventDetails = {
     image: 'img/culturls/8.webp',
     formLink: 'cultural_registration.html'
   },
-  'pixelperfect': {
-    title: 'PIXEL PERFECT – Reels Making',
-    desc: `<div class="event-full-desc">
-      <p><strong>PIXEL PERFECT (Reels Making)</strong> is an offstage event celebrating creativity through short-form video content. Create engaging and original reels that showcase your storytelling and editing skills.</p>
-      
-      <h3>👥 Participation</h3>
-      <ul>
-        <li><strong>Individual or Team</strong></li>
-        <li><strong>Maximum:</strong> 3 members per team</li>
-      </ul>
-
-      <h3>⏱️ Duration</h3>
-      <ul>
-        <li><strong>Minimum:</strong> 30 seconds</li>
-        <li><strong>Maximum:</strong> 90 seconds</li>
-      </ul>
-
-      <h3>📜 Rules & Guidelines</h3>
-      <ul>
-        <li>The reel must be <strong>original</strong> and created <strong>exclusively for Vihansa - 2K26</strong></li>
-        <li>Theme will be <strong>announced prior to submission deadline</strong></li>
-        <li>Videos must be submitted in <strong>MP4 format</strong></li>
-        <li>Plagiarism will result in <strong>immediate disqualification</strong></li>
-        <li>Use of copyrighted music without permission is <strong>discouraged</strong></li>
-        <li>Basic editing is <strong>allowed</strong></li>
-      </ul>
-    </div>`,
-    date: 'Day 2',
-    time: '10:00 AM',
-    venue: 'Digital Lab',
-    image: 'img/culturls/9.webp',
-    formLink: 'cultural_registration.html'
-  },
-  'faceartistry': {
-    title: 'FACE ARTISTRY',
-    desc: 'Transform faces into living canvases. Show off your makeup and face painting skills in this artistic event.',
-    date: 'Day 2',
-    time: '10:00 AM',
-    venue: 'Open Stage',
-    image: 'img/culturls/10.webp',
-    formLink: 'cultural_registration.html'
-  },
-  'hennaink': {
-    title: 'HENNA INK',
-    desc: 'The traditional art of Mehendi. Create intricate and beautiful designs to win the title of Henna Artist.',
-    date: 'Day 2',
-    time: '10:00 AM',
-    venue: 'Courtyard',
-    image: 'img/culturls/11.webp',
-    formLink: 'cultural_registration.html'
-  },
-  'pencilplay': {
-    title: 'PENCIL PLAY',
-    desc: 'Sketch your imagination. A pencil sketching competition to showcase your shading and drawing techniques.',
-    date: 'Day 2',
-    time: '10:00 AM',
-    venue: 'Drawing Hall',
-    image: 'img/culturls/12.webp',
-    formLink: 'cultural_registration.html'
-  },
-  'logicalrivera': {
-    title: 'LOGICAL RIVERA',
-    desc: 'Flow with logic in this puzzle-solving event. Navigate through riddles and brain teasers to reach the solution.',
-    date: 'Day 2',
-    time: '11:30 AM',
-    venue: 'Classroom Block',
-    image: 'img/culturls/13.webp',
-    formLink: 'cultural_registration.html'
-  },
-  'mysticchase': {
-    title: 'MYSTIC CHASE',
-    desc: 'Chase the mystery and uncover the truth. A thrilling scavenger hunt full of suspense and clues.',
-    date: 'Day 2',
-    time: '11:30 AM',
-    venue: 'Campus Wide',
-    image: 'img/culturls/14.webp',
-    formLink: 'cultural_registration.html'
-  },
+  // Cultural Events
   'solelymelodia': {
     title: 'SOLELY MELODIA – Solo Singing',
     desc: `<div class="event-full-desc">
@@ -2310,7 +2233,7 @@ const eventDetails = {
     date: 'Day 2',
     time: '2:00 PM',
     venue: 'Main Auditorium',
-    image: 'img/culturls/7.webp',
+    image: 'img/culturls/6.webp',
     formLink: 'cultural_registration.html'
   },
   'artofone': {
@@ -2342,40 +2265,6 @@ const eventDetails = {
     time: '3:00 PM',
     venue: 'Open Auditorium',
     image: 'img/culturls/4.webp',
-    formLink: 'cultural_registration.html'
-  },
-  'tunemorph': {
-    title: 'TUNE MORPH – Adaptune',
-    desc: `<div class="event-full-desc">
-      <p><strong>TUNE MORPH (Adaptune)</strong> is an onstage event testing your ability to adapt and improvise instantly. Showcase your spontaneity and creativity by dancing to music you hear for the first time!</p>
-      
-      <h3>👤 Participation</h3>
-      <ul>
-        <li><strong>Solo performance only</strong></li>
-        <li>One entry per participant</li>
-      </ul>
-
-      <h3>🎵 Event Format</h3>
-      <ul>
-        <li>The music will be <strong>played on the spot</strong> by the organizing team</li>
-        <li>Participants will <strong>not be informed</strong> of the track in advance</li>
-        <li>The performer must <strong>immediately adapt</strong> and dance to the given music</li>
-        <li>Songs may vary in genre (Classical, Folk, Western, Film, Fusion, etc.)</li>
-      </ul>
-
-      <h3>📜 Rules & Guidelines</h3>
-      <ul>
-        <li>Participants must rely on <strong>improvisation and adaptability</strong></li>
-        <li>Props are <strong>not permitted</strong></li>
-        <li><strong>Performance duration:</strong> 2 to 3 minutes</li>
-        <li>Inappropriate gestures or content will lead to <strong>disqualification</strong></li>
-        <li>The decision of the judges will be <strong>final</strong></li>
-      </ul>
-    </div>`,
-    date: 'Day 2',
-    time: '3:30 PM',
-    venue: 'Music Hall',
-    image: 'img/culturls/6.webp',
     formLink: 'cultural_registration.html'
   },
   'rythmicmotion': {
@@ -2411,6 +2300,116 @@ const eventDetails = {
     time: '4:00 PM',
     venue: 'Main Auditorium',
     image: 'img/culturls/3.webp',
+    formLink: 'cultural_registration.html'
+  },
+  'tunemorph': {
+    title: 'TUNE MORPH – Adaptune',
+    desc: `<div class="event-full-desc">
+      <p><strong>TUNE MORPH (Adaptune)</strong> is an onstage event testing your ability to adapt and improvise instantly. Showcase your spontaneity and creativity by dancing to music you hear for the first time!</p>
+      
+      <h3>👤 Participation</h3>
+      <ul>
+        <li><strong>Solo performance only</strong></li>
+        <li>One entry per participant</li>
+      </ul>
+
+      <h3>🎵 Event Format</h3>
+      <ul>
+        <li>The music will be <strong>played on the spot</strong> by the organizing team</li>
+        <li>Participants will <strong>not be informed</strong> of the track in advance</li>
+        <li>The performer must <strong>immediately adapt</strong> and dance to the given music</li>
+        <li>Songs may vary in genre (Classical, Folk, Western, Film, Fusion, etc.)</li>
+      </ul>
+
+      <h3>📜 Rules & Guidelines</h3>
+      <ul>
+        <li>Participants must rely on <strong>improvisation and adaptability</strong></li>
+        <li>Props are <strong>not permitted</strong></li>
+        <li><strong>Performance duration:</strong> 2 to 3 minutes</li>
+        <li>Inappropriate gestures or content will lead to <strong>disqualification</strong></li>
+        <li>The decision of the judges will be <strong>final</strong></li>
+      </ul>
+    </div>`,
+    date: 'Day 2',
+    time: '3:30 PM',
+    venue: 'Music Hall',
+    image: 'img/culturls/5.webp',
+    formLink: 'cultural_registration.html'
+  },
+  'visualvignetic': {
+    title: 'VISUAL VIGNETIC – Short Film',
+    desc: `<div class="event-full-desc">
+      <p><strong>VISUAL VIGNETIC (Short Film)</strong> is an offstage event celebrating creativity through visual storytelling. Express your narrative vision through the art of filmmaking.</p>
+      
+      <h3>👥 Participation</h3>
+      <ul>
+        <li><strong>Individual or Team</strong></li>
+        <li><strong>Maximum:</strong> 8 members per team</li>
+      </ul>
+
+      <h3>⏱️ Duration</h3>
+      <ul>
+        <li><strong>Minimum:</strong> 5 minutes</li>
+        <li><strong>Maximum:</strong> 15 minutes (including credits)</li>
+      </ul>
+
+      <h3>📜 Rules & Guidelines</h3>
+      <ul>
+        <li>The film must be <strong>original and unpublished</strong></li>
+        <li>Any language is allowed; <strong>subtitles are mandatory</strong> if not in English</li>
+        <li>Films must be submitted in <strong>MP4 format</strong> (minimum 720p resolution)</li>
+        <li>Objectionable or offensive content is <strong>strictly prohibited</strong></li>
+        <li>Overall impact and storytelling will be evaluated</li>
+      </ul>
+    </div>`,
+    date: 'Day 2',
+    time: '10:00 AM',
+    venue: 'Auditorium',
+    image: 'img/culturls/7.webp',
+    formLink: 'cultural_registration.html'
+  },
+  'pixelperfect': {
+    title: 'PIXEL PERFECT – Reels Making',
+    desc: `<div class="event-full-desc">
+      <p><strong>PIXEL PERFECT (Reels Making)</strong> is an offstage event celebrating creativity through short-form video content. Create engaging and original reels that showcase your storytelling and editing skills.</p>
+      
+      <h3>👥 Participation</h3>
+      <ul>
+        <li><strong>Individual or Team</strong></li>
+        <li><strong>Maximum:</strong> 3 members per team</li>
+      </ul>
+
+      <h3>⏱️ Duration</h3>
+      <ul>
+        <li><strong>Minimum:</strong> 30 seconds</li>
+        <li><strong>Maximum:</strong> 90 seconds</li>
+      </ul>
+
+      <h3>📜 Rules & Guidelines</h3>
+      <ul>
+        <li>The reel must be <strong>original</strong> and created <strong>exclusively for Vihansa - 2K26</strong></li>
+        <li>Theme will be <strong>announced prior to submission deadline</strong></li>
+        <li>Videos must be submitted in <strong>MP4 format</strong></li>
+        <li>Plagiarism will result in <strong>immediate disqualification</strong></li>
+        <li>Use of copyrighted music without permission is <strong>discouraged</strong></li>
+        <li>Basic editing is <strong>allowed</strong></li>
+      </ul>
+    </div>`,
+    date: 'Day 2',
+    time: '10:00 AM',
+    venue: 'Digital Lab',
+    image: 'img/culturls/9.webp',
+    formLink: 'cultural_registration.html'
+  },
+  'clipcounter': {
+    title: 'CLIP COUNTER',
+    desc: `<div class="event-full-desc">
+      <p><strong>CLIP COUNTER</strong> Test your observation and memory skills. Watch clips and answer questions based on details you spotted.</p>
+    </div>`,
+    date: 'Day 2',
+    time: '10:00 AM',
+    venue: 'Seminar Hall',
+    image: 'img/culturls/8.webp',
     formLink: 'cultural_registration.html'
   }
 };
