@@ -1989,6 +1989,64 @@ const eventDetails = {
     image: 'img/events-tech/mech_tech.png',
     formLink: 'registration.html'
   },
+  'bidsmash': {
+    title: 'Distorted Beats',
+    desc: `<div class="event-full-desc">
+      <h3>🎵 Distorted Beats - Sound Effect Challenge</h3>
+      <p><strong>Distorted Beats</strong> is an interactive and entertaining non-technical event designed to test participants' listening ability, memory, and analytical thinking. In this event, audio clips such as songs, movie dialogues, or common sounds are modified using different sound effects. Participants must identify the original audio despite these alterations.</p>
+      
+      <h3>📋 Event Rounds</h3>
+      
+      <p><strong>Round 1: Speed 2x</strong></p>
+      <ul>
+        <li>Audio clips are played at <strong>1.25x speed</strong> (slightly faster than normal)</li>
+        <li>The pitch remains mostly natural, but the tempo is increased</li>
+        <li>Participants must quickly recognize the clip</li>
+      </ul>
+
+      <p><strong>Round 2: Echo + Bass</strong></p>
+      <ul>
+        <li>Audio clips are modified with <strong>echo effects and increased bass</strong></li>
+        <li>Echo creates repetition, and bass may mask vocals or details</li>
+        <li>This makes the audio less clear and slightly confusing</li>
+      </ul>
+
+      <p><strong>Round 3: Reverse + Pitch Change</strong></p>
+      <ul>
+        <li>Audio clips are <strong>reversed (played backward) and pitch altered</strong> (higher or lower)</li>
+        <li>This drastically changes how the audio sounds</li>
+        <li>Participants must analyze patterns or recall familiarity</li>
+      </ul>
+
+      <h3>📜 Rules & Regulations</h3>
+      <ul>
+        <li>Each clip is played <strong>only once or twice</strong></li>
+        <li>Participants must answer within a <strong>limited time (10–20 seconds)</strong></li>
+        <li>Points are awarded for correct answers</li>
+        <li>No external help (phones, internet) is <strong>allowed</strong></li>
+        <li>Can be conducted <strong>individually or in teams</strong></li>
+        <li>Judges' decision will be <strong>final</strong></li>
+      </ul>
+
+      <h3>🏆 Scoring</h3>
+      <ul>
+        <li>Points awarded for each correct identification</li>
+        <li>Faster responses may receive bonus points</li>
+        <li>Team/Individual with the highest score wins</li>
+      </ul>
+
+      <h3>📍 Venue & Timeline</h3>
+      <p><strong>Venue:</strong> EC Lab</p>
+      <p><strong>Time:</strong> 2:30 PM - 4:00 PM (Day 2)</p>
+
+      <p><em>Perfect for music lovers and those with sharp listening skills who enjoy a fun audio challenge!</em></p>
+    </div>`,
+    date: 'Day 2',
+    time: '2:30 PM',
+    venue: 'EC Lab',
+    image: 'img/events-nontech/disorted_beats.jpeg',
+    formLink: 'registration.html'
+  },
 
   // Workshops
   'genai': {
