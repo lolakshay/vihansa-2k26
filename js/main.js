@@ -2043,12 +2043,35 @@ const eventDetails = {
 
   // Cultural Events
   'visualvignetic': {
-    title: 'VISUAL VIGNETIC',
-    desc: 'Express your creativity through visual storytelling. A competition for short films, photography, and visual arts.',
+    title: 'VISUAL VIGNETIC – Short Film',
+    desc: `<div class="event-full-desc">
+      <p><strong>VISUAL VIGNETIC (Short Film)</strong> is an offstage event celebrating creativity through visual storytelling. Express your narrative vision through the art of filmmaking.</p>
+      
+      <h3>👥 Participation</h3>
+      <ul>
+        <li><strong>Individual or Team</strong></li>
+        <li><strong>Maximum:</strong> 8 members per team</li>
+      </ul>
+
+      <h3>⏱️ Duration</h3>
+      <ul>
+        <li><strong>Minimum:</strong> 5 minutes</li>
+        <li><strong>Maximum:</strong> 15 minutes (including credits)</li>
+      </ul>
+
+      <h3>📜 Rules & Guidelines</h3>
+      <ul>
+        <li>The film must be <strong>original and unpublished</strong></li>
+        <li>Any language is allowed; <strong>subtitles are mandatory</strong> if not in English</li>
+        <li>Films must be submitted in <strong>MP4 format</strong> (minimum 720p resolution)</li>
+        <li>Objectionable or offensive content is <strong>strictly prohibited</strong></li>
+        <li>Overall impact and storytelling will be evaluated</li>
+      </ul>
+    </div>`,
     date: 'Day 2',
     time: '10:00 AM',
     venue: 'Auditorium',
-    image: 'img/culturls/7.webp',
+    image: 'img/culturls/8.webp',
     formLink: 'cultural_registration.html'
   },
   'clipcounter': {
@@ -2061,8 +2084,32 @@ const eventDetails = {
     formLink: 'cultural_registration.html'
   },
   'pixelperfect': {
-    title: 'PIXEL PERFECT',
-    desc: 'Digital art competition. Create stunning digital illustrations and designs that are pixel perfect.',
+    title: 'PIXEL PERFECT – Reels Making',
+    desc: `<div class="event-full-desc">
+      <p><strong>PIXEL PERFECT (Reels Making)</strong> is an offstage event celebrating creativity through short-form video content. Create engaging and original reels that showcase your storytelling and editing skills.</p>
+      
+      <h3>👥 Participation</h3>
+      <ul>
+        <li><strong>Individual or Team</strong></li>
+        <li><strong>Maximum:</strong> 3 members per team</li>
+      </ul>
+
+      <h3>⏱️ Duration</h3>
+      <ul>
+        <li><strong>Minimum:</strong> 30 seconds</li>
+        <li><strong>Maximum:</strong> 90 seconds</li>
+      </ul>
+
+      <h3>📜 Rules & Guidelines</h3>
+      <ul>
+        <li>The reel must be <strong>original</strong> and created <strong>exclusively for Vihansa - 2K26</strong></li>
+        <li>Theme will be <strong>announced prior to submission deadline</strong></li>
+        <li>Videos must be submitted in <strong>MP4 format</strong></li>
+        <li>Plagiarism will result in <strong>immediate disqualification</strong></li>
+        <li>Use of copyrighted music without permission is <strong>discouraged</strong></li>
+        <li>Basic editing is <strong>allowed</strong></li>
+      </ul>
+    </div>`,
     date: 'Day 2',
     time: '10:00 AM',
     venue: 'Digital Lab',
@@ -2115,17 +2162,68 @@ const eventDetails = {
     formLink: 'cultural_registration.html'
   },
   'solelymelodia': {
-    title: 'SOLELY MELODIA',
-    desc: 'Solo singing competition. Captivate the audience with your voice and musical talent.',
+    title: 'SOLELY MELODIA – Solo Singing',
+    desc: `<div class="event-full-desc">
+      <p><strong>SOLELY MELODIA (Solo Singing)</strong> is an onstage event celebrating individual vocal talent. Captivate the audience with your voice and musical expression.</p>
+      
+      <h3>👤 Participation</h3>
+      <ul>
+        <li><strong>Individual event</strong></li>
+      </ul>
+
+      <h3>⏱️ Time Limit</h3>
+      <ul>
+        <li><strong>Minimum:</strong> 3 minutes</li>
+        <li><strong>Maximum:</strong> 5 minutes</li>
+      </ul>
+
+      <h3>🎵 Categories</h3>
+      <ul>
+        <li>Classical</li>
+        <li>Semi-Classical</li>
+        <li>Western</li>
+        <li>Film Songs</li>
+      </ul>
+      <p><em>Participants must specify category during registration.</em></p>
+
+      <h3>📜 Rules & Guidelines</h3>
+      <ul>
+        <li>Karaoke tracks are <strong>allowed</strong> (without lead vocals)</li>
+        <li>Song selection must avoid <strong>offensive content</strong></li>
+        <li>Participants must report <strong>30 minutes before</strong> the event</li>
+      </ul>
+    </div>`,
     date: 'Day 2',
     time: '2:00 PM',
     venue: 'Main Auditorium',
-    image: 'img/culturls/6.webp',
+    image: 'img/culturls/7.webp',
     formLink: 'cultural_registration.html'
   },
   'artofone': {
-    title: 'ART OF ONE',
-    desc: 'A unique solo showcase. Perform any talent - dance, acting, mime - and own the stage.',
+    title: 'ART OF ONE – Solo Dance',
+    desc: `<div class="event-full-desc">
+      <p><strong>ART OF ONE (Solo Dance)</strong> is an onstage event celebrating individual talent and artistic expression through dance. Showcase your skills and captivate the audience with your unique performance.</p>
+      
+      <h3>👤 Participation</h3>
+      <ul>
+        <li><strong>Individual event</strong></li>
+        <li>One participant per entry</li>
+      </ul>
+
+      <h3>⏱️ Time Limit</h3>
+      <ul>
+        <li><strong>Minimum:</strong> 3 minutes</li>
+        <li><strong>Maximum:</strong> 5 minutes</li>
+      </ul>
+
+      <h3>📜 Rules & Guidelines</h3>
+      <ul>
+        <li>Any dance form is <strong>permitted</strong></li>
+        <li>Participants must <strong>submit their music track in advance</strong></li>
+        <li>Props are <strong>allowed within reasonable limits</strong></li>
+        <li>Inappropriate gestures or content will <strong>not be tolerated</strong></li>
+      </ul>
+    </div>`,
     date: 'Day 2',
     time: '3:00 PM',
     venue: 'Open Auditorium',
@@ -2133,17 +2231,68 @@ const eventDetails = {
     formLink: 'cultural_registration.html'
   },
   'tunemorph': {
-    title: 'TUNE MORPH',
-    desc: 'Remix and exact. showcase your ability to morph tunes and create new musical vibes.',
+    title: 'TUNE MORPH – Adaptune',
+    desc: `<div class="event-full-desc">
+      <p><strong>TUNE MORPH (Adaptune)</strong> is an onstage event testing your ability to adapt and improvise instantly. Showcase your spontaneity and creativity by dancing to music you hear for the first time!</p>
+      
+      <h3>👤 Participation</h3>
+      <ul>
+        <li><strong>Solo performance only</strong></li>
+        <li>One entry per participant</li>
+      </ul>
+
+      <h3>🎵 Event Format</h3>
+      <ul>
+        <li>The music will be <strong>played on the spot</strong> by the organizing team</li>
+        <li>Participants will <strong>not be informed</strong> of the track in advance</li>
+        <li>The performer must <strong>immediately adapt</strong> and dance to the given music</li>
+        <li>Songs may vary in genre (Classical, Folk, Western, Film, Fusion, etc.)</li>
+      </ul>
+
+      <h3>📜 Rules & Guidelines</h3>
+      <ul>
+        <li>Participants must rely on <strong>improvisation and adaptability</strong></li>
+        <li>Props are <strong>not permitted</strong></li>
+        <li><strong>Performance duration:</strong> 2 to 3 minutes</li>
+        <li>Inappropriate gestures or content will lead to <strong>disqualification</strong></li>
+        <li>The decision of the judges will be <strong>final</strong></li>
+      </ul>
+    </div>`,
     date: 'Day 2',
     time: '3:30 PM',
     venue: 'Music Hall',
-    image: 'img/culturls/5.webp',
+    image: 'img/culturls/6.webp',
     formLink: 'cultural_registration.html'
   },
   'rythmicmotion': {
-    title: 'RYTHMIC MOTION',
-    desc: 'Group or solo dance competition. Set the stage on fire with your moves and rhythm.',
+    title: 'RYTHMIC MOTION – Group Dance',
+    desc: `<div class="event-full-desc">
+      <p><strong>RYTHMIC MOTION (Group Dance)</strong> is an onstage event celebrating team synchronization, creativity, and the power of collective expression. Set the stage on fire with your moves and rhythm!</p>
+      
+      <h3>👥 Team Composition</h3>
+      <ul>
+        <li><strong>Minimum:</strong> 5 participants per team</li>
+        <li><strong>Maximum:</strong> 12 participants per team</li>
+        <li>All participants must be <strong>registered students</strong> of the institution</li>
+        <li><strong>Only one entry per team</strong></li>
+      </ul>
+
+      <h3>⏱️ Time Limit</h3>
+      <ul>
+        <li><strong>Minimum:</strong> 5 minutes</li>
+        <li><strong>Maximum:</strong> 7 minutes</li>
+        <li>Exceeding the time limit will result in <strong>penalty</strong></li>
+      </ul>
+
+      <h3>📜 Rules & Guidelines</h3>
+      <ul>
+        <li>All dance styles are <strong>permitted</strong> (Classical, Folk, Contemporary, Western, Fusion, etc.)</li>
+        <li>Teams must submit their audio track in <strong>MP3 format</strong> prior to the event coordinators</li>
+        <li>Props are allowed but must be <strong>arranged and removed by the team</strong> within the allocated time</li>
+        <li>Use of <strong>hazardous materials</strong> (fire, water, sharp objects) is <strong>strictly prohibited</strong></li>
+        <li>Vulgarity or inappropriate content will lead to <strong>disqualification</strong></li>
+      </ul>
+    </div>`,
     date: 'Day 2',
     time: '4:00 PM',
     venue: 'Main Auditorium',
@@ -2238,7 +2387,7 @@ class AudioManager {
     this.volumes = {
       music: 0.1,  // Background music volume (0.0 to 1.0)
       intro: 0.4,  // Intro video volume (0.0 to 1.0)
-      timer: 0.5   // Countdown timer volume (0.0 to 1.0)
+      timer: 0.6   // Countdown timer volume (0.0 to 1.0)
     };
     // ============================================
 
