@@ -1875,6 +1875,120 @@ const eventDetails = {
     image: 'img/events-tech/5.webp',
     formLink: 'registration.html'
   },
+  'bestmanager': {
+    title: 'Connection',
+    desc: `<div class="event-full-desc">
+      <h3>🔗 Connection - The Knowledge Link Challenge</h3>
+      <p><strong>Connection</strong> is a non-technical event designed to test participants' general knowledge, lateral thinking, and ability to connect seemingly unrelated concepts. This event challenges teams to identify patterns, make connections, and demonstrate broad awareness across various topics.</p>
+      
+      <h3>👥 Team Structure & Rules</h3>
+      <ul>
+        <li><strong>Team Size:</strong> 2-3 members per team</li>
+        <li><strong>Duration:</strong> 1.5 hours</li>
+        <li>Open to all students</li>
+        <li>No external resources allowed</li>
+        <li>Points awarded for correct connections and speed</li>
+      </ul>
+
+      <h3>📋 Event Format</h3>
+      <p>Participants will be presented with various puzzles, images, questions, and clues. The challenge is to identify the common connection or pattern linking them together.</p>
+
+      <h3>🎯 What to Expect</h3>
+      <ul>
+        <li>Image-based connection rounds</li>
+        <li>General knowledge questions</li>
+        <li>Pattern recognition challenges</li>
+        <li>Lateral thinking puzzles</li>
+        <li>Quick-fire connection rounds</li>
+      </ul>
+
+      <h3>🏆 Winner Selection</h3>
+      <p>The team with the <strong>highest score</strong> across all rounds will be declared the winner.</p>
+      <p><strong>Tie-Breaker:</strong> In case of a tie, a rapid-fire round will determine the winner.</p>
+
+      <h3>📜 Rules & Regulations</h3>
+      <ul>
+        <li>Use of mobile phones or internet is <strong>strictly prohibited</strong></li>
+        <li>All team members must participate</li>
+        <li>Judges' decision will be <strong>final</strong></li>
+        <li>Maintain discipline throughout the event</li>
+      </ul>
+
+      <h3>📍 Venue & Timeline</h3>
+      <p><strong>Venue:</strong> TBD</p>
+      <p><strong>Time:</strong> 2:30 PM (Day 1)</p>
+      <p><strong>Duration:</strong> 1.5 hours</p>
+
+      <p><em>This event is perfect for those who love puzzles, general knowledge, and making creative connections!</em></p>
+    </div>`,
+    date: 'Day 1',
+    time: '2:30 PM',
+    venue: 'TBD',
+    image: 'img/events-nontech/mech_non-tech.png',
+    formLink: 'registration.html'
+  },
+  'quizzy': {
+    title: 'CAD Modeling',
+    desc: `<div class="event-full-desc">
+      <h3>🛠️ CAD Modeling Challenge</h3>
+      <p><strong>CAD Modeling</strong> is a technical event designed to test participants' skills in Computer-Aided Design (CAD) software. This hands-on competition challenges students to create precise 3D models and demonstrate their proficiency in mechanical design software.</p>
+      
+      <h3>👥 Team Structure & Rules</h3>
+      <ul>
+        <li><strong>Team Size:</strong> Individual participation</li>
+        <li><strong>Duration:</strong> 2 hours</li>
+        <li>Open to all engineering students</li>
+        <li>Basic CAD software knowledge required</li>
+      </ul>
+
+      <h3>📋 Event Format</h3>
+      <p>Participants will be given a set of engineering drawings or problem statements and must create accurate 3D models using CAD software.</p>
+
+      <h3>🎯 Challenges Include</h3>
+      <ul>
+        <li>3D part modeling from 2D drawings</li>
+        <li>Assembly creation and constraints</li>
+        <li>Dimensioning and tolerancing</li>
+        <li>Surface modeling challenges</li>
+        <li>Design optimization tasks</li>
+      </ul>
+
+      <h3>💻 Software</h3>
+      <p>Common CAD software platforms will be available (SolidWorks, AutoCAD, CATIA, or Fusion 360). Participants should be familiar with at least one CAD platform.</p>
+
+      <h3>🏆 Evaluation Criteria</h3>
+      <ul>
+        <li>Accuracy of the model (40%)</li>
+        <li>Design complexity (30%)</li>
+        <li>Time efficiency (20%)</li>
+        <li>Proper constraints and dimensions (10%)</li>
+      </ul>
+
+      <h3>🏅 Winner Selection</h3>
+      <p>Winners will be selected based on the <strong>combined evaluation criteria</strong>. The most accurate and well-designed model will win.</p>
+
+      <h3>📜 Rules & Regulations</h3>
+      <ul>
+        <li>Use of internet for reference is <strong>not allowed</strong></li>
+        <li>Only standard CAD features can be used</li>
+        <li>External plugins or add-ons are prohibited</li>
+        <li>File must be submitted before time limit</li>
+        <li>Judges' decision will be <strong>final</strong></li>
+      </ul>
+
+      <h3>📍 Venue & Timeline</h3>
+      <p><strong>Venue:</strong> CAD Lab</p>
+      <p><strong>Time:</strong> 3:30 PM (Day 1)</p>
+      <p><strong>Duration:</strong> 2 hours</p>
+
+      <p><em>Perfect for mechanical and design engineering students who want to showcase their CAD modeling expertise!</em></p>
+    </div>`,
+    date: 'Day 1',
+    time: '3:30 PM',
+    venue: 'CAD Lab',
+    image: 'img/events-tech/mech_tech.png',
+    formLink: 'registration.html'
+  },
 
   // Workshops
   'genai': {
