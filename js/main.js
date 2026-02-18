@@ -969,7 +969,7 @@ const eventDetails = {
         <li><strong>Platform:</strong> Free Image Generation Tool (Craiyon)</li>
         <li><strong>Type:</strong> Elimination Round</li>
       </ul>
-      
+
       <p><strong>Task Description:</strong> Transform a given base image according to specified requirements using only prompt-based instructions.</p>
       
       <p><strong>Challenge Requirements:</strong></p>
@@ -1169,7 +1169,7 @@ const eventDetails = {
         <li>Follow all time limits strictly</li>
         <li>Judges' decision will be final</li>
       </ul>
-
+      
       <h3>📍 Venue & Timeline</h3>
       <p><strong>Venue:</strong> IT Lab</p>
       <p><strong>Timeline:</strong> 2:30 PM to 4:00 PM</p>
@@ -1221,6 +1221,7 @@ const eventDetails = {
       <p><strong>Timeline:</strong> 10:00 AM to 11:30 AM</p>
     </div>`,
     date: 'Day 1',
+    time: '11:00 AM – 12:30 PM',
     time: '10:00 AM',
     venue: 'IT Lab',
     image: 'img/events-tech/4.webp',
@@ -1968,7 +1969,7 @@ const eventDetails = {
     desc: `<div class="event-full-desc">
       <h3>🔧 Hands-on Workshop on Internet of Things (IoT) Design</h3>
       <p><strong>IoT Design Workshop</strong> introduces students to the fundamentals of IoT design. It provides hands-on experience with real-time IoT hardware tools and bridges the gap between theoretical knowledge and practical implementation.</p>
-      
+
       <h3>📍 Venue</h3>
       <p><strong>Centre Of Excellence Of IOT [COE]</strong></p>
 
@@ -2326,7 +2327,7 @@ const eventDetails = {
       </ul>
 
       <h3>📜 Rules & Guidelines</h3>
-      <ul>
+    <ul>
         <li>The film must be <strong>original and unpublished</strong></li>
         <li>Any language is allowed; <strong>subtitles are mandatory</strong> if not in English</li>
         <li>Films must be submitted in <strong>MP4 format</strong> (minimum 720p resolution)</li>
@@ -2385,6 +2386,7 @@ const eventDetails = {
     formLink: 'cultural_registration.html'
   }
 };
+
 
 function openEventModal(eventId) {
   const event = eventDetails[eventId];
