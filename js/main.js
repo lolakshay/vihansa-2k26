@@ -192,7 +192,7 @@ jQuery(document).ready(function ($) {
    * 6. COUNTDOWN TIMER
    ******************************/
   const second = 1000, minute = second * 60, hour = minute * 60, day = hour * 24;
-  let countDown = new Date("03-05-2026").getTime();
+  let countDown = new Date("03-13-2026").getTime();
 
   let x = setInterval(function () {
     let now = new Date().getTime(), distance = countDown - now;
