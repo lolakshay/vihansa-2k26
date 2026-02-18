@@ -59,12 +59,11 @@ body {
   font-family: 'StrangerThings', sans-serif;
   font-size: 1.1em;
   overflow-x: hidden;
+  cursor: auto;
   /* padding-top: 120px; */
-
-  /* Apply a subtle Stranger Things text shadow globally if requested, or just for headings */
 }
 
-/* Custom Cursor styles removed */
+
 
 a {
   color: #f82249;
@@ -4064,38 +4063,13 @@ body.mobile-nav-active #mobile-nav-toggle {
 
 
 
-/* --- Mobile Cursor Fix --- */
+/* --- Mobile Canvas Fix --- */
 @media (max-width: 768px) {
-
-  #cursor,
-  #cursor-blur,
-  #ghost-cursor-canvas,
   #bg-animation-container canvas {
     display: none !important;
   }
 }
 
-/* ================= LOW PERFORMANCE MODE (Cursor Disabled) ================= */
-body.low-cursor-performance #cursor,
-body.low-cursor-performance #cursor-blur,
-body.low-cursor-performance #ghost-cursor-canvas {
-  display: none !important;
-}
-
-html.low-cursor-performance {
-  cursor: auto !important;
-  /* Restore default cursor */
-}
-
-html.low-cursor-performance * {
-  cursor: auto !important;
-}
-
-html.low-cursor-performance a,
-html.low-cursor-performance button,
-html.low-cursor-performance .pointer {
-  cursor: pointer !important;
-}
 
 /* ================= Event Details Modal (Full Screen) ================= */
 .event-modal-overlay {

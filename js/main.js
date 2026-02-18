@@ -1,4 +1,4 @@
-jQuery(document).ready(function ($) {
+﻿jQuery(document).ready(function ($) {
 
 
   /******************************
@@ -619,331 +619,16 @@ document.addEventListener('DOMContentLoaded', () => {
     eventObserver.observe(event);
   });
 });
-/* ==========================================================================
-   GHOST CURSOR IMPLEMENTATION
-   ========================================================================== */
-class GhostCursor {
-  constructor() {
-    this.container = document.body;
-    this.init();
-  }
 
-  init() {
-    // Create container for the canvas
-    this.canvasContainer = document.createElement('div');
-    this.canvasContainer.id = 'ghost-cursor-canvas';
-    this.canvasContainer.style.position = 'fixed';
-    this.canvasContainer.style.top = '0';
-    this.canvasContainer.style.left = '0';
-    this.canvasContainer.style.width = '100%';
-    this.canvasContainer.style.height = '100%';
-    this.canvasContainer.style.pointerEvents = 'none';
-    this.canvasContainer.style.zIndex = '9999';
-    this.canvasContainer.style.mixBlendMode = 'screen'; // Blending mode
-    document.body.appendChild(this.canvasContainer);
 
-    // Configuration
-    this.config = {
-      trailLength: 20, // Optimized from 50
-      inertia: 0.5,
-      brightness: 1.5,
-      color: '#ff0000', // Cyber Red
-      baseColor: new THREE.Color('#ff0000'),
-      maxDevicePixelRatio: 1.25 // Cap for performance but allow >1 for high-end
-    };
 
-    // Setup renderer
-    this.renderer = new THREE.WebGLRenderer({
-      antialias: false,
-      alpha: true,
-      premultipliedAlpha: false
-    });
-    this.renderer.setClearColor(0x000000, 0);
-    this.renderer.setSize(window.innerWidth, window.innerHeight);
 
-    // Initial DPR Setup
-    this.currentDPR = Math.min(window.devicePixelRatio, this.config.maxDevicePixelRatio);
-    this.renderer.setPixelRatio(this.currentDPR);
-    this.canvasContainer.appendChild(this.renderer.domElement);
 
-    // Setup scene
-    this.scene = new THREE.Scene();
-    this.camera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1);
-    this.geometry = new THREE.PlaneGeometry(2, 2);
 
-    // Initialize trail buffer
-    const maxTrail = this.config.trailLength;
-    this.trailBuf = Array.from({ length: maxTrail }, () => new THREE.Vector2(0.5, 0.5));
 
-    // Create material
-    this.material = this.createMaterial(maxTrail, this.config.baseColor);
-    const mesh = new THREE.Mesh(this.geometry, this.material);
-    this.scene.add(mesh);
 
-    // State
-    this.head = 0;
-    this.currentMouse = new THREE.Vector2(0.5, 0.5);
-    this.velocity = new THREE.Vector2(0, 0);
-    this.fadeOpacity = 1.0;
-    this.lastMoveTime = performance.now();
-    this.pointerActive = false;
-    this.running = false;
-    this.startTime = performance.now();
 
-    // Event Listeners
-    this.bindEvents();
-    this.ensureLoop();
-  }
 
-  createMaterial(maxTrail, baseColor) {
-    const vertexShader = `
-      varying vec2 vUv;
-      void main() {
-        vUv = uv;
-        gl_Position = vec4(position, 1.0);
-      }
-    `;
-
-    const fragmentShader = `
-      uniform float iTime;
-      uniform vec3  iResolution;
-      uniform vec2  iMouse;
-      uniform vec2  iPrevMouse[${maxTrail}];
-      uniform float iOpacity;
-      uniform vec3  iBaseColor;
-      uniform float iBrightness;
-      varying vec2  vUv;
-
-      float hash(vec2 p){ return fract(sin(dot(p,vec2(127.1,311.7))) * 43758.5453123); }
-      
-      float noise(vec2 p){
-        vec2 i = floor(p), f = fract(p);
-        f *= f * (3. - 2. * f);
-        return mix(mix(hash(i + vec2(0.,0.)), hash(i + vec2(1.,0.)), f.x),
-                   mix(hash(i + vec2(0.,1.)), hash(i + vec2(1.,1.)), f.x), f.y);
-      }
-      
-      float fbm(vec2 p){
-        float v = 0.0;
-        float a = 0.5;
-        mat2 m = mat2(cos(0.5), sin(0.5), -sin(0.5), cos(0.5));
-        for(int i=0;i<5;i++){
-          v += a * noise(p);
-          p = m * p * 2.0;
-          a *= 0.5;
-        }
-        return v;
-      }
-      
-      vec4 blob(vec2 p, vec2 mousePos, float intensity, float activity) {
-        // High frequency noise for "electric" feel
-        vec2 q = vec2(fbm(p * 2.0 + iTime * 0.1), fbm(p * 2.0 + vec2(5.2,1.3) + iTime * 0.1));
-        float smoke = fbm(p * 3.0 + q * 2.5);
-        
-        float radius = 0.02; // Base radius
-        float dist = length(p - mousePos);
-        float distFactor = 1.0 - smoothstep(0.0, radius + 0.1 * activity, dist);
-        
-        float alpha = pow(smoke, 2.0) * distFactor;
-        
-        // Dynamic Color: Red to Gold/White
-        vec3 c1 = iBaseColor;
-        vec3 c2 = vec3(1.0, 0.8, 0.4); // Gold-ish
-        vec3 color = mix(c1, c2, smoothstep(0.0, 0.2, dist));
-
-        return vec4(color * alpha * intensity, alpha * intensity);
-      }
-
-      void main() {
-        vec2 uv = (gl_FragCoord.xy / iResolution.xy * 2.0 - 1.0) * vec2(iResolution.x / iResolution.y, 1.0);
-        vec2 mouse = (iMouse * 2.0 - 1.0) * vec2(iResolution.x / iResolution.y, 1.0);
-
-        vec3 colorAcc = vec3(0.0);
-        float alphaAcc = 0.0;
-
-        // Main blob - DISABLED for "Assessment" request (only trail wanted)
-        // vec4 b = blob(uv, mouse, 1.0, iOpacity);
-        // colorAcc += b.rgb;
-        // alphaAcc += b.a;
-
-        // Trail blobs
-        for (int i = 0; i < ${maxTrail}; i++) {
-          vec2 pm = (iPrevMouse[i] * 2.0 - 1.0) * vec2(iResolution.x / iResolution.y, 1.0);
-          float t = 1.0 - float(i) / float(${maxTrail});
-          t = pow(t, 2.0); // Non-linear fade
-          if (t > 0.01) {
-            vec4 bt = blob(uv, pm, t * 0.6, iOpacity);
-            colorAcc += bt.rgb;
-            alphaAcc += bt.a;
-          }
-        }
-
-        colorAcc *= iBrightness;
-        gl_FragColor = vec4(colorAcc, clamp(alphaAcc * iOpacity, 0.0, 1.0));
-      }
-    `;
-
-    return new THREE.ShaderMaterial({
-      uniforms: {
-        iTime: { value: 0 },
-        iResolution: { value: new THREE.Vector3(window.innerWidth, window.innerHeight, 1) },
-        iMouse: { value: new THREE.Vector2(0.5, 0.5) },
-        iPrevMouse: { value: this.trailBuf.map(v => v.clone()) },
-        iOpacity: { value: 1.0 },
-        iBaseColor: { value: baseColor },
-        iBrightness: { value: this.config.brightness }
-      },
-      vertexShader,
-      fragmentShader,
-      transparent: true,
-      depthTest: false,
-      depthWrite: false
-    });
-  }
-
-  bindEvents() {
-    window.addEventListener('resize', () => {
-      this.renderer.setSize(window.innerWidth, window.innerHeight);
-      this.currentDPR = Math.min(window.devicePixelRatio, this.config.maxDevicePixelRatio);
-      this.renderer.setPixelRatio(this.currentDPR);
-      this.material.uniforms.iResolution.value.set(window.innerWidth, window.innerHeight, 1);
-    });
-
-    document.addEventListener('mousemove', (e) => {
-      const x = e.clientX / window.innerWidth;
-      const y = 1 - e.clientY / window.innerHeight;
-      this.currentMouse.set(x, y);
-      this.pointerActive = true;
-      this.lastMoveTime = performance.now();
-      this.fadeOpacity = 1.0;
-      this.ensureLoop();
-    });
-
-    document.addEventListener('mouseenter', () => {
-      this.pointerActive = true;
-      this.ensureLoop();
-    });
-
-    document.addEventListener('mouseleave', () => {
-      this.pointerActive = false;
-      this.lastMoveTime = performance.now();
-    });
-  }
-
-  animate = () => {
-    const now = performance.now();
-    const t = (now - this.startTime) / 1000;
-
-    // Inertia & Fading
-    if (!this.pointerActive) {
-      this.velocity.multiplyScalar(this.config.inertia);
-      this.material.uniforms.iMouse.value.add(this.velocity);
-
-      // Fade out if inactive
-      const dt = now - this.lastMoveTime;
-      if (dt > 1000) { // 1 second delay
-        this.fadeOpacity = Math.max(0, 1 - (dt - 1000) / 1000);
-      }
-    } else {
-      this.velocity.set(
-        this.currentMouse.x - this.material.uniforms.iMouse.value.x,
-        this.currentMouse.y - this.material.uniforms.iMouse.value.y
-      );
-      this.material.uniforms.iMouse.value.copy(this.currentMouse);
-    }
-
-    // Update Trail Buffer
-    const N = this.trailBuf.length;
-    this.head = (this.head + 1) % N;
-    this.trailBuf[this.head].copy(this.material.uniforms.iMouse.value);
-
-    // Upload uniform array
-    const arr = this.material.uniforms.iPrevMouse.value;
-    for (let i = 0; i < N; i++) {
-      const srcIdx = (this.head - i + N) % N;
-      arr[i].copy(this.trailBuf[srcIdx]);
-    }
-
-    this.material.uniforms.iOpacity.value = this.fadeOpacity;
-    this.material.uniforms.iTime.value = t;
-
-    this.renderer.render(this.scene, this.camera);
-
-    if (this.fadeOpacity <= 0.001 && !this.pointerActive) {
-      this.running = false;
-      return;
-    }
-
-    requestAnimationFrame(this.animate);
-  }
-
-  ensureLoop() {
-    if (!this.running) {
-      this.running = true;
-      this.animate();
-      this.startDPRAdjustment();
-    }
-  }
-
-  startDPRAdjustment() {
-    if (this.dprInterval) return; // Already running
-
-    let lastTime = performance.now();
-    let frameCount = 0;
-
-    const adjustDPR = () => {
-      // If animation stopped, stop this loop too
-      if (!this.running) {
-        this.dprInterval = null;
-        return;
-      }
-
-      frameCount++;
-      const now = performance.now();
-      const elapsed = now - lastTime;
-
-      if (elapsed >= 1000) {
-        const fps = (frameCount * 1000) / elapsed;
-
-        if (fps < 40 && this.currentDPR > 1) {
-          this.currentDPR = Math.max(1, this.currentDPR - 0.1);
-          this.renderer.setPixelRatio(this.currentDPR);
-          // console.log(`Low FPS (${fps.toFixed(1)}), reducing DPR to ${this.currentDPR.toFixed(2)}`);
-        }
-
-        if (fps > 60 && this.currentDPR < this.config.maxDevicePixelRatio) {
-          this.currentDPR = Math.min(this.config.maxDevicePixelRatio, this.currentDPR + 0.1);
-          this.renderer.setPixelRatio(this.currentDPR);
-          // console.log(`High FPS (${fps.toFixed(1)}), increasing DPR to ${this.currentDPR.toFixed(2)}`);
-        }
-
-        frameCount = 0;
-        lastTime = now;
-      }
-
-      this.dprInterval = requestAnimationFrame(adjustDPR);
-    };
-
-    adjustDPR();
-  }
-}
-
-// Initialize on Load if not mobile
-if (window.innerWidth > 768) {
-  document.addEventListener('DOMContentLoaded', () => {
-    // Check if THREE is loaded
-    if (typeof THREE !== 'undefined') {
-      // Performance Check
-      if (!document.documentElement.classList.contains('low-cursor-performance')) {
-        new GhostCursor();
-      } else {
-        console.log("Ghost Cursor skipped due to low performance.");
-      }
-    } else {
-      console.warn("Three.js not loaded, Ghost Cursor skipped.");
-    }
-  });
-}
 
 /* ==========================================================================
    EVENT DETAILS MODAL LOGIC
@@ -955,9 +640,9 @@ const eventDetails = {
   'promptly': {
     title: 'PROMPTLY',
     desc: `<div class="event-full-desc">
-      <p><strong>PROMPTLY – The Prompt Engineering Challenge</strong> is an innovative technical competition that tests participants' creativity, logical thinking, and ability to communicate effectively with AI systems. The event consists of two competitive rounds conducted in a timed environment.</p>
+      <p><strong>PROMPTLY â€“ The Prompt Engineering Challenge</strong> is an innovative technical competition that tests participants' creativity, logical thinking, and ability to communicate effectively with AI systems. The event consists of two competitive rounds conducted in a timed environment.</p>
       
-      <h3>📋 Rules</h3>
+      <h3>ðŸ“‹ Rules</h3>
       <ul>
         <li>Copying prompts, code, or outputs from other participants or external sources without permission will result in disqualification.</li>
         <li>Using paid AI tools, unapproved platforms, or external assistance beyond the allowed resources is strictly prohibited.</li>
@@ -966,7 +651,7 @@ const eventDetails = {
         <li>The decision of the Jury Panel and the Event Coordinator will be final and binding in all matters related to the competition.</li>
       </ul>
 
-      <h3>🎯 Round 1: Image Generation</h3>
+      <h3>ðŸŽ¯ Round 1: Image Generation</h3>
       <p><strong>Objective:</strong> Evaluate participants' ability to effectively communicate with AI image generation systems using well-structured prompts.</p>
       <ul>
         <li><strong>Team Type:</strong> 2 Members per team</li>
@@ -1004,11 +689,11 @@ const eventDetails = {
         <tr><td>Output Cleanliness</td><td>10%</td></tr>
       </table>
 
-      <h3>🌐 Round 2: Site Cloning</h3>
+      <h3>ðŸŒ Round 2: Site Cloning</h3>
       <p><strong>Objective:</strong> Use prompt engineering techniques to recreate a given website layout using AI-assisted code generation tools. This is the final and most challenging round.</p>
       <ul>
         <li><strong>Team Type:</strong> 2 Members per team</li>
-        <li><strong>Duration:</strong> 45–60 minutes</li>
+        <li><strong>Duration:</strong> 45â€“60 minutes</li>
         <li><strong>Platform:</strong> AI-assisted code generation tools (approved free tools only)</li>
         <li><strong>Type:</strong> Final Round</li>
       </ul>
@@ -1044,7 +729,7 @@ const eventDetails = {
         <tr><td>Functional Accuracy</td><td>10%</td></tr>
       </table>
 
-      <h3>👥 Student Coordinators</h3>
+      <h3>ðŸ‘¥ Student Coordinators</h3>
       <ul>
         <li><strong>Dinesh Kumar R</strong> (Head)</li>
         <li><strong>Archana</strong></li>
@@ -1062,7 +747,7 @@ const eventDetails = {
     desc: `<div class="event-full-desc">
       <p><strong>Debug-Detective</strong> is a technical puzzle hunt that challenges participants' logical thinking, coding skills, and problem-solving abilities. Teams act as digital detectives, solving clues, cracking puzzles, and debugging code to progress through each stage. The event combines logic puzzles, encrypted files, and programming challenges in a timed and competitive environment where speed, accuracy, and teamwork are essential.</p>
       
-      <h3>👥 Team Structure & Rules</h3>
+      <h3>ðŸ‘¥ Team Structure & Rules</h3>
       <ul>
         <li><strong>Team Size:</strong> 2 members per team</li>
         <li><strong>Duration:</strong> 2 hours</li>
@@ -1071,7 +756,7 @@ const eventDetails = {
         <li>Hints available with <strong>negative marking</strong></li>
       </ul>
 
-      <h3>🎯 Challenge Types</h3>
+      <h3>ðŸŽ¯ Challenge Types</h3>
       <p>All clues are based on technology and programming concepts and guide teams to the next challenge.</p>
       
       <table style="width:100%; border-collapse: collapse; margin: 10px 0;">
@@ -1085,7 +770,7 @@ const eventDetails = {
         <tr><td>Programming Puzzle</td><td>Debug a code snippet to reveal a message</td><td>Corrected code prints next clue or password part</td></tr>
       </table>
 
-      <h3>📊 Scoring System</h3>
+      <h3>ðŸ“Š Scoring System</h3>
       
       <p><strong>Base Points & Speed Bonus:</strong></p>
       <table style="width:100%; border-collapse: collapse; margin: 10px 0;">
@@ -1109,7 +794,7 @@ const eventDetails = {
         <li>Tampering with clues/checkpoints: <strong>Disqualification</strong></li>
       </ul>
 
-      <h3>🏆 Prizes</h3>
+      <h3>ðŸ† Prizes</h3>
       <ul>
         <li><strong>Winner:</strong> Highest total points - <strong>Rs. 2,000/-</strong></li>
         <li><strong>Runner-up:</strong> Second-highest scoring team - <strong>Rs. 1,000/-</strong></li>
@@ -1121,7 +806,7 @@ const eventDetails = {
         <li>If still tied, a sudden-death debugging question decides the winner</li>
       </ol>
 
-      <h3>📍 Venue & Coordinators</h3>
+      <h3>ðŸ“ Venue & Coordinators</h3>
       <p><strong>Venue:</strong> CC4 Lab</p>
       <p><strong>Staff Coordinator:</strong><br>
       Mr. B. Rajagopal - <a href="tel:+919159211743" style="color: #00f0ff;">9159211743</a></p>
@@ -1139,7 +824,7 @@ const eventDetails = {
     desc: `<div class="event-full-desc">
       <p><strong>Code Debugging</strong> is a competitive coding event where participants solve defects in given code to make it run correctly. This solo challenge tests your debugging skills, logical thinking, and ability to identify and fix code errors under time pressure.</p>
       
-      <h3>👤 Team Structure & Rules</h3>
+      <h3>ðŸ‘¤ Team Structure & Rules</h3>
       <ul>
         <li><strong>Team Size:</strong> 1 member (Solo event)</li>
         <li><strong>Total Duration:</strong> 1 hour 30 minutes</li>
@@ -1147,7 +832,7 @@ const eventDetails = {
         <li>Solving each bug scores you a point</li>
       </ul>
 
-      <h3>🎯 Round 1: Bug Fixing</h3>
+      <h3>ðŸŽ¯ Round 1: Bug Fixing</h3>
       <ul>
         <li><strong>Duration:</strong> 20 minutes</li>
         <li><strong>Objective:</strong> Find all existing bugs and rectify the faults to make the code work</li>
@@ -1155,18 +840,18 @@ const eventDetails = {
         <li><strong>Qualification:</strong> Participants scoring the required cutoff will advance to Round 2</li>
       </ul>
 
-      <h3>🔄 Round 2: Code Rearrangement</h3>
+      <h3>ðŸ”„ Round 2: Code Rearrangement</h3>
       <ul>
         <li><strong>Round Type:</strong> Rearrange the jumbled code</li>
         <li><strong>Objective:</strong> Assemble all the scrambled lines and functions in the correct order to pass test cases</li>
         <li><strong>Challenge:</strong> Code structure and logic flow understanding</li>
       </ul>
 
-      <h3>🏆 Winner Selection</h3>
+      <h3>ðŸ† Winner Selection</h3>
       <p>Winners will be decided based on the <strong>combined score of both rounds</strong>.</p>
       <p><strong>Tie-Breaker:</strong> In case of a tie, the participant who completes the task in the <strong>least time</strong> will be ranked higher.</p>
 
-      <h3>📜 Rules & Regulations</h3>
+      <h3>ðŸ“œ Rules & Regulations</h3>
       <ul>
         <li>Use of mobile phones or internet is <strong>strictly prohibited</strong></li>
         <li>External help is not allowed</li>
@@ -1175,7 +860,7 @@ const eventDetails = {
         <li>Judges' decision will be final</li>
       </ul>
       
-      <h3>📍 Venue & Timeline</h3>
+      <h3>ðŸ“ Venue & Timeline</h3>
       <p><strong>Venue:</strong> IT Lab</p>
       <p><strong>Timeline:</strong> 2:30 PM to 4:00 PM</p>
     </div>`,
@@ -1190,7 +875,7 @@ const eventDetails = {
     desc: `<div class="event-full-desc">
       <p><strong>Leak the Logic</strong> allows coders to work in different fields of coding, where they have to decrypt the problem statement and find the algorithmic logic behind it. All the rounds are inter-connected for the climax compilation.</p>
       
-      <h3>👥 Team Structure & Rules</h3>
+      <h3>ðŸ‘¥ Team Structure & Rules</h3>
       <ul>
         <li><strong>Team Size:</strong> 2 members per team</li>
         <li><strong>Total Duration:</strong> 1 hour 30 minutes</li>
@@ -1202,7 +887,7 @@ const eventDetails = {
         <li><strong>No tab switch allowed</strong></li>
       </ul>
 
-      <h3>🎯 Round 1: Story-Based Word Problem</h3>
+      <h3>ðŸŽ¯ Round 1: Story-Based Word Problem</h3>
       <ul>
         <li><strong>Duration:</strong> 1 hour 10 minutes</li>
         <li><strong>Round Type:</strong> Story-based word problem</li>
@@ -1215,18 +900,18 @@ const eventDetails = {
         <li>Each question contains a <strong>special codex</strong>, which can be used for the final question to end this game</li>
       </ul>
 
-      <p><em>💡 All rounds are inter-connected, and each problem provides a special codex needed for the final climax question!</em></p>
+      <p><em>ðŸ’¡ All rounds are inter-connected, and each problem provides a special codex needed for the final climax question!</em></p>
 
-      <h3>🏆 Winner Selection</h3>
+      <h3>ðŸ† Winner Selection</h3>
       <p>Winners will be decided based on the <strong>combined score of all rounds</strong>.</p>
       <p><strong>Tie-Breaker:</strong> In case of a tie, the team that completes the task in the <strong>least time</strong> will be ranked higher.</p>
 
-      <h3>📍 Venue & Timeline</h3>
+      <h3>ðŸ“ Venue & Timeline</h3>
       <p><strong>Venue:</strong> IT Lab</p>
       <p><strong>Timeline:</strong> 10:00 AM to 11:30 AM</p>
     </div>`,
     date: 'Day 1',
-    time: '11:00 AM – 12:30 PM',
+    time: '11:00 AM â€“ 12:30 PM',
     time: '10:00 AM',
     venue: 'IT Lab',
     image: 'img/events-tech/4.webp',
@@ -1255,7 +940,7 @@ const eventDetails = {
     desc: `<div class="event-full-desc">
       <p><strong>CIRCUIT SURGE 2.0</strong> allows electrical enthusiasts to solve problems and showcase their knowledge, creativity, and innovation as they step ahead. Compete, learn, and electrify your future.</p>
       
-      <h3>👥 Team Structure & Rules</h3>
+      <h3>ðŸ‘¥ Team Structure & Rules</h3>
       <ul>
         <li><strong>Team Size:</strong> 3 members per team</li>
         <li><strong>Total Duration:</strong> 3 hours</li>
@@ -1263,7 +948,7 @@ const eventDetails = {
         <li>Points awarded based on correctness</li>
       </ul>
 
-      <h3>📋 Circuit Surge Rounds</h3>
+      <h3>ðŸ“‹ Circuit Surge Rounds</h3>
 
       <p><strong>ROUND 1: Electrical Basics Quiz</strong></p>
       <ul>
@@ -1286,11 +971,11 @@ const eventDetails = {
         <li><strong>Focus:</strong> Hands-on circuit construction and technical communication</li>
       </ul>
 
-      <h3>🏆 Winner Selection</h3>
+      <h3>ðŸ† Winner Selection</h3>
       <p>Winners will be decided based on the <strong>combined score of all three rounds</strong>.</p>
       <p><strong>Tie-Breaker:</strong> In case of a tie, the team that completes the task in the <strong>least time</strong> will be ranked higher.</p>
 
-      <h3>📜 Rules & Regulations</h3>
+      <h3>ðŸ“œ Rules & Regulations</h3>
       <ul>
         <li>Use of mobile phones or internet is <strong>strictly prohibited</strong></li>
         <li>External help is not allowed</li>
@@ -1298,7 +983,7 @@ const eventDetails = {
         <li>Judges' decision will be <strong>final</strong></li>
       </ul>
 
-      <h3>📍 Venue & Timeline</h3>
+      <h3>ðŸ“ Venue & Timeline</h3>
       <p><strong>Venue:</strong> PSS Lab</p>
       <p><strong>Timeline:</strong> 10:00 AM to 1:00 PM</p>
     </div>`,
@@ -1309,11 +994,11 @@ const eventDetails = {
     formLink: 'registration.html'
   },
   'productpitch': {
-    title: 'WATT HOURS – Energy Auditing',
+    title: 'WATT HOURS â€“ Energy Auditing',
     desc: `<div class="event-full-desc">
       <p><strong>WATT HOURS</strong> allows energy enthusiasts to solve problems and showcase their knowledge, creativity, and innovation as they step ahead. Compete, learn, and electrify your future by saving the nature.</p>
       
-      <h3>👥 Team Structure & Rules</h3>
+      <h3>ðŸ‘¥ Team Structure & Rules</h3>
       <ul>
         <li><strong>Team Size:</strong> 2 to 4 members per team</li>
         <li><strong>Total Duration:</strong> 3 hours</li>
@@ -1321,7 +1006,7 @@ const eventDetails = {
         <li>Points awarded based on correctness</li>
       </ul>
 
-      <h3>📋 Energy Auditing Rounds</h3>
+      <h3>ðŸ“‹ Energy Auditing Rounds</h3>
 
       <p><strong>ROUND 1: Preliminary Quiz Assessment</strong></p>
       <ul>
@@ -1348,11 +1033,11 @@ const eventDetails = {
         <li>Map findings to relevant <strong>Sustainable Development Goals (SDGs)</strong></li>
       </ul>
 
-      <h3>🏆 Winner Selection</h3>
+      <h3>ðŸ† Winner Selection</h3>
       <p>Top teams will be shortlisted based on the <strong>combined score of all three rounds</strong>.</p>
       <p><strong>Tie-Breaker:</strong> In case of a tie, the team that completes the task in the <strong>least time</strong> will be ranked higher.</p>
 
-      <h3>📜 Rules & Regulations</h3>
+      <h3>ðŸ“œ Rules & Regulations</h3>
       <ul>
         <li>Use of mobile phones or internet is <strong>strictly prohibited</strong></li>
         <li>External help is not allowed</li>
@@ -1360,7 +1045,7 @@ const eventDetails = {
         <li>Judges' decision will be <strong>final</strong></li>
       </ul>
 
-      <h3>📍 Venue & Timeline</h3>
+      <h3>ðŸ“ Venue & Timeline</h3>
       <p><strong>Venue:</strong> PSS Lab</p>
       <p><strong>Timeline:</strong> 2:00 PM to 5:00 PM</p>
     </div>`,
@@ -1371,13 +1056,13 @@ const eventDetails = {
     formLink: 'registration.html'
   },
   'dasheddata': {
-    title: 'THINKTANK – Scenario Showdown',
+    title: 'THINKTANK â€“ Scenario Showdown',
     desc: `<div class="event-full-desc">
       <p><strong>THINKTANK (ScenarioShowdown)</strong> is an engaging team-based competition designed to test your ability to analyze complex real-world situations and develop practical solutions. Through story-based scenarios, teams will tackle challenges involving business decisions, ethical dilemmas, crisis management, and strategic problem-solving. This is a <strong>non-technical event</strong> - it's about how you think, analyze, and make decisions as a team.</p>
       
-      <p><em>💡 Key Highlight: Round 1 is an ELIMINATION round! Only top-performing teams advance to Round 2.</em></p>
+      <p><em>ðŸ’¡ Key Highlight: Round 1 is an ELIMINATION round! Only top-performing teams advance to Round 2.</em></p>
 
-      <h3>📋 Competition Structure</h3>
+      <h3>ðŸ“‹ Competition Structure</h3>
       
       <p><strong>ROUND 1: LOGICAL THINKING (ELIMINATION ROUND)</strong></p>
       <ul>
@@ -1396,39 +1081,39 @@ const eventDetails = {
         <li><strong>Focus Areas:</strong> Crisis management, ethical dilemmas, strategic problem-solving under constraints</li>
       </ul>
 
-      <h3>⏰ Event Schedule</h3>
+      <h3>â° Event Schedule</h3>
       <table style="width:100%; border-collapse: collapse; margin: 10px 0;">
         <tr style="background: rgba(0, 240, 255, 0.1);">
           <td style="font-weight: 700; color: #00f0ff;">Time</td>
           <td style="font-weight: 700; color: #00f0ff;">Activity</td>
           <td style="font-weight: 700; color: #00f0ff;">Duration</td>
         </tr>
-        <tr><td>10:00 AM - 10:45 AM</td><td>🎯 ROUND 1: Logical Thinking (Elimination)</td><td>45 min</td></tr>
-        <tr><td>10:45 AM - 11:00 AM</td><td>⏸️ Break + Evaluation + Results</td><td>15 min</td></tr>
-        <tr><td>11:00 AM - 11:05 AM</td><td>📢 Announcement: Teams Advancing to Round 2</td><td>5 min</td></tr>
-        <tr><td>11:05 AM - 11:50 AM</td><td>🎯 ROUND 2: Critical Thinking (Finals)</td><td>45 min</td></tr>
-        <tr><td>11:50 AM - 12:45 PM</td><td>🍽️ Lunch Break (Final Evaluation)</td><td>55 min</td></tr>
-        <tr><td>12:45 PM - 1:15 PM</td><td>🏆 Results Announcement & Prize Distribution</td><td>30 min</td></tr>
+        <tr><td>10:00 AM - 10:45 AM</td><td>ðŸŽ¯ ROUND 1: Logical Thinking (Elimination)</td><td>45 min</td></tr>
+        <tr><td>10:45 AM - 11:00 AM</td><td>â¸ï¸ Break + Evaluation + Results</td><td>15 min</td></tr>
+        <tr><td>11:00 AM - 11:05 AM</td><td>ðŸ“¢ Announcement: Teams Advancing to Round 2</td><td>5 min</td></tr>
+        <tr><td>11:05 AM - 11:50 AM</td><td>ðŸŽ¯ ROUND 2: Critical Thinking (Finals)</td><td>45 min</td></tr>
+        <tr><td>11:50 AM - 12:45 PM</td><td>ðŸ½ï¸ Lunch Break (Final Evaluation)</td><td>55 min</td></tr>
+        <tr><td>12:45 PM - 1:15 PM</td><td>ðŸ† Results Announcement & Prize Distribution</td><td>30 min</td></tr>
       </table>
 
-      <h3>🏆 Prize Distribution</h3>
+      <h3>ðŸ† Prize Distribution</h3>
       <table style="width:100%; border-collapse: collapse; margin: 10px 0;">
         <tr style="background: rgba(0, 240, 255, 0.1);">
           <td style="font-weight: 700; color: #00f0ff;">Position</td>
           <td style="font-weight: 700; color: #00f0ff;">Prize Amount</td>
           <td style="font-weight: 700; color: #00f0ff;">Recognition</td>
         </tr>
-        <tr><td>🥇 First Place</td><td><strong>₹3,000</strong></td><td>Certificate + Trophy</td></tr>
-        <tr><td>🥈 Second Place</td><td><strong>₹2,000</strong></td><td>Certificate + Medal</td></tr>
-        <tr><td>🥉 Third Place</td><td><strong>₹1,000</strong></td><td>Certificate + Medal</td></tr>
+        <tr><td>ðŸ¥‡ First Place</td><td><strong>â‚¹3,000</strong></td><td>Certificate + Trophy</td></tr>
+        <tr><td>ðŸ¥ˆ Second Place</td><td><strong>â‚¹2,000</strong></td><td>Certificate + Medal</td></tr>
+        <tr><td>ðŸ¥‰ Third Place</td><td><strong>â‚¹1,000</strong></td><td>Certificate + Medal</td></tr>
       </table>
-      <p><em>Total Prize Pool: <strong>₹6,000</strong></em></p>
+      <p><em>Total Prize Pool: <strong>â‚¹6,000</strong></em></p>
 
-      <h3>📊 Judging Criteria</h3>
+      <h3>ðŸ“Š Judging Criteria</h3>
       <p>Each scenario is evaluated out of 100 points. Teams answer 2 scenarios per round.</p>
       <ul>
-        <li>Round 1 (Elimination): 200 points maximum (2 scenarios × 100 points)</li>
-        <li>Round 2 (Finals): 200 points maximum (2 scenarios × 100 points)</li>
+        <li>Round 1 (Elimination): 200 points maximum (2 scenarios Ã— 100 points)</li>
+        <li>Round 2 (Finals): 200 points maximum (2 scenarios Ã— 100 points)</li>
         <li><strong>Maximum Total Score: 400 points</strong></li>
       </ul>
 
@@ -1444,7 +1129,7 @@ const eventDetails = {
         <tr><td>Solution Quality & Justification</td><td>20</td></tr>
       </table>
 
-      <h3>👥 Team Guidelines</h3>
+      <h3>ðŸ‘¥ Team Guidelines</h3>
       <p><strong>Team Composition:</strong></p>
       <ul>
         <li>Each team works together on all scenarios</li>
@@ -1468,7 +1153,7 @@ const eventDetails = {
         <li>Reserve 3 minutes at the end for review</li>
       </ul>
 
-      <h3>📜 Rules and Regulations</h3>
+      <h3>ðŸ“œ Rules and Regulations</h3>
       <ul>
         <li>Teams must answer BOTH scenarios in each round</li>
         <li>No internet, books, or external resources during competition</li>
@@ -1480,7 +1165,7 @@ const eventDetails = {
         <li>Teams must be present at prize distribution to claim prizes</li>
       </ul>
 
-      <h3>📞 Contact Information</h3>
+      <h3>ðŸ“ž Contact Information</h3>
       <p><strong>Event Coordinator:</strong> Senthoor Balan<br>
       Email: <a href="mailto:Senthoor.2302144@sritcbe.ac.in" style="color: #00f0ff;">Senthoor.2302144@sritcbe.ac.in</a><br>
       Phone: <a href="tel:+917373077820" style="color: #00f0ff;">+91 7373077820</a></p>
@@ -1496,13 +1181,13 @@ const eventDetails = {
     desc: `<div class="event-full-desc">
       <p><strong>IPL Auction</strong> is an exciting and interactive non-technical event designed to simulate the real player auction system used in professional cricket leagues. Participants act as franchise owners and strategically bid for players within a fixed budget.</p>
       
-      <h3>👥 Team Structure & Rules</h3>
+      <h3>ðŸ‘¥ Team Structure & Rules</h3>
       <ul>
         <li><strong>Team Size:</strong> 4 members per team</li>
         <li><strong>Duration:</strong> 1 hour</li>
       </ul>
 
-      <h3>🎮 Gameplay Format</h3>
+      <h3>ðŸŽ® Gameplay Format</h3>
       <ol>
         <li>Decide the team with 4 members</li>
         <li>Each team will have a <strong>fixed purse amount</strong></li>
@@ -1513,7 +1198,7 @@ const eventDetails = {
       </ol>
       <p><em>The final judgment will be given by the judges and there will be no arguments with judges.</em></p>
 
-      <h3>🏆 Winner Selection</h3>
+      <h3>ðŸ† Winner Selection</h3>
       <p>The winning team will be determined based on:</p>
       <ul>
         <li><strong>Total team rating</strong> (sum of player points), OR</li>
@@ -1521,12 +1206,12 @@ const eventDetails = {
         <li><strong>Maximum total points</strong> calculated after squad completion</li>
       </ul>
 
-      <h3>📜 Rules & Regulations</h3>
+      <h3>ðŸ“œ Rules & Regulations</h3>
       <ul>
         <li>Each team will be given a <strong>fixed virtual purse amount</strong></li>
         <li>Each player will have a <strong>base price</strong></li>
-        <li>Bidding must increase in <strong>fixed increments</strong> (e.g., ₹500 coins)</li>
-        <li>The timer (<strong>15–30 seconds</strong>) will run for each player</li>
+        <li>Bidding must increase in <strong>fixed increments</strong> (e.g., â‚¹500 coins)</li>
+        <li>The timer (<strong>15â€“30 seconds</strong>) will run for each player</li>
         <li>The <strong>highest bidder</strong> at the end of the timer wins the player</li>
         <li>A team <strong>cannot bid beyond</strong> their remaining purse amount</li>
         <li>If no bids are placed, the player will be declared <strong>"Unsold"</strong></li>
@@ -1534,7 +1219,7 @@ const eventDetails = {
         <li>The decision of the event coordinator/judges will be <strong>final</strong></li>
       </ul>
 
-      <h3>📍 Venue & Timeline</h3>
+      <h3>ðŸ“ Venue & Timeline</h3>
       <p><strong>Venue:</strong> 2nd Year Classroom</p>
       <p><strong>Timeline:</strong> 12:00 PM to 1:00 PM</p>
     </div>`,
@@ -1549,7 +1234,7 @@ const eventDetails = {
     desc: `<div class="event-full-desc">
       <p><strong>Tech Quiz</strong> is a competitive technical event designed to evaluate participants' knowledge, logical thinking, problem-solving ability, and speed in engineering and technology-related subjects. Unlike written exams, a tech quiz is interactive, engaging, and application-oriented.</p>
       
-      <h3>👥 Team Structure & Rules</h3>
+      <h3>ðŸ‘¥ Team Structure & Rules</h3>
       <ul>
         <li><strong>Team Size:</strong> Maximum 2 members</li>
         <li><strong>Duration:</strong> 2 hours</li>
@@ -1558,7 +1243,7 @@ const eventDetails = {
         <li>Late entries will not be allowed under any circumstances</li>
       </ul>
 
-      <h3>📋 Quiz Format - 3 Rounds</h3>
+      <h3>ðŸ“‹ Quiz Format - 3 Rounds</h3>
       
       <p><strong>ROUND 1: Preliminary / MCQ Round</strong></p>
       <ul>
@@ -1584,24 +1269,24 @@ const eventDetails = {
         <li><strong>Objective:</strong> Teams analyze and answer within the allotted time</li>
       </ul>
 
-      <h3>🏆 Winner Selection</h3>
+      <h3>ðŸ† Winner Selection</h3>
       <p>The team with the <strong>most points</strong> at the end of all three rounds will be declared the winner.</p>
       
       <p><strong>Tie-Breaker:</strong> In case of equal scores, a tie-breaker round with rapid-fire questions is conducted. The team answering first correctly is declared the winner.</p>
 
-      <h3>💰 Prize Distribution</h3>
+      <h3>ðŸ’° Prize Distribution</h3>
       <table style="width:100%; border-collapse: collapse; margin: 10px 0;">
         <tr style="background: rgba(0, 240, 255, 0.1);">
           <td style="font-weight: 700; color: #00f0ff;">Position</td>
           <td style="font-weight: 700; color: #00f0ff;">Prize Amount</td>
           <td style="font-weight: 700; color: #00f0ff;">Recognition</td>
         </tr>
-        <tr><td>🥇 Winner</td><td><strong>₹1,000</strong></td><td>Certificate + Cash Prize</td></tr>
-        <tr><td>🥈 Runner-up</td><td><strong>₹500</strong></td><td>Certificate + Cash Prize</td></tr>
-        <tr><td>🎖️ All Participants</td><td>—</td><td>Participation Certificate</td></tr>
+        <tr><td>ðŸ¥‡ Winner</td><td><strong>â‚¹1,000</strong></td><td>Certificate + Cash Prize</td></tr>
+        <tr><td>ðŸ¥ˆ Runner-up</td><td><strong>â‚¹500</strong></td><td>Certificate + Cash Prize</td></tr>
+        <tr><td>ðŸŽ–ï¸ All Participants</td><td>â€”</td><td>Participation Certificate</td></tr>
       </table>
 
-      <h3>📜 Rules & Regulations</h3>
+      <h3>ðŸ“œ Rules & Regulations</h3>
       <ul>
         <li>The quiz will be conducted in multiple rounds</li>
         <li>The number of rounds and format may vary based on time availability</li>
@@ -1612,11 +1297,11 @@ const eventDetails = {
         <li>Judges' decision will be <strong>final and binding</strong></li>
       </ul>
 
-      <h3>📍 Venue & Timeline</h3>
+      <h3>ðŸ“ Venue & Timeline</h3>
       <p><strong>Venue:</strong> TBD</p>
       <p><strong>Timeline:</strong> 12:00 Noon (Day 2)</p>
 
-      <h3>📞 Contact Information</h3>
+      <h3>ðŸ“ž Contact Information</h3>
       <p><strong>Event Coordinator:</strong> Aswin Rio.R<br>
       Phone: <a href="tel:+918270893039" style="color: #00f0ff;">+91 8270893039</a></p>
     </div>`,
@@ -1685,10 +1370,10 @@ const eventDetails = {
   'circuitsurge': {
     title: 'Circuit Hunt',
     desc: `<div class="event-full-desc">
-      <h3>🔍 Circuit Debugging Challenge</h3>
+      <h3>ðŸ” Circuit Debugging Challenge</h3>
       <p><strong>Circuit Hunt</strong> is designed to test participants' basic electronics knowledge, logical thinking, and practical circuit debugging skills through two progressive rounds: paper-based circuit analysis and hands-on breadboard debugging.</p>
       
-      <h3>👥 Team Structure & Rules</h3>
+      <h3>ðŸ‘¥ Team Structure & Rules</h3>
       <ul>
         <li><strong>Team Size:</strong> 3 members per team</li>
         <li><strong>Total Duration:</strong> 2 hours</li>
@@ -1697,7 +1382,7 @@ const eventDetails = {
         <li>Hints will be provided if needed, but with negative marks</li>
       </ul>
 
-      <h3>📋 Event Rounds</h3>
+      <h3>ðŸ“‹ Event Rounds</h3>
       
       <p><strong>ROUND 1: Think Before You Build - Paper Circuit Debugging</strong></p>
       <ul>
@@ -1731,7 +1416,7 @@ const eventDetails = {
 
       <p><em>Teams scoring the required cutoff will qualify for Round 2.</em></p>
 
-      <p><strong>ROUND 2: Build – Break – Fix - Breadboard Circuit Debugging</strong></p>
+      <p><strong>ROUND 2: Build â€“ Break â€“ Fix - Breadboard Circuit Debugging</strong></p>
       <ul>
         <li><strong>Objective:</strong> Qualified teams will be given a pre-connected faulty circuit on a breadboard that will not function initially due to intentional faults</li>
       </ul>
@@ -1769,11 +1454,11 @@ const eventDetails = {
         <li>Time efficiency</li>
       </ul>
 
-      <h3>🏆 Winner Selection</h3>
+      <h3>ðŸ† Winner Selection</h3>
       <p>Winners will be decided based on the <strong>combined score of both rounds</strong>.</p>
       <p><strong>Tie-Breaker:</strong> In case of a tie, the team that completes the task in the <strong>least time</strong> will be ranked higher.</p>
 
-      <h3>📜 Rules & Regulations</h3>
+      <h3>ðŸ“œ Rules & Regulations</h3>
       <ul>
         <li>Use of mobile phones or internet is <strong>strictly prohibited</strong></li>
         <li>External help is not allowed</li>
@@ -1782,7 +1467,7 @@ const eventDetails = {
         <li>Judges' decision will be <strong>final</strong></li>
       </ul>
 
-      <h3>📍 Venue & Timeline</h3>
+      <h3>ðŸ“ Venue & Timeline</h3>
       <p><strong>Venue:</strong> Circuits Lab</p>
       <p><strong>Time:</strong> 12:00 Noon (Day 1)</p>
       <p><strong>Duration:</strong> 2 hours</p>
@@ -1798,10 +1483,10 @@ const eventDetails = {
   'bestmanager': {
     title: 'Connection',
     desc: `<div class="event-full-desc">
-      <h3>🔗 Connection - The Knowledge Link Challenge</h3>
+      <h3>ðŸ”— Connection - The Knowledge Link Challenge</h3>
       <p><strong>Connection</strong> is a non-technical event designed to test participants' general knowledge, lateral thinking, and ability to connect seemingly unrelated concepts. This event challenges teams to identify patterns, make connections, and demonstrate broad awareness across various topics.</p>
       
-      <h3>👥 Team Structure & Rules</h3>
+      <h3>ðŸ‘¥ Team Structure & Rules</h3>
       <ul>
         <li><strong>Team Size:</strong> 2-3 members per team</li>
         <li><strong>Duration:</strong> 1.5 hours</li>
@@ -1810,10 +1495,10 @@ const eventDetails = {
         <li>Points awarded for correct connections and speed</li>
       </ul>
 
-      <h3>📋 Event Format</h3>
+      <h3>ðŸ“‹ Event Format</h3>
       <p>Participants will be presented with various puzzles, images, questions, and clues. The challenge is to identify the common connection or pattern linking them together.</p>
 
-      <h3>🎯 What to Expect</h3>
+      <h3>ðŸŽ¯ What to Expect</h3>
       <ul>
         <li>Image-based connection rounds</li>
         <li>General knowledge questions</li>
@@ -1822,11 +1507,11 @@ const eventDetails = {
         <li>Quick-fire connection rounds</li>
       </ul>
 
-      <h3>🏆 Winner Selection</h3>
+      <h3>ðŸ† Winner Selection</h3>
       <p>The team with the <strong>highest score</strong> across all rounds will be declared the winner.</p>
       <p><strong>Tie-Breaker:</strong> In case of a tie, a rapid-fire round will determine the winner.</p>
 
-      <h3>📜 Rules & Regulations</h3>
+      <h3>ðŸ“œ Rules & Regulations</h3>
       <ul>
         <li>Use of mobile phones or internet is <strong>strictly prohibited</strong></li>
         <li>All team members must participate</li>
@@ -1834,7 +1519,7 @@ const eventDetails = {
         <li>Maintain discipline throughout the event</li>
       </ul>
 
-      <h3>📍 Venue & Timeline</h3>
+      <h3>ðŸ“ Venue & Timeline</h3>
       <p><strong>Venue:</strong> TBD</p>
       <p><strong>Time:</strong> 2:30 PM (Day 1)</p>
       <p><strong>Duration:</strong> 1.5 hours</p>
@@ -1850,10 +1535,10 @@ const eventDetails = {
   'quizzy': {
     title: 'CAD Modeling',
     desc: `<div class="event-full-desc">
-      <h3>🛠️ CAD Modeling Challenge</h3>
+      <h3>ðŸ› ï¸ CAD Modeling Challenge</h3>
       <p><strong>CAD Modeling</strong> is a technical event designed to test participants' skills in Computer-Aided Design (CAD) software. This hands-on competition challenges students to create precise 3D models and demonstrate their proficiency in mechanical design software.</p>
       
-      <h3>👥 Team Structure & Rules</h3>
+      <h3>ðŸ‘¥ Team Structure & Rules</h3>
       <ul>
         <li><strong>Team Size:</strong> Individual participation</li>
         <li><strong>Duration:</strong> 2 hours</li>
@@ -1861,10 +1546,10 @@ const eventDetails = {
         <li>Basic CAD software knowledge required</li>
       </ul>
 
-      <h3>📋 Event Format</h3>
+      <h3>ðŸ“‹ Event Format</h3>
       <p>Participants will be given a set of engineering drawings or problem statements and must create accurate 3D models using CAD software.</p>
 
-      <h3>🎯 Challenges Include</h3>
+      <h3>ðŸŽ¯ Challenges Include</h3>
       <ul>
         <li>3D part modeling from 2D drawings</li>
         <li>Assembly creation and constraints</li>
@@ -1873,10 +1558,10 @@ const eventDetails = {
         <li>Design optimization tasks</li>
       </ul>
 
-      <h3>💻 Software</h3>
+      <h3>ðŸ’» Software</h3>
       <p>Common CAD software platforms will be available (SolidWorks, AutoCAD, CATIA, or Fusion 360). Participants should be familiar with at least one CAD platform.</p>
 
-      <h3>🏆 Evaluation Criteria</h3>
+      <h3>ðŸ† Evaluation Criteria</h3>
       <ul>
         <li>Accuracy of the model (40%)</li>
         <li>Design complexity (30%)</li>
@@ -1884,10 +1569,10 @@ const eventDetails = {
         <li>Proper constraints and dimensions (10%)</li>
       </ul>
 
-      <h3>🏅 Winner Selection</h3>
+      <h3>ðŸ… Winner Selection</h3>
       <p>Winners will be selected based on the <strong>combined evaluation criteria</strong>. The most accurate and well-designed model will win.</p>
 
-      <h3>📜 Rules & Regulations</h3>
+      <h3>ðŸ“œ Rules & Regulations</h3>
       <ul>
         <li>Use of internet for reference is <strong>not allowed</strong></li>
         <li>Only standard CAD features can be used</li>
@@ -1896,7 +1581,7 @@ const eventDetails = {
         <li>Judges' decision will be <strong>final</strong></li>
       </ul>
 
-      <h3>📍 Venue & Timeline</h3>
+      <h3>ðŸ“ Venue & Timeline</h3>
       <p><strong>Venue:</strong> CAD Lab</p>
       <p><strong>Time:</strong> 3:30 PM (Day 1)</p>
       <p><strong>Duration:</strong> 2 hours</p>
@@ -1912,10 +1597,10 @@ const eventDetails = {
   'bidsmash': {
     title: 'Distorted Beats',
     desc: `<div class="event-full-desc">
-      <h3>🎵 Distorted Beats - Sound Effect Challenge</h3>
+      <h3>ðŸŽµ Distorted Beats - Sound Effect Challenge</h3>
       <p><strong>Distorted Beats</strong> is an interactive and entertaining non-technical event designed to test participants' listening ability, memory, and analytical thinking. In this event, audio clips such as songs, movie dialogues, or common sounds are modified using different sound effects. Participants must identify the original audio despite these alterations.</p>
       
-      <h3>📋 Event Rounds</h3>
+      <h3>ðŸ“‹ Event Rounds</h3>
       
       <p><strong>Round 1: Speed 2x</strong></p>
       <ul>
@@ -1938,24 +1623,24 @@ const eventDetails = {
         <li>Participants must analyze patterns or recall familiarity</li>
       </ul>
 
-      <h3>📜 Rules & Regulations</h3>
+      <h3>ðŸ“œ Rules & Regulations</h3>
       <ul>
         <li>Each clip is played <strong>only once or twice</strong></li>
-        <li>Participants must answer within a <strong>limited time (10–20 seconds)</strong></li>
+        <li>Participants must answer within a <strong>limited time (10â€“20 seconds)</strong></li>
         <li>Points are awarded for correct answers</li>
         <li>No external help (phones, internet) is <strong>allowed</strong></li>
         <li>Can be conducted <strong>individually or in teams</strong></li>
         <li>Judges' decision will be <strong>final</strong></li>
       </ul>
 
-      <h3>🏆 Scoring</h3>
+      <h3>ðŸ† Scoring</h3>
       <ul>
         <li>Points awarded for each correct identification</li>
         <li>Faster responses may receive bonus points</li>
         <li>Team/Individual with the highest score wins</li>
       </ul>
 
-      <h3>📍 Venue & Timeline</h3>
+      <h3>ðŸ“ Venue & Timeline</h3>
       <p><strong>Venue:</strong> EC Lab</p>
       <p><strong>Time:</strong> 2:30 PM - 4:00 PM (Day 2)</p>
 
@@ -1972,15 +1657,15 @@ const eventDetails = {
   'genai': {
     title: 'IoT Design Workshop',
     desc: `<div class="event-full-desc">
-      <h3>🔧 Hands-on Workshop on Internet of Things (IoT) Design</h3>
+      <h3>ðŸ”§ Hands-on Workshop on Internet of Things (IoT) Design</h3>
       <p><strong>IoT Design Workshop</strong> introduces students to the fundamentals of IoT design. It provides hands-on experience with real-time IoT hardware tools and bridges the gap between theoretical knowledge and practical implementation.</p>
 
-      <h3>📍 Venue</h3>
+      <h3>ðŸ“ Venue</h3>
       <p><strong>Centre Of Excellence Of IOT [COE]</strong></p>
 
-      <h3>📋 Workshop Agenda</h3>
+      <h3>ðŸ“‹ Workshop Agenda</h3>
       
-      <p><strong>Session 1: Inauguration & Introduction (10:00 – 10:30 AM)</strong></p>
+      <p><strong>Session 1: Inauguration & Introduction (10:00 â€“ 10:30 AM)</strong></p>
       <ul>
         <li>Welcome address</li>
         <li>Overview of the workshop</li>
@@ -1988,7 +1673,7 @@ const eventDetails = {
         <li>Safety instructions and lab guidelines</li>
       </ul>
 
-      <p><strong>Session 2: Introduction to IoT (10:30 – 11:15 AM)</strong></p>
+      <p><strong>Session 2: Introduction to IoT (10:30 â€“ 11:15 AM)</strong></p>
       <ul>
         <li>What is Internet of Things (IoT)?</li>
         <li>IoT architecture and components</li>
@@ -1997,9 +1682,9 @@ const eventDetails = {
         <li>Real-time IoT applications</li>
       </ul>
 
-      <p><strong>☕ Tea Break (11:15 AM – 11:30 AM)</strong></p>
+      <p><strong>â˜• Tea Break (11:15 AM â€“ 11:30 AM)</strong></p>
 
-      <p><strong>Session 3: IoT Hands-on Training (11:30 AM – 12:30 PM)</strong></p>
+      <p><strong>Session 3: IoT Hands-on Training (11:30 AM â€“ 12:30 PM)</strong></p>
       <ul>
         <li>Introduction to Arduino IDE</li>
         <li>Pin configuration and board setup</li>
@@ -2008,7 +1693,7 @@ const eventDetails = {
         <li>Monitoring output using Serial Monitor</li>
       </ul>
 
-      <p><strong>Session 4: PCB Design Fundamentals (12:30 – 1:00 PM)</strong></p>
+      <p><strong>Session 4: PCB Design Fundamentals (12:30 â€“ 1:00 PM)</strong></p>
       <ul>
         <li>Building a simple IoT project</li>
         <li>Data visualization basics</li>
@@ -2016,7 +1701,7 @@ const eventDetails = {
         <li>Career opportunities in IoT</li>
       </ul>
 
-      <h3>💡 What You'll Learn</h3>
+      <h3>ðŸ’¡ What You'll Learn</h3>
       <ul>
         <li>Fundamentals of IoT design and architecture</li>
         <li>Hands-on experience with real-time IoT hardware tools</li>
@@ -2026,7 +1711,7 @@ const eventDetails = {
         <li>Practical implementation skills</li>
       </ul>
 
-      <h3>🎯 Key Highlights</h3>
+      <h3>ðŸŽ¯ Key Highlights</h3>
       <ul>
         <li>Expert-led hands-on training sessions</li>
         <li>Real-time IoT hardware tools experience</li>
@@ -2035,9 +1720,9 @@ const eventDetails = {
         <li>Industry-relevant skills development</li>
       </ul>
 
-      <h3>⏰ Workshop Details</h3>
+      <h3>â° Workshop Details</h3>
       <p><strong>Date:</strong> Day 1</p>
-      <p><strong>Time:</strong> 10:00 AM – 1:00 PM</p>
+      <p><strong>Time:</strong> 10:00 AM â€“ 1:00 PM</p>
       <p><strong>Duration:</strong> 3 hours (with tea break)</p>
       <p><strong>Venue:</strong> Centre Of Excellence Of IOT [COE]</p>
 
@@ -2063,10 +1748,10 @@ const eventDetails = {
     desc: `<div class="event-full-desc">
       <p><strong>PLC Automation with IOT</strong> workshop is designed to provide participants with a comprehensive understanding of Programmable Logic Controllers (PLC) and their critical role in modern industrial automation systems.</p>
       
-      <h3>🎯 Workshop Objectives</h3>
+      <h3>ðŸŽ¯ Workshop Objectives</h3>
       <p>The objective of this workshop is to understand the fundamentals of PLC and its role in industrial automation. It aims to provide hands-on experience in PLC programming, wiring, and troubleshooting for real-time industrial applications.</p>
 
-      <h3>📚 Topics Covered</h3>
+      <h3>ðŸ“š Topics Covered</h3>
       
       <p><strong>LADDER LOGIC</strong></p>
       <ul>
@@ -2093,7 +1778,7 @@ const eventDetails = {
         <li>Advanced motor control techniques</li>
       </ul>
 
-      <h3>💡 Key Learning Outcomes</h3>
+      <h3>ðŸ’¡ Key Learning Outcomes</h3>
       <ul>
         <li>Hands-on PLC programming experience</li>
         <li>PLC wiring and troubleshooting skills</li>
@@ -2102,12 +1787,12 @@ const eventDetails = {
         <li>Integration of PLC with IOT systems</li>
       </ul>
 
-      <h3>📍 Venue & Timeline</h3>
+      <h3>ðŸ“ Venue & Timeline</h3>
       <p><strong>Venue:</strong> COE(EV)</p>
       <p><strong>Time:</strong> 10:00 AM to 1:00 PM</p>
       <p><strong>Date:</strong> Day 2</p>
 
-      <h3>👥 Who Should Attend</h3>
+      <h3>ðŸ‘¥ Who Should Attend</h3>
       <ul>
         <li>Engineering students interested in industrial automation</li>
         <li>Those interested in PLC programming and control systems</li>
@@ -2135,23 +1820,23 @@ const eventDetails = {
 
   // Cultural Events
   'visualvignetic': {
-    title: 'VISUAL VIGNETIC – Short Film',
+    title: 'VISUAL VIGNETIC â€“ Short Film',
     desc: `<div class="event-full-desc">
       <p><strong>VISUAL VIGNETIC (Short Film)</strong> is an offstage event celebrating creativity through visual storytelling. Express your narrative vision through the art of filmmaking.</p>
       
-      <h3>👥 Participation</h3>
+      <h3>ðŸ‘¥ Participation</h3>
       <ul>
         <li><strong>Individual or Team</strong></li>
         <li><strong>Maximum:</strong> 8 members per team</li>
       </ul>
 
-      <h3>⏱️ Duration</h3>
+      <h3>â±ï¸ Duration</h3>
       <ul>
         <li><strong>Minimum:</strong> 5 minutes</li>
         <li><strong>Maximum:</strong> 15 minutes (including credits)</li>
       </ul>
 
-      <h3>📜 Rules & Guidelines</h3>
+      <h3>ðŸ“œ Rules & Guidelines</h3>
       <ul>
         <li>The film must be <strong>original and unpublished</strong></li>
         <li>Any language is allowed; <strong>subtitles are mandatory</strong> if not in English</li>
@@ -2177,22 +1862,22 @@ const eventDetails = {
   },
   // Cultural Events
   'solelymelodia': {
-    title: 'SOLELY MELODIA – Solo Singing',
+    title: 'SOLELY MELODIA â€“ Solo Singing',
     desc: `<div class="event-full-desc">
       <p><strong>SOLELY MELODIA (Solo Singing)</strong> is an onstage event celebrating individual vocal talent. Captivate the audience with your voice and musical expression.</p>
       
-      <h3>👤 Participation</h3>
+      <h3>ðŸ‘¤ Participation</h3>
       <ul>
         <li><strong>Individual event</strong></li>
       </ul>
 
-      <h3>⏱️ Time Limit</h3>
+      <h3>â±ï¸ Time Limit</h3>
       <ul>
         <li><strong>Minimum:</strong> 3 minutes</li>
         <li><strong>Maximum:</strong> 5 minutes</li>
       </ul>
 
-      <h3>🎵 Categories</h3>
+      <h3>ðŸŽµ Categories</h3>
       <ul>
         <li>Classical</li>
         <li>Semi-Classical</li>
@@ -2201,7 +1886,7 @@ const eventDetails = {
       </ul>
       <p><em>Participants must specify category during registration.</em></p>
 
-      <h3>📜 Rules & Guidelines</h3>
+      <h3>ðŸ“œ Rules & Guidelines</h3>
       <ul>
         <li>Karaoke tracks are <strong>allowed</strong> (without lead vocals)</li>
         <li>Song selection must avoid <strong>offensive content</strong></li>
@@ -2215,23 +1900,23 @@ const eventDetails = {
     formLink: 'cultural_registration.html'
   },
   'artofone': {
-    title: 'ART OF ONE – Solo Dance',
+    title: 'ART OF ONE â€“ Solo Dance',
     desc: `<div class="event-full-desc">
       <p><strong>ART OF ONE (Solo Dance)</strong> is an onstage event celebrating individual talent and artistic expression through dance. Showcase your skills and captivate the audience with your unique performance.</p>
       
-      <h3>👤 Participation</h3>
+      <h3>ðŸ‘¤ Participation</h3>
       <ul>
         <li><strong>Individual event</strong></li>
         <li>One participant per entry</li>
       </ul>
 
-      <h3>⏱️ Time Limit</h3>
+      <h3>â±ï¸ Time Limit</h3>
       <ul>
         <li><strong>Minimum:</strong> 3 minutes</li>
         <li><strong>Maximum:</strong> 5 minutes</li>
       </ul>
 
-      <h3>📜 Rules & Guidelines</h3>
+      <h3>ðŸ“œ Rules & Guidelines</h3>
       <ul>
         <li>Any dance form is <strong>permitted</strong></li>
         <li>Participants must <strong>submit their music track in advance</strong></li>
@@ -2246,11 +1931,11 @@ const eventDetails = {
     formLink: 'cultural_registration.html'
   },
   'rythmicmotion': {
-    title: 'RYTHMIC MOTION – Group Dance',
+    title: 'RYTHMIC MOTION â€“ Group Dance',
     desc: `<div class="event-full-desc">
       <p><strong>RYTHMIC MOTION (Group Dance)</strong> is an onstage event celebrating team synchronization, creativity, and the power of collective expression. Set the stage on fire with your moves and rhythm!</p>
       
-      <h3>👥 Team Composition</h3>
+      <h3>ðŸ‘¥ Team Composition</h3>
       <ul>
         <li><strong>Minimum:</strong> 5 participants per team</li>
         <li><strong>Maximum:</strong> 12 participants per team</li>
@@ -2258,14 +1943,14 @@ const eventDetails = {
         <li><strong>Only one entry per team</strong></li>
       </ul>
 
-      <h3>⏱️ Time Limit</h3>
+      <h3>â±ï¸ Time Limit</h3>
       <ul>
         <li><strong>Minimum:</strong> 5 minutes</li>
         <li><strong>Maximum:</strong> 7 minutes</li>
         <li>Exceeding the time limit will result in <strong>penalty</strong></li>
       </ul>
 
-      <h3>📜 Rules & Guidelines</h3>
+      <h3>ðŸ“œ Rules & Guidelines</h3>
       <ul>
         <li>All dance styles are <strong>permitted</strong> (Classical, Folk, Contemporary, Western, Fusion, etc.)</li>
         <li>Teams must submit their audio track in <strong>MP3 format</strong> prior to the event coordinators</li>
@@ -2281,17 +1966,17 @@ const eventDetails = {
     formLink: 'cultural_registration.html'
   },
   'tunemorph': {
-    title: 'TUNE MORPH – Adaptune',
+    title: 'TUNE MORPH â€“ Adaptune',
     desc: `<div class="event-full-desc">
       <p><strong>TUNE MORPH (Adaptune)</strong> is an onstage event testing your ability to adapt and improvise instantly. Showcase your spontaneity and creativity by dancing to music you hear for the first time!</p>
       
-      <h3>👤 Participation</h3>
+      <h3>ðŸ‘¤ Participation</h3>
       <ul>
         <li><strong>Solo performance only</strong></li>
         <li>One entry per participant</li>
       </ul>
 
-      <h3>🎵 Event Format</h3>
+      <h3>ðŸŽµ Event Format</h3>
       <ul>
         <li>The music will be <strong>played on the spot</strong> by the organizing team</li>
         <li>Participants will <strong>not be informed</strong> of the track in advance</li>
@@ -2299,7 +1984,7 @@ const eventDetails = {
         <li>Songs may vary in genre (Classical, Folk, Western, Film, Fusion, etc.)</li>
       </ul>
 
-      <h3>📜 Rules & Guidelines</h3>
+      <h3>ðŸ“œ Rules & Guidelines</h3>
       <ul>
         <li>Participants must rely on <strong>improvisation and adaptability</strong></li>
         <li>Props are <strong>not permitted</strong></li>
@@ -2315,23 +2000,23 @@ const eventDetails = {
     formLink: 'cultural_registration.html'
   },
   'visualvignetic': {
-    title: 'VISUAL VIGNETIC – Short Film',
+    title: 'VISUAL VIGNETIC â€“ Short Film',
     desc: `<div class="event-full-desc">
       <p><strong>VISUAL VIGNETIC (Short Film)</strong> is an offstage event celebrating creativity through visual storytelling. Express your narrative vision through the art of filmmaking.</p>
       
-      <h3>👥 Participation</h3>
+      <h3>ðŸ‘¥ Participation</h3>
       <ul>
         <li><strong>Individual or Team</strong></li>
         <li><strong>Maximum:</strong> 8 members per team</li>
       </ul>
 
-      <h3>⏱️ Duration</h3>
+      <h3>â±ï¸ Duration</h3>
       <ul>
         <li><strong>Minimum:</strong> 5 minutes</li>
         <li><strong>Maximum:</strong> 15 minutes (including credits)</li>
       </ul>
 
-      <h3>📜 Rules & Guidelines</h3>
+      <h3>ðŸ“œ Rules & Guidelines</h3>
     <ul>
         <li>The film must be <strong>original and unpublished</strong></li>
         <li>Any language is allowed; <strong>subtitles are mandatory</strong> if not in English</li>
@@ -2347,23 +2032,23 @@ const eventDetails = {
     formLink: 'cultural_registration.html'
   },
   'pixelperfect': {
-    title: 'PIXEL PERFECT – Reels Making',
+    title: 'PIXEL PERFECT â€“ Reels Making',
     desc: `<div class="event-full-desc">
       <p><strong>PIXEL PERFECT (Reels Making)</strong> is an offstage event celebrating creativity through short-form video content. Create engaging and original reels that showcase your storytelling and editing skills.</p>
       
-      <h3>👥 Participation</h3>
+      <h3>ðŸ‘¥ Participation</h3>
       <ul>
         <li><strong>Individual or Team</strong></li>
         <li><strong>Maximum:</strong> 3 members per team</li>
       </ul>
 
-      <h3>⏱️ Duration</h3>
+      <h3>â±ï¸ Duration</h3>
       <ul>
         <li><strong>Minimum:</strong> 30 seconds</li>
         <li><strong>Maximum:</strong> 90 seconds</li>
       </ul>
 
-      <h3>📜 Rules & Guidelines</h3>
+      <h3>ðŸ“œ Rules & Guidelines</h3>
       <ul>
         <li>The reel must be <strong>original</strong> and created <strong>exclusively for Vihansa - 2K26</strong></li>
         <li>Theme will be <strong>announced prior to submission deadline</strong></li>
@@ -2604,10 +2289,10 @@ class AudioManager {
 
   updateIcon() {
     if (this.soundEnabled) {
-      this.toggleBtn.textContent = '🔊';
+      this.toggleBtn.textContent = 'ðŸ”Š';
       this.toggleBtn.style.opacity = '1';
     } else {
-      this.toggleBtn.textContent = '🔇';
+      this.toggleBtn.textContent = 'ðŸ”‡';
       this.toggleBtn.style.opacity = '0.7';
     }
   }
