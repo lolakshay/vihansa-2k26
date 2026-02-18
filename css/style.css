@@ -222,8 +222,8 @@ h6 {
 /* Glassmorphism Utility */
 .glass-panel {
   background: var(--glass-bg);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
   border: 1px solid var(--glass-border);
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
 }
@@ -242,9 +242,9 @@ h6 {
   transition: all 0.5s;
   z-index: 997;
   /* Glassmorphism Effect */
-  background: rgba(0, 0, 0, 0.2);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
   border-bottom: 5px solid rgba(255, 255, 255, 0.05);
   /* Subtle border */
   box-shadow: 0 4px 50px rgba(0, 0, 0, 0.1);
@@ -254,8 +254,8 @@ h6 {
 #header.header-fixed {
   background: rgba(0, 0, 0, 0.75);
   /* Darker glass when scrolled */
-  backdrop-filter: blur(15px);
-  -webkit-backdrop-filter: blur(15px);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
   border-bottom: 2px solid rgba(255, 0, 0, 0.2);
   /* Red tint border */
   height: 80px;
@@ -600,8 +600,8 @@ body.mobile-nav-active #mobile-nav-toggle {
   border-radius: 50%;
   border: 2px solid rgba(255, 0, 0, 0.4);
   background: rgba(0, 0, 0, 0.3);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
   color: #ff0000;
   font-size: 20px;
   cursor: pointer;
@@ -3131,7 +3131,7 @@ body.mobile-nav-active #mobile-nav-toggle {
   border-radius: 20px;
   opacity: 0.1;
   z-index: 0;
-  animation: rotateGlow 3s linear infinite;
+  transition: opacity 0.3s ease;
 }
 
 .workshop-card:hover::before {
@@ -3142,7 +3142,7 @@ body.mobile-nav-active #mobile-nav-toggle {
   border-radius: 20px;
   opacity: 0.1;
   z-index: 0;
-  animation: rotateGlow 3s linear infinite;
+  transition: opacity 0.3s ease;
 }
 
 .cultural-card:hover::before {
@@ -3153,18 +3153,10 @@ body.mobile-nav-active #mobile-nav-toggle {
   border-radius: 20px;
   opacity: 0.1;
   z-index: 0;
-  animation: rotateGlow 3s linear infinite;
+  transition: opacity 0.3s ease;
 }
 
-@keyframes rotateGlow {
-  0% {
-    transform: rotate(0deg);
-  }
 
-  100% {
-    transform: rotate(360deg);
-  }
-}
 
 .cultural-card .card-bg {
   background-image: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(50, 0, 50, 0.9) 100%), url('../img/eventcard/culrurals.webp');
@@ -3326,7 +3318,7 @@ body.mobile-nav-active #mobile-nav-toggle {
   border-radius: 20px;
   opacity: 0.1;
   z-index: 0;
-  animation: rotateGlow 3s linear infinite;
+  transition: opacity 0.3s ease;
 }
 
 .workshop-card:hover::before {
@@ -3337,7 +3329,7 @@ body.mobile-nav-active #mobile-nav-toggle {
   border-radius: 20px;
   opacity: 0.1;
   z-index: 0;
-  animation: rotateGlow 3s linear infinite;
+  transition: opacity 0.3s ease;
 }
 
 .cultural-card:hover::before {
@@ -3348,18 +3340,10 @@ body.mobile-nav-active #mobile-nav-toggle {
   border-radius: 20px;
   opacity: 0.1;
   z-index: 0;
-  animation: rotateGlow 3s linear infinite;
+  transition: opacity 0.3s ease;
 }
 
-@keyframes rotateGlow {
-  0% {
-    transform: rotate(0deg);
-  }
 
-  100% {
-    transform: rotate(360deg);
-  }
-}
 
 /* Ensure card content stays above glow */
 .experience-card .card-inner {
@@ -3778,9 +3762,15 @@ body.mobile-nav-active #mobile-nav-toggle {
 .me-orb {
   position: absolute;
   border-radius: 50%;
-  filter: blur(80px);
+  filter: blur(30px);
   opacity: 0.3;
   animation: me-orbFloat 20s infinite ease-in-out;
+}
+
+@media (max-width: 1200px) {
+  .me-orb {
+    display: none;
+  }
 }
 
 .orb-1 {

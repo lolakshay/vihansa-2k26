@@ -36,7 +36,7 @@
       "id": "paper-presentation",
       "title": "Paper Presentation",
       "description": "Showcase your technical research and innovative ideas.",
-      "image": "img/events-main/paper_presentation.png",
+      "image": "img/events-main/paper_presentation.webp",
       "tag": "SYMPOSIUM",
       "meta": [
         {
@@ -55,7 +55,7 @@
       "id": "project-expo",
       "title": "Project Expo",
       "description": "Display your working models and prototypes.",
-      "image": "img/events-main/project_expo.png",
+      "image": "img/events-main/project_expo.webp",
       "tag": "EXPO",
       "meta": [
         {
@@ -70,7 +70,7 @@
       "id": "report-rendering",
       "title": "Codeathon",
       "description": "Demonstrate your analytical and problem-solving skills.",
-      "image": "img/events-main/codeathon.png",
+      "image": "img/events-main/codeathon.webp",
       "tag": "ANALYSIS",
       "meta": [
         {

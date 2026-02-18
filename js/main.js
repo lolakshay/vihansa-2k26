@@ -2305,7 +2305,7 @@ const eventDetails = {
     date: 'Day 2',
     time: '3:30 PM',
     venue: 'Music Hall',
-    image: 'img/culturls/5.webp',
+    image: 'img/culturls/6.webp',
     formLink: 'cultural_registration.html'
   },
   'visualvignetic': {
@@ -2337,7 +2337,7 @@ const eventDetails = {
     date: 'Day 2',
     time: '10:00 AM',
     venue: 'Auditorium',
-    image: 'img/culturls/7.webp',
+    image: 'img/culturls/8.webp',
     formLink: 'cultural_registration.html'
   },
   'pixelperfect': {
