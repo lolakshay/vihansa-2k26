@@ -113,7 +113,7 @@
     "date": "Day 1",
     "time": "2:30 PM",
     "venue": "TBD",
-    "image": "img/events-nontech/mech_non-tech.png",
+    "image": "img/events-nontech/mech_non-tech.webp",
     "formLink": "registration.html"
   },
   "quizzy": {
@@ -122,7 +122,7 @@
     "date": "Day 1",
     "time": "3:30 PM",
     "venue": "CAD Lab",
-    "image": "img/events-tech/mech_tech.png",
+    "image": "img/events-tech/mech_tech.webp",
     "formLink": "registration.html"
   },
   "promptpallette": {
@@ -140,7 +140,7 @@
     "date": "Day 2",
     "time": "2:30 PM",
     "venue": "EC Lab",
-    "image": "img/events-nontech/disorted_beats.jpeg",
+    "image": "img/events-nontech/disorted_beats.webp",
     "formLink": "registration.html"
   },
   "mrtoolman": {
@@ -250,23 +250,5 @@
     "venue": "Digital Lab",
     "image": "img/culturls/9.webp",
     "formLink": "cultural_registration.html"
-  },
-  "khokho": {
-    "title": "Mens Kho Kho",
-    "desc": "<div class=\"event-full-desc\">\n      <p><strong>Mens Kho Kho</strong> is a high-energy traditional tag sport where agility, speed, and strategy are key.</p>\n      <h3>ðŸ“‹ General Rules</h3>\n      <ul>\n        <li>Teams consist of 12 players: 9 on the field and 3 substitutes.</li>\n        <li>The chasing team kneels in the center lane of the court.</li>\n        <li>Defenders enter the field in batches of three.</li>\n        <li>Chasers must touch defenders using speed and signals ('Kho') to switch positions.</li>\n        <li>Matches are played in innings.</li>\n        <li>The team that tags the most defenders wins.</li>\n      </ul>\n    </div>",
-    "date": "Day 1",
-    "time": "10:00 AM",
-    "venue": "SRIT Ground",
-    "image": "img/events-sports/kho kho.png",
-    "formLink": "registration.html"
-  },
-  "football": {
-    "title": "Football 7s",
-    "desc": "<div class=\"event-full-desc\">\n      <p><strong>Football 7s</strong> is a fast-paced version of the beautiful game, played with 7 players on each side on a smaller field.</p>\n      <h3>ðŸ“‹ Match Rules</h3>\n      <ul>\n        <li>Each team has 7 players, including the goalkeeper.</li>\n        <li>Rolling substitutions are allowed.</li>\n        <li>No offside rule.</li>\n        <li>Matches are time-bound (shorter duration).</li>\n        <li>Yellow and Red cards apply.</li>\n      </ul>\n      <p><strong>Venue:</strong> SRIT Ground</p>\n    </div>",
-    "date": "Day 1",
-    "time": "10:00 AM",
-    "venue": "SRIT Ground",
-    "image": "img/events-sports/football.png",
-    "formLink": "registration.html"
   }
 }
