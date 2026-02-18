@@ -467,8 +467,7 @@
 
 
 
-  <!-- Background Animation -->
-  <div id="bg-animation-container"></div>
+
 
 
 
@@ -1136,6 +1135,9 @@
 
       <!-- Particle Background -->
       <div class="st-particles" id="st-particles"></div>
+
+      <!-- Thunder Flash Overlay -->
+      <div class="st-thunder-flash"></div>
 
       <!-- Realistic Lightning System SVG -->
       <svg id="st-lightningSVG" viewBox="0 0 400 2400" preserveAspectRatio="none">
@@ -2270,10 +2272,7 @@
             this.paused = document.hidden;
           }, { passive: true });
 
-          canvas.addEventListener('pointermove', (ev) => this.updateMouse(ev.clientX, ev.clientY), { passive: true });
-          canvas.addEventListener('pointerdown', (ev) => this.updateMouse(ev.clientX, ev.clientY), { passive: true });
-          canvas.addEventListener('pointerenter', (ev) => this.updateMouse(ev.clientX, ev.clientY), { passive: true });
-          canvas.addEventListener('pointerleave', () => this.mouseTarget.set(0, 0), { passive: true });
+
           canvas.addEventListener('webglcontextlost', (e) => {
             e.preventDefault();
             this.paused = true;
@@ -2413,7 +2412,7 @@
     <script src="js/main.js" defer></script>
     <script src="js/hero-3d.js" defer></script>
 
-    <script src="script.js" defer></script>
+
 </body>
 
 </html>

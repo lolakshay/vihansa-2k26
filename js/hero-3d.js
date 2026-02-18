@@ -45,18 +45,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const particlesMesh = new THREE.Points(particlesGeometry, particlesMaterial);
   scene.add(particlesMesh);
 
-  // --- INTERACTION ---
-  let mouseX = 0;
-  let mouseY = 0;
-
-  const windowHalfX = window.innerWidth / 2;
-  const windowHalfY = window.innerHeight / 2;
-
-  document.addEventListener('mousemove', (event) => {
-    mouseX = (event.clientX - windowHalfX);
-    mouseY = (event.clientY - windowHalfY);
-  });
-
   // --- ANIMATION ---
   const clock = new THREE.Clock();
 
@@ -72,19 +60,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (isPaused) return;
 
-    const elapsedTime = clock.getElapsedTime();
-
-    // Particles Interaction - gentle rotation based on mouse
-    particlesMesh.rotation.y = -mouseX * 0.0001;
-    particlesMesh.rotation.x = -mouseY * 0.0001;
-
     // Slow continuous rotation
     particlesMesh.rotation.y += 0.0005;
-
-    // Camera Parallax - subtle movement
-    camera.position.x += (mouseX * 0.005 - camera.position.x) * 0.05;
-    camera.position.y += (-mouseY * 0.005 - camera.position.y) * 0.05;
-    camera.lookAt(scene.position);
 
     renderer.render(scene, camera);
   }
