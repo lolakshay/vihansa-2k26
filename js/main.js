@@ -1,7 +1,7 @@
-let isPageVisible = !document.hidden;
+﻿let isPageVisible = !document.hidden;
 document.addEventListener("visibilitychange", () => { isPageVisible = !document.hidden; });
 
-﻿jQuery(document).ready(function ($) {
+jQuery(document).ready(function ($) {
 
 
 
@@ -604,24 +604,6 @@ document.addEventListener('DOMContentLoaded', () => {
   document.querySelectorAll('.st-event').forEach(event => {
     eventObserver.observe(event);
   });
-  // Thunder Flash Logic
-  const thunderOverlay = document.querySelector('.st-thunder-flash');
-  function triggerThunder() {
-    // Continuous loop: always schedule next check
-    const nextDelay = Math.random() * 5000 + 3000;
-    
-    if (isAgendaVisible && isPageVisible && thunderOverlay) {
-        thunderOverlay.classList.remove('flash');
-        void thunderOverlay.offsetWidth; // Force reflow
-        thunderOverlay.classList.add('flash');
-    }
-    
-    setTimeout(triggerThunder, nextDelay); 
-  }
-
-  if (thunderOverlay) {
-    setTimeout(triggerThunder, 2000);
-  }
 });
 
 
@@ -976,3 +958,23 @@ class AudioManager {
 $(document).ready(function () {
   window.audioManager = new AudioManager();
 });
+
+// Minimal Preloader Removal
+window.addEventListener('load', function () {
+  const preloader = document.getElementById('preloader');
+  if (preloader) {
+    preloader.classList.add('loaded');
+    // Optional: Remove from DOM after transition
+    setTimeout(() => {
+      preloader.style.display = 'none';
+    }, 600);
+  }
+});
+
+// Safety Timeout (Force hide loader after 5 seconds if load event hangs)
+setTimeout(() => {
+  const preloader = document.getElementById('preloader');
+  if (preloader && !preloader.classList.contains('loaded')) {
+    preloader.classList.add('loaded');
+  }
+}, 5000);

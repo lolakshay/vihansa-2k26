@@ -498,6 +498,9 @@
     </div>
   </header><!-- #header -->
 
+  <!-- Preloader -->
+  <div id="preloader"></div>
+
   <!-- Music Toggle Button -->
   <button id="music-toggle" class="music-toggle-btn" aria-label="Toggle Music">
     <i class="fa fa-music"></i>
@@ -508,7 +511,7 @@
   ============================-->
   <section id="intro">
     <!-- Video Background -->
-    <video autoplay loop muted playsinline preload="metadata" id="bg-video" poster="img/logo.webp">
+    <video autoplay loop muted playsinline preload="metadata" id="bg-video">
       <source src="img/bb4.webm" type="video/webm">
       Your browser does not support the video tag.
     </video>
@@ -1135,9 +1138,6 @@
 
       <!-- Particle Background -->
       <div class="st-particles" id="st-particles"></div>
-
-      <!-- Thunder Flash Overlay -->
-      <div class="st-thunder-flash"></div>
 
       <!-- Realistic Lightning System SVG -->
       <svg id="st-lightningSVG" viewBox="0 0 400 2400" preserveAspectRatio="none">
@@ -2411,6 +2411,7 @@
     <!-- Template Main Javascript File -->
     <script src="js/main.js" defer></script>
     <script src="js/hero-3d.js" defer></script>
+    <script src="js/ghost-cursor.js" defer></script>
 
 
 </body>

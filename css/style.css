@@ -3403,44 +3403,6 @@ body.mobile-nav-active #mobile-nav-toggle {
   }
 }
 
-/* Thunder Flash Effect */
-.st-thunder-flash {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(255, 255, 255, 0);
-  pointer-events: none;
-  z-index: 99;
-  transition: background 0.05s ease-out;
-}
-
-.st-thunder-flash.flash {
-  animation: st-strobe 0.4s ease-out forwards;
-}
-
-@keyframes st-strobe {
-  0% {
-    background: rgba(255, 255, 255, 0);
-  }
-
-  10% {
-    background: rgba(255, 255, 255, 0.4);
-  }
-
-  20% {
-    background: rgba(255, 255, 255, 0.1);
-  }
-
-  30% {
-    background: rgba(255, 255, 255, 0.5);
-  }
-
-  100% {
-    background: rgba(255, 255, 255, 0);
-  }
-}
 
 /* ROOT SVG SYSTEM */
 #st-lightningSVG {
@@ -5040,4 +5002,37 @@ body.low-performance .event-modal-overlay {
 body.low-performance #header {
   background: #000 !important;
   backdrop-filter: none !important;
+}
+/* Minimal Preloader */
+#preloader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #000;
+  z-index: 9999999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.5s ease-out, visibility 0.5s;
+}
+
+#preloader::after {
+  content: "";
+  width: 30px;
+  height: 30px;
+  border: 3px solid rgba(255, 0, 0, 0.2);
+  border-top-color: #ff0000;
+  border-radius: 50%;
+  animation: preloader-spin 1s linear infinite;
+}
+
+@keyframes preloader-spin {
+  to { transform: rotate(360deg); }
+}
+
+#preloader.loaded {
+  opacity: 0;
+  visibility: hidden;
 }
