@@ -566,10 +566,10 @@
     <script src="js/cursor.js" defer></script>
 
     <!-- Dynamic Form Handler -->
-    <script src="js/form-handler.js" defer></script>
+    <script src="js/form-handler.js"></script>
     <script>
         // REPLACE THIS URL WITH YOUR NEW CULTURAL APPS SCRIPT URL
-        const scriptURL = 'https://script.google.com/macros/s/AKfycbwolKeoShlUe059pl0MHadk_rOnbkxAgu08G6sBxg0HHcY-u_2t4pyco4xITRw1D19Z/exec';
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbza_C59aOluIpsqcCNTLnPHzvSG3kAjDEHhhbUPVEuoie-DydShpdwh-pNnpnZi1NU/exec';
 
         setupForm({
             formId: 'registrationForm',
@@ -604,7 +604,10 @@
         }
 
         .cyber-radio input {
-            display: none;
+            /* Use opacity 0 instead of display none so browser validation works */
+            opacity: 0;
+            position: absolute;
+            z-index: -1;
         }
 
         .radio-mark {

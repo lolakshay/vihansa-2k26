@@ -76,18 +76,25 @@ function setupForm(config) {
         }
 
         const formData = new FormData(form);
+        const params = new URLSearchParams();
+
+        // Convert FormData to URLSearchParams for reliable Google Apps Script handling
+        for (const [key, value] of formData.entries()) {
+            params.append(key, value);
+        }
 
         console.log("Calling fetch to URL:", scriptURL);
+
         fetch(scriptURL, {
             method: 'POST',
-            body: formData,
-            mode: 'no-cors' // Exact mode for Apps Script
+            body: params, // proper x-www-form-urlencoded
+            mode: 'no-cors'
         })
-            .then(data => {
-                console.log("Fetch succeeded (no-cors mode, so can't read response). Assuming success.");
+            .then(() => {
+                // Since mode is no-cors, we can't check response.ok. 
+                // We assume success if the network request completed.
+                console.log("Fetch request sent.");
 
-                // Because mode is 'no-cors', we can't check response.ok or response.json()
-                // We assume success if fetch finishes without network error.
                 if (messageDiv) {
                     messageDiv.innerText = "REGISTRATION SUCCESSFUL // ACCESS GRANTED";
                     messageDiv.style.color = "#0aff0a";
@@ -101,15 +108,13 @@ function setupForm(config) {
                     submitBtn.disabled = false;
                 }
 
-                // Show WhatsApp Link if exists
+                // Show WhatsApp Link
                 if (whatsappContainer) {
                     whatsappContainer.style.display = 'block';
                 }
 
-                // Confetti
                 if (typeof fireConfetti === 'function') fireConfetti();
 
-                // Optional Redirect
                 if (redirectUrl) {
                     setTimeout(() => {
                         window.location.href = redirectUrl;
@@ -122,6 +127,7 @@ function setupForm(config) {
                     messageDiv.innerText = "ERROR // TRANSMISSION FAILED";
                     messageDiv.style.color = "#ff003c";
                 }
+                alert("Submission failed. Please check your internet connection and try again.");
                 if (submitBtn) {
                     submitBtn.classList.remove('loading');
                     submitBtn.disabled = false;

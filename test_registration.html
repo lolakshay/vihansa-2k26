@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VIHANSA-2026 | Test Registration</title>
+
+    <!-- Favicons -->
+    <link href="img/REVIVE-COMING_SOON-removebg-preview.webp" rel="icon">
+    <link href="img/REVIVE-COMING_SOON-removebg-preview.webp" rel="apple-touch-icon">
+
+    <!-- Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;500;700&display=swap"
+        rel="stylesheet">
+    <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+
+    <style>
+        body {
+            background-color: #000;
+            color: #fff;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        #registration-section {
+            padding-top: 120px;
+            padding-bottom: 60px;
+            flex: 1;
+            /* Background effect similar to other pages */
+            background: linear-gradient(180deg, rgba(0, 0, 0, 0.9), rgba(20, 0, 0, 0.95)), url('img/intro-bg.jpg') no-repeat center center fixed;
+            background-size: cover;
+        }
+
+        .form-container {
+            background: transparent;
+            border: none;
+            box-shadow: none;
+            padding: 0;
+            margin-top: 10px;
+            max-width: 800px;
+            /* Constrain width for better readability */
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .section-header h2 {
+            font-family: 'Orbitron', sans-serif;
+            color: #fff;
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 2.5rem;
+            text-shadow: 0 0 15px rgba(255, 0, 60, 0.8);
+            letter-spacing: 2px;
+        }
+
+        /* Responsive iframe container */
+        .google-form-wrapper {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            height: 1600px;
+            /* Fixed container height */
+            border-radius: 12px;
+            /* Slight rounding of the form itself */
+        }
+
+        /* 
+           Note: We cannot change the internal CSS of the Google Form.
+           However, we can crop the top header (colored line) by pulling the iframe up.
+        */
+        .google-form-wrapper iframe {
+            width: 105%;
+            /* Slightly wider to hide potential side scrollbars */
+            height: 1650px;
+            border: none;
+            position: absolute;
+            top: -20px;
+            /* Reduced crop to show Name field */
+            left: -2.5%;
+            /* Center after making wider */
+
+            /* 
+               Smart Dark Mode Filter 
+               - hue-rotate(300deg): Shifts the inverted colors towards Blue/Cyan 
+               (Experiment with this value if it is still green)
+            */
+            filter: invert(0.92) hue-rotate(240deg) contrast(1.1);
+            margin-bottom: -50px;
+        }
+
+        /* Back button */
+        .back-btn {
+            display: inline-block;
+            margin-bottom: 20px;
+            color: #00f0ff;
+            text-decoration: none;
+            font-family: 'Rajdhani', sans-serif;
+            font-weight: 700;
+            transition: all 0.3s;
+        }
+
+        .back-btn:hover {
+            color: #fff;
+            text-shadow: 0 0 10px #00f0ff;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header id="header">
+        <div class="container">
+            <div id="logo" class="pull-left">
+                <a href="index.html#header" class="scrollto"><img src="img/logo.png" alt="" title=""></a>
+            </div>
+            <nav id="nav-menu-container">
+                <ul class="nav-menu">
+                    <li><a href="index.html#header">Home</a></li>
+                    <li><a href="index.html#events">Events</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section id="registration-section">
+        <div class="container">
+            <a href="index.html" class="back-btn"><i class="fa fa-arrow-left"></i> Back to Home</a>
+
+            <div class="section-header">
+                <h2>Test Registration Form</h2>
+                <p style="text-align: center; color: #aaa;">Google Form Embed for Testing</p>
+            </div>
+
+            <div class="row justify-content-center">
+                <div class="col-lg-10">
+                    <div class="form-container">
+                        <!-- REPLACE THE SRC ATTRIBUTE BELOW WITH YOUR GOOGLE FORM EMBED LINK -->
+                        <div class="google-form-wrapper">
+                            <iframe
+                                src="https://docs.google.com/forms/d/e/1FAIpQLScIzRORxiSV0J0JOgC6e1WSXygG8XSWEGAMbd7sqpuHEtwIeA/viewform?embedded=true"
+                                width="640" height="956" frameborder="0" marginheight="0"
+                                marginwidth="0">Loading…</iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="footer">
+        <div class="container">
+            <div class="copyright">
+                &copy; Copyright <strong>Vihansa-2026</strong>. All Rights Reserved
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="lib/jquery/jquery.min.js"></script>
+    <script src="lib/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="js/main.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>VIHANSA-2026 | Paper Presentation Registration</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+    <!-- Favicons -->
+    <link href="img/REVIVE-COMING_SOON-removebg-preview.webp" rel="icon">
+    <link href="img/REVIVE-COMING_SOON-removebg-preview.webp" rel="apple-touch-icon">
+
+    <!-- Google Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Orbitron:wght@400;500;700;900&family=Rajdhani:wght@300;400;500;600;700&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Special+Elite&display=swap"
+        rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Raleway:300,400,500,700,800"
+        rel="stylesheet">
+
+    <!-- Bootstrap CSS File -->
+    <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Libraries CSS Files -->
+    <link href="lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="lib/animate/animate.min.css" rel="stylesheet">
+    <link href="lib/venobox/venobox.css" rel="stylesheet">
+    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+
+    <!-- Main Stylesheet File -->
+    <link href="css/style.css" rel="stylesheet">
+
+    <style>
+        /* Styles from Test Registration Form */
+        body {
+            background-color: #000;
+            color: #fff;
+        }
+
+        #registration-section {
+            padding-top: 150px;
+            /* Adjusted for fixed header */
+            padding-bottom: 60px;
+            min-height: 100vh;
+            /* Background effect similar to other pages */
+            background: linear-gradient(180deg, rgba(0, 0, 0, 0.9), rgba(20, 0, 0, 0.95)), url('img/intro-bg.jpg') no-repeat center center fixed;
+            background-size: cover;
+        }
+
+        .form-container {
+            background: transparent;
+            border: none;
+            box-shadow: none;
+            padding: 0;
+            margin-top: 10px;
+            max-width: 800px;
+            /* Constrain width for better readability */
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .section-header h2 {
+            font-family: 'Orbitron', sans-serif;
+            color: #fff;
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 2.5rem;
+            text-shadow: 0 0 15px rgba(255, 0, 60, 0.8);
+            letter-spacing: 2px;
+        }
+
+        .section-header p {
+            text-align: center;
+            color: #ccc;
+            margin-bottom: 30px;
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 1.2rem;
+        }
+
+        /* Responsive iframe container */
+        .google-form-wrapper {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            height: 1600px;
+            /* Fixed container height */
+            border-radius: 12px;
+            /* Slight rounding of the form itself */
+        }
+
+        .google-form-wrapper iframe {
+            width: 105%;
+            /* Slightly wider to hide potential side scrollbars */
+            height: 1650px;
+            border: none;
+            position: absolute;
+            top: -20px;
+            /* Reduced crop to show Name field */
+            left: -2.5%;
+            /* Center after making wider */
+
+            /*
+               Smart Dark Mode Filter
+               - hue-rotate(240deg): Shifts the inverted colors towards Blue
+            */
+            filter: invert(0.92) hue-rotate(240deg) contrast(1.1);
+            margin-bottom: -50px;
+        }
+
+        /* Back button styling matching the theme */
+        .back-btn {
+            display: inline-block;
+            margin-bottom: 20px;
+            color: #00f0ff;
+            text-decoration: none;
+            font-family: 'Rajdhani', sans-serif;
+            font-weight: 700;
+            transition: all 0.3s;
+            font-size: 1.1rem;
+        }
+
+        .back-btn:hover {
+            color: #fff;
+            text-shadow: 0 0 10px #00f0ff;
+            transform: translateX(-5px);
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Custom Cursor -->
+    <div id="cursor"></div>
+    <div id="cursor-blur"></div>
+
+    <!-- Header -->
+    <header id="header">
+        <div class="container">
+            <div id="logo" class="pull-left">
+                <a href="index.html#header" class="scrollto"><img src="img/logo.png" alt="" title="" loading="lazy"
+                        decoding="async"></a>
+            </div>
+            <nav id="nav-menu-container">
+                <ul class="nav-menu">
+                    <li><a href="index.html#header" data-text="Home">Home</a></li>
+                    <li><a href="index.html#about" data-text="About">About</a></li>
+                    <li><a href="index.html#hack" data-text="Hackathon">Hackathon</a></li>
+                    <li><a href="index.html#events" data-text="Events">Events</a></li>
+                    <li><a href="index.html#gallery" data-text="Main Events">Main Events</a></li>
+                    <li><a href="index.html#agenda" data-text="Agenda">Agenda</a></li>
+                    <li class="menu-active buy-tickets"><a href="registration.html" data-text="Register">Register</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section id="registration-section">
+        <div class="container">
+            <a href="index.html" class="back-btn"><i class="fa fa-arrow-left"></i> Back to Home</a>
+
+            <div class="section-header">
+                <h2>PAPER PRESENTATION</h2>
+                <p>Present Your Ideas</p>
+            </div>
+
+            <div class="row justify-content-center">
+                <div class="col-lg-10">
+                    <div class="form-container">
+                        <!-- REPLACE THE SRC ATTRIBUTE BELOW WITH YOUR GOOGLE FORM EMBED LINK -->
+                        <div class="google-form-wrapper">
+                            <iframe
+                                src="https://docs.google.com/forms/d/e/1FAIpQLScIzRORxiSV0J0JOgC6e1WSXygG8XSWEGAMbd7sqpuHEtwIeA/viewform?embedded=true"
+                                width="640" height="1200" frameborder="0" marginheight="0" marginwidth="0">
+                                Loading…
+                            </iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="footer">
+        <div class="footer-top">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 footer-info">
+                        <img src="img/logo.png" alt="TheEvenet">
+                        <p><strong>Vihansa 2026</strong> is a celebration of innovation, talent, and teamwork at Sri
+                            Ramakrishna Institute of Technology. With exciting events and inspiring experiences, it's
+                            where ideas come to life. Get ready to <em>innovate, ignite, and inspire!</em></p>
+                    </div>
+                    <div class="col-lg-3 col-md-3 footer-contact">
+                        <h4>Contact Us</h4>
+                        <p>
+                            Sri Ramakrishna Institute Of Technology <br>
+                            Pachapalayam,<br>
+                            Coimbatore - 641010 <br>
+                            <strong>Phone:</strong> <br>
+                            <a href="https://www.linkedin.com/in/viswa-jith-2b9696258" target="_blank"
+                                style="color: white;">Viswajith M -</a>
+                            <a href="tel:+918148868582">+91-81488-68582</a><br>
+                            <a href="https://linkedin.com/in/tharun-i-a13673253" target="_blank"
+                                style="color: white;">Tharun I -</a>
+                            <a href="tel:+918148868582">+91-88380-67781</a><br>
+                            <strong>Email:</strong> <a href="mailto:vihansa@sritcbe.ac.in">vihansa@sritcbe.ac.in</a><br>
+                        </p>
+                        <div style="font-weight: bold; font-size: 20px;">
+                            <a href="https://www.instagram.com/srit_vihansa_official/" target="_blank"
+                                class="social-links instagram"><i class="fa fa-instagram"></i>
+                                <pre style="color: aliceblue;">Follow For More...</pre>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6 venue-map">
+                        <iframe
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3917.2860716674027!2d76.89614697222787!3d10.941749732315019!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba85c6bbf412ce5%3A0x52c5151f21ac8419!2sSri%20Ramakrishna%20Institute%20of%20Technology!5e0!3m2!1sen!2sin!4v1741497889552!5m2!1sen!2sin"
+                            style="border:0;" allowfullscreen="" loading="lazy"
+                            referrerpolicy="no-referrer-when-downgrade" class="venue-g"></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="copyright">
+                &copy; Copyright <strong>Vihansa-2026</strong>. All Rights Reserved
+                <p>Web Designed by:
+                    <a href="credit.html" target="_blank">Keerthi Vasan P,</a>
+                    <a href="credit.html" target="_blank">Akshay Srinivas</a>
+                    <br>
+                    Poster Designed by:
+                </p>
+
+            </div>
+        </div>
+    </footer>
+
+    <a href="#" class="back-to-top"><i class="fa fa-angle-up"></i></a>
+
+    <!-- JavaScript Libraries -->
+    <script src="lib/jquery/jquery.min.js"></script>
+    <script src="lib/jquery/jquery-migrate.min.js"></script>
+    <script src="lib/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="lib/easing/easing.min.js"></script>
+    <script src="lib/superfish/hoverIntent.js"></script>
+    <script src="lib/superfish/superfish.min.js"></script>
+    <script src="lib/wow/wow.min.js" defer></script>
+    <script src="lib/venobox/venobox.min.js" defer></script>
+    <script src="lib/owlcarousel/owl.carousel.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js" defer></script>
+
+    <!-- Template Main Javascript File -->
+    <script src="js/main.js" defer></script>
+    <script src="js/cursor.js" defer></script>
+
+</body>
+
+</html>
