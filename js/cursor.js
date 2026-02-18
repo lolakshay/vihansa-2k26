@@ -3,6 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const cursorBlur = document.getElementById('cursor-blur');
 
     if (window.innerWidth <= 768) return; // Disable on mobile
+    if (document.documentElement.classList.contains('low-cursor-performance')) return; // Disable on low-end
 
     if (!cursor || !cursorBlur) return;
 

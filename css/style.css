@@ -4075,6 +4075,28 @@ body.mobile-nav-active #mobile-nav-toggle {
   }
 }
 
+/* ================= LOW PERFORMANCE MODE (Cursor Disabled) ================= */
+body.low-cursor-performance #cursor,
+body.low-cursor-performance #cursor-blur,
+body.low-cursor-performance #ghost-cursor-canvas {
+  display: none !important;
+}
+
+html.low-cursor-performance {
+  cursor: auto !important;
+  /* Restore default cursor */
+}
+
+html.low-cursor-performance * {
+  cursor: auto !important;
+}
+
+html.low-cursor-performance a,
+html.low-cursor-performance button,
+html.low-cursor-performance .pointer {
+  cursor: pointer !important;
+}
+
 /* ================= Event Details Modal (Full Screen) ================= */
 .event-modal-overlay {
   display: none;
@@ -4940,4 +4962,69 @@ body.mobile-nav-active #mobile-nav-toggle {
 .sports-card:hover .card-explore {
   color: #fff;
   text-shadow: 0 0 5px #ff9d00;
+}
+
+/* ==========================================================================
+   ADAPTIVE PERFORMANCE SYSTEM - LOW PERFORMANCE OVERRIDES
+   ========================================================================== */
+body.low-performance * {
+  /* Disable all animations and transitions */
+  animation: none !important;
+  transition: none !important;
+
+  /* Remove heavy filters */
+  filter: none !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+
+  /* Simplify box-shadows */
+  box-shadow: none !important;
+  text-shadow: none !important;
+}
+
+/* Remove specific heavy elements */
+body.low-performance .me-orb,
+body.low-performance #st-lightningSVG,
+body.low-performance .st-particles,
+body.low-performance .me-noise,
+body.low-performance #bg-video,
+body.low-performance .glitch-title::before,
+body.low-performance .glitch-title::after {
+  display: none !important;
+}
+
+/* Ensure legible text without shadows */
+body.low-performance h1,
+body.low-performance h2,
+body.low-performance h3,
+body.low-performance h4,
+body.low-performance h5,
+body.low-performance h6,
+body.low-performance p,
+body.low-performance a,
+body.low-performance span {
+  text-shadow: none !important;
+}
+
+/* Ensure borders remain for structure */
+body.low-performance .event-card,
+body.low-performance .experience-card,
+body.low-performance .tech-card,
+body.low-performance .workshop-card,
+body.low-performance .cultural-card,
+body.low-performance .prize-card {
+  border: 1px solid rgba(255, 255, 255, 0.3) !important;
+  background: rgba(0, 0, 0, 0.9) !important;
+}
+
+/* Fix modal visibility without transitions */
+body.low-performance .event-modal-overlay {
+  transition: none !important;
+  opacity: 1 !important;
+}
+
+/* Ensure navigation is usable */
+body.low-performance #header {
+  background: #000 !important;
+  backdrop-filter: none !important;
 }

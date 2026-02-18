@@ -933,7 +933,12 @@ if (window.innerWidth > 768) {
   document.addEventListener('DOMContentLoaded', () => {
     // Check if THREE is loaded
     if (typeof THREE !== 'undefined') {
-      new GhostCursor();
+      // Performance Check
+      if (!document.documentElement.classList.contains('low-cursor-performance')) {
+        new GhostCursor();
+      } else {
+        console.log("Ghost Cursor skipped due to low performance.");
+      }
     } else {
       console.warn("Three.js not loaded, Ghost Cursor skipped.");
     }
