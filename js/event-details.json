@@ -33,7 +33,7 @@
     "time": "10:00 AM",
     "venue": "SRIT Ground",
     "image": "img/events-sports/kho kho.png",
-    "formLink": "registration.html"
+    "formLink": "reg_starting_soon.html"
   },
   "football": {
     "title": "5s Football",
@@ -42,7 +42,7 @@
     "time": "10:00 AM",
     "venue": "SRIT Ground",
     "image": "img/events-sports/football.png",
-    "formLink": "registration.html"
+    "formLink": "reg_starting_soon.html"
   },
   "promptly": {
     "title": "PROMPTLY",
@@ -51,7 +51,7 @@
     "time": "10:00 AM",
     "venue": "Computer Lab 1",
     "image": "img/events-tech/1.webp",
-    "formLink": "registration.html"
+    "formLink": "reg_starting_soon.html"
   },
   "speedcraft": {
     "title": "Debug Detective",
@@ -60,7 +60,7 @@
     "time": "10:00 AM",
     "venue": "CC4 Lab",
     "image": "img/events-tech/2.webp",
-    "formLink": "registration.html"
+    "formLink": "reg_starting_soon.html"
   },
   "clonex": {
     "title": "Code Debugging",
@@ -69,7 +69,7 @@
     "time": "2:30 PM",
     "venue": "IT Lab",
     "image": "img/events-tech/3.webp",
-    "formLink": "registration.html"
+    "formLink": "reg_starting_soon.html"
   },
   "reverseengg": {
     "title": "Leak the Logic",
@@ -78,7 +78,7 @@
     "time": "10:00 AM",
     "venue": "IT Lab",
     "image": "img/events-tech/4.webp",
-    "formLink": "registration.html"
+    "formLink": "reg_starting_soon.html"
   },
   "circuitsurge": {
     "title": "Circuit Hunt",
@@ -87,7 +87,7 @@
     "time": "12:00 Noon",
     "venue": "Circuits Lab",
     "image": "img/events-tech/5.webp",
-    "formLink": "registration.html"
+    "formLink": "reg_starting_soon.html"
   },
   "kryptobyte": {
     "title": "Logic Matrix",
@@ -96,7 +96,7 @@
     "time": "12:00 Noon",
     "venue": "Cyber Security Lab",
     "image": "img/events-tech/6.webp",
-    "formLink": "registration.html"
+    "formLink": "reg_starting_soon.html"
   },
   "roborush": {
     "title": "Circuit Surge 2.0",
@@ -105,7 +105,7 @@
     "time": "10:00 AM",
     "venue": "PSS Lab",
     "image": "img/events-tech/7.webp",
-    "formLink": "registration.html"
+    "formLink": "reg_starting_soon.html"
   },
   "productpitch": {
     "title": "WATT HOURS – Energy Auditing",
@@ -114,7 +114,7 @@
     "time": "2:00 PM",
     "venue": "PSS Lab",
     "image": "img/events-tech/8.webp",
-    "formLink": "registration.html"
+    "formLink": "reg_starting_soon.html"
   },
   "dasheddata": {
     "title": "THINKTANK – Scenario Showdown",
@@ -123,7 +123,7 @@
     "time": "10:00 AM",
     "venue": "Data Science Lab",
     "image": "img/events-nontech/9.webp",
-    "formLink": "registration.html"
+    "formLink": "reg_starting_soon.html"
   },
   "flyforge": {
     "title": "IPL Auction",
@@ -132,7 +132,7 @@
     "time": "12:00 PM",
     "venue": "2nd Year Classroom",
     "image": "img/events-nontech/10.webp",
-    "formLink": "registration.html"
+    "formLink": "reg_starting_soon.html"
   },
   "codewar": {
     "title": "Tech Quiz",
@@ -141,7 +141,7 @@
     "time": "12:00 Noon",
     "venue": "TBD",
     "image": "img/events-nontech/11.webp",
-    "formLink": "registration.html"
+    "formLink": "reg_starting_soon.html"
   },
   "capturetheflag": {
     "title": "robothon",
@@ -150,7 +150,7 @@
     "time": "2:30 PM",
     "venue": "Cyber Security Lab",
     "image": "img/events-nontech/12.webp",
-    "formLink": "registration.html"
+    "formLink": "reg_starting_soon.html"
   },
   "bestmanager": {
     "title": "Connection",
@@ -159,7 +159,7 @@
     "time": "2:30 PM",
     "venue": "TBD",
     "image": "img/events-nontech/mech_non-tech.png",
-    "formLink": "registration.html"
+    "formLink": "reg_starting_soon.html"
   },
   "quizzy": {
     "title": "CAD Modeling",
@@ -168,7 +168,7 @@
     "time": "3:30 PM",
     "venue": "CAD Lab",
     "image": "img/events-tech/mech_tech.png",
-    "formLink": "registration.html"
+    "formLink": "reg_starting_soon.html"
   },
   "promptpallette": {
     "title": "PROMPT PALLETTE",
@@ -177,7 +177,7 @@
     "time": "2:30 PM",
     "venue": "Digital Lab",
     "image": "img/events-nontech/CSE.webp",
-    "formLink": "registration.html"
+    "formLink": "reg_starting_soon.html"
   },
   "bidsmash": {
     "title": "Distorted Beats",
@@ -186,7 +186,7 @@
     "time": "2:30 PM",
     "venue": "EC Lab",
     "image": "img/events-nontech/disorted_beats.jpeg",
-    "formLink": "registration.html"
+    "formLink": "reg_starting_soon.html"
   },
   "mrtoolman": {
     "title": "MR TOOL MAN",
@@ -195,7 +195,7 @@
     "time": "3:30 PM",
     "venue": "Workshop",
     "image": "img/events-nontech/MECH.webp",
-    "formLink": "registration.html"
+    "formLink": "reg_starting_soon.html"
   },
   "genai": {
     "title": "IoT Design Workshop",
@@ -204,7 +204,7 @@
     "time": "10:00 AM - 1:00 PM",
     "venue": "Centre Of Excellence Of IOT [COE]",
     "image": "img/workshop/14.webp",
-    "formLink": "workshop_registration.html"
+    "formLink": "reg_starting_soon.html"
   },
   "cybersecurity": {
     "title": "Cyber Security Workshop",
@@ -213,7 +213,7 @@
     "time": "10:00 AM",
     "venue": "Cyber Security Lab",
     "image": "img/workshop/13.webp",
-    "formLink": "workshop_registration.html"
+    "formLink": "reg_starting_soon.html"
   },
   "evehicle": {
     "title": "E-VEHICLE WORKSHOP",
@@ -222,7 +222,7 @@
     "time": "Full Day",
     "venue": "Power Lab",
     "image": "img/workshop/EEE.webp",
-    "formLink": "workshop_registration.html"
+    "formLink": "reg_starting_soon.html"
   },
   "cloudcraft": {
     "title": "PLC Automation with IOT",
@@ -231,7 +231,7 @@
     "time": "10:00 AM - 1:00 PM",
     "venue": "COE(EV)",
     "image": "img/workshop/15.webp",
-    "formLink": "workshop_registration.html"
+    "formLink": "reg_starting_soon.html"
   },
   "pcbbuild": {
     "title": "PCB BUILD",
@@ -240,7 +240,7 @@
     "time": "Full Day",
     "venue": "Electronics Lab",
     "image": "img/workshop/ECE.webp",
-    "formLink": "workshop_registration.html"
+    "formLink": "reg_starting_soon.html"
   },
   "visualvignetic": {
     "title": "VISUAL VIGNETIC – Short Film",
@@ -249,7 +249,7 @@
     "time": "10:00 AM",
     "venue": "Auditorium",
     "image": "img/culturls/short_film.webp",
-    "formLink": "cultural_registration.html"
+    "formLink": "reg_starting_soon.html"
   },
   "solelymelodia": {
     "title": "Solo Singing",
@@ -258,7 +258,7 @@
     "time": "2:00 PM",
     "venue": "Main Auditorium",
     "image": "img/culturls/solo_singing.webp",
-    "formLink": "cultural_registration.html"
+    "formLink": "reg_starting_soon.html"
   },
   "artofone": {
     "title": "Solo Dance",
@@ -267,7 +267,7 @@
     "time": "3:00 PM",
     "venue": "Open Auditorium",
     "image": "img/culturls/solo_dance.webp",
-    "formLink": "cultural_registration.html"
+    "formLink": "reg_starting_soon.html"
   },
   "rythmicmotion": {
     "title": "Group Dance",
@@ -276,7 +276,7 @@
     "time": "4:00 PM",
     "venue": "Main Auditorium",
     "image": "img/culturls/group_dance.webp",
-    "formLink": "cultural_registration.html"
+    "formLink": "reg_starting_soon.html"
   },
   "tunemorph": {
     "title": "Adaptune",
@@ -285,7 +285,7 @@
     "time": "3:30 PM",
     "venue": "Music Hall",
     "image": "img/culturls/Adaptune.webp",
-    "formLink": "cultural_registration.html"
+    "formLink": "reg_starting_soon.html"
   },
   "pixelperfect": {
     "title": "Reels Making",
@@ -294,6 +294,6 @@
     "time": "10:00 AM",
     "venue": "Digital Lab",
     "image": "img/culturls/reels_making.webp",
-    "formLink": "cultural_registration.html"
+    "formLink": "reg_starting_soon.html"
   }
 }

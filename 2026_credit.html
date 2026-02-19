@@ -295,7 +295,7 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            filter:  contrast(1.1) brightness(0.8);
+            filter: contrast(1.1) brightness(0.8);
             /* Optimization: Removed transition on filter for smoother FPS, only transform */
             transition: transform 0.6s cubic-bezier(0.2, 1, 0.3, 1), filter 0.4s;
             transform: scale(1.01);
@@ -305,7 +305,7 @@
 
         .card-wrap:hover .img-box img {
             transform: scale(1.1);
-            filter:  contrast(1.1) brightness(1.0);
+            filter: contrast(1.1) brightness(1.0);
         }
 
         .overlay-grad {
@@ -429,6 +429,45 @@
         .card-wrap:hover .click-hint {
             opacity: 1;
             transform: translateY(0);
+        }
+
+        /* ─── RED LASER SLICE ─── */
+        /* Pseudo-element for the slicing effect */
+        .img-box::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            pointer-events: none;
+            z-index: 10;
+            background: linear-gradient(135deg,
+                    transparent 45%,
+                    rgba(255, 30, 30, 0.8) 50%,
+                    transparent 55%);
+            /* Start state: Pushed to bottom-right (out of view) */
+            transform: translate(50%, 50%);
+            opacity: 0;
+            will-change: transform;
+            /* Instant reset on mouse leave for re-trigger */
+            transition: transform 0s, opacity 0.2s;
+        }
+
+        .card-wrap:hover .img-box::before {
+            /* End state: Slice through to top-left */
+            transform: translate(-50%, -50%);
+            opacity: 1;
+            /* Smooth slice animation */
+            transition: transform 0.8s cubic-bezier(0.2, 1, 0.3, 1), opacity 0.1s;
+        }
+
+        /* Legacy Variant (Purple) */
+        .legacy .img-box::before {
+            background: linear-gradient(135deg,
+                    transparent 45%,
+                    rgba(213, 0, 249, 0.8) 50%,
+                    transparent 55%);
         }
 
         /* ─── ANIMATIONS ─── */
@@ -563,9 +602,7 @@
             <a href="https://www.linkedin.com/in/akshay-srinivas" target="_blank" class="card-wrap"
                 data-name="AKSHAY SRINIVAS">
                 <div class="card">
-                    <div class="img-box"><img
-                            src="img/credits/akshay_srinivas_cse_2028_batch.jpg"
-                            alt="Akshay"></div>
+                    <div class="img-box"><img src="img/credits/akshay_srinivas_cse_2028_batch.jpg" alt="Akshay"></div>
                     <div class="overlay-grad"></div>
                     <div class="info-panel">
                         <div class="role-badge"><i class="fa-solid fa-code"></i> Team Lead</div>
@@ -578,11 +615,10 @@
                 </div>
             </a>
 
-            <a href="https://www.linkedin.com/in/keerthi-vasan-8a2878326/" target="_blank" class="card-wrap" data-name="Keerthi Vasan">
+            <a href="https://www.linkedin.com/in/keerthi-vasan-8a2878326/" target="_blank" class="card-wrap"
+                data-name="Keerthi Vasan">
                 <div class="card" style="border-color: #1a2a33;">
-                    <div class="img-box"><img
-                            src="img/credits/keerti_vasan_it_2028_batch.jpeg"
-                            alt="Dev 2"></div>
+                    <div class="img-box"><img src="img/credits/keerti_vasan_it_2028_batch.jpeg" alt="Dev 2"></div>
                     <div class="overlay-grad"></div>
                     <div class="info-panel">
                         <div class="role-badge" style="color: var(--blue); border-color: rgba(79,195,247,0.3);"><i
@@ -603,11 +639,10 @@
         </div>
 
         <div class="grid-container">
-            <a href="https://www.linkedin.com/in/kavinbaarathi/" target="_blank" class="card-wrap legacy" data-name="Kavin Baarathi">
+            <a href="https://www.linkedin.com/in/kavinbaarathi/" target="_blank" class="card-wrap legacy"
+                data-name="Kavin Baarathi">
                 <div class="card">
-                    <div class="img-box"><img
-                            src="img/credits/no-profile-image.png"
-                            alt="Legacy 1"></div>
+                    <div class="img-box"><img src="img/credits/no-profile-image.png" alt="Legacy 1"></div>
                     <div class="overlay-grad"></div>
                     <div class="info-panel">
                         <div class="role-badge"><i class="fa-solid fa-gem"></i></div>
@@ -620,11 +655,10 @@
                 </div>
             </a>
 
-            <a href="https://www.linkedin.com/in/mohammedashiqj/" target="_blank" class="card-wrap legacy" data-name="Mohammed Ashiq">
+            <a href="https://www.linkedin.com/in/mohammedashiqj/" target="_blank" class="card-wrap legacy"
+                data-name="Mohammed Ashiq">
                 <div class="card">
-                    <div class="img-box"><img
-                            src="img/credits/no-profile-image.png"
-                            alt="Legacy 2"></div>
+                    <div class="img-box"><img src="img/credits/no-profile-image.png" alt="Legacy 2"></div>
                     <div class="overlay-grad"></div>
                     <div class="info-panel">
                         <div class="role-badge"><i class="fa-solid fa-laptop-code"></i></div>
@@ -637,11 +671,10 @@
                 </div>
             </a>
 
-            <a href="https://www.linkedin.com/in/rahulprashath/" target="_blank" class="card-wrap legacy" data-name="Rahul Prashath">
+            <a href="https://www.linkedin.com/in/rahulprashath/" target="_blank" class="card-wrap legacy"
+                data-name="Rahul Prashath">
                 <div class="card">
-                    <div class="img-box"><img
-                            src="img/credits/no-profile-image.png"
-                            alt="Legacy 3"></div>
+                    <div class="img-box"><img src="img/credits/no-profile-image.png" alt="Legacy 3"></div>
                     <div class="overlay-grad"></div>
                     <div class="info-panel">
                         <div class="role-badge"><i class="fa-solid fa-palette"></i> Design</div>
