@@ -161,6 +161,15 @@
     "image": "img/workshop/14.webp",
     "formLink": "workshop_registration.html"
   },
+  "cybersecurity": {
+    "title": "Cyber Security Workshop",
+    "desc": "<div class=\"event-full-desc\">\n      <p><strong>Cyber Security Workshop</strong> dives into the world of digital defense, teaching participants about ethical hacking, network security, and defensive strategies against cyber threats.</p>\n      \n      <h3>ðŸ‘¤ Coordinators</h3>\n      <p><strong>Staff Coordinator:</strong><br>\n      Ms. U. Elakkiya AP/IT - <a href=\"tel:+918220890895\" style=\"color: #00f0ff;\">+91 82208 90895</a></p>\n    </div>",
+    "date": "Day 1",
+    "time": "10:00 AM",
+    "venue": "Cyber Security Lab",
+    "image": "img/workshop/13.webp",
+    "formLink": "workshop_registration.html"
+  },
   "evehicle": {
     "title": "E-VEHICLE WORKSHOP",
     "desc": "Explore the future of mobility with hands-on EV tech workshops, live demos, and insights from industry pioneers!",
