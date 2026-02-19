@@ -6,8 +6,8 @@
 (function () {
     'use strict';
 
-    // Skip on touch-only devices
-    if ('ontouchstart' in window && !window.matchMedia('(pointer: fine)').matches) return;
+    // Skip on touch-only devices OR small screens
+    if (window.innerWidth <= 768 || ('ontouchstart' in window && !window.matchMedia('(pointer: fine)').matches)) return;
 
     var mouseX = 0, mouseY = 0;
     var ringX = 0, ringY = 0;
