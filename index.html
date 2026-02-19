@@ -478,7 +478,7 @@
   <header id="header">
     <div class="container">
 
-      <div id="logo" class="pull-left">
+      <div id="logo">
         <a href="#intro" class="scrollto"><img src="img/logo1.webp" alt="" title="" width="50" height="50"></a>
         <a href="#intro" class="scrollto"><img src="img/logo.webp" alt="" title="" width="50" height="50"></a>
         <h2><a href="#main">Sri <span>RamaKrishna</span><br />Institute of technology</a></h2>
@@ -525,7 +525,8 @@
         <div class="col-12 intro-text-content">
           <img src="img/vihansa logo.webp" class="main-logo-img" alt="Vihansa Logo">
           <h1 class="glitch-title" data-text="VIHANSA 2K26">VIHANSA 2K26</h1>
-          <p class="cyber-subtitle">IGNITE THE FUTURE &bull; INSPIRE THE WORLD</p>
+          <p class="cyber-subtitle">An Inter-College Techno-Cultural Fest &bull; Enter the Upside Down of Innovation.
+          </p>
 
           <div class="hero-actions">
             <a href="reg_starting_soon.html" class="cyber-btn glitch-btn">REGISTER NOW</a>
@@ -783,6 +784,11 @@
             </div>
           </div>
         </div>
+
+
+
+
+        <!-- Scripts -->
 
         <!-- RIGHT -->
         <div class="hack-v2-right">
@@ -2407,6 +2413,29 @@
         if (container) new LaserFlow(container);
       });
     </script>
+
+
+    <!-- Event Details Modal (Moved to Root) -->
+    <div id="eventModal" class="event-modal-overlay">
+      <div class="event-modal-container">
+        <span class="close-modal" onclick="closeEventModal()">&times;</span>
+        <div class="event-modal-body">
+          <div class="event-modal-left">
+            <h2 id="modalEventTitle">Event Title</h2>
+            <p id="modalEventDesc">Event Description goes here.</p>
+            <div class="event-details">
+              <p><strong>Date:</strong> <span id="modalEventDate">Day 1</span></p>
+              <p><strong>Time:</strong> <span id="modalEventTime">10:00 AM</span></p>
+              <p><strong>Venue:</strong> <span id="modalEventVenue">Lab 1</span></p>
+            </div>
+            <a href="form.html" class="register-btn">Register Now</a>
+          </div>
+          <div class="event-modal-right">
+            <img id="modalEventImage" src="" alt="Event Image">
+          </div>
+        </div>
+      </div>
+    </div>
 
     <!-- Template Main Javascript File -->
     <script src="js/main.js" defer></script>
