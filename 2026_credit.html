@@ -1,0 +1,841 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Dev Team | Vihansa</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Special+Elite&family=Courier+Prime:ital,wght@0,400;0,700;1,400&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link
+        href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Raleway:300,400,500,700,800"
+        rel="stylesheet">
+    <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="css/credit_navbar_footer.css" rel="stylesheet">
+
+    <style>
+        :root {
+            --red: #ff1e1e;
+            --blue: #4fc3f7;
+            --purple: #d500f9;
+            --dark: #050505;
+            /* Optimized: removed alpha transparency for easier rendering where possible */
+            --panel-bg: #0a0a0a;
+        }
+
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            padding-top: 100px;
+            background-color: var(--dark);
+            color: #e0e0e0;
+            font-family: 'Courier Prime', monospace;
+            overflow-x: hidden;
+            min-height: 100vh;
+            /* Removed flex centering to allow full-width footer */
+            display: block;
+        }
+
+        .credit-content-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            min-height: calc(100vh - 400px);
+            /* Ensure footer stays at bottom if content is short */
+            padding-bottom: 50px;
+        }
+
+        /* ─── OPTIMIZED ATMOSPHERE ─── */
+        /* Fixed position elements get their own GPU layer automatically usually, but we force it */
+        .fog {
+            display: none;
+            /* Hide fog to show video clearly */
+        }
+
+        #bg-video {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            z-index: -2;
+            /* Behind everything */
+            transform: translateX(-50%) translateY(-50%);
+            object-fit: cover;
+            opacity: 0.6;
+            /* Slight dim for readability */
+        }
+
+        .scanlines {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 999;
+            background: repeating-linear-gradient(0deg, transparent 0px, transparent 2px, rgba(0, 0, 0, 0.1) 3px);
+            opacity: 0.6;
+        }
+
+        /* ─── LIGHTS (GPU Opacity Animation) ─── */
+        .light-strand {
+            position: absolute;
+            top: 0;
+            width: 100%;
+            height: 80px;
+            display: flex;
+            justify-content: center;
+            overflow: hidden;
+            z-index: 20;
+            pointer-events: none;
+        }
+
+        .light-strand::before {
+            content: '';
+            position: absolute;
+            top: 15px;
+            width: 120%;
+            height: 20px;
+            border-top: 2px solid #222;
+            border-radius: 50%;
+            z-index: -1;
+        }
+
+        .bulb-box {
+            position: relative;
+            width: 40px;
+            height: 60px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .bulb {
+            width: 12px;
+            height: 24px;
+            border-radius: 50% 50% 40% 40%;
+            background: var(--c);
+            /* Optimization: Smaller shadow spread reduces fill-rate pressure */
+            box-shadow: 0px 5px 10px var(--c);
+            opacity: 0.3;
+            animation: flash 3s infinite alternate;
+            will-change: opacity;
+        }
+
+        @keyframes flash {
+
+            0%,
+            100% {
+                opacity: 0.3
+            }
+
+            50% {
+                opacity: 1
+            }
+        }
+
+        /* ─── HEADERS ─── */
+        header:not(#header) {
+            text-align: center;
+            margin-top: 100px;
+            margin-bottom: 60px;
+            z-index: 10;
+            position: relative;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-top: 80px;
+            margin-bottom: 50px;
+            z-index: 10;
+            position: relative;
+            border-top: 1px solid rgba(255, 30, 30, 0.2);
+            width: 80%;
+            padding-top: 40px;
+        }
+
+        .event-tag {
+            font-size: 0.8rem;
+            letter-spacing: 0.5em;
+            color: rgba(255, 30, 30, 0.7);
+            text-transform: uppercase;
+            margin-bottom: 15px;
+            display: block;
+            text-shadow: 0 0 10px rgba(255, 30, 30, 0.4);
+            animation: flicker 4s infinite;
+        }
+
+        h1,
+        h2 {
+            font-family: 'Special Elite', serif;
+            color: #fff;
+            text-transform: uppercase;
+            margin: 0;
+            line-height: 1.1;
+            /* Optimization: Reduced text-shadow blur radius */
+            text-shadow: 0 0 15px rgba(200, 0, 0, 0.5);
+            position: relative;
+        }
+
+        h1 {
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+        }
+
+        h2 {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            color: #ddd;
+        }
+
+        h1 span,
+        h2 span {
+            display: inline-block;
+            animation: floatText 3s ease-in-out infinite;
+        }
+
+        .intro-tag {
+            font-family: 'Courier Prime', monospace;
+            font-size: 0.75rem;
+            color: #888;
+            margin-top: 25px;
+            letter-spacing: 0.1em;
+            max-width: 600px;
+            padding: 0 20px;
+            border-left: 2px solid var(--red);
+            padding-left: 15px;
+            display: inline-block;
+            text-align: left;
+        }
+
+        /* ─── GRID SYSTEM ─── */
+        .grid-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 40px;
+            width: 95%;
+            max-width: 1300px;
+            perspective: 1500px;
+            margin-bottom: 20px;
+            z-index: 10;
+        }
+
+        /* ─── CARD WRAPPER ─── */
+        .card-wrap {
+            position: relative;
+            height: 500px;
+            width: 100%;
+            max-width: 360px;
+            transform-style: preserve-3d;
+            cursor: pointer;
+            text-decoration: none;
+            display: block;
+            opacity: 0;
+            animation: slideUp 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+            /* PERFORMANCE: Promote to GPU layer */
+            will-change: transform;
+        }
+
+        .card-wrap:nth-child(1) {
+            animation-delay: 0.2s;
+        }
+
+        .card-wrap:nth-child(2) {
+            animation-delay: 0.4s;
+        }
+
+        .card-wrap:nth-child(3) {
+            animation-delay: 0.6s;
+        }
+
+        /* ─── THE CARD ─── */
+        .card {
+            position: absolute;
+            inset: 0;
+            background: #0f0f0f;
+            border: 1px solid #333;
+            border-radius: 8px;
+            transform-style: preserve-3d;
+            overflow: hidden;
+            transition: border-color 0.3s, box-shadow 0.3s;
+            /* PERFORMANCE: Isolate painting */
+            contain: paint;
+        }
+
+        .card-wrap:hover .card {
+            border-color: var(--red);
+            /* Optimization: Reduced shadow spread */
+            box-shadow: 0 0 15px rgba(255, 30, 30, 0.15);
+        }
+
+        .card-wrap.legacy:hover .card {
+            border-color: var(--purple);
+            box-shadow: 0 0 15px rgba(213, 0, 249, 0.2);
+        }
+
+        /* ─── IMAGE & ZOOM ─── */
+        .img-box {
+            position: absolute;
+            inset: 0;
+            height: 100%;
+            width: 100%;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .img-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: grayscale(100%) contrast(1.1) brightness(0.8);
+            /* Optimization: Removed transition on filter for smoother FPS, only transform */
+            transition: transform 0.6s cubic-bezier(0.2, 1, 0.3, 1), filter 0.4s;
+            transform: scale(1.01);
+            /* Small scale to prevent sub-pixel bleeding */
+            will-change: transform;
+        }
+
+        .card-wrap:hover .img-box img {
+            transform: scale(1.1);
+            filter: grayscale(0%) contrast(1.1) brightness(1.0);
+        }
+
+        .overlay-grad {
+            position: absolute;
+            inset: 0;
+            z-index: 2;
+            background: linear-gradient(to bottom, transparent 40%, #050505 90%);
+            pointer-events: none;
+        }
+
+        /* ─── INFO PANEL ─── */
+        .info-panel {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 25px;
+            z-index: 5;
+            transform: translateY(20px);
+            transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+            will-change: transform;
+        }
+
+        .card-wrap:hover .info-panel {
+            transform: translateY(-70px);
+        }
+
+        .role-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.7rem;
+            color: var(--red);
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+            padding: 4px 10px;
+            border: 1px solid rgba(255, 30, 30, 0.3);
+            border-radius: 20px;
+            background: rgba(0, 0, 0, 0.8);
+            /* OPTIMIZATION: REMOVED BACKDROP FILTER */
+        }
+
+        .legacy .role-badge {
+            color: var(--purple);
+            border-color: var(--purple);
+        }
+
+        .name {
+            font-family: 'Special Elite', serif;
+            font-size: 1.8rem;
+            color: #fff;
+            text-transform: uppercase;
+            line-height: 1;
+            margin-bottom: 5px;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+            transition: text-shadow 0.3s;
+        }
+
+        /* Optimization: Hard text shadows are cheaper than blurred ones */
+        .card-wrap:hover .name {
+            text-shadow: 2px 2px 0px var(--red);
+        }
+
+        .card-wrap.legacy:hover .name {
+            text-shadow: 2px 2px 0px var(--purple);
+        }
+
+        .details-slide {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: var(--panel-bg);
+            /* OPTIMIZATION: REMOVED BACKDROP FILTER */
+            border-top: 1px solid var(--red);
+            padding: 20px;
+            opacity: 0;
+            transition: opacity 0.3s 0.1s;
+            pointer-events: none;
+            /* Prevent accidental clicks until visible */
+        }
+
+        .card-wrap:hover .details-slide {
+            pointer-events: auto;
+        }
+
+        .legacy .details-slide {
+            border-color: var(--purple);
+        }
+
+        .card-wrap:hover .details-slide {
+            opacity: 1;
+        }
+
+        .bio-text {
+            font-size: 0.75rem;
+            color: #aaa;
+            line-height: 1.5;
+            margin-bottom: 15px;
+            border-left: 2px solid #333;
+            padding-left: 10px;
+        }
+
+        .click-hint {
+            font-size: 0.6rem;
+            color: var(--red);
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            margin-top: 10px;
+            display: block;
+            opacity: 0;
+            transform: translateY(5px);
+            transition: all 0.3s 0.2s;
+        }
+
+        .legacy .click-hint {
+            color: var(--purple);
+        }
+
+        .card-wrap:hover .click-hint {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ─── ANIMATIONS ─── */
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes floatText {
+
+            0%,
+            100% {
+                transform: translateY(0)
+            }
+
+            50% {
+                transform: translateY(-5px)
+            }
+        }
+
+        @keyframes flicker {
+
+            0%,
+            100% {
+                opacity: 1
+            }
+
+            50% {
+                opacity: 0.6
+            }
+
+            52% {
+                opacity: 0.2
+            }
+
+            54% {
+                opacity: 0.6
+            }
+        }
+
+        @media (max-width: 768px) {
+            .light-strand {
+                height: 60px;
+            }
+
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            h2 {
+                font-size: 2rem;
+            }
+
+            .grid-container {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .card-wrap {
+                width: 100%;
+                max-width: 340px;
+            }
+
+            .info-panel {
+                transform: translateY(-70px);
+            }
+
+            .details-slide {
+                opacity: 1;
+                border: none;
+                padding-top: 5px;
+            }
+
+            .click-hint {
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header id="header">
+        <div class="container">
+            <div id="logo" class="pull-left">
+                <a href="index.html#intro" class="scrollto"><img src="img/logo1.webp" alt="" title="" width="50"
+                        height="50"></a>
+                <a href="index.html#intro" class="scrollto"><img src="img/logo.webp" alt="" title="" width="50"
+                        height="50"></a>
+                <h2><a href="index.html#main">Sri <span>RamaKrishna</span><br />Institute of technology</a></h2>
+            </div>
+            <nav id="nav-menu-container">
+                <ul class="nav-menu">
+                    <li class="menu-active"><a href="index.html#intro" data-text="Home">Home</a></li>
+                    <li><a href="index.html#about" data-text="About">About</a></li>
+                    <li><a href="index.html#hack-v2" data-text="Hackathon">Hackathon</a></li>
+                    <li><a href="index.html#events" data-text="Events">Events</a></li>
+                    <li><a href="index.html#gallery" data-text="Main Events">Main Events</a></li>
+                    <li><a href="index.html#agenda" data-text="Agenda">Agenda</a></li>
+                    <li class="buy-tickets"><a href="index.html#events" data-text="Register">Register</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="scanlines"></div>
+    <video autoplay muted loop playsinline id="bg-video">
+        <source src="img/credit_bg.webm" type="video/webm">
+    </video>
+    <div class="fog"></div>
+    <div id="particles"></div>
+
+    <div class="credit-content-wrapper">
+        <div class="light-strand" id="lights"></div>
+
+        <header>
+            <span class="event-tag">VIHANSA 2K26</span>
+            <h1><span>Web Development</span><br><span>Team 2026</span></h1>
+            <div class="intro-tag">
+                The minds building the experience behind Vihansa 2K26. <br>
+                Beware: The code is alive.
+            </div>
+        </header>
+
+        <div class="grid-container">
+            <a href="https://www.linkedin.com/in/akshay-srinivas" target="_blank" class="card-wrap"
+                data-name="AKSHAY SRINIVAS">
+                <div class="card">
+                    <div class="img-box"><img
+                            src="img/credits/akshay_srinivas_cse_2028_batch.jpg"
+                            alt="Akshay"></div>
+                    <div class="overlay-grad"></div>
+                    <div class="info-panel">
+                        <div class="role-badge"><i class="fa-solid fa-code"></i> Team Lead</div>
+                        <div class="name">LOADING...</div>
+                        <div class="details-slide">
+                            <p class="bio-text">TGNAS</p>
+                            <span class="click-hint">Click to view Profile &rarr;</span>
+                        </div>
+                    </div>
+                </div>
+            </a>
+
+            <a href="https://www.linkedin.com/in/keerthi-vasan-8a2878326/" target="_blank" class="card-wrap" data-name="Keerthi Vasan">
+                <div class="card" style="border-color: #1a2a33;">
+                    <div class="img-box"><img
+                            src="img/credits/keerti_vasan_it_2028_batch.jpeg"
+                            alt="Dev 2"></div>
+                    <div class="overlay-grad"></div>
+                    <div class="info-panel">
+                        <div class="role-badge" style="color: var(--blue); border-color: rgba(79,195,247,0.3);"><i
+                                class="fa-solid fa-brain"></i>Team Lead</div>
+                        <div class="name">LOADING...</div>
+                        <div class="details-slide">
+                            <p class="bio-text">Vasan</p>
+                            <span class="click-hint" style="color: var(--blue)">Click to view Profile &rarr;</span>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <div class="section-header">
+            <span class="event-tag" style="color: var(--purple)">LEGACY SYSTEM</span>
+            <h2><span>Web Development</span><br><span>Team 2025</span></h2>
+        </div>
+
+        <div class="grid-container">
+            <a href="https://www.linkedin.com/in/kavinbaarathi/" target="_blank" class="card-wrap legacy" data-name="Kavin Baarathi">
+                <div class="card">
+                    <div class="img-box"><img
+                            src="img/credits/no-profile-image.png"
+                            alt="Legacy 1"></div>
+                    <div class="overlay-grad"></div>
+                    <div class="info-panel">
+                        <div class="role-badge"><i class="fa-solid fa-gem"></i></div>
+                        <div class="name">LOADING...</div>
+                        <div class="details-slide">
+                            <p class="bio-text"></p>
+                            <span class="click-hint">Click to view Profile &rarr;</span>
+                        </div>
+                    </div>
+                </div>
+            </a>
+
+            <a href="https://www.linkedin.com/in/mohammedashiqj/" target="_blank" class="card-wrap legacy" data-name="Mohammed Ashiq">
+                <div class="card">
+                    <div class="img-box"><img
+                            src="img/credits/no-profile-image.png"
+                            alt="Legacy 2"></div>
+                    <div class="overlay-grad"></div>
+                    <div class="info-panel">
+                        <div class="role-badge"><i class="fa-solid fa-laptop-code"></i></div>
+                        <div class="name">LOADING...</div>
+                        <div class="details-slide">
+                            <p class="bio-text"></p>
+                            <span class="click-hint">Click to view Profile &rarr;</span>
+                        </div>
+                    </div>
+                </div>
+            </a>
+
+            <a href="https://www.linkedin.com/in/rahulprashath/" target="_blank" class="card-wrap legacy" data-name="Rahul Prashath">
+                <div class="card">
+                    <div class="img-box"><img
+                            src="img/credits/no-profile-image.png"
+                            alt="Legacy 3"></div>
+                    <div class="overlay-grad"></div>
+                    <div class="info-panel">
+                        <div class="role-badge"><i class="fa-solid fa-palette"></i> Design</div>
+                        <div class="name">LOADING...</div>
+                        <div class="details-slide">
+                            <p class="bio-text"></p>
+                            <span class="click-hint">Click to view Profile &rarr;</span>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <script>
+            /* ─── LIGHTS (Static generation, CSS handles anim) ─── */
+            const lightContainer = document.getElementById('lights');
+            const colors = ['#ff0000', '#00ff00', '#00e5ff', '#ffcc00', '#cc00ff'];
+            // Reduce number of lights for mobile to save GPU
+            const totalLights = Math.floor(window.innerWidth / (window.innerWidth < 600 ? 60 : 40));
+
+            const frag = document.createDocumentFragment();
+            for (let i = 0; i < totalLights; i++) {
+                const box = document.createElement('div'); box.className = 'bulb-box';
+                const bulb = document.createElement('div'); bulb.className = 'bulb';
+                bulb.style.setProperty('--c', colors[Math.floor(Math.random() * colors.length)]);
+                bulb.style.animationDelay = (Math.random() * 2) + 's';
+                box.appendChild(bulb); frag.appendChild(box);
+            }
+            lightContainer.appendChild(frag);
+
+            /* ─── DECRYPTION (Throttle updates) ─── */
+            const cards = document.querySelectorAll('.card-wrap');
+            const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890@#$%&";
+
+            cards.forEach(card => {
+                const nameEl = card.querySelector('.name');
+                const targetName = card.getAttribute('data-name');
+                nameEl.innerText = targetName;
+                let interval = null;
+
+                card.addEventListener('mouseenter', () => {
+                    let iteration = 0;
+                    clearInterval(interval);
+                    interval = setInterval(() => {
+                        nameEl.innerText = targetName.split("").map((letter, index) => {
+                            if (index < iteration) return targetName[index];
+                            return chars[Math.floor(Math.random() * 26)];
+                        }).join("");
+                        if (iteration >= targetName.length) clearInterval(interval);
+                        iteration += 1 / 2; // Speed up slightly to finish faster
+                    }, 40); // Slower interval (40ms vs 30ms) saves CPU
+                });
+                card.addEventListener('mouseleave', () => {
+                    clearInterval(interval);
+                    nameEl.innerText = targetName;
+                });
+            });
+
+            /* ─── OPTIMIZED 3D TILT ENGINE ─── */
+            /* KEY FIX: We do NOT call getBoundingClientRect inside the mouse loop */
+            const state = new WeakMap();
+
+            // Initialize state
+            cards.forEach(card => {
+                state.set(card, {
+                    mouseX: 0, mouseY: 0,
+                    curX: 0, curY: 0,
+                    rect: { width: 0, height: 0, left: 0, top: 0 }
+                });
+            });
+
+            // Update Rects only on Enter (Cheap & Accurate enough)
+            cards.forEach(card => {
+                card.addEventListener('mouseenter', () => {
+                    const s = state.get(card);
+                    s.rect = card.getBoundingClientRect();
+                });
+
+                card.addEventListener('mousemove', e => {
+                    const s = state.get(card);
+                    // Math only - no DOM reads
+                    s.mouseX = ((e.clientX - s.rect.left) / s.rect.width) * 2 - 1;
+                    s.mouseY = ((e.clientY - s.rect.top) / s.rect.height) * 2 - 1;
+                });
+
+                card.addEventListener('mouseleave', () => {
+                    const s = state.get(card);
+                    s.mouseX = 0; s.mouseY = 0;
+                });
+            });
+
+            // Single rAF loop for all cards
+            function animate() {
+                cards.forEach(card => {
+                    const s = state.get(card);
+                    // Heavy damping for smooth feel
+                    s.curX += (s.mouseX - s.curX) * 0.1;
+                    s.curY += (s.mouseY - s.curY) * 0.1;
+
+                    // If movement is tiny, skip DOM write to save power
+                    if (Math.abs(s.curX) < 0.001 && Math.abs(s.curY) < 0.001 && s.mouseX === 0) {
+                        // optional: snap to 0 here if needed
+                    } else {
+                        const cardInner = card.querySelector('.card');
+                        // Use translate3d to force hardware acc
+                        cardInner.style.transform = `perspective(1000px) rotateX(${s.curY * -10}deg) rotateY(${s.curX * 10}deg) translateZ(0)`;
+                    }
+                });
+                requestAnimationFrame(animate);
+            }
+            animate();
+
+            /* ─── PARTICLES (Low count for performance) ─── */
+            const pContainer = document.getElementById('particles');
+            const pFrag = document.createDocumentFragment();
+            for (let i = 0; i < 25; i++) {
+                const d = document.createElement('div');
+                d.style.cssText = `
+                position: absolute; width: 2px; height: 2px; background: rgba(255,255,255,0.2);
+                border-radius: 50%; pointer-events: none;
+                left: ${Math.random() * 100}vw;
+                top: ${Math.random() * 100}vh; /* Static start pos to avoid layout jump */
+                animation: float ${Math.random() * 10 + 15}s linear infinite;
+                animation-delay: -${Math.random() * 10}s;
+                will-change: transform;
+            `;
+                // Add keyframe style if not present or reuse
+                d.style.animationName = 'float';
+                pFrag.appendChild(d);
+            }
+            pContainer.appendChild(pFrag);
+        </script>
+    </div><!-- End .credit-content-wrapper -->
+
+    <footer id="footer">
+        <div class="footer-top">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 footer-info">
+                        <img src="img/logo.webp" alt="TheEvenet">
+                        <p><strong>Vihansa 2026</strong> is a celebration of innovation, talent, and teamwork at Sri
+                            Ramakrishna Institute of Technology. With exciting events and inspiring experiences, it's
+                            where ideas come to life. Get ready to <em>innovate, ignite, and inspire!</em></p>
+                    </div>
+                    <div class="col-lg-3 col-md-3 footer-contact">
+                        <h4>Contact Us</h4>
+                        <p>
+                            Sri Ramakrishna Institute Of Technology <br>
+                            Pachapalayam,<br>
+                            Coimbatore - 641010 <br>
+                            <strong>Phone:</strong> <br>
+                            <a href="https://www.linkedin.com/in/viswa-jith-2b9696258" target="_blank"
+                                style="color: white;">Viswajith M -</a>
+                            <a href="tel:+918148868582">+91-81488-68582</a><br>
+                            <a href="https://linkedin.com/in/tharun-i-a13673253" target="_blank"
+                                style="color: white;">Tharun I
+                                -</a>
+                            <a href="tel:+918148868582">+91-88380-67781</a><br>
+                            <strong>Email:</strong> <a href="mailto:vihansa@sritcbe.ac.in">vihansa@sritcbe.ac.in</a><br>
+                        </p>
+                        <div style="font-weight: bold; font-size: 20px;">
+                            <a href="https://www.instagram.com/srit_vihansa_official/" target="_blank"
+                                class="social-links instagram"><i class="fa fa-instagram"></i>
+                                <pre style="color: aliceblue;">Follow For More...</pre>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 venue-map">
+                        <iframe
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3917.2860716674027!2d76.89614697222787!3d10.941749732315019!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba85c6bbf412ce5%3A0x52c5151f21ac8419!2sSri%20Ramakrishna%20Institute%20of%20Technology!5e0!3m2!1sen!2sin!4v1741497889552!5m2!1sen!2sin"
+                            style="border:0;" allowfullscreen="" loading="lazy"
+                            referrerpolicy="no-referrer-when-downgrade" class="venue-g"></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="copyright">
+                &copy; Copyright <strong>Vihansa-2026</strong>. All Rights Reserved
+                <p>Web Designed by:
+                    <a href="credit.html" target="_blank">Keerthi Vasan P,</a>
+                    <a href="credit.html" target="_blank">Akshay Srinivas</a>
+                    <br>
+                    Poster Designed by:
+                    <a href="https://www.linkedin.com/in/kishanth-s-222811254" target="_blank">Kishanth s,</a>
+                    <a href="https://linkedin.com/in/tharun-i-a13673253" target="_blank">Tharun I</a>
+                </p>
+            </div>
+        </div>
+    </footer>
+    <script src="lib/jquery/jquery.min.js"></script>
+    <script src="lib/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="lib/easing/easing.min.js"></script>
+    <script src="js/credit_navbar.js"></script>
+</body>
+
+</html>

@@ -113,7 +113,7 @@
     "date": "Day 1",
     "time": "2:30 PM",
     "venue": "TBD",
-    "image": "img/events-nontech/mech_non-tech.webp",
+    "image": "img/events-nontech/mech_non-tech.png",
     "formLink": "registration.html"
   },
   "quizzy": {
@@ -122,7 +122,7 @@
     "date": "Day 1",
     "time": "3:30 PM",
     "venue": "CAD Lab",
-    "image": "img/events-tech/mech_tech.webp",
+    "image": "img/events-tech/mech_tech.png",
     "formLink": "registration.html"
   },
   "promptpallette": {
@@ -140,7 +140,7 @@
     "date": "Day 2",
     "time": "2:30 PM",
     "venue": "EC Lab",
-    "image": "img/events-nontech/disorted_beats.webp",
+    "image": "img/events-nontech/disorted_beats.jpeg",
     "formLink": "registration.html"
   },
   "mrtoolman": {
@@ -194,7 +194,7 @@
     "date": "Day 2",
     "time": "10:00 AM",
     "venue": "Auditorium",
-    "image": "img/culturls/8.webp",
+    "image": "img/culturls/short_film.webp",
     "formLink": "cultural_registration.html"
   },
   "clipcounter": {
@@ -203,7 +203,7 @@
     "date": "Day 2",
     "time": "10:00 AM",
     "venue": "Seminar Hall",
-    "image": "img/culturls/8.webp",
+    "image": "img/culturls/5.webp",
     "formLink": "cultural_registration.html"
   },
   "solelymelodia": {
@@ -212,7 +212,7 @@
     "date": "Day 2",
     "time": "2:00 PM",
     "venue": "Main Auditorium",
-    "image": "img/culturls/6.webp",
+    "image": "img/culturls/solo_singing.webp",
     "formLink": "cultural_registration.html"
   },
   "artofone": {
@@ -221,7 +221,7 @@
     "date": "Day 2",
     "time": "3:00 PM",
     "venue": "Open Auditorium",
-    "image": "img/culturls/4.webp",
+    "image": "img/culturls/solo_dance.webp",
     "formLink": "cultural_registration.html"
   },
   "rythmicmotion": {
@@ -230,7 +230,7 @@
     "date": "Day 2",
     "time": "4:00 PM",
     "venue": "Main Auditorium",
-    "image": "img/culturls/3.webp",
+    "image": "img/culturls/group_dance.webp",
     "formLink": "cultural_registration.html"
   },
   "tunemorph": {
@@ -239,7 +239,7 @@
     "date": "Day 2",
     "time": "3:30 PM",
     "venue": "Music Hall",
-    "image": "img/culturls/6.webp",
+    "image": "img/culturls/Adaptune.webp",
     "formLink": "cultural_registration.html"
   },
   "pixelperfect": {
@@ -248,7 +248,7 @@
     "date": "Day 2",
     "time": "10:00 AM",
     "venue": "Digital Lab",
-    "image": "img/culturls/9.webp",
+    "image": "img/culturls/reels_making.webp",
     "formLink": "cultural_registration.html"
   }
 }
