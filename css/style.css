@@ -5003,6 +5003,7 @@ body.low-performance #header {
   background: #000 !important;
   backdrop-filter: none !important;
 }
+
 /* Minimal Preloader */
 #preloader {
   position: fixed;
@@ -5029,10 +5030,129 @@ body.low-performance #header {
 }
 
 @keyframes preloader-spin {
-  to { transform: rotate(360deg); }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 #preloader.loaded {
   opacity: 0;
   visibility: hidden;
+}
+
+/* ==========================================================================
+   Rule Book Modal Styles
+   ========================================================================== */
+.rulebook-modal {
+  position: fixed;
+  z-index: 10000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.9);
+  display: flex;
+  /* Use flex to center */
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(5px);
+}
+
+.rulebook-content {
+  background-color: #1a1a1a;
+  border: 1px solid #333;
+  margin: auto;
+  padding: 30px;
+  width: 90%;
+  max-width: 800px;
+  max-height: 90vh;
+  /* Don't exceed screen height */
+  overflow-y: auto;
+  /* Scroll internally */
+  position: relative;
+  box-shadow: 0 0 20px rgba(255, 0, 0, 0.3);
+  border-radius: 8px;
+  font-family: 'Rajdhani', sans-serif;
+  color: #ddd;
+}
+
+.rulebook-content h2 {
+  color: #ff0000;
+  text-align: center;
+  margin-bottom: 20px;
+  font-family: 'Orbitron', sans-serif;
+  border-bottom: 2px solid #ff0000;
+  padding-bottom: 10px;
+}
+
+.rulebook-content h3 {
+  color: #ff4d4d;
+  margin-top: 20px;
+  margin-bottom: 15px;
+  font-size: 1.5rem;
+}
+
+.rulebook-content h4 {
+  color: #ff8080;
+  margin-top: 15px;
+  margin-bottom: 10px;
+  font-size: 1.2rem;
+}
+
+.rulebook-content p,
+.rulebook-content li {
+  line-height: 1.6;
+  font-size: 1rem;
+}
+
+.rulebook-content ul,
+.rulebook-content ol {
+  padding-left: 20px;
+  margin-bottom: 15px;
+}
+
+.rulebook-content li {
+  margin-bottom: 8px;
+}
+
+.rulebook-content strong {
+  color: #fff;
+}
+
+.close-btn {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: color 0.3s;
+  position: absolute;
+  top: 10px;
+  right: 20px;
+}
+
+.close-btn:hover,
+.close-btn:focus {
+  color: #ff0000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* Custom Scrollbar for Modal */
+.rulebook-content::-webkit-scrollbar {
+  width: 8px;
+}
+
+.rulebook-content::-webkit-scrollbar-track {
+  background: #000;
+}
+
+.rulebook-content::-webkit-scrollbar-thumb {
+  background: #555;
+  border-radius: 4px;
+}
+
+.rulebook-content::-webkit-scrollbar-thumb:hover {
+  background: #ff0000;
 }
