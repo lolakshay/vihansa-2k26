@@ -778,3 +778,24 @@ setTimeout(() => {
     preloader.classList.add('loaded');
   }
 }, 5000);
+
+/* ==========================================================================
+   Rule Book Modal Functions
+   ========================================================================== */
+function openRuleBook() {
+  document.getElementById('ruleBookModal').style.display = 'flex';
+  document.body.style.overflow = 'hidden'; // Disable background scrolling
+}
+
+function closeRuleBook() {
+  document.getElementById('ruleBookModal').style.display = 'none';
+  document.body.style.overflow = 'auto'; // Enable background scrolling
+}
+
+// Close modal when clicking outside of the content
+window.onclick = function (event) {
+  var modal = document.getElementById('ruleBookModal');
+  if (event.target == modal) {
+    closeRuleBook();
+  }
+}

@@ -1,0 +1,424 @@
+/* Extracted Navbar and Footer Styles for Credit Page */
+
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Rajdhani:wght@300;400;500;600;700&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap');
+
+@font-face {
+    font-family: 'StrangerThings';
+    src: url('../fonts/StrangerThings.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'StrangerThingsOutlined';
+    src: url('../fonts/StrangerThingsOutlined.ttf') format('truetype');
+}
+
+:root {
+    --red: #e23636;
+    --black: #000000;
+    --gray: #504a4a;
+    --blue: #518cca;
+    --yellow: #f78f3f;
+    --gold: #D39D55;
+    --r-brown: #3e0000;
+    --text1: white;
+    --text2: #7c0000;
+    --text3: #002d5c;
+    --r-second: #b30000;
+    --b-prime: #000;
+    --void-black: #050505;
+    --cyber-red: #ff003c;
+    --cyber-gold: #fcee09;
+    --electric-blue: #00f0ff;
+    --matrix-green: #0aff0a;
+    --text-main: #ffffff;
+    --text-muted: #a0a0a0;
+    --glass-bg: rgba(255, 255, 255, 0.05);
+    --glass-border: rgba(255, 255, 255, 0.1);
+    --neon-shadow: 0 0 10px rgba(255, 0, 60, 0.7), 0 0 20px rgba(255, 0, 60, 0.5);
+}
+
+/* --- Header & Navbar --- */
+#header {
+    padding: 30px 30px 0;
+    height: 90px;
+    position: fixed;
+    left: 0;
+    top: 0;
+    right: 0;
+    transition: all 0.5s;
+    z-index: 997;
+    background: rgba(5, 5, 5, 0.8) !important;
+    backdrop-filter: blur(20px);
+    border-bottom: 2px solid rgba(255, 0, 60, 0.2) !important;
+}
+
+#header.header-scrolled,
+#header.header-fixed {
+    background: rgba(0, 0, 0, 0.75);
+    padding: 20px 0;
+    height: 72px;
+    transition: all 0.5s;
+    border-bottom: 2px solid rgba(255, 0, 0, 0.2);
+}
+
+#header #logo {
+    display: flex;
+    gap: 30px;
+    float: left;
+}
+
+#header #logo h2 {
+    font-size: 16px;
+    margin: 0;
+    padding: 6px 0;
+    line-height: 1;
+    font-family: "Raleway", sans-serif;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #fff;
+}
+
+#header #logo h2 span {
+    color: #f82249;
+}
+
+#header #logo h2 a {
+    color: #fff;
+    text-decoration: none;
+}
+
+#header #logo img {
+    padding: 0;
+    margin: 0;
+    max-height: 50px;
+}
+
+/* Nav Menu Essentials */
+.nav-menu,
+.nav-menu * {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.nav-menu ul {
+    position: absolute;
+    display: none;
+    top: 100%;
+    left: 0;
+    z-index: 99;
+}
+
+.nav-menu li {
+    position: relative;
+    white-space: nowrap;
+}
+
+.nav-menu>li {
+    float: left;
+}
+
+.nav-menu li:hover>ul,
+.nav-menu li.sfHover>ul {
+    display: block;
+}
+
+.nav-menu ul ul {
+    top: 0;
+    left: 100%;
+}
+
+.nav-menu ul li {
+    min-width: 180px;
+}
+
+/* Nav Menu Container */
+#nav-menu-container {
+    float: right;
+    margin: 0;
+    display: flex;
+    align-items: center;
+}
+
+/* Nav Menu Styling */
+.nav-menu a {
+    padding: 8px;
+    text-decoration: none;
+    display: inline-block;
+    color: white;
+    font-family: 'StrangerThings', 'Orbitron', sans-serif;
+    letter-spacing: 1px;
+    font-weight: 600;
+    font-size: 14px;
+    outline: none;
+    transition: all 0.3s ease-in-out;
+    text-shadow: 0 0 2px rgba(255, 255, 255, 0.3);
+}
+
+.nav-menu .menu-active a,
+.nav-menu a:hover {
+    color: #ff003c !important;
+    /* cyber-red */
+    text-shadow: 0 0 10px #ff003c !important;
+    transform: scale(1.1);
+}
+
+.nav-menu>li {
+    margin-left: 8px;
+}
+
+.nav-menu li.buy-tickets a {
+    color: #ffffff;
+    background: transparent !important;
+    border: 1px solid #fcee09 !important;
+    /* cyber-gold */
+    color: #fcee09 !important;
+    padding: 10px 30px;
+    border-radius: 10px;
+    transition: all ease-in-out 0.3s;
+    font-weight: bold;
+    margin-left: 8px;
+    margin-top: 2px;
+    line-height: 1;
+    font-size: 13px;
+}
+
+.nav-menu li.buy-tickets a:hover {
+    background: #fcee09 !important;
+    color: #050505 !important;
+    /* void-black */
+    box-shadow: 0 0 15px #fcee09;
+}
+
+/* Mobile Nav Toggle */
+#mobile-nav-toggle {
+    position: fixed;
+    right: 20px;
+    top: 25px;
+    z-index: 999;
+    margin: 0;
+    border: 0;
+    background: none;
+    font-size: 28px;
+    display: none;
+    transition: all 0.4s;
+    outline: none;
+    cursor: pointer;
+}
+
+#mobile-nav-toggle i {
+    color: #fff;
+    text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+/* Mobile Nav Styling */
+#mobile-nav {
+    position: fixed;
+    top: 0;
+    padding-top: 18px;
+    bottom: 0;
+    z-index: 998;
+    background: rgba(0, 0, 0, 0.95);
+    left: -260px;
+    width: 260px;
+    overflow-y: auto;
+    transition: 0.4s;
+    backdrop-filter: blur(10px);
+    border-right: 1px solid rgba(255, 0, 0, 0.2);
+}
+
+#mobile-nav ul {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+#mobile-nav ul li {
+    position: relative;
+}
+
+#mobile-nav ul li a {
+    color: #fff;
+    font-size: 16px;
+    overflow: hidden;
+    padding: 10px 22px 10px 15px;
+    position: relative;
+    text-decoration: none;
+    width: 100%;
+    display: block;
+    outline: none;
+    font-family: 'StrangerThings', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+#mobile-nav ul li a:hover {
+    color: #f82249;
+}
+
+body.mobile-nav-active #mobile-nav {
+    left: 0;
+}
+
+body.mobile-nav-active #mobile-nav-toggle {
+    color: #fff;
+}
+
+#mobile-body-overly {
+    width: 100%;
+    height: 100%;
+    z-index: 997;
+    top: 0;
+    left: 0;
+    position: fixed;
+    background: rgba(0, 0, 0, 0.7);
+    display: none;
+}
+
+/* --- Footer --- */
+#footer {
+    background: #000000;
+    padding: 0 0 25px 0;
+    color: #eee;
+    font-size: 14px;
+    width: 100%;
+}
+
+#footer .footer-top {
+    background: #000000;
+    padding: 60px 0 30px 0;
+}
+
+#footer .footer-top .footer-info {
+    margin-bottom: 30px;
+}
+
+#footer .footer-top .footer-info h3 {
+    font-size: 26px;
+    margin: 0 0 20px 0;
+    padding: 2px 0 2px 0;
+    line-height: 1;
+    font-family: "Raleway", sans-serif;
+    font-weight: 700;
+    color: #fff;
+}
+
+#footer .footer-top .footer-info img {
+    height: 40px;
+    margin-bottom: 10px;
+}
+
+#footer .footer-top .footer-info p {
+    font-size: 14px;
+    line-height: 24px;
+    margin-bottom: 0;
+    font-family: "Raleway", sans-serif;
+    color: #fff;
+}
+
+#footer .footer-top .social-links a {
+    font-size: 18px;
+    display: inline-block;
+    background: #222636;
+    color: #eee;
+    line-height: 1;
+    padding: 8px 0;
+    margin-right: 4px;
+    border-radius: 50%;
+    text-align: center;
+    width: 36px;
+    height: 36px;
+    transition: 0.3s;
+}
+
+#footer .footer-top .social-links a:hover {
+    background: #f82249;
+    color: #fff;
+}
+
+#footer .footer-top h4 {
+    font-size: 14px;
+    font-weight: bold;
+    color: #fff;
+    text-transform: uppercase;
+    position: relative;
+    padding-bottom: 12px;
+    border-bottom: 2px solid #f82249;
+}
+
+#footer .footer-top .venue-g {
+    width: 100%;
+    height: 100%;
+    min-height: 200px;
+}
+
+#footer .footer-top .footer-contact {
+    margin-bottom: 30px;
+}
+
+#footer .footer-top .footer-contact p {
+    line-height: 26px;
+}
+
+#footer .copyright {
+    text-align: center;
+    padding-top: 30px;
+}
+
+#footer .credits {
+    text-align: center;
+    font-size: 13px;
+    color: #ddd;
+}
+
+/* Responsive Footer */
+@media (max-width: 767px) {
+    #footer .footer-top .row {
+        display: flex;
+        flex-direction: column;
+    }
+
+    #footer .col-lg-3,
+    #footer .col-lg-6 {
+        width: 100%;
+        margin-bottom: 30px;
+        text-align: center;
+    }
+
+    #footer .venue-g {
+        height: 300px;
+    }
+
+    /* Header Mobile */
+    #header {
+        padding: 15px;
+        height: 70px;
+    }
+
+    #header #logo h2 {
+        font-size: 14px;
+    }
+
+    #logo img {
+        max-height: 40px !important;
+    }
+
+    #nav-menu-container {
+        display: none;
+    }
+
+    #mobile-nav-toggle {
+        display: inline;
+    }
+}
+
+@media (max-width: 1024px) {
+    #nav-menu-container {
+        display: none;
+    }
+
+    #mobile-nav-toggle {
+        display: inline;
+    }
+}
