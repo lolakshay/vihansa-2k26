@@ -1,7 +1,183 @@
 ﻿let isPageVisible = !document.hidden;
 document.addEventListener("visibilitychange", () => { isPageVisible = !document.hidden; });
 
+/**
+ * AudioManager handles all site-wide audio logic.
+ */
+class AudioManager {
+  constructor() {
+    this.bgMusic = document.getElementById('bg-music');
+    this.countdownAudio = document.getElementById('countdown-audio');
+    this.introVideo = document.getElementById('bg-video');
+    this.toggleBtn = document.getElementById('music-toggle');
+
+    // State persistence
+    this.soundEnabled = localStorage.getItem('musicEnabled') === 'true' ||
+      localStorage.getItem('vihansa_sound_enabled') === 'true';
+    this.isUnlocked = false;
+    this.activeSection = 'intro';
+
+    this.volumes = {
+      music: 0.3,
+      intro: 0.5,
+      timer: 0.4
+    };
+
+    this.init();
+  }
+
+  init() {
+    this.updateIcon();
+
+    if (this.toggleBtn) {
+      this.toggleBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        this.toggleSound();
+      });
+    }
+
+    const unlockHandler = () => {
+      this.isUnlocked = true;
+      if (this.soundEnabled) this.resumeAudioContexts();
+      ['click', 'keydown', 'touchstart'].forEach(evt =>
+        document.removeEventListener(evt, unlockHandler)
+      );
+    };
+    ['click', 'keydown', 'touchstart'].forEach(evt =>
+      document.addEventListener(evt, unlockHandler)
+    );
+
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden) this.stopAll();
+      else if (this.soundEnabled) this.resumeAudioContexts();
+    });
+
+    this.setupObservers();
+    this.configureElements();
+
+    if (this.soundEnabled) this.resumeAudioContexts();
+  }
+
+  configureElements() {
+    if (this.bgMusic) { this.bgMusic.loop = true; this.bgMusic.volume = this.volumes.music; }
+    if (this.countdownAudio) { this.countdownAudio.loop = true; this.countdownAudio.volume = this.volumes.timer; }
+    if (this.introVideo) {
+      this.introVideo.loop = true;
+      this.introVideo.muted = true;
+      this.introVideo.setAttribute('playsinline', '');
+      this.introVideo.volume = this.volumes.intro;
+
+      const tryPlay = () => { this.introVideo.play().catch(() => { }); };
+      if (this.introVideo.readyState >= 3) tryPlay();
+      else this.introVideo.addEventListener('canplay', tryPlay, { once: true });
+
+      this.startVideoWatchdog();
+    }
+  }
+
+  startVideoWatchdog() {
+    if (!this.introVideo) return;
+    let lastTime = -1;
+    let stallCount = 0;
+    setInterval(() => {
+      if (document.hidden) return;
+      const currentTime = this.introVideo.currentTime;
+      const isPaused = this.introVideo.paused;
+
+      if (isPaused && this.activeSection === 'intro') {
+        this.introVideo.play().catch(() => { });
+        return;
+      }
+      if (!isPaused && currentTime === lastTime && currentTime !== 0) {
+        stallCount++;
+        if (stallCount > 5) {
+          this.introVideo.currentTime += 0.1;
+          this.introVideo.play().catch(() => { });
+          stallCount = 0;
+        }
+      } else stallCount = 0;
+      lastTime = currentTime;
+    }, 500);
+  }
+
+  toggleSound() {
+    this.soundEnabled = !this.soundEnabled;
+    localStorage.setItem('vihansa_sound_enabled', this.soundEnabled);
+    localStorage.setItem('musicEnabled', this.soundEnabled);
+    this.updateIcon();
+    if (this.soundEnabled) { this.isUnlocked = true; this.resumeAudioContexts(); }
+    else this.stopAll();
+  }
+
+  updateIcon() {
+    if (!this.toggleBtn) return;
+    if (this.soundEnabled) {
+      this.toggleBtn.classList.add('playing');
+      this.toggleBtn.innerHTML = '<i class="fa fa-volume-up"></i>';
+      this.toggleBtn.style.opacity = '1';
+    } else {
+      this.toggleBtn.classList.remove('playing');
+      this.toggleBtn.innerHTML = '<i class="fa fa-volume-off"></i>';
+      this.toggleBtn.style.opacity = '0.7';
+    }
+  }
+
+  updatePlaybackState() {
+    if (!this.soundEnabled) return;
+    if (this.bgMusic && this.bgMusic.paused) this.bgMusic.play().catch(() => { });
+
+    if (this.activeSection === 'intro') {
+      if (this.introVideo) { this.introVideo.muted = false; this.introVideo.volume = this.volumes.intro; }
+      if (this.countdownAudio) this.countdownAudio.pause();
+    } else if (this.activeSection === 'about') {
+      if (this.introVideo) this.introVideo.muted = true;
+      if (this.countdownAudio && this.countdownAudio.paused) this.countdownAudio.play().catch(() => { });
+    } else {
+      if (this.introVideo) this.introVideo.muted = true;
+      if (this.countdownAudio) this.countdownAudio.pause();
+    }
+  }
+
+  stopAll() {
+    if (this.bgMusic) this.bgMusic.pause();
+    if (this.countdownAudio) this.countdownAudio.pause();
+    if (this.introVideo) this.introVideo.muted = true;
+  }
+
+  resumeAudioContexts() { this.updatePlaybackState(); }
+
+  playAudio(audioEl, volume) {
+    if (!audioEl) return;
+    audioEl.volume = volume;
+    if (audioEl.paused) audioEl.play().catch(() => { });
+  }
+
+  pauseAudio(audioEl) {
+    if (audioEl && !audioEl.paused) audioEl.pause();
+  }
+
+  setupObservers() {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          if (entry.target.id === 'intro') this.activeSection = 'intro';
+          else if (entry.target.id === 'about') this.activeSection = 'about';
+        } else if (entry.target.id === this.activeSection) {
+          this.activeSection = 'other';
+        }
+        if (this.soundEnabled) this.updatePlaybackState();
+      });
+    }, { threshold: 0.5 });
+    const introSection = document.getElementById('intro');
+    const aboutSection = document.getElementById('about');
+    if (introSection) observer.observe(introSection);
+    if (aboutSection) observer.observe(aboutSection);
+  }
+}
+
 jQuery(document).ready(function ($) {
+  // Initialize AudioManager
+  window.audioManager = new AudioManager();
 
 
 
@@ -230,224 +406,114 @@ jQuery(document).ready(function ($) {
     if (distance < 0) clearInterval(x);
   }, second);
 
+
   /******************************
-   * 7. AUDIO FEEDBACK (MUSIC NOTES)
+   * 8. AUDIO FEEDBACK (MUSIC NOTES)
    ******************************/
-  // User noted they don't have the file yet, using a placeholder.
   const clickSound = new Audio('audio/click-note.mp3');
 
   function playFeedbackSound() {
-    // Reset and play to allow rapid clicks
     clickSound.currentTime = 0;
-    clickSound.play().catch(error => {
-      // Browsers often block audio until first interaction
-      console.log("Audio playback delayed or blocked:", error);
-    });
+    clickSound.play().catch(() => { });
   }
 
-  // 1. Listen for Tab clicks (Technical, Workshops, Culturals)
-  $('.nav-tabs .nav-link').on('click', function () {
+  $('.nav-tabs .nav-link, .electric-card').on('click', function () {
     playFeedbackSound();
   });
 
-  // 2. Listen for Electric Card clicks (Individual events)
-  $(document).on('click', '.electric-card', function () {
-    playFeedbackSound();
-  });
 
   /******************************
-   * 8. MUSIC TOGGLE BUTTON - CONTROLS ALL AUDIO
+   * 8. GALLERY POPUP FUNCTIONS
    ******************************/
-  const musicToggle = document.getElementById('music-toggle');
-  const bgMusic = document.getElementById('bg-music');
-  const countdownAudio = document.getElementById('countdown-audio');
-  const bgVideo = document.getElementById('bg-video');
-  const introSection = document.getElementById('intro');
-  const aboutSection = document.getElementById('about');
+  function openPopup(image, title, coordinators, faculty) {
+    document.getElementById('popupImage').src = 'img/events-main/' + image;
+    document.getElementById('popupTitle').textContent = title;
 
-  let musicEnabled = localStorage.getItem('musicEnabled') === 'true';
-  let isIntroVisible = true; // Default start
-  let isAboutVisible = false;
+    // Update coordinators
+    const coordList = document.getElementById('popupCoordinators');
+    coordList.innerHTML = coordinators.map(c => `<li style="color: White";>${c}</li>`).join('');
 
-  // Initialize UI
-  updateMusicButtonUI(musicEnabled);
+    // Update faculty
+    const facultyList = document.getElementById('popupFaculty');
+    facultyList.innerHTML = faculty.map(f => `<li style="color: White">${f}</li>`).join('');
 
-  // Intersection Observer for Section Visibility
-  const audioObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.target.id === 'intro') {
-        isIntroVisible = entry.isIntersecting;
-      } else if (entry.target.id === 'about') {
-        isAboutVisible = entry.isIntersecting;
+    document.getElementById('eventPopup').style.display = 'block';
+    document.body.style.overflow = 'hidden'; // Prevent scrolling
+  }
+
+
+  function closePopup() {
+    document.getElementById('eventPopup').style.display = 'none';
+    document.body.style.overflow = 'auto'; // Re-enable scrolling
+  }
+
+  /******************************
+   * 9. 3D TILT EFFECT LOGIC
+   ******************************/
+  const tiltContainer = document.getElementById('tiltContainer');
+  const tiltInner = document.getElementById('tiltInner');
+  const tiltShine = document.getElementById('tiltShine');
+  if (tiltContainer && tiltInner && window.innerWidth >= 768) {
+    const maxTilt = 15;
+    let cachedRect = null;
+    let tiltTicking = false;
+    const updateRect = () => { cachedRect = tiltContainer.getBoundingClientRect(); };
+    updateRect();
+    window.addEventListener('resize', updateRect);
+    tiltContainer.addEventListener('mousemove', (e) => {
+      if (!isPageVisible) return;
+      if (!tiltTicking) {
+        requestAnimationFrame(() => {
+          if (!cachedRect) return;
+          const x = e.clientX - cachedRect.left;
+          const y = e.clientY - cachedRect.top;
+          const xPct = x / cachedRect.width;
+          const yPct = y / cachedRect.height;
+          const rotateY = (xPct - 0.5) * maxTilt * 2;
+          const rotateX = (0.5 - yPct) * maxTilt * 2;
+          tiltInner.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.05, 1.05, 1.05)`;
+          if (tiltShine) {
+            tiltShine.style.opacity = '1';
+            tiltShine.style.background = `radial-gradient(circle at ${x}px ${y}px, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0) 80%)`;
+          }
+          tiltTicking = false;
+        });
+        tiltTicking = true;
       }
     });
-    // Update audio state whenever visibility changes
-    updateAudioState();
-  }, { threshold: 0.3 }); // Trigger when 30% visible
-
-  if (introSection) audioObserver.observe(introSection);
-  if (aboutSection) audioObserver.observe(aboutSection);
-
-  // Toggle Button Click Handler
-  if (musicToggle) {
-    musicToggle.addEventListener('click', function () {
-      musicEnabled = !musicEnabled;
-      localStorage.setItem('musicEnabled', musicEnabled);
-      updateMusicButtonUI(musicEnabled);
-      updateAudioState();
+    tiltContainer.addEventListener('mouseleave', () => {
+      tiltInner.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
+      tiltInner.style.transition = 'transform 0.5s ease-out';
+      setTimeout(() => { tiltInner.style.transition = 'transform 0.1s ease-out'; }, 500);
+      if (tiltShine) tiltShine.style.opacity = '0';
     });
+    tiltContainer.addEventListener('mouseenter', () => { updateRect(); tiltInner.style.transition = 'transform 0.1s ease-out'; });
   }
 
-  // Central Audio State Manager
-  function updateAudioState() {
-    if (musicEnabled) {
-      // 1. Ambient Music - Always plays if enabled
-      if (bgMusic && bgMusic.paused) {
-        bgMusic.volume = VOL_BG_MUSIC;
-        bgMusic.play().catch(e => console.log("BG Music play failed", e));
-      }
 
-      // 2. Intro Video Audio - Only in Intro Section
-      if (bgVideo) {
-        if (isIntroVisible) {
-          bgVideo.muted = false;
-          bgVideo.volume = VOL_INTRO_VIDEO;
-        } else {
-          bgVideo.muted = true;
-        }
-      }
-
-      // 3. Countdown Audio - Only in Countdown Section
-      if (countdownAudio) {
-        if (isAboutVisible) {
-          countdownAudio.volume = VOL_COUNTDOWN;
-          if (countdownAudio.paused) countdownAudio.play().catch(e => console.log("Countdown play failed", e));
-        } else {
-          countdownAudio.pause();
-          countdownAudio.currentTime = 0; // Reset for next time
-        }
-      }
-
-    } else {
-      // GLOBAL MUTE - Stop everything
-      if (bgMusic) bgMusic.pause();
-
-      if (bgVideo) bgVideo.muted = true;
-
-      if (countdownAudio) {
-        countdownAudio.pause();
-        countdownAudio.currentTime = 0;
-      }
+  /******************************
+   * 9. CONFETTI FUNCTION
+   ******************************/
+  function fireConfetti() {
+    if (typeof confetti === 'function') {
+      confetti({ particleCount: 200, spread: 200, origin: { x: 1, y: 0 } });
+      confetti({ particleCount: 200, spread: 200, origin: { x: 0, y: 0 } });
     }
   }
 
-  // UI Helper
-  function updateMusicButtonUI(isEnabled) {
-    if (!musicToggle) return;
-    if (isEnabled) {
-      musicToggle.classList.add('playing');
-      musicToggle.innerHTML = '<i class="fa fa-volume-up"></i>';
-    } else {
-      musicToggle.classList.remove('playing');
-      musicToggle.innerHTML = '<i class="fa fa-volume-off"></i>';
-    }
+
+
+
+  /******************************
+   * 10. MOBILE VIEWPORT FIX
+   ******************************/
+  if (window.matchMedia("(max-width: 767px)").matches) {
+    $('#intro').css({ height: $(window).height() });
   }
 
-});
-
-/******************************
- * 8. GALLERY POPUP FUNCTIONS
- ******************************/
-function openPopup(image, title, coordinators, faculty) {
-  document.getElementById('popupImage').src = 'img/events-main/' + image;
-  document.getElementById('popupTitle').textContent = title;
-
-  // Update coordinators
-  const coordList = document.getElementById('popupCoordinators');
-  coordList.innerHTML = coordinators.map(c => `<li style="color: White";>${c}</li>`).join('');
-
-  // Update faculty
-  const facultyList = document.getElementById('popupFaculty');
-  facultyList.innerHTML = faculty.map(f => `<li style="color: White">${f}</li>`).join('');
-
-  document.getElementById('eventPopup').style.display = 'block';
-  document.body.style.overflow = 'hidden'; // Prevent scrolling
-}
-
-
-function closePopup() {
-  document.getElementById('eventPopup').style.display = 'none';
-  document.body.style.overflow = 'auto'; // Re-enable scrolling
-}
-
-/******************************
- * 9. 3D TILT EFFECT LOGIC
- ******************************/
-const tiltContainer = document.getElementById('tiltContainer');
-const tiltInner = document.getElementById('tiltInner');
-const tiltShine = document.getElementById('tiltShine');
-if (tiltContainer && tiltInner && window.innerWidth >= 768) {
-  const maxTilt = 15;
-  let cachedRect = null;
-  let tiltTicking = false;
-  const updateRect = () => { cachedRect = tiltContainer.getBoundingClientRect(); };
-  updateRect();
-  window.addEventListener('resize', updateRect);
-  tiltContainer.addEventListener('mousemove', (e) => {
-    if (!isPageVisible) return;
-    if (!tiltTicking) {
-      requestAnimationFrame(() => {
-        if (!cachedRect) return;
-        const x = e.clientX - cachedRect.left;
-        const y = e.clientY - cachedRect.top;
-        const xPct = x / cachedRect.width;
-        const yPct = y / cachedRect.height;
-        const rotateY = (xPct - 0.5) * maxTilt * 2;
-        const rotateX = (0.5 - yPct) * maxTilt * 2;
-        tiltInner.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.05, 1.05, 1.05)`;
-        if (tiltShine) {
-          tiltShine.style.opacity = '1';
-          tiltShine.style.background = `radial-gradient(circle at ${x}px ${y}px, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0) 80%)`;
-        }
-        tiltTicking = false;
-      });
-      tiltTicking = true;
-    }
-  });
-  tiltContainer.addEventListener('mouseleave', () => {
-    tiltInner.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
-    tiltInner.style.transition = 'transform 0.5s ease-out';
-    setTimeout(() => { tiltInner.style.transition = 'transform 0.1s ease-out'; }, 500);
-    if (tiltShine) tiltShine.style.opacity = '0';
-  });
-  tiltContainer.addEventListener('mouseenter', () => { updateRect(); tiltInner.style.transition = 'transform 0.1s ease-out'; });
-}
-
-
-/******************************
- * 9. CONFETTI FUNCTION
- ******************************/
-function fireConfetti() {
-  if (typeof confetti === 'function') {
-    confetti({ particleCount: 200, spread: 200, origin: { x: 1, y: 0 } });
-    confetti({ particleCount: 200, spread: 200, origin: { x: 0, y: 0 } });
-  }
-}
-
-
-
-
-/******************************
- * 10. MOBILE VIEWPORT FIX
- ******************************/
-if (window.matchMedia("(max-width: 767px)").matches) {
-  $('#intro').css({ height: $(window).height() });
-}
-
-/* ==========================================================================
-   Main Events - Dynamic Loading & Scroll Reveal
-   ========================================================================== */
-document.addEventListener('DOMContentLoaded', () => {
+  /* ==========================================================================
+     Main Events - Dynamic Loading & Scroll Reveal
+     ========================================================================== */
 
   // Function to load main events from JSON
   const loadMainEvents = async () => {
@@ -482,7 +548,7 @@ document.addEventListener('DOMContentLoaded', () => {
                                 <div class="event-meta">
                                     ${event.meta.map(m => `<span><i class="fa ${m.icon}"></i> ${m.text}</span>`).join('')}
                                 </div>
-                                <a href="${event.link}" class="me-cta-btn">${event.cta} <i class="fa fa-arrow-right"></i></a>
+                                <a href="javascript:void(0)" onclick="openEventModal('${event.id}')" class="me-cta-btn">${event.cta} <i class="fa fa-arrow-right"></i></a>
                             </div>
                         </div>
                     </div>
@@ -528,83 +594,84 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Kick off the loading
   loadMainEvents();
-});
 
-
-/* ==========================================================================
-   LIGHTNING TIMELINE LOGIC
-   ========================================================================== */
-document.addEventListener('DOMContentLoaded', () => {
+  /* ==========================================================================
+     LIGHTNING TIMELINE LOGIC
+     ========================================================================== */
   const agendaSection = document.querySelector('.stranger-agenda');
-  if (!agendaSection) return;
+  if (agendaSection) {
+    // Get lightning path
+    const lightningPath = document.querySelector("#st-mainLightning");
 
-  // Get lightning path
-  const lightningPath = document.querySelector("#st-mainLightning");
+    if (lightningPath) {
+      // Initialize stroke dash for animation
+      const length = lightningPath.getTotalLength();
+      lightningPath.style.strokeDasharray = length;
+      lightningPath.style.strokeDashoffset = length; // Start hidden
+    }
 
-  if (lightningPath) {
-    // Initialize stroke dash for animation
-    const length = lightningPath.getTotalLength();
-    lightningPath.style.strokeDasharray = length;
-    lightningPath.style.strokeDashoffset = length; // Start hidden
-  }
+    // Switch Day Function - Global
+    window.switchSTDay = function (day) {
+      // Hide all days
+      document.querySelectorAll('.st-day').forEach(d => d.classList.remove('active'));
+      document.querySelectorAll('.st-tab').forEach(t => t.classList.remove('active'));
 
-  // Switch Day Function - Global
-  window.switchSTDay = function (day) {
-    // Hide all days
-    document.querySelectorAll('.st-day').forEach(d => d.classList.remove('active'));
-    document.querySelectorAll('.st-tab').forEach(t => t.classList.remove('active'));
+      // Show selected day
+      document.getElementById(`st-day${day}`).classList.add('active');
+      document.querySelector(`.st-day${day}-btn`).classList.add('active');
+    };
 
-    // Show selected day
-    document.getElementById(`st-day${day}`).classList.add('active');
-    document.querySelector(`.st-day${day}-btn`).classList.add('active');
-  };
-
-  // Scroll-based lightning draw animation - Optimized
-  let lightningTicking = false;
-  let cachedSectionTop = 0;
-  let cachedSectionHeight = 0;
-  let cachedWindowHeight = window.innerHeight;
-  let lightningLength = lightningPath ? lightningPath.getTotalLength() : 0;
-  let isAgendaVisible = false;
-  const agendaObserver = new IntersectionObserver((entries) => { isAgendaVisible = entries[0].isIntersecting; }, { threshold: 0.01 });
-  if (agendaSection) agendaObserver.observe(agendaSection);
-  window.addEventListener('resize', () => {
+    // Scroll-based lightning draw animation - Optimized
+    let lightningTicking = false;
+    let cachedSectionTop = 0;
+    let cachedSectionHeight = 0;
+    let cachedWindowHeight = window.innerHeight;
+    let lightningLength = lightningPath ? lightningPath.getTotalLength() : 0;
+    let isAgendaVisible = false;
+    const agendaObserver = new IntersectionObserver((entries) => { isAgendaVisible = entries[0].isIntersecting; }, { threshold: 0.01 });
+    agendaObserver.observe(agendaSection);
+    window.addEventListener('resize', () => {
+      cachedSectionTop = agendaSection.offsetTop;
+      cachedSectionHeight = agendaSection.offsetHeight;
+      cachedWindowHeight = window.innerHeight;
+      if (lightningPath) lightningLength = lightningPath.getTotalLength();
+    });
     cachedSectionTop = agendaSection.offsetTop;
     cachedSectionHeight = agendaSection.offsetHeight;
-    cachedWindowHeight = window.innerHeight;
-    if (lightningPath) lightningLength = lightningPath.getTotalLength();
-  });
-  cachedSectionTop = agendaSection.offsetTop;
-  cachedSectionHeight = agendaSection.offsetHeight;
-  window.addEventListener('scroll', () => {
-    if (!lightningPath || !isAgendaVisible || !isPageVisible) return;
-    if (!lightningTicking) {
-      window.requestAnimationFrame(() => {
-        const scrollY = window.scrollY;
-        const startOffset = cachedSectionTop - cachedWindowHeight * 0.9;
-        const endOffset = cachedSectionTop + cachedSectionHeight - cachedWindowHeight * 0.9;
-        let progress = (scrollY - startOffset) / (endOffset - startOffset);
-        progress = Math.max(0, Math.min(1, progress));
-        lightningPath.style.strokeDashoffset = lightningLength * (1 - progress);
-        lightningTicking = false;
-      });
-      lightningTicking = true;
-    }
-  }, { passive: true });
-
-  // Event Card Reveal Animation (Fly-in)
-  const eventObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
+    window.addEventListener('scroll', () => {
+      if (!lightningPath || !isAgendaVisible || !isPageVisible) return;
+      if (!lightningTicking) {
+        window.requestAnimationFrame(() => {
+          const scrollY = window.scrollY;
+          const startOffset = cachedSectionTop - cachedWindowHeight * 0.9;
+          const endOffset = cachedSectionTop + cachedSectionHeight - cachedWindowHeight * 0.9;
+          let progress = (scrollY - startOffset) / (endOffset - startOffset);
+          progress = Math.max(0, Math.min(1, progress));
+          lightningPath.style.strokeDashoffset = lightningLength * (1 - progress);
+          lightningTicking = false;
+        });
+        lightningTicking = true;
       }
-    });
-  }, { threshold: 0.15, rootMargin: "-50px" });
+    }, { passive: true });
 
-  document.querySelectorAll('.st-event').forEach(event => {
-    eventObserver.observe(event);
-  });
-});
+    // Event Card Reveal Animation (Fly-in)
+    const eventObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.15, rootMargin: "-50px" });
+
+    document.querySelectorAll('.st-event').forEach(event => {
+      eventObserver.observe(event);
+    });
+  }
+
+}); // End jQuery(document).ready
+
+
+
 
 
 
@@ -693,285 +760,18 @@ document.addEventListener('keydown', function (event) {
 });
 
 
-/* ==========================================================================
-   AUDIO MANAGER (REFACTORED & STABLE)
-   ========================================================================== */
-/**
- * AudioManager handles all site-wide audio logic.
- * Features:
- * - Persistent state via localStorage.
- * - Browser autoplay policy handling (Unlock on interaction).
- * - Section-based audio switching (IntersectionObserver).
- * - Code-based volume management (No UI).
- */
-class AudioManager {
-  constructor() {
-    // DOM Elements
-    this.bgMusic = document.getElementById('bg-music');
-    this.countdownAudio = document.getElementById('countdown-audio');
-    this.introVideo = document.getElementById('bg-video');
-    this.toggleBtn = document.getElementById('sound-toggle');
 
-    // State
-    this.soundEnabled = localStorage.getItem('vihansa_sound_enabled') === 'true';
-    this.isUnlocked = false;
-    this.activeSection = 'intro'; // Start assuming intro
 
-    // ============================================
-    // VOLUME SETTINGS (CONTROL HERE)
-    // ============================================
-    this.volumes = {
-      music: 0.1,  // Background music volume (0.0 to 1.0)
-      intro: 0.4,  // Intro video volume (0.0 to 1.0)
-      timer: 0.6   // Countdown timer volume (0.0 to 1.0)
-    };
-    // ============================================
 
-    if (this.toggleBtn) {
-      this.init();
-    }
-  }
 
-  init() {
-    console.log("AudioManager: Initializing...");
-
-    // 1. Set Initial UI State
-    this.updateIcon();
-
-    // 2. Setup Toggle Button (Mute/Unmute Global)
-    this.toggleBtn.addEventListener('click', (e) => {
-      e.preventDefault();
-      this.toggleSound();
-    });
-
-    // 3. Setup Global Unlock Listener
-    const unlockHandler = () => {
-      console.log("AudioManager: User interaction detected. Unlocking audio.");
-      this.isUnlocked = true;
-      if (this.soundEnabled) {
-        this.resumeAudioContexts();
-      }
-      ['click', 'keydown', 'touchstart'].forEach(evt =>
-        document.removeEventListener(evt, unlockHandler)
-      );
-    };
-
-    ['click', 'keydown', 'touchstart'].forEach(evt =>
-      document.addEventListener(evt, unlockHandler)
-    );
-
-    // 4. Setup Visibility Handler
-    document.addEventListener('visibilitychange', () => {
-      if (document.hidden) {
-        this.muteAll(true);
-      } else {
-        if (this.soundEnabled) {
-          this.resumeAudioContexts();
-        }
-      }
-    });
-
-    // 5. Setup Intersection Observer
-    this.setupObservers();
-
-    // 6. Initial Configuration
-    this.configureElements();
-
-    // 7. Attempt Auto-Start
-    if (this.soundEnabled) {
-      this.resumeAudioContexts();
-    }
-  }
-
-  initVolumeControls() {
-    // Initialize slider values
-    if (this.volSliderMusic) this.volSliderMusic.value = this.volumes.music;
-    if (this.volSliderIntro) this.volSliderIntro.value = this.volumes.intro;
-    if (this.volSliderTimer) this.volSliderTimer.value = this.volumes.timer;
-
-    // Bind events
-    if (this.volSliderMusic) {
-      this.volSliderMusic.addEventListener('input', (e) => {
-        this.volumes.music = parseFloat(e.target.value);
-        if (this.bgMusic) this.bgMusic.volume = this.volumes.music;
-      });
-    }
-
-    if (this.volSliderIntro) {
-      this.volSliderIntro.addEventListener('input', (e) => {
-        this.volumes.intro = parseFloat(e.target.value);
-        if (this.introVideo && !this.introVideo.muted) this.introVideo.volume = this.volumes.intro;
-      });
-    }
-
-    if (this.volSliderTimer) {
-      this.volSliderTimer.addEventListener('input', (e) => {
-        this.volumes.timer = parseFloat(e.target.value);
-        if (this.countdownAudio) this.countdownAudio.volume = this.volumes.timer;
-      });
-    }
-  }
-
-  configureElements() {
-    if (this.bgMusic) {
-      this.bgMusic.loop = true;
-      this.bgMusic.volume = this.volumes.music;
-    }
-    if (this.countdownAudio) {
-      this.countdownAudio.loop = true;
-      this.countdownAudio.volume = this.volumes.timer;
-    }
-    if (this.introVideo) {
-      this.introVideo.loop = true;
-      this.introVideo.muted = true; // Start muted
-      this.introVideo.volume = this.volumes.intro;
-
-      this.introVideo.addEventListener('canplay', () => {
-        this.introVideo.play().catch(e => console.warn("Video visual play failed:", e));
-      }, { once: true });
-    }
-  }
-
-  toggleSound() {
-    this.soundEnabled = !this.soundEnabled;
-    localStorage.setItem('vihansa_sound_enabled', this.soundEnabled);
-    console.log(`AudioManager: Sound toggled to ${this.soundEnabled}`);
-    this.updateIcon();
-
-    if (this.soundEnabled) {
-      this.isUnlocked = true;
-      this.resumeAudioContexts();
-    } else {
-      this.stopAll();
-    }
-  }
-
-  updateIcon() {
-    if (this.soundEnabled) {
-      this.toggleBtn.textContent = 'ðŸ”Š';
-      this.toggleBtn.style.opacity = '1';
-    } else {
-      this.toggleBtn.textContent = 'ðŸ”‡';
-      this.toggleBtn.style.opacity = '0.7';
-    }
-  }
-
-  updatePlaybackState() {
-    if (!this.soundEnabled) return;
-
-    console.log(`AudioManager: Updating playback for section '${this.activeSection}'`);
-
-    // 1. Background Music: Always plays if enabled
-    this.playAudio(this.bgMusic, this.volumes.music);
-
-    // 2. Section Specific Audio
-    if (this.activeSection === 'intro') {
-      // Intro: Video Audio ON, Countdown OFF
-      if (this.introVideo) {
-        this.introVideo.muted = false;
-        this.introVideo.volume = this.volumes.intro;
-      }
-      this.pauseAudio(this.countdownAudio);
-
-    } else if (this.activeSection === 'about') {
-      // About/Countdown: Video Audio OFF, Countdown ON
-      if (this.introVideo) this.introVideo.muted = true; // Mute video but keep playing visually
-      this.playAudio(this.countdownAudio, this.volumes.timer);
-
-    } else {
-      // Other: All specific sounds OFF
-      if (this.introVideo) this.introVideo.muted = true;
-      this.pauseAudio(this.countdownAudio);
-    }
-  }
-
-  stopAll() {
-    if (this.bgMusic) this.bgMusic.pause();
-    if (this.countdownAudio) this.countdownAudio.pause();
-    if (this.introVideo) this.introVideo.muted = true;
-  }
-
-  muteAll() {
-    this.stopAll();
-  }
-
-  resumeAudioContexts() {
-    this.updatePlaybackState();
-  }
-
-  playAudio(audioEl, volume) {
-    if (!audioEl) return;
-    audioEl.volume = volume;
-    if (audioEl.paused) {
-      const p = audioEl.play();
-      if (p) {
-        p.catch(e => {
-          if (e.name !== 'AbortError') console.warn("Audio play blocked:", e.message);
-        });
-      }
-    }
-  }
-
-  pauseAudio(audioEl) {
-    if (audioEl && !audioEl.paused) {
-      audioEl.pause();
-    }
-  }
-
-  setupObservers() {
-    const observerOptions = {
-      threshold: 0.5 // 50% visibility
-    };
-
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          if (entry.target.id === 'intro') {
-            this.activeSection = 'intro';
-          } else if (entry.target.id === 'about') {
-            this.activeSection = 'about';
-          }
-        } else {
-          // If leaving the active section, switch to 'other' ONLY if we are not entering another tracked section
-          if (entry.target.id === this.activeSection) {
-            // We can safely assume 'other' for a moment. 
-            // If we entered another section, its callback will fire and overwrite this.
-            this.activeSection = 'other';
-          }
-        }
-
-        if (this.soundEnabled) {
-          this.updatePlaybackState();
-        }
-      });
-    }, observerOptions);
-
-    const introSection = document.getElementById('intro');
-    const aboutSection = document.getElementById('about');
-
-    if (introSection) observer.observe(introSection);
-    if (aboutSection) observer.observe(aboutSection);
-  }
-}
-
-// Initialize on DOM Ready
-$(document).ready(function () {
-  window.audioManager = new AudioManager();
-});
-
-// Minimal Preloader Removal
-window.addEventListener('load', function () {
+// Preloader Handling
+window.addEventListener('load', () => {
   const preloader = document.getElementById('preloader');
   if (preloader) {
     preloader.classList.add('loaded');
-    // Optional: Remove from DOM after transition
-    setTimeout(() => {
-      preloader.style.display = 'none';
-    }, 600);
+    setTimeout(() => { preloader.style.display = 'none'; }, 600);
   }
 });
-
-// Safety Timeout (Force hide loader after 5 seconds if load event hangs)
 setTimeout(() => {
   const preloader = document.getElementById('preloader');
   if (preloader && !preloader.classList.contains('loaded')) {

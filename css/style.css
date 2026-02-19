@@ -4077,7 +4077,7 @@ body.mobile-nav-active #mobile-nav-toggle {
   display: none;
   /* Changed from none to flex via JS */
   position: fixed;
-  z-index: 99999;
+  z-index: 2147483646;
   /* Highest priority */
   left: 0;
   top: 0;
@@ -5003,6 +5003,7 @@ body.low-performance #header {
   background: #000 !important;
   backdrop-filter: none !important;
 }
+
 /* Minimal Preloader */
 #preloader {
   position: fixed;
@@ -5029,7 +5030,9 @@ body.low-performance #header {
 }
 
 @keyframes preloader-spin {
-  to { transform: rotate(360deg); }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 #preloader.loaded {
