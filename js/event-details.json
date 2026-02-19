@@ -6,7 +6,7 @@
     "time": "10:00 AM",
     "venue": "EG Hall",
     "image": "img/events-main/paper_presentation.webp",
-    "formLink": "registration.html"
+    "formLink": "reg_starting_soon.html"
   },
   "project-expo": {
     "title": "Project Expo",
@@ -15,7 +15,7 @@
     "time": "10:00 AM",
     "venue": "Room 242 / ECE Labs",
     "image": "img/events-main/project_expo.webp",
-    "formLink": "registration.html"
+    "formLink": "reg_starting_soon.html"
   },
   "report-rendering": {
     "title": "Codeathon",
@@ -24,7 +24,7 @@
     "time": "10:00 AM",
     "venue": "CC1, CC2",
     "image": "img/events-main/codeathon.webp",
-    "formLink": "registration.html"
+    "formLink": "reg_starting_soon.html"
   },
   "khokho": {
     "title": "Kho Kho",
