@@ -14,7 +14,7 @@
         rel="stylesheet">
     <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-    <link href="css/credit_navbar_footer.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
 
     <style>
         :root {
@@ -38,7 +38,7 @@
             padding-top: 100px;
             background-color: var(--dark);
             color: #e0e0e0;
-            font-family: 'Courier Prime', monospace;
+            font-family: 'Open Sans', sans-serif;
             overflow-x: hidden;
             min-height: 100vh;
             /* Removed flex centering to allow full-width footer */
@@ -53,6 +53,7 @@
             min-height: calc(100vh - 400px);
             /* Ensure footer stays at bottom if content is short */
             padding-bottom: 50px;
+            font-family: 'Courier Prime', monospace;
         }
 
         /* ─── OPTIMIZED ATMOSPHERE ─── */
@@ -558,26 +559,28 @@
 <body>
     <header id="header">
         <div class="container">
-            <div id="logo" class="pull-left">
+
+            <div id="logo">
                 <a href="index.html#intro" class="scrollto"><img src="img/logo1.webp" alt="" title="" width="50"
                         height="50"></a>
                 <a href="index.html#intro" class="scrollto"><img src="img/logo.webp" alt="" title="" width="50"
                         height="50"></a>
                 <h2><a href="index.html#main">Sri <span>RamaKrishna</span><br />Institute of technology</a></h2>
             </div>
+
             <nav id="nav-menu-container">
                 <ul class="nav-menu">
                     <li class="menu-active"><a href="index.html#intro" data-text="Home">Home</a></li>
-                    <li><a href="index.html#about" data-text="About">About</a></li>
+                    <!-- <li><a href="index.html#about" data-text="About">About</a></li> -->
                     <li><a href="index.html#hack-v2" data-text="Hackathon">Hackathon</a></li>
+                    <li><a href="index.html#main-events" data-text="Main Events">Main Events</a></li>
                     <li><a href="index.html#events" data-text="Events">Events</a></li>
-                    <li><a href="index.html#gallery" data-text="Main Events">Main Events</a></li>
                     <li><a href="index.html#agenda" data-text="Agenda">Agenda</a></li>
                     <li class="buy-tickets"><a href="index.html#events" data-text="Register">Register</a></li>
                 </ul>
-            </nav>
+            </nav><!-- #nav-menu-container -->
         </div>
-    </header>
+    </header><!-- #header -->
 
     <div class="scanlines"></div>
     <video autoplay muted loop playsinline id="bg-video">
@@ -809,6 +812,9 @@
         </script>
     </div><!-- End .credit-content-wrapper -->
 
+    <!--==========================
+    Footer
+  ============================-->
     <footer id="footer">
         <div class="footer-top">
             <div class="container">
@@ -842,6 +848,7 @@
                             </a>
                         </div>
                     </div>
+
                     <div class="col-lg-6 venue-map">
                         <iframe
                             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3917.2860716674027!2d76.89614697222787!3d10.941749732315019!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba85c6bbf412ce5%3A0x52c5151f21ac8419!2sSri%20Ramakrishna%20Institute%20of%20Technology!5e0!3m2!1sen!2sin!4v1741497889552!5m2!1sen!2sin"
@@ -851,24 +858,30 @@
                 </div>
             </div>
         </div>
+
         <div class="container">
             <div class="copyright">
                 &copy; Copyright <strong>Vihansa-2026</strong>. All Rights Reserved
                 <p>Web Designed by:
-                    <a href="credit.html" target="_blank">Keerthi Vasan P,</a>
-                    <a href="credit.html" target="_blank">Akshay Srinivas</a>
+                    <a href="2026_credit.html" target="_blank">Keerthi Vasan P,</a>
+                    <a href="2026_credit.html" target="_blank">Akshay Srinivas</a>
+                    <!-- <a href="https://www.linkedin.com/in/rahul-prashath-m-63743a2b3" target="_blank">Rahul Prashath</a> -->
                     <br>
-                    Poster Designed by:
-                    <a href="https://www.linkedin.com/in/kishanth-s-222811254" target="_blank">Kishanth s,</a>
-                    <a href="https://linkedin.com/in/tharun-i-a13673253" target="_blank">Tharun I</a>
+                    Previous Year Poster and website Designed by:
+                    <a href="credit.html" target="_blank">View</a>
+                    <a href="credit.html" target="_blank"></a>
                 </p>
+
             </div>
         </div>
-    </footer>
+    </footer><!-- #footer -->
     <script src="lib/jquery/jquery.min.js"></script>
+    <script src="lib/jquery/jquery-migrate.min.js"></script>
     <script src="lib/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="lib/easing/easing.min.js"></script>
-    <script src="js/credit_navbar.js"></script>
+    <script src="lib/superfish/hoverIntent.js"></script>
+    <script src="lib/superfish/superfish.min.js"></script>
+    <script src="js/main.js"></script>
 </body>
 
 </html>
