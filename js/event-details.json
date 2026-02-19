@@ -1,4 +1,31 @@
 {
+  "paper-presentation": {
+    "title": "Paper Presentation",
+    "desc": "<div class=\"event-full-desc\">\n      <p><strong>Paper Presentation</strong> provides a platform for students to showcase their technical research and innovative ideas. Participants will present their papers on trending technologies and engineering advancements.</p>\n      \n      <h3>ðŸ“‹ Rules</h3>\n      <ul>\n        <li>Maximum 4 members per team.</li>\n        <li>Abstract must be submitted prior to the event.</li>\n        <li>Presentation time: 8-10 minutes.</li>\n        <li>Q&A session will follow the presentation.</li>\n        <li>Hardcopy of the paper is required.</li>\n      </ul>\n    </div>",
+    "date": "Day 1",
+    "time": "10:00 AM",
+    "venue": "EG Hall",
+    "image": "img/events-main/paper_presentation.webp",
+    "formLink": "registration.html"
+  },
+  "project-expo": {
+    "title": "Project Expo",
+    "desc": "<div class=\"event-full-desc\">\n      <p><strong>Project Expo</strong> is an exhibition of innovation where students display their working models and prototypes. It is an opportunity to demonstrate practical applications of engineering concepts.</p>\n      \n      <h3>ðŸ“‹ Rules</h3>\n      <ul>\n        <li>Maximum 4 members per team.</li>\n        <li>Working model or prototype is mandatory.</li>\n        <li>Poster presentation is recommended to explain the project.</li>\n        <li>Projects will be judged on innovation, feasibility, and presentation.</li>\n      </ul>\n    </div>",
+    "date": "Day 2",
+    "time": "10:00 AM",
+    "venue": "Room 242 / ECE Labs",
+    "image": "img/events-main/project_expo.webp",
+    "formLink": "registration.html"
+  },
+  "report-rendering": {
+    "title": "Codeathon",
+    "desc": "<div class=\"event-full-desc\">\n      <p><strong>Codeathon</strong> is an intense coding marathon where participants solve complex algorithmic problems and build solutions within a limited time. It tests your logical thinking, coding speed, and efficiency.</p>\n      \n      <h3>ðŸ“‹ Rules</h3>\n      <ul>\n        <li>Maximum 4 members per team.</li>\n        <li>Participants can use any standard programming language (C, C++, Java, Python).</li>\n        <li>Plagiarism is strictly prohibited.</li>\n        <li>The decision of the judges is final.</li>\n      </ul>\n    </div>",
+    "date": "Day 1",
+    "time": "10:00 AM",
+    "venue": "CC1, CC2",
+    "image": "img/events-main/codeathon.webp",
+    "formLink": "registration.html"
+  },
   "khokho": {
     "title": "Kho Kho",
     "desc": "<div class=\"event-full-desc\">\n      <p><strong>Kho Kho</strong> is a traditional Indian tag game that requires speed, stamina, and strategy. Teams compete to tag opponents while avoiding being tagged themselves.</p>\n      \n      <h3>ðŸ“‹ Rules</h3>\n      <ul>\n        <li>Each team consists of 12 players (9 on the field, 3 extras).</li>\n        <li>The match consists of two innings.</li>\n        <li>Chasers must sit in squares in the central lane, facing alternate directions.</li>\n        <li>Defenders run in batches of three.</li>\n        <li>Referees decision is final.</li>\n      </ul>\n    </div>",
