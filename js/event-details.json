@@ -1,29 +1,20 @@
 {
-  "paper-presentation": {
-    "title": "PAPER PRESENTATION",
-    "desc": "<div class=\"event-full-desc\">\n      <p><strong>PAPER PRESENTATION</strong> provides a platform for students to showcase their technical research and innovative ideas. Present your paper on emerging technologies and trends.</p>\n      \n      <h3>ðŸ‘¤ Participation</h3>\n      <ul>\n        <li><strong>Team Size:</strong> Max 4 members</li>\n        <li><strong>Duration:</strong> 10 mins presentation + 5 mins Q&A</li>\n      </ul>\n\n      <h3>ðŸ“œ Rules & Guidelines</h3>\n      <ul>\n        <li>Papers must be original and not published elsewhere.</li>\n        <li>Submit abstract before the deadline.</li>\n        <li>Bring 2 hard copies of the full paper.</li>\n        <li>Presentation should be in PPT format.</li>\n        <li>Judges decision is final.</li>\n      </ul>\n    </div>",
+  "khokho": {
+    "title": "Kho Kho",
+    "desc": "<div class=\"event-full-desc\">\n      <p><strong>Kho Kho</strong> is a traditional Indian tag game that requires speed, stamina, and strategy. Teams compete to tag opponents while avoiding being tagged themselves.</p>\n      \n      <h3>ðŸ“‹ Rules</h3>\n      <ul>\n        <li>Each team consists of 12 players (9 on the field, 3 extras).</li>\n        <li>The match consists of two innings.</li>\n        <li>Chasers must sit in squares in the central lane, facing alternate directions.</li>\n        <li>Defenders run in batches of three.</li>\n        <li>Referees decision is final.</li>\n      </ul>\n    </div>",
     "date": "Day 1",
     "time": "10:00 AM",
-    "venue": "Seminar Hall",
-    "image": "img/events-main/paper_presentation.webp",
+    "venue": "SRIT Ground",
+    "image": "img/events-sports/kho kho.png",
     "formLink": "registration.html"
   },
-  "project-expo": {
-    "title": "PROJECT EXPO",
-    "desc": "<div class=\"event-full-desc\">\n      <p><strong>PROJECT EXPO</strong> is an opportunity to exhibit your working models and prototypes. Demonstrate your technical skills and innovation to industry experts.</p>\n      \n      <h3>ðŸ‘¤ Participation</h3>\n      <ul>\n        <li><strong>Team Size:</strong> Max 4 members</li>\n      </ul>\n\n      <h3>ðŸ“œ Rules & Guidelines</h3>\n      <ul>\n        <li>Working model is mandatory.</li>\n        <li>Poster presentation of the project concept is required.</li>\n        <li>innovative ideas and social relevance will be prioritized.</li>\n        <li>Power supply will be provided.</li>\n      </ul>\n    </div>",
-    "date": "Day 2",
-    "time": "10:00 AM",
-    "venue": "Main Auditorium Lobby",
-    "image": "img/events-main/project_expo.webp",
-    "formLink": "registration.html"
-  },
-  "report-rendering": {
-    "title": "CODEATHON",
-    "desc": "<div class=\"event-full-desc\">\n      <p><strong>CODEATHON</strong> is an intense coding competition testing problem-solving and algorithmic skills. Race against time to solve complex coding challenges.</p>\n      \n      <h3>ðŸ‘¤ Participation</h3>\n      <ul>\n        <li><strong>Team Size:</strong> Max 4 members</li>\n        <li><strong>Duration:</strong> 3 hours</li>\n      </ul>\n\n      <h3>ðŸ“œ Rules & Guidelines</h3>\n      <ul>\n        <li>Languages allowed: C, C++, Java, Python.</li>\n        <li>No internet access allowed during the contest.</li>\n        <li>Plagiarism will lead to disqualification.</li>\n        <li>Judges decision is final.</li>\n      </ul>\n    </div>",
+  "football": {
+    "title": "5s Football",
+    "desc": "<div class=\"event-full-desc\">\n      <p><strong>5s Football</strong> is a fast-paced version of football played with 5 players on each side. It demands quick thinking, precise passing, and teamwork.</p>\n      \n      <h3>ðŸ“‹ Rules</h3>\n      <ul>\n        <li>5 players per team (including the goalkeeper).</li>\n        <li>Rolling substitutions are allowed.</li>\n        <li>No offside rule.</li>\n        <li>Match duration: 2 halves of 10-15 minutes (depending on schedule).</li>\n        <li>Referees decision is final.</li>\n      </ul>\n    </div>",
     "date": "Day 1",
-    "time": "11:00 AM",
-    "venue": "Computer Lab 2",
-    "image": "img/events-main/codeathon.webp",
+    "time": "10:00 AM",
+    "venue": "SRIT Ground",
+    "image": "img/events-sports/football.png",
     "formLink": "registration.html"
   },
   "promptly": {
