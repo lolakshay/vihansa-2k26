@@ -249,6 +249,13 @@ h6 {
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 }
 
+#header .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 100%;
+}
+
 #header.header-scrolled,
 #header.header-fixed {
   background: rgba(0, 0, 0, 0.75);
@@ -361,7 +368,6 @@ h6 {
 /* Nav Menu Container */
 
 #nav-menu-container {
-  float: right;
   margin: 0;
   display: flex;
   align-items: center;
@@ -5034,6 +5040,7 @@ body.low-performance #header {
   to {
     transform: rotate(360deg);
   }
+
   to {
     transform: rotate(360deg);
   }
