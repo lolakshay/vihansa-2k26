@@ -217,7 +217,7 @@
   },
   "evehicle": {
     "title": "E-VEHICLE WORKSHOP",
-    "desc": "Explore the future of mobility with hands-on EV tech workshops, live demos, and insights from industry pioneers!",
+    "desc": "Explore the future of mobility with hands-on EV tech workshops, live demos, and insights from industry pioneers!      <h3>📞 Contact Information</h3>\n      <p><strong>Coordinator:</strong> S.Sudharshun - <a href=\"tel:+918610846046\" style=\"color: #00f0ff;\">8610846046</a></p>",
     "date": "Day 1",
     "time": "Full Day",
     "venue": "Power Lab",
@@ -244,7 +244,7 @@
   },
   "visualvignetic": {
     "title": "VISUAL VIGNETIC – Short Film",
-    "desc": "<div class=\"event-full-desc\">\n      <p><strong>Short Film</strong> is an offstage event celebrating creativity through visual storytelling. Express your narrative vision through the art of filmmaking.</p>\n      \n      <h3>👥 Participation</h3>\n      <ul>\n        <li><strong>Individual or Team</strong></li>\n        <li><strong>Maximum:</strong> 8 members per team</li>\n      </ul>\n\n      <h3>â±ï¸ Duration</h3>\n      <ul>\n        <li><strong>Minimum:</strong> 5 minutes</li>\n        <li><strong>Maximum:</strong> 15 minutes (including credits)</li>\n      </ul>\n\n      <h3>📜 Rules & Guidelines</h3>\n    <ul>\n        <li>The film must be <strong>original and unpublished</strong></li>\n        <li>Any language is allowed; <strong>subtitles are mandatory</strong> if not in English</li>\n        <li>Films must be submitted in <strong>MP4 format</strong> (minimum 720p resolution)</li>\n        <li>Objectionable or offensive content is <strong>strictly prohibited</strong></li>\n        <li>Overall impact and storytelling will be evaluated</li>\n      </ul>\n    </div>",
+    "desc": "<div class=\"event-full-desc\">\n      <p><strong>Short Film</strong> is an offstage event celebrating creativity through visual storytelling. Express your narrative vision through the art of filmmaking.</p>\n      \n      <h3>👥 Participation</h3>\n      <ul>\n        <li><strong>Individual or Team</strong></li>\n        <li><strong>Maximum:</strong> 5 members per team</li>\n      </ul>\n\n      <h3>â±ï¸ Duration</h3>\n      <ul>\n        <li><strong>Minimum:</strong> 5 minutes</li>\n        <li><strong>Maximum:</strong> 15 minutes (including credits)</li>\n      </ul>\n\n      <h3>📜 Rules & Guidelines</h3>\n    <ul>\n        <li>The film must be <strong>original and unpublished</strong></li>\n        <li>Any language is allowed; <strong>subtitles are mandatory</strong> if not in English</li>\n        <li>Films must be submitted in <strong>MP4 format</strong> (minimum 720p resolution)</li>\n        <li>Objectionable or offensive content is <strong>strictly prohibited</strong></li>\n        <li>Overall impact and storytelling will be evaluated</li>\n      </ul>\n\n      <h3>📞 Contact Information</h3>\n      <p><strong>Coordinator:</strong> Praneeth - <a href=\"tel:+919363624383\" style=\"color: #00f0ff;\">9363624383</a></p>\n    </div>",
     "date": "Day 2",
     "time": "10:00 AM",
     "venue": "Auditorium",
@@ -255,8 +255,8 @@
     "title": "Solo Singing",
     "desc": "<div class=\"event-full-desc\">\n      <p><strong>Solo Singing</strong> is an onstage event celebrating individual vocal talent. Captivate the audience with your voice and musical expression.</p>\n      \n      <h3>👤 Participation</h3>\n      <ul>\n        <li><strong>Individual event</strong></li>\n      </ul>\n\n      <h3>Time Limit</h3>\n      <ul>\n        <li><strong>Minimum:</strong> 3 minutes</li>\n        <li><strong>Maximum:</strong> 5 minutes</li>\n      </ul>\n\n      <h3>🎵 Categories</h3>\n      <ul>\n        <li>Classical</li>\n        <li>Semi-Classical</li>\n        <li>Western</li>\n        <li>Film Songs</li>\n      </ul>\n      <p><em>Participants must specify category during registration.</em></p>\n\n      <h3>📜 Rules & Guidelines</h3>\n      <ul>\n        <li>Karaoke tracks are <strong>allowed</strong> (without lead vocals)</li>\n        <li>Song selection must avoid <strong>offensive content</strong></li>\n        <li>Participants must report <strong>30 minutes before</strong> the event</li>\n      </ul>\n    </div>",
     "date": "Day 2",
-    "time": "2:00 PM",
-    "venue": "Main Auditorium",
+    "time": "9:00 AM",
+    "venue": "SRIT Indoor Auditorium",
     "image": "img/culturls/solo_singing.webp",
     "formLink": "reg_starting_soon.html"
   },
@@ -264,8 +264,8 @@
     "title": "Solo Dance",
     "desc": "<div class=\"event-full-desc\">\n      <p><strong>Solo Dance</strong> is an onstage event celebrating individual talent and artistic expression through dance. Showcase your skills and captivate the audience with your unique performance.</p>\n      \n      <h3>👤 Participation</h3>\n      <ul>\n        <li><strong>Individual event</strong></li>\n        <li>One participant per entry</li>\n      </ul>\n\n      <h3>Time Limit</h3>\n      <ul>\n        <li><strong>Minimum:</strong> 3 minutes</li>\n        <li><strong>Maximum:</strong> 5 minutes</li>\n      </ul>\n\n      <h3>📜 Rules & Guidelines</h3>\n      <ul>\n        <li>Any dance form is <strong>permitted</strong></li>\n        <li>Participants must <strong>submit their music track in advance</strong></li>\n        <li>Props are <strong>allowed within reasonable limits</strong></li>\n        <li>Inappropriate gestures or content will <strong>not be tolerated</strong></li>\n      </ul>\n    </div>",
     "date": "Day 2",
-    "time": "3:00 PM",
-    "venue": "Open Auditorium",
+    "time": "9:00 AM",
+    "venue": "SRIT Indoor Auditorium",
     "image": "img/culturls/solo_dance.webp",
     "formLink": "reg_starting_soon.html"
   },
@@ -273,26 +273,26 @@
     "title": "Group Dance",
     "desc": "<div class=\"event-full-desc\">\n      <p><strong>Group Dance</strong> is an onstage event celebrating team synchronization, creativity, and the power of collective expression. Set the stage on fire with your moves and rhythm!</p>\n      \n      <h3>👥 Team Composition</h3>\n      <ul>\n        <li><strong>Minimum:</strong> 5 participants per team</li>\n        <li><strong>Maximum:</strong> 12 participants per team</li>\n        <li>All participants must be <strong>registered students</strong> of the institution</li>\n        <li><strong>Only one entry per team</strong></li>\n      </ul>\n\n      <h3>Time Limit</h3>\n      <ul>\n        <li><strong>Minimum:</strong> 5 minutes</li>\n        <li><strong>Maximum:</strong> 7 minutes</li>\n        <li>Exceeding the time limit will result in <strong>penalty</strong></li>\n      </ul>\n\n      <h3>📜 Rules & Guidelines</h3>\n      <ul>\n        <li>All dance styles are <strong>permitted</strong> (Classical, Folk, Contemporary, Western, Fusion, etc.)</li>\n        <li>Teams must submit their audio track in <strong>MP3 format</strong> prior to the event coordinators</li>\n        <li>Props are allowed but must be <strong>arranged and removed by the team</strong> within the allocated time</li>\n        <li>Use of <strong>hazardous materials</strong> (fire, water, sharp objects) is <strong>strictly prohibited</strong></li>\n        <li>Vulgarity or inappropriate content will lead to <strong>disqualification</strong></li>\n      </ul>\n    </div>",
     "date": "Day 2",
-    "time": "4:00 PM",
-    "venue": "Main Auditorium",
+    "time": "9:00 AM",
+    "venue": "SRIT Indoor Auditorium",
     "image": "img/culturls/group_dance.webp",
     "formLink": "reg_starting_soon.html"
   },
   "tunemorph": {
     "title": "Adaptune",
-    "desc": "<div class=\"event-full-desc\">\n      <p><strong>Adaptune</strong> is an onstage event testing your ability to adapt and improvise instantly. Showcase your spontaneity and creativity by dancing to music you hear for the first time!</p>\n      \n      <h3>👤 Participation</h3>\n      <ul>\n        <li><strong>Solo performance only</strong></li>\n        <li>One entry per participant</li>\n      </ul>\n\n      <h3>🎵 Event Format</h3>\n      <ul>\n        <li>The music will be <strong>played on the spot</strong> by the organizing team</li>\n        <li>Participants will <strong>not be informed</strong> of the track in advance</li>\n        <li>The performer must <strong>immediately adapt</strong> and dance to the given music</li>\n        <li>Songs may vary in genre (Classical, Folk, Western, Film, Fusion, etc.)</li>\n      </ul>\n\n      <h3>📜 Rules & Guidelines</h3>\n      <ul>\n        <li>Participants must rely on <strong>improvisation and adaptability</strong></li>\n        <li>Props are <strong>not permitted</strong></li>\n        <li><strong>Performance duration:</strong> 2 to 3 minutes</li>\n        <li>Inappropriate gestures or content will lead to <strong>disqualification</strong></li>\n        <li>The decision of the judges will be <strong>final</strong></li>\n      </ul>\n    </div>",
+    "desc": "<div class=\"event-full-desc\">\n      <p><strong>Adaptune</strong> is an onstage event testing your ability to adapt and improvise instantly. Showcase your spontaneity and creativity by dancing to music you hear for the first time!</p>\n      \n      <h3>👤 Participation</h3>\n      <ul>\n        <li><strong>Solo performance only</strong></li>\n        <li>One entry per participant</li>\n      </ul>\n\n      <h3>🎵 Event Format</h3>\n      <ul>\n        <li>The music will be <strong>played on the spot</strong> by the organizing team</li>\n        <li>Participants will <strong>not be informed</strong> of the track in advance</li>\n        <li>The performer must <strong>immediately adapt</strong> and dance to the given music</li>\n        <li>Songs may vary in genre (Classical, Folk, Western, Film, Fusion, etc.)</li>\n      </ul>\n\n      <h3>📜 Rules & Guidelines</h3>\n      <ul>\n        <li>Participants must rely on <strong>improvisation and adaptability</strong></li>\n        <li>Props are <strong>not permitted</strong></li>\n        <li><strong>Performance duration:</strong> 2 to 3 minutes</li>\n        <li>Inappropriate gestures or content will lead to <strong>disqualification</strong></li>\n        <li>The decision of the judges will be <strong>final</strong></li>\n      </ul>\n\n      <h3>📞 Contact Information</h3>\n      <p><strong>Coordinator:</strong> Nandhagopal - <a href=\"tel:+918754890320\" style=\"color: #00f0ff;\">8754890320</a></p>\n    </div>",
     "date": "Day 2",
-    "time": "3:30 PM",
-    "venue": "Music Hall",
+    "time": "9:00 AM",
+    "venue": "SRIT Indoor Auditorium",
     "image": "img/culturls/Adaptune.webp",
     "formLink": "reg_starting_soon.html"
   },
   "pixelperfect": {
     "title": "Reels Making",
-    "desc": "<div class=\"event-full-desc\">\n      <p><strong> Reels Making</strong> is an offstage event celebrating creativity through short-form video content. Create engaging and original reels that showcase your storytelling and editing skills.</p>\n      \n      <h3>👥 Participation</h3>\n      <ul>\n        <li><strong>Individual or Team</strong></li>\n        <li><strong>Maximum:</strong> 3 members per team</li>\n      </ul>\n\n      <h3>â±ï¸ Duration</h3>\n      <ul>\n        <li><strong>Minimum:</strong> 30 seconds</li>\n        <li><strong>Maximum:</strong> 90 seconds</li>\n      </ul>\n\n      <h3>📜 Rules & Guidelines</h3>\n      <ul>\n        <li>The reel must be <strong>original</strong> and created <strong>exclusively for Vihansa - 2K26</strong></li>\n        <li>Theme will be <strong>announced prior to submission deadline</strong></li>\n        <li>Videos must be submitted in <strong>MP4 format</strong></li>\n        <li>Plagiarism will result in <strong>immediate disqualification</strong></li>\n        <li>Use of copyrighted music without permission is <strong>discouraged</strong></li>\n        <li>Basic editing is <strong>allowed</strong></li>\n      </ul>\n    </div>",
+    "desc": "<div class=\"event-full-desc\">\n      <p><strong> Reels Making</strong> is an offstage event celebrating creativity through short-form video content. Create engaging and original reels that showcase your storytelling and editing skills.</p>\n      \n      <h3>👥 Participation</h3>\n      <ul>\n        <li><strong>Individual or Team</strong></li>\n        <li><strong>Maximum:</strong> 3 members per team</li>\n      </ul>\n\n      <h3>â±ï¸ Duration</h3>\n      <ul>\n        <li><strong>Minimum:</strong> 30 seconds</li>\n        <li><strong>Maximum:</strong> 90 seconds</li>\n      </ul>\n\n      <h3>📜 Rules & Guidelines</h3>\n      <ul>\n        <li>The reel must be <strong>original</strong> and created <strong>exclusively for Vihansa - 2K26</strong></li>\n        <li>Theme will be <strong>announced prior to submission deadline</strong></li>\n        <li>Videos must be submitted in <strong>MP4 format</strong></li>\n        <li>Plagiarism will result in <strong>immediate disqualification</strong></li>\n        <li>Use of copyrighted music without permission is <strong>discouraged</strong></li>\n        <li>Basic editing is <strong>allowed</strong></li>\n      </ul>\n\n      <h3>📞 Contact Information</h3>\n      <p><strong>Coordinator:</strong> Nidhun - <a href=\"tel:+918903630686\" style=\"color: #00f0ff;\">8903630686</a></p>\n    </div>",
     "date": "Day 2",
-    "time": "10:00 AM",
-    "venue": "Digital Lab",
+    "time": "9:00 AM",
+    "venue": "SRIT Indoor Auditorium",
     "image": "img/culturls/reels_making.webp",
     "formLink": "reg_starting_soon.html"
   }

@@ -521,9 +521,8 @@ jQuery(document).ready(function ($) {
     if (!stage) return;
 
     try {
-      const response = await fetch('events.json');
-      if (!response.ok) throw new Error('Failed to load events');
-      const data = await response.json();
+      // Use inlined data from js/data.js (works without a web server)
+      const data = window.VIHANSA_EVENTS_DATA || await fetch('events.json').then(r => r.json());
       const mainEvents = data.mainEvents;
 
       if (!mainEvents || mainEvents.length === 0) return;
@@ -696,9 +695,8 @@ async function openEventModal(eventId) {
   // Try to load from cache first
   if (!cachedEventDetails) {
     try {
-      const response = await fetch('js/event-details.json');
-      if (!response.ok) throw new Error('Fetch failed');
-      cachedEventDetails = await response.json();
+      // Use inlined data from js/data.js (works without a web server)
+      cachedEventDetails = window.VIHANSA_EVENT_DETAILS || await fetch('js/event-details.json').then(r => r.json());
     } catch (err) {
       console.error('Error loading event details:', err);
       return;
