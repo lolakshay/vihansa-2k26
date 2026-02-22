@@ -4880,6 +4880,32 @@ body.mobile-nav-active #mobile-nav-toggle {
     /* Align visually with numbers */
   }
 
+  /* Hero Stats Fixes */
+  .hero-stats {
+    flex-direction: row;
+    /* Keep them side by side but adjusted */
+    gap: 15px !important;
+    margin-top: 30px !important;
+    justify-content: center;
+    width: 100%;
+    padding-top: 20px !important;
+  }
+
+  .stat-item {
+    flex: 1;
+    min-width: 0;
+    /* Allow shrinking */
+  }
+
+  .stat-num {
+    font-size: clamp(1.2rem, 5vw, 1.8rem) !important;
+    line-height: 1.2;
+  }
+
+  .stat-label {
+    font-size: 0.7rem !important;
+  }
+
 }
 
 /* ================= SPORTS CARD STYLES ================= */

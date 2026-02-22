@@ -96,7 +96,7 @@ window.VIHANSA_EVENTS_DATA = {
       "meta": [
         {
           "icon": "fa-users",
-          "text": "Max 4"
+          "text": "2-5"
         },
         {
           "icon": "fa-clock",
