@@ -4984,7 +4984,7 @@ body.mobile-nav-active #mobile-nav-toggle {
     /* Make Ramakrishna distinct */
   }
 
-  /* Countdown Fixes */
+  /* Countdown Fixes - larger on mobile, single row */
   .countdown-hero-wrap,
   .counter-content {
     width: 100%;
@@ -4994,14 +4994,12 @@ body.mobile-nav-active #mobile-nav-toggle {
   #countdown {
     display: flex;
     flex-wrap: nowrap !important;
-    /* Force single line */
     justify-content: center;
     align-items: center;
     width: 100%;
     margin: 0 auto;
-    padding: 10px 0;
-    gap: 5px;
-    /* Reduce gap */
+    padding: 10px 4px;
+    gap: clamp(4px, 1.5vw, 12px);
   }
 
   #countdown li {
@@ -5009,28 +5007,24 @@ body.mobile-nav-active #mobile-nav-toggle {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    margin: 0 2px !important;
-    /* Tight margins */
+    margin: 0 !important;
   }
 
   #countdown li span {
-    font-size: 1.5rem !important;
-    /* Smaller number */
+    font-size: clamp(2.25rem, 11vw, 4rem) !important;
     line-height: 1;
   }
 
   #countdown li p {
-    font-size: 0.6rem !important;
-    /* Smaller label */
-    margin: 0;
+    font-size: clamp(0.65rem, 2vw, 0.9rem) !important;
+    margin: 2px 0 0 0;
   }
 
   #countdown li.separator {
-    font-size: 1.5rem !important;
+    font-size: clamp(2rem, 9vw, 3.5rem) !important;
     line-height: 1;
     margin: 0 !important;
-    padding-bottom: 15px;
-    /* Align visually with numbers */
+    padding-bottom: clamp(12px, 4vw, 20px);
   }
 
   /* Hero Stats Fixes */

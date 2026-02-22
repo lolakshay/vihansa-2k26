@@ -115,7 +115,7 @@ window.VIHANSA_EVENT_DETAILS = {
     "date": "Day 1",
     "time": "11:00 AM",
     "venue": "CC1 & CC2 LAB",
-    "image": "img\events-main\logic_rush.png",
+    "image": "img/events-main/logic_rush.png",
     "formLink": "https://forms.gle/hZwpEeouhad9AGAo8"
   },
   "khokho": {
