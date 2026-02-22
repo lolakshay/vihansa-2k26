@@ -754,13 +754,11 @@ body.mobile-nav-active #mobile-nav-toggle {
 
 /* Main Logo Image */
 .main-logo-img {
-  width: clamp(100px, 15vw, 500px);
-  margin-bottom: 2px;
-  animation: floatLogo 6s ease-in-out 3;
+  width: clamp(150px, 40vw, 400px);
+  height: auto;
+  margin-bottom: 10px;
+  animation: floatLogo 6s ease-in-out infinite;
   filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.5));
-  width: 40vw;
-  /* 60% of screen width */
-  max-width: 1000px;
 }
 
 @keyframes floatLogo {
@@ -788,11 +786,10 @@ body.mobile-nav-active #mobile-nav-toggle {
     0 0 20px rgba(0, 0, 0, 0.9),
     0 0 40px rgba(0, 0, 0, 0.8),
     2px 2px 4px rgba(0, 0, 0, 1);
-  margin-top: 0;
-  margin-bottom: 0;
-  line-height: 0.0;
-  /* Tighter vertical height */
-
+  margin-top: 10px;
+  margin-bottom: 10px;
+  line-height: 1.1;
+  /* Balanced height for better spacing */
 }
 
 .glitch-title::before,
@@ -4297,11 +4294,132 @@ body.mobile-nav-active #mobile-nav-toggle {
   width: fit-content;
 }
 
+
 .register-btn:hover {
   transform: translateY(-5px) scale(1.05);
   box-shadow: 0 15px 20px rgba(255, 255, 255, 0.2);
   color: #fff;
   background: #ff0000;
+}
+
+/* Rules Book Button Styles */
+.rules-button-container {
+  display: flex;
+  justify-content: center;
+  padding: 40px 0;
+  width: 100%;
+}
+
+.rules-book-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 15px 40px;
+  background: transparent;
+  color: #ff003c;
+  font-weight: 700;
+  font-size: 1.1rem;
+  text-transform: uppercase;
+  text-decoration: none;
+  border-radius: 50px;
+  border: 2px solid #ff003c;
+  transition: all 0.3s ease;
+  font-family: 'Space Mono', monospace;
+  box-shadow: 0 0 10px rgba(255, 0, 60, 0.3);
+}
+
+.rules-book-btn:hover {
+  background: #ff003c;
+  color: #fff;
+  box-shadow: 0 0 20px rgba(255, 0, 60, 0.6);
+  transform: translateY(-3px);
+  text-decoration: none;
+}
+
+/* Rule Book Modal Styles */
+.rule-book-modal-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.9);
+  backdrop-filter: blur(8px);
+  z-index: 2000;
+  /* Higher than event modal to be safe */
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.rule-book-modal-container {
+  background: #000;
+  border: 1px solid rgba(255, 0, 60, 0.3);
+  width: 100%;
+  max-width: 800px;
+  max-height: 90vh;
+  border-radius: 20px;
+  position: relative;
+  overflow-y: auto;
+  box-shadow: 0 0 30px rgba(255, 0, 60, 0.2);
+}
+
+.rule-book-modal-body {
+  padding: 40px;
+}
+
+.rule-book-modal-body h2 {
+  color: #ff003c;
+  margin-bottom: 25px;
+  font-size: 2rem;
+  text-align: center;
+}
+
+.rule-book-modal-body h3 {
+  color: #ff003c;
+  margin-top: 30px;
+  margin-bottom: 15px;
+  font-size: 1.5rem;
+  border-left: 4px solid #ff003c;
+  padding-left: 15px;
+}
+
+.rule-book-modal-body h4 {
+  color: #fff;
+  font-size: 1.2rem;
+  margin: 20px 0 10px 0;
+}
+
+.rules-content {
+  color: #ddd;
+  line-height: 1.6;
+}
+
+.rules-content ul {
+  list-style: disc;
+  margin-left: 20px;
+  margin-bottom: 20px;
+}
+
+.rules-content ul li {
+  margin-bottom: 8px;
+}
+
+.guideline-section {
+  margin-top: 30px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding-top: 20px;
+}
+
+/* Scrollbar styling for the modal */
+.rule-book-modal-container::-webkit-scrollbar {
+  width: 8px;
+}
+
+.rule-book-modal-container::-webkit-scrollbar-thumb {
+  background: #ff003c;
+  border-radius: 10px;
 }
 
 /* Event Full Description Styling */
@@ -4906,6 +5024,14 @@ body.mobile-nav-active #mobile-nav-toggle {
     font-size: 0.7rem !important;
   }
 
+}
+
+/* Responsive Fix for Logo and Hero Section on Small Devices */
+@media (max-width: 768px) {
+  #intro {
+    padding-top: 100px !important;
+    /* Account for fixed header height */
+  }
 }
 
 /* ================= SPORTS CARD STYLES ================= */
