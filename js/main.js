@@ -232,6 +232,57 @@ jQuery(document).ready(function ($) {
           $('#header').removeClass('header-scrolled');
         }
 
+        // Navigation active state on scroll
+        var nav_offset = ($('#header').outerHeight() || 100) + 10;
+        var currentSection = null;
+        var scrollPos = scrollTop + nav_offset;
+        var maxTop = -1;
+
+        $('.nav-menu a').each(function () {
+          var targetSelector = $(this).attr("href");
+          if (targetSelector && targetSelector.startsWith('#') && targetSelector.length > 1) {
+            try {
+              var refElement = $(targetSelector);
+              // Activate if we've scrolled past the element's top position
+              // Added an extra 100px buffer to trigger it slightly earlier
+              if (refElement.length) {
+                var topPos = refElement.offset().top;
+                if (topPos <= scrollPos + 100 && topPos > maxTop) {
+                  maxTop = topPos;
+                  currentSection = targetSelector;
+                }
+              }
+            } catch (e) { }
+          }
+        });
+
+        // Special case: If we've hit the very bottom of the document, force the last active-capable section
+        // (This handles sections like Agenda that don't reach the top of the viewport)
+        if ($(window).scrollTop() + $(window).height() >= $(document).height() - 50) {
+          var highestTop = 0;
+          $('.nav-menu a').each(function () {
+            var targetSelector = $(this).attr("href");
+            if (targetSelector && targetSelector.startsWith('#') && targetSelector.length > 1) {
+              try {
+                var refElement = $(targetSelector);
+                if (refElement.length && refElement.offset().top > highestTop) {
+                  highestTop = refElement.offset().top;
+                  currentSection = targetSelector;
+                }
+              } catch (e) { }
+            }
+          });
+        }
+
+        if (currentSection) {
+          $('.nav-menu li, #mobile-nav li').removeClass('menu-active');
+          // Add active class to links matching the current area, except the special 'Register' button link
+          $('.nav-menu a[href="' + currentSection + '"], #mobile-nav a[href="' + currentSection + '"]')
+            .not('.buy-tickets a')
+            .closest('li')
+            .addClass('menu-active');
+        }
+
         scrollTicking = false;
       });
       scrollTicking = true;

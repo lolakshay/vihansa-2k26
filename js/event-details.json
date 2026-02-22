@@ -5,7 +5,7 @@
     "date": "Day 1",
     "time": "11:00 AM - 01:30 PM",
     "venue": "EG Hall",
-    "image": "img/events-main/paper_presentation.webp",
+    "image": "img/events-main/paper_presentation.png",
     "formLink": "reg_starting_soon.html"
   },
   "project-expo": {
@@ -14,7 +14,7 @@
     "date": "Day 2",
     "time": "10:00 AM",
     "venue": "Room 242 / ECE Labs",
-    "image": "img/events-main/project_expo.webp",
+    "image": "img/events-main/project_expo.png",
     "formLink": "reg_starting_soon.html"
   },
   "report-rendering": {

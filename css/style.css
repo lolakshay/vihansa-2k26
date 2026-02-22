@@ -393,8 +393,7 @@ h6 {
   text-shadow: 0 0 2px rgba(255, 255, 255, 0.3);
 }
 
-.nav-menu .menu-active a,
-.nav-menu a:hover {
+.nav-menu .menu-active a {
   color: #fff;
   text-shadow:
     0 0 5px #ff0000,
@@ -403,6 +402,24 @@ h6 {
   /* Neon Red Glow */
   transform: scale(1.1);
   /* Slight zoom */
+}
+
+/* Reset the active state when hovering over the menu */
+.nav-menu:hover .menu-active a {
+  color: var(--text1) !important;
+  text-shadow: none !important;
+  transform: none !important;
+}
+
+/* Re-apply the red glow to whatever item is currently being hovered */
+.nav-menu a:hover,
+.nav-menu:hover .menu-active a:hover {
+  color: #fff !important;
+  text-shadow:
+    0 0 5px #ff0000,
+    0 0 10px #ff0000,
+    0 0 20px #ff0000 !important;
+  transform: scale(1.1) !important;
 }
 
 .nav-menu>li {
@@ -421,14 +438,25 @@ h6 {
   transition: width 0.3s ease-in-out;
   transform: translateX(-50%);
   transform-origin: center;
-
 }
 
-.nav-menu a:hover:before,
-.nav-menu li:hover>a:before,
 .nav-menu .menu-active>a:before {
   visibility: visible;
   width: 100%;
+}
+
+/* Hide the active item's underline when menu is hovered */
+.nav-menu:hover .menu-active>a:before {
+  visibility: hidden !important;
+  width: 0 !important;
+}
+
+/* Show the underline on whatever item is being hovered */
+.nav-menu a:hover:before,
+.nav-menu li:hover>a:before,
+.nav-menu:hover .menu-active>a:hover:before {
+  visibility: visible !important;
+  width: 100% !important;
 }
 
 .nav-menu li.buy-tickets a {
