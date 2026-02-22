@@ -86,25 +86,6 @@ window.VIHANSA_EVENTS_DATA = {
       ],
       "link": "registration.html",
       "cta": "EXPLORE EVENT"
-    },
-    {
-      "id": "hackathon",
-      "title": "Hackathon",
-      "description": "Collaborate, innovate, and build tech solutions in 24 hours. Win exciting prizes!",
-      "image": "img/events-main/hackathon.png",
-      "tag": "FLAGSHIP",
-      "meta": [
-        {
-          "icon": "fa-users",
-          "text": "2-5"
-        },
-        {
-          "icon": "fa-clock",
-          "text": "24H"
-        }
-      ],
-      "link": "registration.html",
-      "cta": "EXPLORE EVENT"
     }
   ]
 };
@@ -401,7 +382,7 @@ window.VIHANSA_EVENT_DETAILS = {
   },
   "hackathon": {
     "title": "Flagship Hackathon",
-    "desc": "<div class=\"event-full-desc\">\n      <p>A thrilling <strong>24-hour Innovative Marathon</strong> where brilliant minds collaborate to build tech solutions. Win exciting prizes, gain mentorship, and showcase your skills under pressure! Get instant internship opportunities.</p>\n      \n      <h3>💰 Prize Details</h3>\n      <table style=\"width:100%; border-collapse: collapse; margin: 10px 0;\">\n        <tr style=\"background: rgba(0, 240, 255, 0.1);\">\n          <td style=\"font-weight: 700; color: #00f0ff;\">Position</td>\n          <td style=\"font-weight: 700; color: #00f0ff;\">Amount</td>\n        </tr>\n        <tr><td>🥇 1st Prize</td><td><strong>₹30,000</strong></td></tr>\n        <tr><td>🥈 2nd Prize</td><td><strong>₹20,000</strong></td></tr>\n        <tr><td>🥉 3rd Prize</td><td><strong>₹10,000</strong></td></tr>\n      </table>\n\n      <h3>Staff Coordinator</h3>\n      <p><strong>Dr. J. Mala</strong></p>\n\n      <h3>Student Coordinator</h3>\n      <p><strong>Moshumee. S</strong></p>\n    </div>",
+    "desc": "<div class=\"event-full-desc\">\n      <p>A thrilling <strong>24-hour Innovative Marathon</strong> where brilliant minds collaborate to build tech solutions. Win exciting prizes, gain mentorship, and showcase your skills under pressure! Get instant internship opportunities.</p>\n\n      <h3>💰 Prize Details</h3>\n      <table style=\"width:100%; border-collapse: collapse; margin: 10px 0;\">\n        <tr style=\"background: rgba(0, 240, 255, 0.1);\">\n          <td style=\"font-weight: 700; color: #00f0ff;\">Position</td>\n          <td style=\"font-weight: 700; color: #00f0ff;\">Amount</td>\n        </tr>\n        <tr><td>🥇 1st Prize</td><td><strong>₹30,000</strong></td></tr>\n        <tr><td>🥈 2nd Prize</td><td><strong>₹20,000</strong></td></tr>\n        <tr><td>🥉 3rd Prize</td><td><strong>₹10,000</strong></td></tr>\n      </table>\n\n      <h3>📋 Participant Guidelines – 11–11 Hackathon</h3>\n\n      <h3>1. Eligibility &amp; Registration</h3>\n      <ul>\n        <li>Each team must consist of <strong>2 to 5 members</strong>.</li>\n        <li>Registration is confirmed only after payment of the <strong>₹2000 registration fee</strong>.</li>\n        <li>The registration fee is <strong>non-refundable</strong> once the final registration form is closed.</li>\n        <li>All participants must carry their <strong>college ID card</strong>.</li>\n      </ul>\n\n      <h3>2. Facilities Provided</h3>\n      <ul>\n        <li>Only <strong>lunch and snacks</strong> will be provided during the 24-hour hackathon.</li>\n        <li>Basic infrastructure including <strong>workspace, power supply, and internet access</strong> will be arranged.</li>\n        <li>Participants are advised to bring their own <strong>laptops, chargers, and required accessories</strong>.</li>\n        <li>Every registered participant will receive an official <strong>Hackathon T-shirt</strong>.</li>\n      </ul>\n\n      <h3>3. Team Rules</h3>\n      <ul>\n        <li>Individual participation is <strong>not allowed</strong>.</li>\n        <li>Team members <strong>cannot be changed</strong> after final registration.</li>\n        <li>Cross-disciplinary collaboration is <strong>encouraged</strong>.</li>\n        <li>Each team must select a <strong>team leader</strong> for official communication.</li>\n      </ul>\n\n      <h3>4. Hackathon Rules</h3>\n      <ul>\n        <li>The hackathon will run continuously from <strong>11:00 AM (Day 1) to 11:00 AM (Day 2)</strong>.</li>\n        <li>No participants are allowed to go <strong>out of the campus</strong> during the hackathon.</li>\n        <li>All development must be done during the <strong>24-hour period</strong>.</li>\n        <li>Pre-built complete solutions are <strong>strictly prohibited</strong>.</li>\n        <li>Teams must strictly follow the given <strong>problem statement and theme</strong>.</li>\n        <li>Any violation of rules may result in <strong>disqualification</strong>.</li>\n      </ul>\n\n      <h3>5. Allowed Technologies</h3>\n      <ul>\n        <li>Participants can use any <strong>programming language, framework, or tool</strong>.</li>\n        <li>Use of <strong>open-source libraries/APIs</strong> is allowed, with proper citation.</li>\n      </ul>\n\n      <h3>6. Development Guidelines</h3>\n      <ul>\n        <li>All code and prototypes must be developed <strong>during the hackathon period</strong>.</li>\n        <li>Pre-built templates/components can be used only for <strong>UI/UX purposes</strong>.</li>\n        <li>Teams must maintain a <strong>GitHub repo or presentation deck</strong> to document progress.</li>\n      </ul>\n\n      <h3>7. Plagiarism</h3>\n      <ul>\n        <li>Any form of plagiarism or code theft will lead to <strong>immediate disqualification</strong>.</li>\n      </ul>\n\n      <h3>8. Final Submission Guidelines</h3>\n      <p><strong>Submission Format:</strong></p>\n      <ul>\n        <li>Code Repository (GitHub or similar).</li>\n        <li>Demo Video (2–3 minutes) showing the working prototype.</li>\n        <li>Final PPT and PDF Report (max 10 slides/pages).</li>\n      </ul>\n      <p><strong>Deadline:</strong> Submissions after the deadline will <strong>not be accepted</strong> under any circumstance.</p>\n\n      <h3>Staff Coordinator</h3>\n      <p><strong>Dr. J. Mala</strong></p>\n\n      <h3>Student Coordinator</h3>\n      <p><strong>Moshumee. S</strong></p>\n    </div>",
     "date": "Full Day",
     "time": "10:00 AM (24H)",
     "venue": "SRIT Campus",

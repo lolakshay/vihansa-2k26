@@ -33,25 +33,6 @@
   },
   "mainEvents": [
     {
-      "id": "paper-presentation",
-      "title": "Paper Presentation",
-      "description": "Showcase your technical research and innovative ideas.",
-      "image": "img/events-main/paper_presentation.webp",
-      "tag": "SYMPOSIUM",
-      "meta": [
-        {
-          "icon": "fa-users",
-          "text": "Max 4"
-        },
-        {
-          "icon": "fa-clock",
-          "text": ""
-        }
-      ],
-      "link": "registration.html",
-      "cta": "EXPLORE EVENT"
-    },
-    {
       "id": "project-expo",
       "title": "Project Expo",
       "description": "Display your working models and prototypes.",
