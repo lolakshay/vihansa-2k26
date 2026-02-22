@@ -691,8 +691,8 @@
                             <div class="electric-card workshop-card" onclick="openEventModal('genai')">
                                 <div class="inner-container">
                                     <div class="border-outer">
-                                        <img src="img/workshop/14.webp" alt="GEN AI" class="card-image-bg"
-                                            loading="lazy" decoding="async">
+                                        <img src="img/workshop/pcb_workshop.jpg" alt="PCB Workshop"
+                                            class="card-image-bg" loading="lazy" decoding="async">
                                         <div class="main-card"></div>
                                     </div>
                                     <div class="glow-layer-1"></div>
@@ -700,7 +700,7 @@
                                 </div>
                                 <div class="content-container">
                                     <div class="content-top">
-                                        <div class="scrollbar-glass">Day 1 • 02:30 PM</div>
+                                        <div class="scrollbar-glass">Day 2 • 10:00 AM</div>
                                         <h3 class="electric-title">pcb workshop</h3>
                                     </div>
                                     <hr class="divider" />
@@ -759,6 +759,28 @@
                                         <!-- <p class="card-description" style="font-size: 0.85rem; opacity: 0.8;">Master
                                             cloud computing with hands-on labs, live deployments, and expert guidance!
                                         </p> -->
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="electric-card workshop-card" onclick="openEventModal('evbms')">
+                                <div class="inner-container">
+                                    <div class="border-outer">
+                                        <img src="img/workshop/mech_workshop.webp" alt="EV Battery Management System"
+                                            class="card-image-bg" loading="lazy" decoding="async">
+                                        <div class="main-card"></div>
+                                    </div>
+                                    <div class="glow-layer-1"></div>
+                                    <div class="glow-layer-2"></div>
+                                </div>
+                                <div class="content-container">
+                                    <div class="content-top">
+                                        <div class="scrollbar-glass">14 Mar • 10:00 AM</div>
+                                        <h3 class="electric-title">EV Battery Management System</h3>
+                                    </div>
+                                    <hr class="divider" />
+                                    <div class="content-bottom">
+                                        <span class="electric-category">Workshop</span>
                                     </div>
                                 </div>
                             </div>
@@ -925,6 +947,10 @@
                             </div>
 
                         </div>
+                        <div class="rules-button-container">
+                            <a href="javascript:void(0)" onclick="openRuleBook()" class="rules-book-btn">General Rule
+                                Book</a>
+                        </div>
                     </div>
                     <!-- Sports -->
                     <div role="tabpanel" class="tab-pane fade" id="sports">
@@ -1074,6 +1100,61 @@
                 </div>
                 <div class="event-modal-right">
                     <img id="modalEventImage" src="" alt="Event Image">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Rule Book Modal -->
+    <div id="ruleBookModal" class="rule-book-modal-overlay">
+        <div class="rule-book-modal-container">
+            <span class="close-modal" onclick="closeRuleBook()">&times;</span>
+            <div class="rule-book-modal-body">
+                <h2>Cultural Event - General Guidelines</h2>
+                <div class="rules-content">
+                    <ul>
+                        <li>This cultural event is open to students from all types of colleges, including Engineering,
+                            Arts, and Polytechnic institutions.</li>
+                        <li>All participants are requested to report to the venue at least 30 minutes before their
+                            scheduled event.</li>
+                        <li>Participants must carry a valid college ID card during the event.</li>
+                        <li>Kindly ensure that your performance adheres to the given time limit.</li>
+                        <li>Participants are requested to arrange their own costumes, props, and instruments, unless
+                            mentioned otherwise.</li>
+                        <li>We encourage performances that are respectful and appropriate for all audiences.</li>
+                        <li>Please cooperate with the event coordinators and volunteers, and follow their instructions
+                            at all times.</li>
+                        <li>Participants are requested to handle stage equipment and venue property with care.</li>
+                        <li>Background tracks or media files should be submitted in advance in the required format.</li>
+                        <li>The decision of the judges will be final.</li>
+                        <li>Let us all maintain a spirit of respect, discipline, and sportsmanship throughout the event.
+                        </li>
+                        <li>Lunch will be provided for all registered participants.</li>
+                    </ul>
+
+                    <h3>Registration Guidelines</h3>
+                    <div class="guideline-section">
+                        <h4>💃 Group Dance</h4>
+                        <ul>
+                            <li>The registration fee is ₹200 per individual in the team.</li>
+                            <li>This registration is only applicable for Group Dance participation.</li>
+                        </ul>
+                    </div>
+
+                    <div class="guideline-section">
+                        <h4>🎭 Other Events</h4>
+                        <p>By paying an additional ₹200, a participant can participate in any two of the following
+                            events:</p>
+                        <ul>
+                            <li>Solo Dance</li>
+                            <li>Adaptune</li>
+                            <li>Solo Singing</li>
+                            <li>Reels Making</li>
+                            <li>Short Film</li>
+                        </ul>
+                        <p><strong>Note:</strong> The ₹200 registration under this category allows participation in any
+                            two events from the above list.</p>
+                    </div>
                 </div>
             </div>
         </div>
