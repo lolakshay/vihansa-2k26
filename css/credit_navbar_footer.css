@@ -110,13 +110,19 @@
     z-index: 99;
 }
 
+.nav-menu {
+    display: flex;
+    align-items: center;
+    flex-wrap: nowrap;
+}
+
 .nav-menu li {
     position: relative;
     white-space: nowrap;
 }
 
 .nav-menu>li {
-    float: left;
+    float: none;
 }
 
 .nav-menu li:hover>ul,
