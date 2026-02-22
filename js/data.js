@@ -117,7 +117,7 @@ window.VIHANSA_EVENT_DETAILS = {
     "time": "10:00 AM",
     "venue": "EG Hall",
     "image": "img/events-main/paper_presentation.webp",
-    "formLink": "reg_starting_soon.html"
+    "formLink": "https://forms.gle/hZwpEeouhad9AGAo8"
   },
   "project-expo": {
     "title": "Project Expo",
@@ -126,7 +126,7 @@ window.VIHANSA_EVENT_DETAILS = {
     "time": "10:00 AM",
     "venue": "Room 242 / ECE Labs",
     "image": "img/events-main/project_expo.webp",
-    "formLink": "reg_starting_soon.html"
+    "formLink": "https://forms.gle/hZwpEeouhad9AGAo8"
   },
   "report-rendering": {
     "title": "LOGIC RUSH",
@@ -135,7 +135,7 @@ window.VIHANSA_EVENT_DETAILS = {
     "time": "10:00 AM",
     "venue": "CC1 & CC2 LAB",
     "image": "img/events-main/codeathon.webp",
-    "formLink": "reg_starting_soon.html"
+    "formLink": "https://forms.gle/hZwpEeouhad9AGAo8"
   },
   "khokho": {
     "title": "Kho Kho",
@@ -144,7 +144,7 @@ window.VIHANSA_EVENT_DETAILS = {
     "time": "10:00 AM",
     "venue": "SRIT Ground",
     "image": "img/events-sports/kho kho.png",
-    "formLink": "reg_starting_soon.html"
+    "formLink": "https://forms.gle/KvQefStwJ3rr5Tv18"
   },
   "football": {
     "title": "5s Football",
@@ -153,7 +153,7 @@ window.VIHANSA_EVENT_DETAILS = {
     "time": "10:00 AM",
     "venue": "SRIT Ground",
     "image": "img/events-sports/football.png",
-    "formLink": "reg_starting_soon.html"
+    "formLink": "https://forms.gle/R7LC7ghSeuEbFovD8"
   },
   "promptly": {
     "title": "PROMPTLY",
@@ -162,7 +162,7 @@ window.VIHANSA_EVENT_DETAILS = {
     "time": "10:00 AM",
     "venue": "CC4",
     "image": "img/events-tech/1.webp",
-    "formLink": "reg_starting_soon.html"
+    "formLink": "https://forms.gle/hZwpEeouhad9AGAo8"
   },
   "speedcraft": {
     "title": "Debug Detective",
@@ -171,7 +171,7 @@ window.VIHANSA_EVENT_DETAILS = {
     "time": "10:00 AM",
     "venue": "CC5 Lab",
     "image": "img/events-tech/2.webp",
-    "formLink": "reg_starting_soon.html"
+    "formLink": "https://forms.gle/hZwpEeouhad9AGAo8"
   },
   "clonex": {
     "title": "Code Debugging",
@@ -180,7 +180,7 @@ window.VIHANSA_EVENT_DETAILS = {
     "time": "2:30 PM",
     "venue": "IT Lab",
     "image": "img/events-tech/3.webp",
-    "formLink": "reg_starting_soon.html"
+    "formLink": "https://forms.gle/hZwpEeouhad9AGAo8"
   },
   "reverseengg": {
     "title": "Leak the Logic",
@@ -189,7 +189,7 @@ window.VIHANSA_EVENT_DETAILS = {
     "time": "10:00 AM",
     "venue": "IT Lab",
     "image": "img/events-tech/4.webp",
-    "formLink": "reg_starting_soon.html"
+    "formLink": "https://forms.gle/hZwpEeouhad9AGAo8"
   },
   "circuitsurge": {
     "title": "Circuit Hunt",
@@ -198,7 +198,7 @@ window.VIHANSA_EVENT_DETAILS = {
     "time": "02:30 Noon",
     "venue": "Circuits Lab",
     "image": "img/events-tech/5.webp",
-    "formLink": "reg_starting_soon.html"
+    "formLink": "https://forms.gle/hZwpEeouhad9AGAo8"
   },
 
   "roborush": {
@@ -208,7 +208,7 @@ window.VIHANSA_EVENT_DETAILS = {
     "time": "10:00 AM",
     "venue": "PSS Lab",
     "image": "img/events-tech/7.webp",
-    "formLink": "reg_starting_soon.html"
+    "formLink": "https://forms.gle/hZwpEeouhad9AGAo8"
   },
   "productpitch": {
     "title": "WATT HOURS – Energy Auditing",
@@ -217,7 +217,7 @@ window.VIHANSA_EVENT_DETAILS = {
     "time": "2:00 PM",
     "venue": "PSS Lab",
     "image": "img/events-tech/8.webp",
-    "formLink": "reg_starting_soon.html"
+    "formLink": "https://forms.gle/hZwpEeouhad9AGAo8"
   },
   "dasheddata": {
     "title": "THINKTANK – Scenario Showdown",
@@ -226,7 +226,7 @@ window.VIHANSA_EVENT_DETAILS = {
     "time": "10:00 AM",
     "venue": "Data Science Lab",
     "image": "img/events-nontech/9.webp",
-    "formLink": "reg_starting_soon.html"
+    "formLink": "https://forms.gle/hZwpEeouhad9AGAo8"
   },
   "flyforge": {
     "title": "IPL Auction",
@@ -235,7 +235,7 @@ window.VIHANSA_EVENT_DETAILS = {
     "time": "03:30 PM",
     "venue": "2nd Year Classroom",
     "image": "img/events-nontech/10.webp",
-    "formLink": "reg_starting_soon.html"
+    "formLink": "https://forms.gle/hZwpEeouhad9AGAo8"
   },
   "codewar": {
     "title": "Tech Quiz",
@@ -244,7 +244,7 @@ window.VIHANSA_EVENT_DETAILS = {
     "time": "11:00 AM",
     "venue": "TBD",
     "image": "img/events-nontech/11.webp",
-    "formLink": "reg_starting_soon.html"
+    "formLink": "https://forms.gle/hZwpEeouhad9AGAo8"
   },
   "capturetheflag": {
     "title": "Robothon",
@@ -253,7 +253,7 @@ window.VIHANSA_EVENT_DETAILS = {
     "time": "2:00 PM",
     "venue": "Cyber Security Lab",
     "image": "img/events-nontech/12.webp",
-    "formLink": "reg_starting_soon.html"
+    "formLink": "https://forms.gle/hZwpEeouhad9AGAo8"
   },
   "bestmanager": {
     "title": "Connection",
@@ -262,7 +262,7 @@ window.VIHANSA_EVENT_DETAILS = {
     "time": "10:00 AM",
     "venue": "CAD",
     "image": "img/events-nontech/mech_non-tech.webp",
-    "formLink": "reg_starting_soon.html"
+    "formLink": "https://forms.gle/hZwpEeouhad9AGAo8"
   },
   "quizzy": {
     "title": "CAD Modeling",
@@ -271,7 +271,7 @@ window.VIHANSA_EVENT_DETAILS = {
     "time": "2:30 PM",
     "venue": "CAD Lab",
     "image": "img/events-tech/mech_tech.webp",
-    "formLink": "reg_starting_soon.html"
+    "formLink": "https://forms.gle/hZwpEeouhad9AGAo8"
   },
   "promptpallette": {
     "title": "PROMPT PALLETTE",
@@ -280,7 +280,7 @@ window.VIHANSA_EVENT_DETAILS = {
     "time": "2:30 PM",
     "venue": "Digital Lab",
     "image": "img/events-nontech/CSE.webp",
-    "formLink": "reg_starting_soon.html"
+    "formLink": "https://forms.gle/hZwpEeouhad9AGAo8"
   },
   "bidsmash": {
     "title": "Distorted Beats",
@@ -289,7 +289,7 @@ window.VIHANSA_EVENT_DETAILS = {
     "time": "2:30 PM",
     "venue": "EC Lab",
     "image": "img/events-nontech/disorted_beats.webp",
-    "formLink": "reg_starting_soon.html"
+    "formLink": "https://forms.gle/hZwpEeouhad9AGAo8"
   },
   "mrtoolman": {
     "title": "MR TOOL MAN",
@@ -298,7 +298,7 @@ window.VIHANSA_EVENT_DETAILS = {
     "time": "3:30 PM",
     "venue": "Workshop",
     "image": "img/events-nontech/MECH.webp",
-    "formLink": "reg_starting_soon.html"
+    "formLink": "https://forms.gle/hZwpEeouhad9AGAo8"
   },
   "genai": {
     "title": "IoT Design Workshop",
@@ -307,7 +307,7 @@ window.VIHANSA_EVENT_DETAILS = {
     "time": "10:00 AM - 1:00 PM",
     "venue": "Centre Of Excellence Of IOT [COE]",
     "image": "img/workshop/14.webp",
-    "formLink": "reg_starting_soon.html"
+    "formLink": "https://forms.gle/eTZbB88kHaB6Udg6A"
   },
   "cybersecurity": {
     "title": "Cyber Security Workshop",
@@ -316,7 +316,7 @@ window.VIHANSA_EVENT_DETAILS = {
     "time": "10:00 AM",
     "venue": "Cyber Security Lab",
     "image": "img/workshop/13.webp",
-    "formLink": "reg_starting_soon.html"
+    "formLink": "https://forms.gle/eTZbB88kHaB6Udg6A"
   },
   "evehicle": {
     "title": "E-VEHICLE WORKSHOP",
@@ -325,7 +325,7 @@ window.VIHANSA_EVENT_DETAILS = {
     "time": "Full Day",
     "venue": "Power Lab",
     "image": "img/workshop/EEE.webp",
-    "formLink": "reg_starting_soon.html"
+    "formLink": "https://forms.gle/eTZbB88kHaB6Udg6A"
   },
   "cloudcraft": {
     "title": "PLC Automation with IOT",
@@ -334,7 +334,7 @@ window.VIHANSA_EVENT_DETAILS = {
     "time": "10:00 AM - 1:00 PM",
     "venue": "COE(EV)",
     "image": "img/workshop/15.webp",
-    "formLink": "reg_starting_soon.html"
+    "formLink": "https://forms.gle/eTZbB88kHaB6Udg6A"
   },
   "pcbbuild": {
     "title": "PCB BUILD",
@@ -343,7 +343,7 @@ window.VIHANSA_EVENT_DETAILS = {
     "time": "Full Day",
     "venue": "Electronics Lab",
     "image": "img/workshop/ECE.webp",
-    "formLink": "reg_starting_soon.html"
+    "formLink": "https://forms.gle/eTZbB88kHaB6Udg6A"
   },
   "visualvignetic": {
     "title": "VISUAL VIGNETIC – Short Film",
@@ -352,7 +352,7 @@ window.VIHANSA_EVENT_DETAILS = {
     "time": "10:00 AM",
     "venue": "Auditorium",
     "image": "img/culturls/short_film.webp",
-    "formLink": "reg_starting_soon.html"
+    "formLink": "https://forms.gle/PAkw4wUHa7H8hT82A"
   },
   "solelymelodia": {
     "title": "Solo Singing",
@@ -361,7 +361,7 @@ window.VIHANSA_EVENT_DETAILS = {
     "time": "9:00 AM",
     "venue": "SRIT Indoor Auditorium",
     "image": "img/culturls/solo_singing.webp",
-    "formLink": "reg_starting_soon.html"
+    "formLink": "https://forms.gle/PAkw4wUHa7H8hT82A"
   },
   "artofone": {
     "title": "Solo Dance",
@@ -370,7 +370,7 @@ window.VIHANSA_EVENT_DETAILS = {
     "time": "9:00 AM",
     "venue": "SRIT Indoor Auditorium",
     "image": "img/culturls/solo_dance.webp",
-    "formLink": "reg_starting_soon.html"
+    "formLink": "https://forms.gle/PAkw4wUHa7H8hT82A"
   },
   "rythmicmotion": {
     "title": "Group Dance",
@@ -379,7 +379,7 @@ window.VIHANSA_EVENT_DETAILS = {
     "time": "9:00 AM",
     "venue": "SRIT Indoor Auditorium",
     "image": "img/culturls/group_dance.webp",
-    "formLink": "reg_starting_soon.html"
+    "formLink": "https://forms.gle/HcT3ZwrsVQphRvqB7"
   },
   "tunemorph": {
     "title": "Adaptune",
@@ -388,7 +388,7 @@ window.VIHANSA_EVENT_DETAILS = {
     "time": "9:00 AM",
     "venue": "SRIT Indoor Auditorium",
     "image": "img/culturls/Adaptune.webp",
-    "formLink": "reg_starting_soon.html"
+    "formLink": "https://forms.gle/PAkw4wUHa7H8hT82A"
   },
   "pixelperfect": {
     "title": "Reels Making",
@@ -397,7 +397,7 @@ window.VIHANSA_EVENT_DETAILS = {
     "time": "9:00 AM",
     "venue": "SRIT Indoor Auditorium",
     "image": "img/culturls/reels_making.webp",
-    "formLink": "reg_starting_soon.html"
+    "formLink": "https://forms.gle/PAkw4wUHa7H8hT82A"
   },
   "hackathon": {
     "title": "Flagship Hackathon",
@@ -406,7 +406,7 @@ window.VIHANSA_EVENT_DETAILS = {
     "time": "10:00 AM (24H)",
     "venue": "SRIT Campus",
     "image": "img/events-main/hackathon.png",
-    "formLink": "reg_starting_soon.html"
+    "formLink": "https://forms.gle/MgmKLep2mDfh1Aaq5"
   },
   "magazine": {
     "title": "Vihansa Magazine",

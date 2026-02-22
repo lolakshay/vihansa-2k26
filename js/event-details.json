@@ -222,7 +222,7 @@
     "time": "10:00 AM - 1:00 PM",
     "venue": "COE(EV)",
     "image": "img/workshop/15.webp",
-    "formLink": "reg_starting_soon.html"
+    "formLink": "https://forms.gle/eTZbB88kHaB6Udg6A"
   },
   "pcbbuild": {
     "title": "PCB BUILD",
@@ -231,7 +231,7 @@
     "time": "Full Day",
     "venue": "Electronics Lab",
     "image": "img/workshop/ECE.webp",
-    "formLink": "reg_starting_soon.html"
+    "formLink": "https://forms.gle/eTZbB88kHaB6Udg6A"
   },
   "visualvignetic": {
     "title": "VISUAL VIGNETIC – Short Film",
@@ -240,7 +240,7 @@
     "time": "10:00 AM",
     "venue": "Auditorium",
     "image": "img/culturls/short_film.webp",
-    "formLink": "reg_starting_soon.html"
+    "formLink": "https://forms.gle/PAkw4wUHa7H8hT82A"
   },
   "solelymelodia": {
     "title": "Solo Singing",
@@ -249,7 +249,7 @@
     "time": "9:00 AM",
     "venue": "SRIT Indoor Auditorium",
     "image": "img/culturls/solo_singing.webp",
-    "formLink": "reg_starting_soon.html"
+    "formLink": "https://forms.gle/PAkw4wUHa7H8hT82A"
   },
   "artofone": {
     "title": "Solo Dance",
@@ -258,7 +258,7 @@
     "time": "9:00 AM",
     "venue": "SRIT Indoor Auditorium",
     "image": "img/culturls/solo_dance.webp",
-    "formLink": "reg_starting_soon.html"
+    "formLink": "https://forms.gle/PAkw4wUHa7H8hT82A"
   },
   "rythmicmotion": {
     "title": "Group Dance",
@@ -267,7 +267,7 @@
     "time": "9:00 AM",
     "venue": "SRIT Indoor Auditorium",
     "image": "img/culturls/group_dance.webp",
-    "formLink": "reg_starting_soon.html"
+    "formLink": "https://forms.gle/HcT3ZwrsVQphRvqB7"
   },
   "tunemorph": {
     "title": "Adaptune",
@@ -276,7 +276,7 @@
     "time": "9:00 AM",
     "venue": "SRIT Indoor Auditorium",
     "image": "img/culturls/Adaptune.webp",
-    "formLink": "reg_starting_soon.html"
+    "formLink": "https://forms.gle/PAkw4wUHa7H8hT82A"
   },
   "pixelperfect": {
     "title": "Reels Making",
@@ -285,7 +285,7 @@
     "time": "9:00 AM",
     "venue": "SRIT Indoor Auditorium",
     "image": "img/culturls/reels_making.webp",
-    "formLink": "reg_starting_soon.html"
+    "formLink": "https://forms.gle/PAkw4wUHa7H8hT82A"
   }
 ,
   "hackathon": {
@@ -295,7 +295,7 @@
     "time": "10:00 AM (24H)",
     "venue": "SRIT Campus",
     "image": "img/events-main/hackathon.png",
-    "formLink": "reg_starting_soon.html"
+    "formLink": "https://forms.gle/MgmKLep2mDfh1Aaq5"
   },
   "magazine": {
     "title": "Vihansa Magazine",
