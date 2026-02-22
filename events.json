@@ -68,14 +68,14 @@
     },
     {
       "id": "report-rendering",
-      "title": "Codeathon",
-      "description": "Demonstrate your analytical and problem-solving skills.",
+      "title": "LOGIC RUSH",
+      "description": "Evaluate logical reasoning, coding efficiency, and problem-solving.",
       "image": "img/events-main/codeathon.webp",
       "tag": "ANALYSIS",
       "meta": [
         {
           "icon": "fa-users",
-          "text": "Max 4"
+          "text": "Max 3"
         }
       ],
       "link": "registration.html",
