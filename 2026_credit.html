@@ -188,7 +188,7 @@
         }
 
         h1 {
-            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-size: clamp(2rem, 5vw, 3rem);
         }
 
         h2 {
@@ -516,6 +516,51 @@
             }
         }
 
+        /* ─── GRID-6 STYLES ─── */
+        .grid-6 {
+            gap: 20px;
+        }
+
+        .grid-6 .card-wrap {
+            height: 280px;
+            max-width: 190px;
+        }
+
+        .grid-6 .info-panel {
+            padding: 15px;
+            transform: translateY(20px);
+        }
+
+        .grid-6 .card-wrap:hover .info-panel {
+            transform: translateY(-50px);
+        }
+
+        .grid-6 .name {
+            font-size: 1.1rem;
+            margin-bottom: 3px;
+        }
+
+        .grid-6 .role-badge {
+            font-size: 0.55rem;
+            padding: 3px 8px;
+            margin-bottom: 5px;
+        }
+
+        .grid-6 .bio-text {
+            font-size: 0.65rem;
+            padding-left: 5px;
+            margin-bottom: 8px;
+        }
+
+        .grid-6 .details-slide {
+            padding: 10px;
+        }
+
+        .grid-6 .click-hint {
+            font-size: 0.5rem;
+            margin-top: 5px;
+        }
+
         @media (max-width: 768px) {
             .light-strand {
                 height: 60px;
@@ -534,9 +579,19 @@
                 align-items: center;
             }
 
+            .grid-6 {
+                flex-direction: row;
+                gap: 15px;
+            }
+
             .card-wrap {
                 width: 100%;
                 max-width: 340px;
+            }
+
+            .grid-6 .card-wrap {
+                max-width: calc(50% - 8px);
+                height: 250px;
             }
 
             .info-panel {
@@ -601,7 +656,7 @@
             </div>
         </header>
 
-        <div class="grid-container">
+        <div class="grid-container grid-6">
             <a href="https://www.linkedin.com/in/akshay-srinivas" target="_blank" class="card-wrap"
                 data-name="AKSHAY SRINIVAS">
                 <div class="card">
@@ -712,7 +767,7 @@
 
 
             <!-- card 7 -->
-             <a href="https://www.linkedin.com/in/rubeshkumar-a-343581363/" target="_blank" class="card-wrap"
+            <a href="https://www.linkedin.com/in/rubeshkumar-a-343581363/" target="_blank" class="card-wrap"
                 data-name="RUBESHKUMAR A">
                 <div class="card" style="border-color: #1a2a33;">
                     <div class="img-box"><img src="img/credits/rubesh.jpeg" alt="Dev 2"></div>
@@ -754,7 +809,7 @@
             <h2><span>Web Development & poster</span><br><span>Team 2025</span></h2>
         </div>
 
-        <div class="grid-container">
+        <div class="grid-container grid-6">
             <a href="https://www.linkedin.com/in/kavinbaarathi/" target="_blank" class="card-wrap legacy"
                 data-name="Kavin Baarathi">
                 <div class="card">
@@ -1014,12 +1069,12 @@
                     <!-- <a href="https://www.linkedin.com/in/rahul-prashath-m-63743a2b3" target="_blank">Rahul Prashath</a> -->
                     <br>
                     Poster Designed by:
-                        <a href="2026_credit.html" target="_blank">Perumal G,</a>
-                        <a href="2026_credit.html" target="_blank">Padma Saran D,</a>
-                        <a href="2026_credit.html" target="_blank">Mirjesh A,</a>
-                        <a href="2026_credit.html" target="_blank">Vignesh D,</a>
-                        <a href="2026_credit.html" target="_blank">Rubesh Kumar A,</a>
-                        <a href="2026_credit.html" target="_blank">Santhosh Sivan</a>
+                    <a href="2026_credit.html" target="_blank">Perumal G,</a>
+                    <a href="2026_credit.html" target="_blank">Padma Saran D,</a>
+                    <a href="2026_credit.html" target="_blank">Mirjesh A,</a>
+                    <a href="2026_credit.html" target="_blank">Vignesh D,</a>
+                    <a href="2026_credit.html" target="_blank">Rubesh Kumar A,</a>
+                    <a href="2026_credit.html" target="_blank">Santhosh Sivan</a>
                 </p>
 
             </div>
