@@ -590,9 +590,253 @@
             </ul>
           </div>
         </div>
-      </div>
     </section>
 
+    <!--==========================
+      Pricing & Perks Section
+    ============================-->
+    <section id="pricing-perks" class="wow fadeInUp" style="visibility: visible; animation-name: fadeInUp;">
+      <style>
+        #pricing-perks {
+          padding: 60px 0;
+          background: transparent;
+          position: relative;
+          z-index: 5;
+        }
+
+        .cyber-pricing-grid {
+          display: flex;
+          gap: 30px;
+          justify-content: center;
+          flex-wrap: wrap;
+        }
+
+        .cyber-card {
+          background: rgba(10, 10, 15, 0.8);
+          border: 1px solid rgba(0, 240, 255, 0.2);
+          border-radius: 15px;
+          padding: 30px;
+          width: 100%;
+          flex: 1 1 300px;
+          max-width: 350px;
+          position: relative;
+          overflow: hidden;
+          box-shadow: 0 0 20px rgba(0, 240, 255, 0.05);
+          transition: all 0.3s ease;
+          backdrop-filter: blur(10px);
+        }
+
+        .cyber-card::before {
+          content: "";
+          position: absolute;
+          top: 0;
+          left: -100%;
+          width: 50%;
+          height: 100%;
+          background: linear-gradient(90deg, transparent, rgba(0, 240, 255, 0.1), transparent);
+          transform: skewX(-20deg);
+          animation: cyberShine 4s infinite;
+        }
+
+        .cyber-card.workshop-card {
+          border-color: rgba(255, 0, 85, 0.2);
+          box-shadow: 0 0 20px rgba(255, 0, 85, 0.05);
+        }
+
+        .cyber-card.workshop-card::before {
+          background: linear-gradient(90deg, transparent, rgba(255, 0, 85, 0.1), transparent);
+        }
+
+        .cyber-card:hover {
+          transform: translateY(-5px);
+          box-shadow: 0 10px 30px rgba(0, 240, 255, 0.15);
+          border-color: rgba(0, 240, 255, 0.5);
+        }
+
+        .cyber-card.workshop-card:hover {
+          box-shadow: 0 10px 30px rgba(255, 0, 85, 0.15);
+          border-color: rgba(255, 0, 85, 0.5);
+        }
+
+        .card-header-cyber {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+          padding-bottom: 15px;
+          margin-bottom: 20px;
+        }
+
+        .card-title-cyber {
+          font-family: 'Orbitron', sans-serif;
+          font-size: 24px;
+          color: #fff;
+          margin: 0;
+          text-transform: uppercase;
+          letter-spacing: 2px;
+        }
+
+        .card-price {
+          font-family: 'Orbitron', sans-serif;
+          font-size: 28px;
+          color: #00f0ff;
+          font-weight: 700;
+        }
+
+        .workshop-card .card-price {
+          color: #ff0055;
+        }
+
+        .card-features {
+          list-style: none;
+          padding: 0;
+          margin: 0 0 25px 0;
+        }
+
+        .card-features li {
+          color: #ccc;
+          font-size: 16px;
+          margin-bottom: 12px;
+          display: flex;
+          align-items: center;
+          font-family: 'Rajdhani', sans-serif;
+          font-weight: 500;
+          letter-spacing: 1px;
+        }
+
+        .card-features li i {
+          color: #00f0ff;
+          margin-right: 15px;
+          font-size: 18px;
+          width: 20px;
+          text-align: center;
+        }
+
+        .workshop-card .card-features li i {
+          color: #ff0055;
+        }
+
+        .cyber-card.cultural-card {
+          border-color: rgba(170, 0, 255, 0.2);
+          box-shadow: 0 0 20px rgba(170, 0, 255, 0.05);
+        }
+
+        .cyber-card.cultural-card::before {
+          background: linear-gradient(90deg, transparent, rgba(170, 0, 255, 0.1), transparent);
+        }
+
+        .cyber-card.cultural-card:hover {
+          box-shadow: 0 10px 30px rgba(170, 0, 255, 0.15);
+          border-color: rgba(170, 0, 255, 0.5);
+        }
+
+        .cultural-card .card-price {
+          color: #aa00ff;
+        }
+
+        .cultural-card .card-features li i {
+          color: #aa00ff;
+        }
+
+        @keyframes cyberShine {
+          0% {
+            left: -100%;
+          }
+
+          20% {
+            left: 200%;
+          }
+
+          100% {
+            left: 200%;
+          }
+        }
+
+        .section-header-pricing {
+          text-align: center;
+          margin-bottom: 40px;
+        }
+
+        .section-header-pricing h2 {
+          font-family: 'Orbitron', sans-serif;
+          font-size: 36px;
+          color: #fff;
+          text-transform: uppercase;
+          letter-spacing: 3px;
+        }
+
+        .section-header-pricing p {
+          color: #aaa;
+          font-family: 'Rajdhani', sans-serif;
+          font-size: 18px;
+          letter-spacing: 1px;
+        }
+      </style>
+      <div class="container">
+        <div class="section-header-pricing">
+          <h2>Passes & Perks</h2>
+          <p>Unlock the ultimate experience with our event passes</p>
+        </div>
+        <div class="cyber-pricing-grid">
+
+          <!-- General Pass -->
+          <div class="cyber-card">
+            <div class="card-header-cyber">
+              <h3 class="card-title-cyber">General Pass</h3>
+              <div class="card-price">₹400</div>
+            </div>
+            <ul class="card-features">
+              <li><i class="fa fa-ticket"></i> Access 2 Tech + 1 Non-Tech Event</li>
+              <li><i class="fa fa-cutlery"></i> 2 Days Food Provided</li>
+              <li><i class="fa fa-bus"></i> Free Bus Facility Available</li>
+              <li><i class="fa fa-certificate"></i> Participation Certificates</li>
+            </ul>
+            <div class="text-center">
+              <a href="#events" class="cyber-btn" style="width: 100%; border-radius: 8px;">GET PASS</a>
+            </div>
+          </div>
+
+          <!-- Workshop Pass -->
+          <div class="cyber-card workshop-card">
+            <div class="card-header-cyber">
+              <h3 class="card-title-cyber">Workshop Pass</h3>
+              <div class="card-price">₹300</div>
+            </div>
+            <ul class="card-features">
+              <li><i class="fa fa-wrench"></i> Access to 1 Premium Workshop</li>
+              <li><i class="fa fa-cutlery"></i> Food Provided</li>
+              <li><i class="fa fa-bus"></i> Free Bus Facility Available</li>
+              <li><i class="fa fa-certificate"></i> Verified Workshop Certificate</li>
+            </ul>
+            <div class="text-center">
+              <a href="#events" class="cyber-btn"
+                style="width: 100%; border-radius: 8px; border-color: #ff0055; color: #ff0055; text-shadow: 0 0 5px rgba(255,0,85,0.5);">REGISTER
+                NOW</a>
+            </div>
+          </div>
+
+          <!-- Cultural Pass -->
+          <div class="cyber-card cultural-card">
+            <div class="card-header-cyber">
+              <h3 class="card-title-cyber">Cultural Pass</h3>
+              <div class="card-price">₹200</div>
+            </div>
+            <ul class="card-features">
+              <li><i class="fa fa-music"></i> Access to 1 Cultural Event</li>
+              <li><i class="fa fa-cutlery"></i> Food Provided</li>
+              <li><i class="fa fa-bus"></i> Free Bus Facility Available</li>
+              <li><i class="fa fa-star"></i> Showcase Artistic Talents</li>
+            </ul>
+            <div class="text-center">
+              <a href="#events" class="cyber-btn"
+                style="width: 100%; border-radius: 8px; border-color: #aa00ff; color: #aa00ff; text-shadow: 0 0 5px rgba(170,0,255,0.5);">GRAB
+                PASS</a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
 
     <!--==========================
       Gallery Section
@@ -2477,7 +2721,7 @@
           <ol>
             <li><strong>Eligibility &amp; Registration</strong>
               <ul>
-                <li>Each team must consist of 2 to 5 members.</li>
+                <li>Only for Engineering college students.</li>
                 <li>Registration is confirmed only after payment of the ₹2000 registration fee.</li>
                 <li>The registration fee is non-refundable once the final registration form is closed.</li>
                 <li>All participants must carry their college ID card.</li>
@@ -2495,7 +2739,7 @@
 
             <li><strong>Team Rules</strong>
               <ul>
-                <li>Individual participation is not allowed.</li>
+                <li>Each team must consist of 1 to 4 members.</li>
                 <li>Team members cannot be changed after final registration.</li>
                 <li>Cross-disciplinary collaboration is encouraged.</li>
                 <li>Each team must select a team leader for official communication.</li>
@@ -2510,6 +2754,7 @@
                 <li>Pre-built complete solutions are strictly prohibited.</li>
                 <li>Teams must strictly follow the given problem statement and theme.</li>
                 <li>Any violation of rules may result in disqualification.</li>
+                <li>The decision taken by jury is final.</li>
               </ul>
             </li>
 
@@ -2534,22 +2779,23 @@
               </ul>
             </li>
 
-            <li><strong>Final Submission Guidelines</strong>
+            <li><strong>Final Submission Guidelines</strong></li>
+
+            <li><strong>Contact details</strong></li>
+
+            <li><strong>Submission Format:</strong>
               <ul>
-                <li><strong>Submission Format:</strong>
-                  <ul>
-                    <li>Code Repository (GitHub or similar).</li>
-                    <li>Demo Video (1–2 minutes) showing the working prototype.</li>
-                    <li>Final PPT and PDF Report (max 10 slides/pages).</li>
-                  </ul>
-                </li>
-                <li><strong>Deadline:</strong>
-                  <ul>
-                    <li>Submissions after the deadline will not be accepted under any circumstance.</li>
-                  </ul>
-                </li>
+                <li>Code Repository (GitHub or similar).</li>
+                <li>Demo Video (1–2 minutes) showing the working prototype.</li>
+                <li>Final PPT and PDF Report (max 10 slides/pages).</li>
+              </ul>
+              <strong>Deadline:</strong>
+              <ul>
+                <li>Submissions after the deadline will not be accepted under any circumstance.</li>
               </ul>
             </li>
+
+            <li><strong>They should wear an T shirt compulsory</strong></li>
           </ol>
         </div>
       </div>
