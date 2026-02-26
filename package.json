@@ -1,0 +1,23 @@
+{
+  "name": "vihansa-2k26",
+  "version": "1.0.0",
+  "description": "Tech-Fest 25 is SRIT's 1st 2days tech event which hosts more thn 30 events, 4 works-shops and national leval hackthon. It has a cashpool of 3 lakh+.\r We are building website with payment gatewaaay for it.",
+  "main": "delete_lines.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lolakshay/vihansa-2k26.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lolakshay/vihansa-2k26/issues"
+  },
+  "homepage": "https://github.com/lolakshay/vihansa-2k26#readme"
+}

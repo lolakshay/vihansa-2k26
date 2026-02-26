@@ -1535,7 +1535,7 @@
           border-radius: 4px;
           overflow: hidden;
           text-align: center;
-          padding: 50px 20px;
+          padding: 40px 20px;
           transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
           height: 100%;
           display: flex;
@@ -1545,21 +1545,34 @@
           backdrop-filter: blur(5px);
         }
 
-        /* Creative Staggered Layout */
-        .row>div:nth-child(1) .guest-card {
-          transform: translateY(40px) rotate(-2deg);
-          margin-top: 40px;
+        .guest-photo-container {
+          width: 140px;
+          height: 140px;
+          border-radius: 50%;
+          margin: 0 auto 20px auto;
+          overflow: hidden;
+          border: 3px solid #ff3b3b;
+          box-shadow: 0 0 15px rgba(255, 59, 59, 0.3);
+          position: relative;
+          z-index: 1;
+          transition: all 0.4s ease;
         }
 
-        .row>div:nth-child(2) .guest-card {
-          transform: translateY(-20px) scale(1.05);
-          z-index: 2;
-          border-width: 2px;
+        .guest-photo-container img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          transition: transform 0.4s ease;
         }
 
-        .row>div:nth-child(3) .guest-card {
-          transform: translateY(40px) rotate(2deg);
-          margin-top: 40px;
+        .guest-card:hover .guest-photo-container {
+          border-color: #00f0ff;
+          box-shadow: 0 0 25px rgba(0, 240, 255, 0.6);
+          transform: translateY(-5px) scale(1.05);
+        }
+
+        .guest-card:hover .guest-photo-container img {
+          transform: scale(1.1);
         }
 
         /* Glitch overlay effect */
@@ -1585,61 +1598,14 @@
         .guest-card:hover {
           border-color: #ff3b3b;
           box-shadow: 0 0 30px rgba(255, 0, 0, 0.5), 0 0 60px rgba(255, 0, 0, 0.2);
-        }
-
-        .row>div:nth-child(1) .guest-card:hover {
-          transform: translateY(20px) rotate(0deg) scale(1.05);
-        }
-
-        .row>div:nth-child(2) .guest-card:hover {
-          transform: translateY(-30px) scale(1.12);
-        }
-
-        .row>div:nth-child(3) .guest-card:hover {
-          transform: translateY(20px) rotate(0deg) scale(1.05);
-        }
-
-        .guest-placeholder {
-          width: 140px;
-          height: 140px;
-          background: #050505;
-          border-radius: 50%;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          margin-bottom: 30px;
-          border: 2px dashed #444;
-          box-shadow: inset 0 0 20px #000;
-          position: relative;
-          transition: all 0.3s;
-        }
-
-        .guest-placeholder::after {
-          content: '?';
-          font-size: 4rem;
-          font-family: 'Orbitron', sans-serif;
-          color: #333;
-          font-weight: bold;
-          transition: all 0.3s;
-        }
-
-        .guest-card:hover .guest-placeholder {
-          border-color: #ff0000;
-          box-shadow: 0 0 15px #ff0000, inset 0 0 10px #ff0000;
-        }
-
-        .guest-card:hover .guest-placeholder::after {
-          color: #ff0000;
-          text-shadow: 0 0 10px #ff0000;
-          content: '!';
-          /* Fun interaction */
+          transform: translateY(-10px);
         }
 
         .reveal-text {
           font-family: 'Orbitron', sans-serif;
-          font-size: 1.8rem;
+          font-size: 1.5rem;
           color: #fff;
-          letter-spacing: 2px;
+          letter-spacing: 1px;
           text-transform: uppercase;
           margin-bottom: 10px;
           position: relative;
@@ -1647,10 +1613,15 @@
 
         .sub-reveal {
           font-family: 'Rajdhani', sans-serif;
-          color: #888;
-          font-size: 1.2rem;
+          color: #ff3b3b;
+          font-size: 1.1rem;
           text-transform: uppercase;
-          letter-spacing: 3px;
+          letter-spacing: 2px;
+          font-weight: 600;
+        }
+
+        .guest-details p {
+          margin-bottom: 8px;
         }
 
         /* Glitch Keyframes */
@@ -1669,36 +1640,116 @@
         <div class="section-header text-center mb-5">
           <h2
             style="font-family: 'Orbitron', sans-serif; color: #fff; letter-spacing: 4px; text-shadow: 0 0 10px #ff0000; font-size: 3rem;">
-            HONORABLE GUESTS</h2>
+            HONORABLE GUESTS
+          </h2>
           <div style="width: 100px; height: 3px; background: #ff0000; margin: 20px auto; box-shadow: 0 0 10px #ff0000;">
           </div>
         </div>
 
-        <div class="row">
-          <!-- Guest 1 -->
-          <div class="col-md-4 mb-4">
-            <div class="guest-card">
-              <div class="guest-placeholder"></div>
-              <h3 class="reveal-text">REVEALING SOON</h3>
-              <p class="sub-reveal">Chief Guest</p>
+        <div class="day-section mb-5">
+          <h3 class="text-center mb-4"
+            style="color: #00f0ff; font-family: 'Orbitron', sans-serif; text-transform: uppercase; letter-spacing: 2px;">
+            Day 1: Inauguration
+          </h3>
+          <p class="text-center mb-5"
+            style="color: #ccc; font-family: 'Rajdhani', sans-serif; font-size: 1.2rem; max-width: 800px; margin: 0 auto;">
+            <strong>Focus:</strong> Industry–Academia Connect, Innovation & Emerging Technologies
+          </p>
+
+          <div class="row justify-content-center">
+            <!-- Day 1 Guest 1 -->
+            <div class="col-md-5 mb-4">
+              <div class="guest-card" style="padding: 30px 20px;">
+                <div class="guest-photo-container">
+                  <img src="img/chief-guest/Sumathi-ponramar.jpeg" alt="Ms. Sumathi Ponramar" loading="lazy">
+                </div>
+                <h3 class="reveal-text" style="color: #ff3b3b;">Ms. Sumathi Ponramar</h3>
+                <p class="sub-reveal mb-2" style="color: #fff;">Chief Guest</p>
+                <div class="guest-details" style="color: #aaa; font-size: 0.95rem; line-height: 1.4;">
+                  <p class="mb-2" style="color: #00f0ff; font-weight: bold;">[SRIT Alumnus 2003-2007 Batch/CSE]</p>
+                  <p class="mb-2"><strong>Tech Solution Architect</strong><br>Accenture, Coimbatore</p>
+                  <p class="mb-0"
+                    style="font-size: 0.85rem; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 10px; margin-top: 10px;">
+                    Gen AI Enthusiast | Data & Analytics Leader | Cloud Modernization | Program Management | Scrum
+                    Master
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Day 1 Guest 2 -->
+            <div class="col-md-5 mb-4">
+              <div class="guest-card" style="padding: 30px 20px;">
+                <div class="guest-photo-container">
+                  <img src="img/chief-guest/ravishankar.jpeg" alt="Mr. S. Ravishankar" loading="lazy">
+                </div>
+                <h3 class="reveal-text" style="color: #ff3b3b;">Mr. S. Ravishankar</h3>
+                <p class="sub-reveal mb-2" style="color: #fff;">Guest of Honor</p>
+                <div class="guest-details" style="color: #aaa; font-size: 0.95rem; line-height: 1.4;">
+                  <p class="mb-2" style="color: #00f0ff; font-weight: bold;">[SRIT Alumnus 2003-2007 Batch/CSE]</p>
+                  <p class="mb-0"><strong>Solution Architect</strong><br>Nestle, Bangalore</p>
+                </div>
+              </div>
             </div>
           </div>
+        </div>
 
-          <!-- Guest 2 -->
-          <div class="col-md-4 mb-4">
-            <div class="guest-card">
-              <div class="guest-placeholder"></div>
-              <h3 class="reveal-text">REVEALING SOON</h3>
-              <p class="sub-reveal">Guest of Honor</p>
+        <div class="day-section mb-5">
+          <h3 class="text-center mb-5"
+            style="color: #00f0ff; font-family: 'Orbitron', sans-serif; text-transform: uppercase; letter-spacing: 2px;">
+            Day 2: Valedictory Function
+          </h3>
+
+          <div class="row justify-content-center">
+            <!-- Day 2 Guest 1 -->
+            <div class="col-md-4 mb-4">
+              <div class="guest-card" style="padding: 30px 20px;">
+                <div class="guest-photo-container">
+                  <img src="img/chief-guest/Raam-Murali-Nithilan-Swaminathan.jpeg" alt="Mr. Raam Murali" loading="lazy">
+                </div>
+                <h3 class="reveal-text" style="font-size: 1.3rem; color: #ff3b3b;">Mr. Raam Murali<br><span
+                    style="font-size: 0.9rem; color: #aaa; text-transform: none; letter-spacing: normal;">@ Nithilan
+                    Swaminathan</span></h3>
+                <p class="sub-reveal mb-2" style="color: #fff;">Chief Guest</p>
+                <div class="guest-details" style="color: #aaa; font-size: 0.95rem; line-height: 1.4;">
+                  <p class="mb-2" style="color: #00f0ff; font-weight: bold;">[SRIT Alumnus 2008-2012 Batch/Civil Engg]
+                  </p>
+                  <p class="mb-0"><strong>Director, Story & Screenplay, Dialogues & Co-writer</strong><br>Film “Maharaja
+                    (2024)”<br><br><strong>Director</strong><br>Film “Kurangu Bommai (2017)”</p>
+                </div>
+              </div>
             </div>
-          </div>
 
-          <!-- Guest 3 -->
-          <div class="col-md-4 mb-4">
-            <div class="guest-card">
-              <div class="guest-placeholder"></div>
-              <h3 class="reveal-text">REVEALING SOON</h3>
-              <p class="sub-reveal">Special Speaker</p>
+            <!-- Day 2 Guest 2 -->
+            <div class="col-md-4 mb-4">
+              <div class="guest-card" style="padding: 30px 20px;">
+                <div class="guest-photo-container">
+                  <img src="img/chief-guest/Prabhakaran-Thangarasu.jpeg" alt="Mr. Prabhakaran Thangarasu"
+                    loading="lazy">
+                </div>
+                <h3 class="reveal-text" style="font-size: 1.3rem; color: #ff3b3b;">Mr. Prabhakaran Thangarasu</h3>
+                <p class="sub-reveal mb-2" style="color: #fff;">Guest of Honor</p>
+                <div class="guest-details" style="color: #aaa; font-size: 0.95rem; line-height: 1.4;">
+                  <p class="mb-2" style="color: #00f0ff; font-weight: bold;">[SRIT Alumnus 2008-2012 Batch/Information
+                    Technology]</p>
+                  <p class="mb-0"><strong>Cinematographer and Director</strong><br>Freelancer</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Day 2 Guest 3 -->
+            <div class="col-md-4 mb-4">
+              <div class="guest-card" style="padding: 30px 20px;">
+                <div class="guest-photo-container">
+                  <img src="img/chief-guest/Preethika-Parasuraman.jpeg" alt="Ms. Preethika Parasuraman" loading="lazy">
+                </div>
+                <h3 class="reveal-text" style="font-size: 1.3rem; color: #ff3b3b;">Ms. Preethika Parasuraman</h3>
+                <p class="sub-reveal mb-2" style="color: #fff;">Guest of Honor</p>
+                <div class="guest-details" style="color: #aaa; font-size: 0.95rem; line-height: 1.4;">
+                  <p class="mb-2" style="color: #00f0ff; font-weight: bold;">[SRIT Alumnus 2017-2021 Batch/CSE]</p>
+                  <p class="mb-0"><strong>Certified Appian Developer</strong><br>KPMG, Bangalore</p>
+                </div>
+              </div>
             </div>
           </div>
         </div>
